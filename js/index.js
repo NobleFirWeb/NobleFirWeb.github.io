@@ -203,3 +203,33 @@ document.addEventListener("DOMContentLoaded", function () {
     carousel.style.setProperty('--aspect-ratio', aspectRatio.value);
   });
 })();
+
+
+// Scroll to top button functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const scrollToTopButton = document.getElementById("scrollToTop");
+
+  if (!scrollToTopButton) {
+      console.error("🚨 Error: Scroll to Top button missing!");
+      return;
+  }
+
+  function toggleScrollButton() {
+      if (window.scrollY > 200) { 
+          scrollToTopButton.classList.add("show"); // Show button when user scrolls down
+      } else {
+          scrollToTopButton.classList.remove("show"); // Hide button when near top
+      }
+  }
+
+  // Scroll to top smoothly when clicked
+  scrollToTopButton.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Event listener for scrolling
+  window.addEventListener("scroll", toggleScrollButton);
+
+  // Run toggle once to handle if page is already scrolled
+  toggleScrollButton();
+});

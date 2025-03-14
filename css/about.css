@@ -484,6 +484,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 /* Background Card */
@@ -506,16 +507,9 @@ body {
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  width: calc(100% - 20px);
-  height: calc(100% - 20px);
+  width: calc(100% - 5px);
+  height: calc(100% - 5px);
   max-width: 100%;
-}
-
-.text-card h2 {
-  font-size: 24px;
-  margin-bottom: 15px;
-  color: #bdbdbd;
-  text-align: center;
 }
 
 .text-card ul {
@@ -523,7 +517,7 @@ body {
   padding-left: 0;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
   margin-top: 10px;
   justify-content: space-evenly;
 }
@@ -539,6 +533,19 @@ body {
   margin-bottom: 10px;
   padding-left: 15px;
   border-radius: 6px;
+}
+
+.text-card p {
+  font-family: "Roboto", serif;
+  font-weight: 300;
+}
+
+#text-card-2 {
+  margin-top: 60px;
+}
+
+#image-card-2 {
+  margin-top: 60px;
 }
 
 @media (max-width: 1024px) {
@@ -669,4 +676,38 @@ footer {
 [data-rise="true"].visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Scroll to top styles */
+#scrollToTop {
+  position: fixed; /* Keeps it in the bottom-right */
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  opacity: 0; /* Initially hidden */
+  visibility: hidden;
+  z-index: 1000;
+}
+
+
+/* Show when scrolling down */
+#scrollToTop.show {
+  display: block;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Hover Effect */
+#scrollToTop:hover {
+  background-color: grey;
 }
