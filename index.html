@@ -12,6 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./css/index.css">
         <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
     </head>
     <body>
         <!--
@@ -19,7 +20,7 @@
             <div id="progressBar"></div>
             <div class="loader">loading</div>
         </div>
-    -->
+        -->
         
     <!-- Navbar -->
     <header class="navbar">
@@ -50,8 +51,8 @@
                 <hr />
             </div>
             <ul class="menu-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href=".index.html">Home</a></li>
+                <li><a href=".about.html">About Us</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#">Insights</a></li>
@@ -255,8 +256,33 @@
 
     </section>
 
-    <section class="testimonials">
-        
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-header" data-rise="true">
+            <h1 class="testimonials-title">Testimonials</h1>
+            <p class="testimonials-subtitle">Hear what our clients have to say about our web development services and how we've helped them succeed online.</p>
+        </div>
+        <div class="testimonial-container">
+            
+            <sl-carousel autoplay loop pagination navigation mouse-dragging>
+                <sl-carousel-item>
+                <div class="testimonial">
+                    <sl-card class="card-footer">
+                        <p>"Noble Fir transformed our online presence! Our sales have doubled since the redesign."</p>
+
+                        <sl-avatar label="User avatar"></sl-avatar>
+                        <div class="details">
+                            <p class="testimonial-author">John Doe</p>
+                            <p class="testimonial-company">CEO, Casa Designs</p>
+                        </div>
+
+                        <div slot="footer">
+                        <sl-rating value="5" style="--symbol-size: 2rem;"></sl-rating>
+                        </div>
+                    </sl-card>
+                </div>    
+                </sl-carousel-item>
+            </sl-carousel>
+        </div>
     </section>
 
     <section class="insights">
@@ -363,5 +389,6 @@
     </footer>
         
         <script src="./js/index.js" async defer></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
     </body>
 </html>

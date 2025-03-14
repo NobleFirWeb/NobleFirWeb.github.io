@@ -192,3 +192,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("scroll", handleScroll);
 });
+
+
+// Reviews Carousel
+(() => {
+  const carousel = document.querySelector('sl-carousel.aspect-ratio');
+  const aspectRatio = document.querySelector('sl-select[name="aspect"]');
+
+  aspectRatio.addEventListener('sl-change', () => {
+    carousel.style.setProperty('--aspect-ratio', aspectRatio.value);
+  });
+})();

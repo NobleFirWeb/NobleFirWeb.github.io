@@ -293,7 +293,15 @@ body {
     max-width: 100vw;
     height: 100vh;
     background-image: url("../img/hero-img.png");
-    object-fit: cover center;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .hero-content {
@@ -396,6 +404,13 @@ body {
     line-height: 64px;
     color: #bdbdbd;
     margin-bottom: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.about-title i {
+    color: #000000;
+
 }
 
 .about-description {
@@ -407,45 +422,142 @@ body {
     margin-top: 5%;
 }
 
-.about-cards {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2%;
-    margin: 0;
-    min-height: 60vh;
-    max-height: 80vh;
-    max-width: 100vw;
+.about-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100vw;
+  width: 100%;
+  height: auto;
+  gap: 30px; /* Change from percentage to fixed spacing */
+  align-items: stretch;
+  justify-content: space-between;
+  margin: 10% 0;
 }
 
-.about-card {
-    margin-top: 10%;
-    display: flex;
+/* Flex items should each take 50% width */
+.image-container,
+.text-card-wrapper {
+  flex: 1 1 48%; /* Allow items to shrink/grow but start at 48% */
+  height: 50vh;
+  max-width: 48%; /* Ensures it doesn’t exceed the 50% goal */
+}
+
+/* Ensure images are centered */
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.image-container h2,
+.image-container p {
+  align-self: flex-start;
+}
+
+.image-container h2 {
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: #bdbdbd;
+  font-family: 'Roboto', serif;
+  font-weight: 200;
+}
+
+.image-container p {
+  font-size: 22px;
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  line-height: 25px;
+  color: #000000;
+}
+
+.image-container img {
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  margin-top: 20px; /* Reduce margin for better spacing */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Right Card Section */
+.text-card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Background Card */
+.text-card-background {
+  background: url('../img/about-2-bg.png') no-repeat center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Raised White Card */
+.text-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  max-width: 100%;
+}
+
+.text-card h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #bdbdbd;
+  text-align: center;
+}
+
+.text-card ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+  justify-content: space-evenly;
+}
+
+.text-card li {
+  font-size: 22px;
+  font-family: "Roboto", serif;
+  font-weight: 300;
+  line-height: 25px;
+  color: #000000;
+  padding: 10px;
+  border-left: 4px solid #e33939;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  border-radius: 6px;
+}
+
+@media (max-width: 1024px) {
+  .about-cards-container {
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    min-height: 60vh;
-    max-height: 80vh;
-    min-width: 45%;
-    max-width: 50%;
-    gap: 10px;
-    padding: 5%;
-    border: 1px solid #000;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-    overflow: hidden;
-}
+  }
 
-.about-card img {
-    width: 100%;
-    height: auto;
+  .image-container,
+  .text-card-wrapper {
+    flex: 1 1 100%;
     max-width: 100%;
-    object-fit: cover;
+    height: auto;
+  }
 
+  .text-card li {
+    font-size: 18px;
+  }
 }
-
-
 
 /* Footer */
 footer {

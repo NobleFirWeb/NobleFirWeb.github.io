@@ -25,7 +25,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: #fff;
     color: white;
     display: flex;
     justify-content: center;
@@ -40,7 +40,7 @@ body {
     top: 0;
     left: 0;
     height: 5px;
-    background-color: white;
+    background-color: #000;
     width: 0%;
 }
 
@@ -50,7 +50,9 @@ body {
     white-space: pre;
     font-size: 6.5em;
     overflow: hidden;
-    font-family: 'Teko', sans-serif;
+    color: #000;
+    font-family: 'Roboto', serif;
+    font-weight: 200;
     text-transform: uppercase;
 }
 
@@ -489,15 +491,18 @@ body {
     width: 100%;
     min-height: 425px;
     max-height: 50vh;
-    background-color: #fbfbfb;
-    margin-top: 7%;
+    background-image: url('/img/about-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
 
 .about-left {
     width: 50%;
     padding: 10px;
     display: grid;
-    grid-template-columns: repeat(2, 25%);
+    grid-template-columns: repeat(2, 40%);
     grid-template-rows: repeat(2, auto);
     align-items: center;
     justify-content: center;
@@ -542,7 +547,7 @@ body {
     width: 220px;
     height: 71px;
     text-decoration: none;
-    color: #000;
+    color: #ffffff;
     font-size: 14px;
     letter-spacing: 2px;
     line-height: 14px;
@@ -1042,14 +1047,85 @@ body {
     }
 }
 
+/* Testimonials Section Styles */
+#testimonials {
+    min-height: 100vh;
+}
 
+.testimonials-header {
+    display: block;
+    margin: 5% 5%;
+}
 
+.testimonials-title {
+    font-size: 64px;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    line-height: 64px;
+    color: #bdbdbd;
+}
 
+.testimonials-subtitle {
+    margin-top: 5%;
+    font-size: 22px;
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    line-height: 36px;
+    color: #000000;
+}
 
+.testimonial-container {
+    margin-top: 5%;
+    min-width: 100vw;
+    height: 50vh;
+    background-image: url('/img/reviews-bg.jpg');
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    z-index: -1;
+}
+
+sl-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 75%;
+    height: 50vh;
+    padding: 20px;
+    z-index: 0;
+}
+
+.card-footer {
+    width: 100%;
+    height: 75%;
+    margin: 5% 5%;
+    max-height: 80%;
+    color: black;
+    padding: 20px;
+}
+
+sl-avatar {
+    margin-top: 15px;
+}
+
+.card-footer .details {
+    float: right;
+    margin-top: 15px;
+    font-size: 18px;
+    margin-right: 60%;
+}
 
 /* FAQs */
 .faq {
-    margin: 5% 10%;
+    margin: 0 10%;
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
