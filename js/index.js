@@ -1,4 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const carousel = document.querySelector(".hero-carousel");
+  const firstImage = document.querySelector(".carousel-item img");
+
+  if (firstImage) {
+      firstImage.onload = () => {
+          const fixedHeight = firstImage.clientHeight; 
+          carousel.style.height = `${fixedHeight}px`; 
+      };
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
   const carouselInner = document.querySelector(".carousel-inner");
   const slides = document.querySelectorAll(".carousel-item");
   const prevSlideBtn = document.getElementById("nav-btn1"); // Keep your existing button
