@@ -81,14 +81,22 @@
             <h3 class="title">Custom Solutions to help your business</h3>
             <h3 class="text-updates">Succeed.</h3>
             <div class="hero-navigation">
-                <button class="nav-btn1">&#8592;</button>
-                <button class="nav-btn2">&#8594;</button>
+                <button class="nav-btn1" id="nav-btn1">&#8592;</button>
+                <button class="nav-btn2" id="nav-btn2">&#8594;</button>
                 <div class="line"></div>
             </div>
-            <p class="pagination">01 / 03</p>
+            <div class="carousel-pagination">
+                <span id="current-slide">01</span> / <span id="total-slides">03</span>
+            </div>
         </div>
-        <div class="hero-image">
-            <img src="./img/hero-tablet.jpg" alt="Hero Image">
+        <div class="hero-carousel">
+            <!-- Images will slide inside this container -->
+            <div class="carousel-inner">
+                <img src="./img/hero-tablet.jpg" class="carousel-item active">
+                <img src="" class="carousel-item">
+                <img src="" class="carousel-item">
+            </div>
+
             <a href="#contact" class="view-project">Let's Connect &#8594;</a>
         </div>
     </section>
@@ -363,14 +371,14 @@
                 <h3>Location</h3>
                 <p>Tualatin,<br>Oregon</p>
                 <a href="https://maps.app.goo.gl/nwib4mgM4wPe1pdz8" target="_blank" rel="noopener noreferrer">View on Maps</a>
-    
+                
                 <h3>Call Us</h3>
                 <p>971-500-6447</p>
-    
+                
                 <h3>Got a Question?</h3>
                 <p>Drop us an email and we’ll be in touch asap.</p>
                 <a href="mailto:hello@website.com">info@noblefirweb.com</a>
-    
+                
                 <h3>Follow Us</h3>
                 <div class="social-icons">
                     <a href="#"><i class="fa fa-facebook"></i></a>

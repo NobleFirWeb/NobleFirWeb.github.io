@@ -1,4 +1,55 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const carouselInner = document.querySelector(".carousel-inner");
+  const slides = document.querySelectorAll(".carousel-item");
+  const prevSlideBtn = document.getElementById("nav-btn1"); // Keep your existing button
+  const nextSlideBtn = document.getElementById("nav-btn2"); // Keep your existing button
+  
+  let currentIndex = 0;
+  const totalSlides = slides.length;
+  let interval;
+
+  function updateCarousel() {
+      const translateX = -currentIndex * 100; // Moves slides by 100% each time
+      carouselInner.style.transform = `translateX(${translateX}%)`;
+  }
+
+  function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateCarousel();
+  }
+
+  function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+  }
+
+  function startAutoSlide() {
+      interval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+  }
+
+  function stopAutoSlide() {
+      clearInterval(interval);
+  }
+
+  // Add event listeners to your existing nav buttons
+  nextSlideBtn.addEventListener("click", function () {
+      stopAutoSlide();
+      nextSlide();
+      startAutoSlide();
+  });
+
+  prevSlideBtn.addEventListener("click", function () {
+      stopAutoSlide();
+      prevSlide();
+      startAutoSlide();
+  });
+
+  // Start automatic sliding on page load
+  startAutoSlide();
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
     // Example: Smooth scrolling for navbar links
     document.querySelectorAll('.menu-links a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
