@@ -14,8 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const carouselInner = document.querySelector(".carousel-inner");
   const slides = document.querySelectorAll(".carousel-item");
-  const prevSlideBtn = document.getElementById("nav-btn1"); // Keep your existing button
-  const nextSlideBtn = document.getElementById("nav-btn2"); // Keep your existing button
+  const prevSlideBtn = document.getElementById("nav-btn1"); // Left navigation button
+  const nextSlideBtn = document.getElementById("nav-btn2"); // Right navigation button
+  const currentSlideText = document.getElementById("current-slide"); // Pagination text
   
   let currentIndex = 0;
   const totalSlides = slides.length;
@@ -24,15 +25,18 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateCarousel() {
       const translateX = -currentIndex * 100; // Moves slides by 100% each time
       carouselInner.style.transform = `translateX(${translateX}%)`;
+
+      // Update Pagination Properly
+      currentSlideText.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(totalSlides).padStart(2, "0")}`;
   }
 
   function nextSlide() {
-      currentIndex = (currentIndex + 1) % totalSlides;
+      currentIndex = (currentIndex + 1) % totalSlides; // Loops back to 0 after the last image
       updateCarousel();
   }
 
   function prevSlide() {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // Loops back from 0 to the last image
       updateCarousel();
   }
 
@@ -44,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
       clearInterval(interval);
   }
 
-  // Add event listeners to your existing nav buttons
+  // Add event listeners to navigation buttons
   nextSlideBtn.addEventListener("click", function () {
       stopAutoSlide();
       nextSlide();
@@ -57,9 +61,11 @@ document.addEventListener("DOMContentLoaded", function () {
       startAutoSlide();
   });
 
-  // Start automatic sliding on page load
+  // Initialize Pagination & Start Auto-Sliding
+  updateCarousel();
   startAutoSlide();
 });
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
