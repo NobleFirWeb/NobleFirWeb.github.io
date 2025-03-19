@@ -319,7 +319,8 @@ body {
 
 
 .services-header {
-    margin: 15% 5%;
+    margin: 0 5%;
+    margin-top: 15%;
 }
 
 .services-title {
@@ -340,45 +341,125 @@ body {
     line-height: 32px;
     letter-spacing: 0.15rem;
     color: #000000;
-    margin-top: 5%;
+    margin-top: 25px;
 }
 
 
 sl-tab-group {
     display: flex;
     justify-content: center;
-    margin: 5% 5%;
-    width: 1024px;
-    font-size: 24px;
-    font-family: "Roboto", serif;
-    font-weight: 300;
-    line-height: 32px;
+    margin: 0 10%;
+    margin-bottom: 5%;
     letter-spacing: 0.15rem;
-    
+    margin-top: 5%;
+    --indicator-color: #333;
+    --track-color: #bdbdbd;
 
 }
 
-sl-tab-panel {
-    padding: 20px;
+sl-tab {
+    font-weight: 300;
+    line-height: 48px;
+    letter-spacing: 0.15rem;
+    margin-right: 15%;
+    width: 100%;
+    transition: color 0.3s ease;
+}
+
+sl-tab tab-nav {
+    color: #bdbdbd;
+    font-size: 24px;
     font-family: "Roboto", serif;
+}
+
+sl-tab-panel {
+    padding: 15px;
+    letter-spacing: 0.15rem;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+.service-title {
+    font-family: "Roboto", serif;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 32px;
+    letter-spacing: 0.15rem;
+    color: #bdbdbd;
+}
+
+.service-subtitle {
+    font-family: "Roboto", serif;
+    font-size: 18px;
     font-weight: 300;
     line-height: 24px;
     letter-spacing: 0.15rem;
     color: #000000;
-    margin-left: 10%;
+    margin-top: 25px;
 }
 
-sl-tab {
-    padding-right: 20px;
+.service-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 40px;
+    margin-top: 35px;
+    list-style: none;
+}
+
+.service-list .item {
+    display: flex;
+    gap: 40px;
+    margin-left: 25px;
     font-family: "Roboto", serif;
+    font-size: 18px;
     font-weight: 300;
     line-height: 24px;
     letter-spacing: 0.15rem;
-    margin-right: 10%;
+    color: #000000;
 }
 
+.service-description {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 40px;
+    margin-top: 7%;
+}
 
+.service-discription p {
+    font-family: "Roboto", serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+    max-width: 50%;
+    letter-spacing: 0.15rem;
+    color: #000000;
+    margin-top: 25px;
+}
 
+sl-button.learn-more-btn::part(base) {
+    background-color: transparent;
+    color: #333;
+    font-family: "Roboto", serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+    padding: 10px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-left: 25px;
+
+}
+
+sl-button.learn-more-btn::part(base):hover {
+    background-color: #333;
+    color: #fff;
+}
 
 
 
