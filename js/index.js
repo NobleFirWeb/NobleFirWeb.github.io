@@ -313,3 +313,5 @@ document.addEventListener("DOMContentLoaded", function () {
   // Run toggle once to handle if page is already scrolled
   toggleScrollButton();
 });
+
+// Stat Counter Animation

@@ -596,12 +596,6 @@ body {
 sl-button.about-btn::part(base) {
     background-color: transparent;
     color: #333;
-    --sl-input-height-medium: 48px;
-    --sl-input-border-width: 1px;
-    border-top-color: #333;
-    border-left-color: #333;
-    border-bottom-color: #333;
-    border-right-color: #333;
     font-size: 22px;
     font-family: "Roboto", serif;
     font-weight: 300;
@@ -650,60 +644,60 @@ sl-button.about-btn::part(base) {
 
 .val {
     display: flex;
-    flex-direction: row;
+    flex-direction: row; /* Keep number and icon aligned */
     align-items: center;
-    position: relative;
-    column-gap: 7%;
-    text-align: center;
+    column-gap: 5%;
+    text-align: left;
     width: 100%;
+    position: relative;
 }
 
+/* Number Styling (No Change) */
 .val-number {
     font-size: 175px;
     color: #f2f2f2;
     font-family: "Roboto", serif;
-    line-height: auto;
-    position: relative;
-    z-index: 1;
-    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.val-title {
-    font-size: 38px;
-    line-height: auto;
-    bottom: 15%;
-    left: 1%;
-    font-family: "Roboto", serif;
-    position: absolute;
-    font-weight: 300;
-    z-index: 2;
-    background: transparent;
-    color: #000;
-    text-align: left;
-    letter-spacing: 0.05rem;
-}
-
+/* Icon Styling (No Change) */
 .val i {
-    font-size: 64px;
+    font-size: 82px;
     line-height: auto;
     color: #333;
     position: absolute;
-    bottom: 40%;
-    left: 1%;
+    bottom: 15%;
+    left: 0;
     font-weight: 100;
     z-index: 2;
 }
 
+/* Wrap the title and paragraph into a separate block */
+.val-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Move the Title Below the Number & Icon */
+.val-title {
+    font-size: 38px;
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    color: #bdbdbd;
+    letter-spacing: 0.05rem;
+    margin-bottom: 10px; /* Creates space between title and paragraph */
+}
+
+/* Description Styling (No Change) */
 .val-description {
-    margin-top: 5%;
     font-size: 22px;
     font-family: "Roboto", serif;
-    text-align: left;
     font-weight: 300;
     line-height: 25px;
-    margin-top: 5%;
     letter-spacing: 0.15rem;
     color: #000000;
+    max-width: 90%;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -1427,6 +1421,7 @@ footer {
     min-width: 200px;
     text-align: center;
     margin: 0 15px;
+    margin-top: 25px;
 }
 
 .footer .logo-section {
@@ -1437,7 +1432,7 @@ footer {
     height: auto;
     max-width: 100%;
     display: block;
-    margin: 0 auto 10px;
+    margin: 0 auto 5px;
 }
 
 .footer h4 {

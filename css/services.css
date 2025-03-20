@@ -348,10 +348,9 @@ body {
 sl-tab-group {
     display: flex;
     justify-content: center;
-    margin: 0 10%;
+    margin: 5% 10%;
     margin-bottom: 5%;
     letter-spacing: 0.15rem;
-    margin-top: 5%;
     --indicator-color: #333;
     --track-color: #bdbdbd;
 
@@ -426,7 +425,7 @@ sl-tab-panel {
     flex-direction: row;
     justify-content: space-evenly;
     gap: 40px;
-    margin-top: 7%;
+    margin-top: 3%;
 }
 
 .service-discription p {
@@ -437,7 +436,7 @@ sl-tab-panel {
     max-width: 50%;
     letter-spacing: 0.15rem;
     color: #000000;
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 sl-button.learn-more-btn::part(base) {
@@ -487,6 +486,7 @@ footer {
     min-width: 200px;
     text-align: center;
     margin: 0 15px;
+    margin-top: 25px;
 }
 
 .footer .logo-section {
