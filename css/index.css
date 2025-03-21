@@ -89,12 +89,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
+    background-color: transparent;
+    transition: all 0.25s ease-in-out;
     margin: 0;
-    height: 10vh;
-    max-height: 10vh;
+    min-height: 15vh;
+    max-height: 15vh;
     padding: 0 10%;
 }
 
@@ -103,8 +102,9 @@ body {
     top: 0;
     left: 0;
     width: 100%;
+    background-color: #fff;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
+    transition: all 0.25s ease-in-out;
 }
 
 .logo img {
@@ -326,59 +326,64 @@ body {
     display: flex;
     justify-content: space-evenly;
     gap: 10px;
-    padding: 10px;
+    padding: 5px;
     position: relative;
     margin: 0 5%;
     max-width: 100vw;
-    min-height: 80vh;
-    max-height: 90vh;
+    min-height: 85vh;
+    max-height: 85vh;
 }
 
 .hero-content {
-    max-width: 40vw;
-    height: 75%;
+    width: 40%;
+    max-width: 40%;
+    height: 100%;
     max-height: 100%;
-    margin-top: 37%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     row-gap: 15px;
+    margin: 23% 0;
 }
 
 .hero-content h1 {
-    font-size: 72px;
+    font-size: 64px;
     font-family: "Roboto", serif;
     font-optical-sizing: auto;
     font-weight: 200;
-    line-height: 72px;
+    line-height: 64px;
     color: #bdbdbd;
     margin-bottom: 10px;
     text-transform: uppercase;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
 
 .hero-content h2 {
     font-size: 64px;
     font-family: "Roboto", serif;
     font-optical-sizing: auto;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 64px;
     font-weight: bold;
     margin-bottom: 15px;
     text-transform: uppercase;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .title {
     font-family: "Roboto", serif;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 300;
-    line-height: 32px;
+    line-height: 24px;
     color: #bdbdbd;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
 
 .text-updates {
     font-family: "Roboto", serif;
-    font-size: 32px;
-    font-weight: 300;
-    line-height: 32px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24px;
     transition: opacity 0.5s ease-in-out;
     background-clip: text;
     margin-bottom: 10px;
@@ -388,6 +393,7 @@ body {
     animation-duration: 10s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .hero-navigation {
@@ -395,7 +401,7 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .hero .nav-btn1, .nav-btn2 {
@@ -404,7 +410,6 @@ body {
     font-size: 24px;
     cursor: pointer;
     padding: 5px 7px;
-    margin-bottom: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
@@ -422,22 +427,21 @@ body {
     z-index: -1;
 }
 
-.hero .pagination {
-    font-size: 24px;
-    color: gray;
-}
+
 
 .carousel-pagination {
     font-size: 24px;
     color: gray;
+    font-family: 'Roboto', serif;
+    font-weight: 300;
 }
 
 .hero-carousel {
     position: relative;
-    width: 100%;
-    margin-top: 12%;
-    min-height: 950px;
-    max-height: 1000px;
+    max-width: 50%;
+    margin-top: 7%;
+    height: 85vh;
+    max-height: 85vh;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
@@ -451,21 +455,19 @@ body {
 
 /* Each Image Takes Full Size */
 .carousel-item {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     flex: 0 0 100%;
-    object-fit: fill;
+    object-fit: contain;
     display: block;
     transition: transform 0.5s ease-in-out;
 
 }
 
-
-
 .view-project {
     display: inline-block;
     text-decoration: none;
-    color: black;
+    color: #000;
     font-size: 18px;
     line-height: 18px;
     text-transform: uppercase;
@@ -477,6 +479,37 @@ body {
     z-index: 1;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease-in-out;
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: -100px;
+    right: -75px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 50px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.scroll-down p {
+    font-size: 18px;
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    color: #333;
+    letter-spacing: 0.15rem;
+    transform: rotate(90deg);
+}
+
+.scroll-down a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #333;
+}
+
+.scroll-down a:hover {
+    color: #bdbdbd;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -535,12 +568,14 @@ body {
     min-height: 100vh;
     max-width: 100vw;
     padding: 30px;
-    margin: 5% 5%;
+    margin: 8% 5%;
 }
 
 .about-container {
     display: flex;
-    margin-top: 5%;
+    align-self: center;
+    justify-content: space-evenly;
+    margin-top: 12%;
     width: 100%;
     min-height: 425px;
     max-height: 50vh;
@@ -550,15 +585,13 @@ body {
 .about-left {
     width: 50%;
     padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(2, 40%);
-    grid-template-rows: repeat(2, auto);
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .about-left img {
-    width: 200px;
+    width: 100%;
     height: auto;
     display: block;
     object-fit: fill;
@@ -566,9 +599,8 @@ body {
 
 .about-right {
     width: 50%;
-    margin-top: 5%;
-    margin-right: 5%;
-    padding: 20px;
+    margin: 5% 5%;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     row-gap: 24px;
@@ -585,10 +617,10 @@ body {
 }
 
 .about-text {
-    font-size: 22px;
+    font-size: 18px;
     font-family: "Roboto", serif;
     font-weight: 300;
-    line-height: 25px;
+    line-height: 22px;
     color: #000000;
     letter-spacing: 0.15rem;
 }
@@ -604,8 +636,7 @@ sl-button.about-btn::part(base) {
     border: none;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
-    margin-top: 10%;
-    float: left;
+    margin-top: 8%;
 }
 
 .about-btn::part(base):hover {
@@ -1500,7 +1531,7 @@ footer {
     padding: 15px 0;
     font-family: "Roboto", serif;
     font-size: 14px;
-    line-height: 18px;
+    line-height: 14px;
     border-top: 1px solid #3a3a3a;
 }
 
