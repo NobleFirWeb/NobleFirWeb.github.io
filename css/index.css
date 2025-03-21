@@ -458,7 +458,7 @@ body {
     width: 90%;
     height: 90%;
     flex: 0 0 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
     transition: transform 0.5s ease-in-out;
 
