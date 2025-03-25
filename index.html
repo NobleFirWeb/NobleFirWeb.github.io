@@ -13,14 +13,14 @@
         <link rel="stylesheet" href="./css/index.css">
         <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
     </head>
     <body>
-        <!--
+        
         <div id="loadingScreen">
             <div id="progressBar"></div>
             <div class="loader">loading</div>
         </div>
-        -->
         
     <!-- Navbar -->
     <header class="navbar">
@@ -31,11 +31,12 @@
         </div>
         <nav>
             <ul class="nav-links">
+                <li><a href="index.html"></span>Home</a></li>
                 <li><a href="about.html"></span>About Us</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#">Testimonials</a></li>
                 <li><a href="#">Insights</a></li>
+                <li><a class="nav-contact" href="#contact">Get in Touch</a></li>
             </ul>
         </nav>
 
@@ -51,9 +52,9 @@
                 <hr />
             </div>
             <ul class="menu-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
+                <li><a href="">Home</a></li>
+                <li><a href="">About Us</a></li>
+                <li><a href="">Services</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#">Insights</a></li>
             </ul>
@@ -87,23 +88,27 @@
             <h2 data-rise="true">Web solutions</h2>
             <h3 class="title">Custom, creative solutions to help your business</h3>
             <h3 class="text-updates">Succeed.</h3>
-            <div class="hero-navigation">
-                <button class="nav-btn1" id="nav-btn1">&#8592;</button>
-                <button class="nav-btn2" id="nav-btn2">&#8594;</button>
-                <div class="line"></div>
-            </div>
-            <div class="carousel-pagination">
-                <span id="current-slide">01</span> / <span id="total-slides">03</span>
+            <div class="hero-buttons">
+                <button class="hero-btn">
+                    <a href="#portfolio"><span>View Our Work</span></a> 
+                </button>
+                <button class="hero-btn">
+                    <a href="#contact"><span>Get In Touch</span></a> 
+                </button>
             </div>
         </div>
 
         <div class="hero-carousel">
-            <div class="carousel-inner">
-                <img src="./img/webapp1.jpg" class="carousel-item active">
-                <img src="./img/webapp2.jpg" class="carousel-item">
-                <img src="./img/webapp3.jpg" class="carousel-item">
+            <div class="hero-carousel-inner">
+                <dotlottie-player
+                    src="https://lottie.host/e27c9591-9a90-4a07-a26c-995a940b23e0/YyahwYWjmI.lottie"
+                    background="transparent"
+                    speed="0.5"
+                    style="width: 90%; height: 90%"
+                    loop
+                    autoplay
+                ></dotlottie-player>
             </div>
-            <a href="#contact" class="view-project">Let's Connect &#8594;</a>
         </div>
     </section>
 
@@ -122,11 +127,13 @@
             <div class="about-right">
                 <h1 class="about-title">About</h1>
                 <p class="about-text">Noble Fir was founded in 2024 as a creative development agency with a mission to empower small businesses through high-quality web solutions. We believe in integrity, innovation, and collaboration, ensuring our clients receive the best service possible.</p>
-                <sl-button size="medium" href="about.html" class="about-btn" style="width: 25%;">Read More &#8594;</sl-button>
+                <button class="about-btn">
+                    <a href="about.html">Learn More</a>
+                </button>
             </div>
         </div>
         <h1 class="about-subtitle" data-rise="true">Many Values, One Core Mission</h1>
-        <h3 class="statement" data-rise="true">As a creative development agency, Noble Fir  is dedicated to helping businesses thrive in the digital world. Our expert team specializes in web design, development, and SEO optimization to enhance your online presence and drive growth.</h3>
+        <p class="statement" data-rise="true">As a creative development agency, Noble Fir  is dedicated to helping businesses thrive in the digital world. Our expert team specializes in web design, development, and SEO optimization to enhance your online presence and drive growth.</p>
 
         <div class="vals" data-rise="true"> 
             <div class="val">
@@ -196,7 +203,9 @@
                     <p>Our web design services focus on creating visually stunning and user-friendly websites that reflect
                         your brand's identity. We ensure your site is responsive across devices and engaging. (Only in
                         combination with development.)</p>
-                        <sl-button size="medium" class="learn-more-btn">Learn More</sl-button>
+                        <button class="service-btn">
+                        <a href="#">Learn More</a>
+                        </button>
                 </div>
             </div>
             <div class="card">
@@ -211,7 +220,9 @@
                     <h3>Custom Web Development</h3>
                     <p>We build scalable websites from scratch that fit seamlessly with design. Our focus is on User
                         Experience, micro-animations, transitions, and interactions.</p>
-                        <sl-button size="medium" class="learn-more-btn">Learn More</sl-button>
+                        <button class="service-btn">
+                            <a href="#">Learn More</a>
+                        </button>
                 </div>
             </div>
             <div class="card">
@@ -226,7 +237,9 @@
                     <h3>The Full Package</h3>
                     <p>A complete website from concept to implementation, that's what makes us stand out. Our great sense
                         sense for design and development skills enable us to create memorable experiences.</p>
-                        <sl-button size="medium" class="learn-more-btn">Learn More</sl-button>
+                        <button class="service-btn">
+                            <a href="#">Learn More</a>
+                        </button>
                 </div>
             </div>
         </div>
@@ -241,14 +254,14 @@
             <!-- Services Slider -->
             <div class="carousel-container">
                 <div class="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item">Landing Pages</div>
+                    <div class="services-carousel-inner">
+                        <div class="services-carousel-item">Landing Pages</div>
                         <span class="bullet"><i class="fa fa-asterisk"></i></i></span>
-                        <div class="carousel-item">E-commerce</div>
+                        <div class="services-carousel-item">E-commerce</div>
                         <span class="bullet"><i class="fa fa-asterisk"></i></i></span>
-                        <div class="carousel-item">Dashboards</div>
+                        <div class="services-carousel-item">Dashboards</div>
                         <span class="bullet"><i class="fa fa-asterisk"></i></i></span>
-                        <div class="carousel-item">Corporate Websites</div>
+                        <div class="services-carousel-item">Corporate Websites</div>
                         <span class="bullet"><i class="fa fa-asterisk"></i></i></span>
                     </div>
                 </div>
@@ -268,10 +281,9 @@
             <img class="grid-item img4" src="./img/casa-designs.png" alt="Image 4">
             <img class="grid-item img5" src="./img/mockup4.jpg" alt="Image 5">
         </div>
-        
-        <div class="button-item">
-            <sl-button size="medium" class="all-projects-btn">All Projects &#8594;</sl-button>
-        </div>
+        <button class="projects-btn">
+            <a href="#"><span>All Projects</span></a> 
+        </button>
 
     </section>
 
@@ -491,17 +503,6 @@
         <script src="./js/index.js" async defer></script>
         <script type="module"
             src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
-        
-        <script type="module">
-            import { registerIconLibrary } from '/dist/utilities/icon-library.js';
 
-            registerIconLibrary('iconoir', {
-                resolver: name => `https://cdn.jsdelivr.net/gh/lucaburgio/iconoir@latest/icons/${name}.svg`
-            });
-        </script>
-
-        <div id="scrollToTop">
-            <i class="fa fa-arrow-up"></i>
-        </div>
     </body>
 </html>

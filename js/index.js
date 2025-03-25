@@ -1,75 +1,96 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const carousel = document.querySelector(".hero-carousel");
-  const firstImage = document.querySelector(".carousel-item img");
+// Loading Screen Animation
+document.addEventListener('DOMContentLoaded', function() {
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += 33.33; // Approximate 3 steps to 100%
+    document.getElementById('progressBar').style.width = `${progress}%`;
+    if (progress >= 100) {
+      clearInterval(interval);
+      const loadingScreen = document.getElementById('loadingScreen');
+      loadingScreen.style.transform = 'translateY(100%)';
+      setTimeout(() => {
+        loadingScreen.remove();
+        animateHeroContent();
+      }, 500); // Let the slide finish
+    }
+  }, 750); // 3 seconds total
 
-  if (firstImage) {
-      firstImage.onload = () => {
-          const fixedHeight = firstImage.clientHeight; 
-          carousel.style.height = `${fixedHeight}px`; 
-      };
+  // Trigger rise animation for hero h1 and h2 after loading screen
+  function animateHeroContent() {
+    const heroH1 = document.querySelector('.hero-content h1[data-rise="true"]');
+    const heroH2 = document.querySelector('.hero-content h2[data-rise="true"]');
+    if (heroH1) heroH1.classList.add('visible');
+    if (heroH2) heroH2.classList.add('visible');
   }
 });
 
 
+//Hero-Carousel Functionality
+// Hero Carousel Initialization
 document.addEventListener("DOMContentLoaded", function () {
-  const carouselInner = document.querySelector(".carousel-inner");
-  const slides = document.querySelectorAll(".carousel-item");
-  const prevSlideBtn = document.getElementById("nav-btn1"); // Left navigation button
-  const nextSlideBtn = document.getElementById("nav-btn2"); // Right navigation button
-  const currentSlideText = document.getElementById("current-slide"); // Pagination text
-  
+  const heroCarousel = document.querySelector(".hero-carousel");
+  const herocarouselInner = heroCarousel.querySelector(".hero-carousel-inner");
+  const heroSlides = herocarouselInner.querySelectorAll(".hero-carousel-item");
+
+  const prevSlideBtn = document.getElementById("nav-btn1");
+  const nextSlideBtn = document.getElementById("nav-btn2");
+  const currentSlideText = document.getElementById("current-slide");
+  const totalSlidesText = document.getElementById("total-slides");
+
   let currentIndex = 0;
-  const totalSlides = slides.length;
-  let interval;
+  const totalSlides = heroSlides.length;
+  let slideInterval;
+
+  // Set total slide count dynamically
+  totalSlidesText.textContent = String(totalSlides).padStart(2, "0");
 
   function updateCarousel() {
-      const translateX = -currentIndex * 100; // Moves slides by 100% each time
-      carouselInner.style.transform = `translateX(${translateX}%)`;
-
-      // Update Pagination Properly
-      currentSlideText.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(totalSlides).padStart(2, "0")}`;
+    const offset = -currentIndex * 100;
+    herocarouselInner.style.transform = `translateX(${offset}%)`;
+    currentSlideText.textContent = String(currentIndex + 1).padStart(2, "0");
   }
 
-  function nextSlide() {
-      currentIndex = (currentIndex + 1) % totalSlides; // Loops back to 0 after the last image
-      updateCarousel();
+  function goToNextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateCarousel();
   }
 
-  function prevSlide() {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // Loops back from 0 to the last image
-      updateCarousel();
+  function goToPreviousSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateCarousel();
   }
 
   function startAutoSlide() {
-      interval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    slideInterval = setInterval(goToNextSlide, 5000);
   }
 
-  function stopAutoSlide() {
-      clearInterval(interval);
+  function resetAutoSlide() {
+    clearInterval(slideInterval);
+    startAutoSlide();
   }
 
-  // Add event listeners to navigation buttons
-  nextSlideBtn.addEventListener("click", function () {
-      stopAutoSlide();
-      nextSlide();
-      startAutoSlide();
+  nextSlideBtn.addEventListener("click", () => {
+    goToNextSlide();
+    resetAutoSlide();
   });
 
-  prevSlideBtn.addEventListener("click", function () {
-      stopAutoSlide();
-      prevSlide();
-      startAutoSlide();
+  prevSlideBtn.addEventListener("click", () => {
+    goToPreviousSlide();
+    resetAutoSlide();
   });
 
-  // Initialize Pagination & Start Auto-Sliding
+  // Start on page load
   updateCarousel();
   startAutoSlide();
 });
 
 
 
+
+
+
+// Smooth scrolling for navbar links
 document.addEventListener("DOMContentLoaded", function () {
-    // Example: Smooth scrolling for navbar links
     document.querySelectorAll('.menu-links a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -84,43 +105,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Rise Animations
 document.addEventListener('DOMContentLoaded', () => {
-    const elementsToAnimate = document.querySelectorAll('[data-rise="true"]');
-  
-    // Observer options
-    const options = {
-      threshold: 0.5, // Trigger when 75% of the element is in the viewport
-    };
-  
-    // Create an Intersection Observer
-    const riseObserver = new IntersectionObserver((entries, riseObserver) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible'); // Add the 'visible' class
-          riseObserver.unobserve(entry.target); // Stop observing the element after it has animated
-        }
-      });
-    }, options);
-  
-    // Observe each element with the 'data-rise' attribute
-    elementsToAnimate.forEach(element => {
-      riseObserver.observe(element);
+  const elementsToAnimate = document.querySelectorAll('[data-rise="true"]');
+
+  const options = {
+    threshold: 0.5,
+  };
+
+  const riseObserver = new IntersectionObserver((entries, riseObserver) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        riseObserver.unobserve(entry.target);
+      }
     });
-  
-    // Initial animation for elements that are already in the viewport
-    setTimeout(() => {
-      elementsToAnimate.forEach(element => {
-        if (isInViewport(element)) {
-          element.classList.add('visible');
-        }
-      });
-    }, 4500); // Initial animation trigger after 4.5 seconds
-  
-    // Helper function to check if an element is in the viewport
-    function isInViewport(el) {
-      const rect = el.getBoundingClientRect();
-      return rect.top >= 0 && rect.bottom <= window.innerHeight;
-    }
+  }, options);
+
+  elementsToAnimate.forEach(element => {
+    // Skip hero-content h1 and h2 since they animate manually
+    if (
+      element.matches('.hero-content h1') ||
+      element.matches('.hero-content h2')
+    ) return;
+    riseObserver.observe(element);
   });
+
+  setTimeout(() => {
+    elementsToAnimate.forEach(element => {
+      if (isInViewport(element)) {
+        element.classList.add('visible');
+      }
+    });
+  }, 4500);
+
+  function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return rect.top >= 0 && rect.bottom <= window.innerHeight;
+  }
+});
 
 
 
@@ -143,6 +164,8 @@ menuToggle.addEventListener('click', function() {
   }
 });
 
+
+
 // Add event listeners to close the menu when any link is clicked
 menuLinks.forEach(link => {
   link.addEventListener('click', () => {
@@ -151,6 +174,7 @@ menuLinks.forEach(link => {
     closeIcon.style.display = 'none';
   });
 });
+
 
 
 // FAQ functionality 
@@ -170,9 +194,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
+
 // ServicesInfinite Carousel
 const carousel = document.querySelector('.carousel');
-const carouselInner = document.querySelector('.carousel-inner');
+const carouselInner = document.querySelector('.services-carousel-inner');
 const carouselItems = Array.from(carouselInner.children);
 
 // Clone the carousel items to create an infinite loop effect
@@ -195,22 +221,11 @@ const observer = new IntersectionObserver((entries) => {
 observer.observe(carousel);
 
 
-// Loading Screen Animation
-document.addEventListener('DOMContentLoaded', function() {
-  let progress = 0;
-  const interval = setInterval(() => {
-      progress += 33.33; // Adjust the increment so it completes in about 3 seconds
-      document.getElementById('progressBar').style.width = `${progress}%`;
-      if (progress >= 100) {
-          clearInterval(interval); // Stop the interval once progress is (nearly) 100%
-          // Adjust timing to immediately start the slide down of the loading screen
-          const loadingScreen = document.getElementById('loadingScreen');
-          loadingScreen.style.transform = 'translateY(100%)'; // Slide down the loading screen
-          setTimeout(() => loadingScreen.remove(), 500); // Remove the loading screen from DOM after it slides out
-      }
-  }, 750); // Adjust the interval to 750ms to match the 3-second total duration
-});
 
+
+
+
+// Hero text dynamic updates
 document.addEventListener('DOMContentLoaded', function() {
   const titles = ['Succeed.', 
                   'Thrive.', 
@@ -246,6 +261,8 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(updateTitle, 3500);
 });
 
+
+// Sticky Nav becomes sticky at About Section
 document.addEventListener("DOMContentLoaded", function () {
   const navbar = document.querySelector(".navbar");
   const aboutSection = document.getElementById("about");
@@ -285,33 +302,39 @@ container.addEventListener('sl-show', event => {
 });
 
 
-// Scroll to top button functionality
-document.addEventListener("DOMContentLoaded", function () {
-  const scrollToTopButton = document.getElementById("scrollToTop");
-
-  if (!scrollToTopButton) {
-      console.error("🚨 Error: Scroll to Top button missing!");
-      return;
-  }
-
-  function toggleScrollButton() {
-      if (window.scrollY > 200) { 
-          scrollToTopButton.classList.add("show"); // Show button when user scrolls down
-      } else {
-          scrollToTopButton.classList.remove("show"); // Hide button when near top
-      }
-  }
-
-  // Scroll to top smoothly when clicked
-  scrollToTopButton.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  // Event listener for scrolling
-  window.addEventListener("scroll", toggleScrollButton);
-
-  // Run toggle once to handle if page is already scrolled
-  toggleScrollButton();
-});
-
 // Stat Counter Animation
+document.addEventListener("DOMContentLoaded", () => {
+  const statsSection = document.getElementById("statsSection");
+  const counters = document.querySelectorAll(".counter");
+  let hasAnimated = false;
+
+  const animateCounters = () => {
+      counters.forEach(counter => {
+          const updateCounter = () => {
+              const target = +counter.getAttribute("data-target");
+              const suffix = counter.getAttribute("data-suffix") || "";
+              const count = +counter.innerText.replace(/\D/g, "");
+              const increment = target / 100;
+              if (count < target) {
+                  counter.innerText = Math.ceil(count + increment) + suffix;
+                  setTimeout(updateCounter, 30);
+              } else {
+                  counter.innerText = target + suffix;
+              }
+          };
+          updateCounter();
+      });
+  };
+
+  const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting && !hasAnimated) {
+              statsSection.classList.add("visible");
+              animateCounters();
+              hasAnimated = true;
+          }
+      });
+  }, { threshold: 0.5 });
+
+  observer.observe(statsSection);
+});
