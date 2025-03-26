@@ -164,12 +164,23 @@ menuToggle.addEventListener('click', function() {
   }
 });
 
+// Mobile Menu - Services Dropdown functionality
+document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(toggle => {
+  toggle.addEventListener('click', function (e) {
+    e.preventDefault();
+    this.parentElement.classList.toggle('open');
+  });
+});
 
 
 // Add event listeners to close the menu when any link is clicked
 menuLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.style.right = '-100%'; // Close the menu
+  link.addEventListener('click', (e) => {
+    if (e.target.closest('.dropdown-toggle')) {
+      e.preventDefault();
+      return;
+    }
+    mobileMenu.style.right = '-100%';
     openIcon.style.display = 'block';
     closeIcon.style.display = 'none';
   });
