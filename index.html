@@ -21,8 +21,7 @@
             <div id="progressBar"></div>
             <div class="loader">loading</div>
         </div>
-        
-        
+
     <!-- Navbar -->
     <header class="navbar">
         <div class="logo">
@@ -43,7 +42,7 @@
                         <li><a href="#support">Ongoing Support</a></li>
                     </ul>
                 </li>
-                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#portfolio">Projects</a></li>
                 <li><a href="#">Insights</a></li>
                 <li><a class="nav-contact" href="#contact">Get in Touch</a></li>
             </ul>
@@ -61,8 +60,8 @@
                 <hr />
             </div>
             <ul class="menu-links">
-                <li><a href="">Home</a></li>
-                <li><a href="">About Us</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle">Services <i class="fa fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
@@ -72,7 +71,7 @@
                         <li><a href="#support">Ongoing Support</a></li>
                     </ul>
                 </li>
-                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#portfolio">Projects</a></li>
                 <li><a href="#">Insights</a></li>
             </ul>
             <hr />
@@ -120,7 +119,7 @@
                     src="https://lottie.host/e27c9591-9a90-4a07-a26c-995a940b23e0/YyahwYWjmI.lottie"
                     background="transparent"
                     speed="0.5"
-                    style="width: 90%; height: 90%"
+                    style="width: 100%; height: 100%"
                     loop
                     autoplay
                 ></dotlottie-player>
@@ -159,7 +158,7 @@
             <div class="val">
                 <div class="val-content">
                     <div class="val-header" data-rise="true">
-                        <span class="val-number">01.</span>
+                        <span class="val-number">01</span>
                         <h2 class="val-title">Quality</h2>
                     </div>
                     <p class="val-description">
@@ -175,7 +174,7 @@
             <div class="val">
                 <div class="val-content">
                     <div class="val-header" data-rise="true">
-                        <span class="val-number">02.</span>
+                        <span class="val-number">02</span>
                         <h2 class="val-title">Creativity</h2>
                     </div>
                     <p class="val-description">
@@ -191,7 +190,7 @@
             <div class="val">
                 <div class="val-content">
                     <div class="val-header" data-rise="true">
-                        <span class="val-number">03.</span>
+                        <span class="val-number">03</span>
                         <h2 class="val-title">Collaboration</h2>
                     </div>
                     <p class="val-description">
@@ -302,7 +301,7 @@
 
     <section class="portfolio" id="portfolio">
         
-        <div class="portfolio header">
+        <div class="portfolio-header">
             <h1 class="portfolio-title1" data-rise="true">View some of our latest</h1>
             <div class="header-card">
                 <h1 class="portfolio-title2" data-rise="true">Projects</h1>
@@ -397,7 +396,7 @@
     <section class="faq" id="faq">
     
         <div class="faq-header">
-            <h1 class="faq-title1" data-rise="true">Have Questions?</h1>
+            <h1 class="faq-title1" data-rise="true">Frequently Asked Questions</h1>
             <div class="header-card">
                 <h1 class="faq-title2" data-rise="true">FAQ</h1>
                 <p class="faq-description" data-rise="true">Find answers to common questions about our web development services and how we can help your business thrive online.</p>
@@ -448,18 +447,21 @@
                 <div class="contact-item">
                     <h3>Location</h3>
                     <p>Tualatin,<br>Oregon</p>
-                    <a href="https://maps.app.goo.gl/nwib4mgM4wPe1pdz8" target="_blank" rel="noopener noreferrer">View on Maps</a>
+                    <a href="https://maps.app.goo.gl/nwib4mgM4wPe1pdz8" target="_blank" rel="noopener noreferrer" id="mapLink">View on Maps</a>
                 </div>
+                <hr class="contact-item-hr">
                 <div class="contact-item">
                     <h3>Call Us</h3>
                     <p>971-500-6447</p>
                 </div>
+                <hr class="contact-item-hr">
                 <div class="contact-item">
                     <h3>Got a Question?</h3>
-                    <p>Drop us an email, and we'll be in touch.</p>
+                    <p id="emailText">Drop us an email, and we'll be in touch.</p>
                     <a href="mailto:hello@website.com">info@noblefirweb.com</a>
                 </div>
-                <div class="contact-item">
+                <hr class="contact-item-hr">
+                <div class="contact-item" id="contactSocials">
                     <h3>Follow Us</h3>
                     <div class="social-icons">
                         <a href="#"><i class="fa fa-instagram"></i></a>
@@ -511,12 +513,12 @@
     </section>
 
     <footer class="footer">
-        <div class="footer-container" data-rise="true">
+        <div class="footer-container">
             <div class="footer-section logo-section">
                 <img src="./img/footer-logo.png" alt="Noble Fir Logo" class="logo">
             </div>
             <div class="footer-section" id="footer-menu">
-                <h4>Information</h4>
+                <h4 data-rise="true">Information</h4>
                 <ul class="footer-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="#about">About Us</a></li>
@@ -526,13 +528,13 @@
                 </ul>
             </div>
             <div class="footer-section" id="footer-contact">
-                <h4>Contacts</h4>
+                <h4 data-rise="true">Contacts</h4>
                 <p>Tualatin, Oregon 97062</p>
                 <p>971.500.6447</p>
                 <p>info@noblefirweb.com</p>
             </div>
             <div class="footer-section">
-                <h4>Social Media</h4>
+                <h4 data-rise="true">Social Media</h4>
                 <div class="social-icons">
                     <a href="#"><i class="fa fa-instagram"></i></i></a>
                     <a href="#"><i class="fa fa-twitter"></i></a>

@@ -231,8 +231,15 @@ body {
 @media (max-width: 1024px) {
 
     /* Show on tablet and mobile */
-    .line {
-        display: none;
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-height: 10vh;
+        background-color: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.25s ease-in-out;
     }
 
     .nav-links {
@@ -246,9 +253,9 @@ body {
 
     .menu-toggle {
         position: fixed;
-        top: 10px;
-        right: 30px;
-        font-size: 25px;
+        top: 50px;
+        right: 50px;
+        font-size: 30px;
         padding: 25px;
         color: #000;
         background-color: transparent;
@@ -279,25 +286,27 @@ body {
         padding: 50px;
         box-sizing: border-box;
     }
+    .menu-header {
+        margin-top: 45px;
+    }
+
     .menu-header p, .menu-footer p {
         margin: 0;
+        margin: 5% 5%;
         font-size: 16px;
         font-family: "DM Sans", sans-serif;
         letter-spacing: 2px;
         color: #fff;
         text-transform: uppercase;
     }
-    .menu-footer {
-        margin: 5% 5%;
-    }
     .menu-links {
-    list-style: none;
+        list-style: none;
         padding: 0;
-        margin: 20px 0;
+        margin: 20px 5%;
     }
     .menu-links li {
         margin: 20px 0;
-        font-size: 32px;
+        font-size: 28pxpx;
         font-family: "DM Sans", sans-serif;
         font-weight: 200;
         text-transform: uppercase;
@@ -310,7 +319,8 @@ body {
         .social-links {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin: 20px 5%;
+        
             font-family: "DM Sans", sans-serif;
             font-weight: 200;
             text-transform: uppercase;
@@ -334,17 +344,16 @@ body {
         }
     
         .menu-logo {
-            display: block;
+            display: flex;
             justify-content: center;
             width: 100%;
             height: auto;
         }
     
         .logo img {
-            width: 200px;
+            width: 100%;
             height: auto;
-            max-width: 200px;
-            object-fit: contain;
+            object-fit: cover center !important;
         }
 
 /* Mobile Dropdown Styles */
@@ -367,30 +376,32 @@ body {
     cursor: pointer;
 }
 }
-    
         .hidden {
             display: none !important;
         }
-
+    
         @media only screen and (max-width: 480px) {
             body {
                 font-size: 14px;
                 overflow-x: hidden;
             }
+    
             .header {
                 max-width: 100vw;
-                
+    
             }
+    
             .navbar {
                 padding: 0% 5%;
             }
+    
             .menu-toggle {
                 top: 10px;
                 right: 25px;
                 font-size: 22px;
                 padding: 15px;
             }
-            
+    
         }
 
 
@@ -518,17 +529,6 @@ body {
     height: 100%;
 }
 
-/* Each Image Takes Full Size */
-.hero-carousel-item {
-    width: 100%;
-    height: 100%;
-    flex: 0 0 100%;
-    object-fit: cover center !important;
-    display: block;
-    transition: transform 0.5s ease-in-out;
-
-}
-
 .social-stack,
 .scroll-down {
     position: absolute;
@@ -549,7 +549,7 @@ body {
 }
 .scroll-down {
     right: 0;
-    transform: translateX(0);
+    gap: 50px;
 }
 
 .social-stack a {
@@ -582,7 +582,6 @@ body {
 }
 
 .scroll-down a p{
-    margin-top: 40px;
     font-family: "DM Sans", sans-serif;
     font-weight: 500;
     color: #333;
@@ -594,49 +593,7 @@ body {
     color: #bdbdbd;
 }
 
-
-@media only screen and (max-width: 1024px) {
-    .hero {
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        margin: 25% 0;
-    }
-    .hero-content {
-        max-width: 100%;
-        height: 30vw;
-        text-align: center;
-        margin: 5% 0;
-    }
-
-    .hero-carousel {
-        display: none;
-    }
-    .hero-content h1 {
-        font-size: 72px;
-        line-height: 72px;
-    }
-    .hero-content h2 {
-        font-size: 72px;
-        line-height: 72px;
-    }
-    .text-updates {
-        font-size: 32px;
-    }
-    .hero-navigation {
-        display: none;
-    }
-    .carousel-pagination {
-        display: none;
-    }
-    .hero-buttons {
-        justify-content: center;
-    }
-}
-
-
+/* About Sections */
 #about {
     min-height: 100vh;
     max-width: 100vw;
@@ -776,11 +733,10 @@ body {
 .vals {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    row-gap: 5%;
+    row-gap: 60px;
     justify-content: space-evenly;
     margin: 0 5%;
-    margin-top: 5%;
+    margin-top: 10%;
 }
 
 .val {
@@ -788,32 +744,37 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 5%;
     width: 100%;
-    margin-bottom: 40px;
+    height: auto;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     padding: 30px;
+    overflow: hidden;
 }
 
 .val-content {
     display: flex;
     flex-direction: column;
     flex: 1;
+    margin: 0 15px;
 }
 
 .val-header {
     display: flex;
     align-items: center;
+    flex: 1;
     gap: 15px;
     margin-bottom: 10px;
 }
 
 .val-number {
-    font-size: 2.625rem;
+    position: absolute;
+    left: 0;
+    transform: translateX(-100px);
+    font-size: 11rem;
     font-family: "DM Sans", sans-serif;
     font-weight: 500;
-    color: #bdbdbd;
-    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    color: #EDEDED;
+    z-index: 1;
 }
 
 .val-title {
@@ -822,6 +783,7 @@ body {
     font-weight: 200;
     color: #000000;
     margin: 0;
+    z-index: 2;
 }
 
 .val-description {
@@ -830,18 +792,20 @@ body {
     color: #000000;
     max-width: 100%;
     margin: 15px 0;
+    z-index: 2;
 }
 .val-description2{
     font-family: "DM Sans", sans-serif;
     font-weight: 300;
     color: #000000;
     max-width: 100%;
+    z-index: 2;
 }
 
 .val .about-card {
     width: 400px;
     height: 100%;
-    max-height: 350px;
+    max-height: 300px;
     overflow: hidden;
     position: relative;
 }
@@ -975,6 +939,7 @@ body {
 #services .container .card-inner .box .imgBox img {
     width: 100%;
     height: 100%;
+    border: 1px solid #000;
     object-fit: cover center !important;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
 }
@@ -1166,7 +1131,7 @@ body {
     width: 100vw;
     left: 50%;
     transform: translateX(-50%);
-    margin: 60px 0 0 0;
+    margin: 5% 0;
     padding: 0;
 }
 
@@ -1372,10 +1337,7 @@ sl-carousel {
     z-index: 1;
 }
 
-
 sl-carousel .card-footer {
-    width: 100%;
-    height: 75%;
     margin: 5% 5%;
     max-height: 80%;
     color: black;
@@ -1384,6 +1346,10 @@ sl-carousel .card-footer {
 
 sl-avatar {
     margin-top: 15px;
+    margin-left: 30px;
+}
+
+sl-rating {
     margin-left: 30px;
 }
 
@@ -1439,6 +1405,9 @@ sl-avatar {
     margin-bottom: 5%;
     max-width: 720px;
 }
+.details-group-example {
+    margin-top: 60px; 
+}
 
 .details-group-example sl-details:not(:last-of-type) {
     margin-bottom: var(--sl-spacing-2x-small);
@@ -1448,7 +1417,6 @@ sl-details {
     font-family: "DM Sans", sans-serif;
     font-weight: 300;
     color: #000;
-    margin-bottom: 5%;
 }
 
 sl-details p {
@@ -1570,11 +1538,11 @@ sl-details p {
 
 .contact-form h2 {
     font-family: "DM Sans", sans-serif;
+    font-size: 2.625rem;
+    font-optical-sizing: auto;
     font-weight: 500;
-    line-height: 36px;
     color: #bdbdbd;
     margin-bottom: 10px;
-    letter-spacing: 0.15rem;
 }
 
 .contact-form p {
@@ -1814,66 +1782,159 @@ footer {
 
 
 
+
+
+
+
+
+
 /* Media Queries - Tablet */
 
-@media (max-width: 1024px) {
-
-    /* Hero */
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-        margin-top: 20%;
+    /*----- Hero -----*/
+    @media only screen and (max-width: 1024px) {
+        .hero {
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: flex-start;
+            align-items: center;
+            height: 88vh;
+            margin-top: 12vh;
+        }
+        .hero-carousel {
+            width: 100%;
+            width: 100%;
+            max-width: 100%;
+            max-height: 50vh;
+            padding-bottom: 30px;
+            margin-top: 0;
+        }
+        .hero-content {
+            width: 100%;
+            max-width: 100%;
+            height: 50vh;
+            text-align: center;
+            margin: 0;
+            padding-top: 0;
+            justify-content:safe;
+        }
+        .hero-content h1 {
+            font-size: 4.25rem;
+            font-optical-sizing: auto;
+            line-height: auto;
+            padding: 0;
+        }
+        .hero-content h2 {
+            font-size: 72px;
+            line-height: 72px;
+            margin-bottom: 0;
+        }
+        .text-updates {
+            font-size: 32px;
+        }
+        .hero-buttons {
+            justify-content: center;
+        }
+        .scroll-down {
+            margin-left: 5%;
+        }
     }
-    .hero-content {
-        max-width: 100%;
-        height: 30vw;
-        text-align: center;
-        margin: 5% 0;
+
+    /*----- About -----*/
+
+    @media only screen and (max-width: 1024px) {
+        .about-container {
+            margin-top: 15%;
+        }
+        .val .val-content {
+            width: 100%;
+        }
+        .val .about-card {
+            display: none;
+        }
+
+
     }
 
-    .hero-content h1,
-    .hero-content h2 {
-        font-size: 64px;
-        line-height: 64px;
-    }
+    /*----- Services -----*/
 
-    .hero-carousel {
-        margin: 0 10%;
+    @media only screen and (max-width: 1024px) {
+    #services .container {
+        margin: 10% 15%;
+    }
+    #services .container .card {
+        width: 100%;
+    }
+    #services .container .card .card-inner {
+        width: 100%;
+    }
+    .services .box {
+        width: 100%;
+        border: 1px solid #000;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    }
+    #services .container .card-inner .box .imgBox img {
+        border: none;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    }
+}
+
+
+
+
+
+
+
+
+
+    /*----- Portfolio -----*/
+    @media only screen and (max-width: 1024px) {
+    .portfolio-header {
         margin-top: 10%;
-        height: 20vh;
-        max-height: 20vh;
     }
-
-    /* About */
-    .about-subtitle {
-        margin: 5% 5%;
-    }
-    #about .statement {
-        margin: 0 5%;
-    }
-
-    /* Services */
-
-
-    /* Portfolio */
     .bento-grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
+    }
+    .grid-item {
+        width: 100%;
         height: auto;
     }
-    
-    .grid-item {
-        height: auto;
+}
 
-    /* Testimonials */
+    /*----- Testimonials -----*/
+    @media only screen and (max-width: 1024px) {
+    .testimonials-header {
+        margin-top: 15%;
+    }
+}
+
+
+
 
 
     /* FAQs */
+    @media only screen and (max-width: 1024px) {
+        #faq {
+            margin-top: 5%;
+        }
+        .details-group-example {
+            margin-top: 10%;
+        }
+    }
+
+
+
+
+
+
 
     /* Contact */
+    @media only screen and (max-width: 1024px) {
     .contact-container {
         flex-direction: column;
+    }
+    .contact-header {
+        margin-top: 15vh;
     }
     .contact-info, .contact-form {
         width: 100%;
@@ -1887,14 +1948,20 @@ footer {
         border-bottom: 1px solid #bdbdbd;
         display: flex;
         flex-direction: row;
+        justify-content: space-evenly;
         gap: 15px;
         padding: 0;
+        margin-left: 0;
     }
     .contact-item {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 10px;
         width: 50%;
+    }
+    #mapLink, #emailText, #contactSocials {
+        display: none;
     }
     .contact-item .social-icons {
         display: flex;
@@ -1908,13 +1975,14 @@ footer {
         margin-top: 20px;
     }
     .contact-form h2 {
-        margin-top: 5%;
+        margin: 5% 0;
         font-size: 32px;
         text-align: center;
     }
+}
 /* Footer */
 
-}
+
 
 
 
@@ -1954,7 +2022,6 @@ footer {
         grid-template-columns: 1fr;
         gap: 10px;
     }
-
     .grid-item {
         height: auto;
     }
@@ -1981,5 +2048,4 @@ footer {
             margin-top: 20px;
             font-size: 22px;
         }
-}
 }
