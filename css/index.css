@@ -1738,8 +1738,8 @@ footer {
         .hero-buttons {
             justify-content: center;
         }
-        .scroll-down {
-            margin-left: 5%;
+        .hero-btn a {
+            margin-bottom: 3rem;
         }
     }
 
@@ -1963,6 +1963,7 @@ footer {
     }
     .hero-btn a {
         font-size: 0.75rem;
+        margin-bottom: 1.5rem;
     }
 
 
@@ -1971,7 +1972,7 @@ footer {
 
     /* About */
     #about {
-        margin-top: 60px;
+        margin-top: 80px;
     }
     .about-container {
         flex-direction: column-reverse;
