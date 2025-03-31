@@ -442,6 +442,7 @@ body {
 
 .hero-content {
     margin: 5% 0;
+    margin-left: 5%;
     width: 40%;
     max-width: 720px;
     height: 100%;
