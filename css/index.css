@@ -1777,6 +1777,9 @@ footer {
     #services .container .card-inner .box .imgBox img {
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
     }
+    #services .carousel-container {
+        height: 25vh;
+    }
 }
 
 
@@ -2185,5 +2188,9 @@ footer {
         flex-direction: row;
         gap: 25px;
         margin-bottom: 10px;
+    }
+    .footer-bottom p {
+        margin: 0 15px;
+        margin-top: 10px;
     }
 }
