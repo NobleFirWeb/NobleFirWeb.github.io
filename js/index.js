@@ -173,6 +173,7 @@ document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(toggle => {
 });
 
 
+
 // Add event listeners to close the menu when any link is clicked
 menuLinks.forEach(link => {
   link.addEventListener('click', (e) => {
@@ -185,6 +186,8 @@ menuLinks.forEach(link => {
     closeIcon.style.display = 'none';
   });
 });
+
+
 
 
 
