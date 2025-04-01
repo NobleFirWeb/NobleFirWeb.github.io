@@ -443,14 +443,13 @@ body {
 
 .hero-content {
     padding: 5% 0;
-    padding-left: 5%;
+    padding-left: 10%;
     width: 50%;
     max-width: 900px;
     height: 100%;
     max-height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .hero-content h1 {
@@ -458,22 +457,20 @@ body {
     font-family: "DM Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
-    line-height: auto;
     color: #bdbdbd;
     text-transform: uppercase;
-    margin: 0;
+    padding-top: 2%;
 }
 
 .hero-content h2 {
     font-size: 4.25rem;
     font-family: "DM Sans", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 400;
+    font-weight: 500;
     color: #333;
-    line-height: auto;
-    font-weight: bold;
     margin-bottom: 15px;
     text-transform: uppercase;
+    padding-bottom: 2%;
 }
 
 .title {
@@ -846,7 +843,11 @@ body {
     margin: 5% 5%;
     display: flex;
     flex-direction: row;
-    gap: 45px;
+    gap: 30px;
+}
+
+#services .container .card {
+    max-width: 33%;
 }
 
 #services .container .card .content {
@@ -944,6 +945,7 @@ body {
 /*Services Carousel Styles*/
 .carousel-container {
     width: 100vw;
+    height: 33vh;
     margin: 5% 0;
     margin-top: 4em;
     display: flex;
@@ -1744,6 +1746,9 @@ footer {
     /*----- About -----*/
 
     @media only screen and (max-width: 1024px) {
+        #about {
+            margin-top: 0;
+        }
         .about-container {
             margin-top: 60px;
         }
@@ -1765,6 +1770,8 @@ footer {
     }
     #services .container .card {
         width: 100%;
+        max-width: 100%;
+        margin: 0;
     }
     #services .container .card .card-inner {
         width: 100%;
@@ -1778,7 +1785,7 @@ footer {
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
     }
     #services .carousel-container {
-        height: 25vh;
+        height: 20vh;
     }
 }
 
@@ -2024,7 +2031,10 @@ footer {
         max-width: 100%;
     }
     #services .container {
-        margin: 10% 5%;
+        margin: 60px 5%;
+    }
+    #services .container .card {
+        max-width: 100%;
     }
     .service-description {
         margin: 40px 5%;
