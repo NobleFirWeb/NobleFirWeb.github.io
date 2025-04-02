@@ -4,6 +4,10 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap');
 
 
+#buffer-remove-later {
+  min-height: 100vh;
+}
+
 /* General Reset */
 * {
     margin: 0;
@@ -26,7 +30,7 @@ body {
 
 /* Navbar */
 .navbar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -39,7 +43,9 @@ body {
   margin: 0;
   min-height: 15vh;
   max-height: 15vh;
-  padding: 0 12%;
+  padding: 0 8%;
+  background-color: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar.sticky {
@@ -57,6 +63,7 @@ body {
   height: auto;
   max-width: 200px;
   object-fit: contain;
+  margin-left: 5%;
 }
 
 .nav-links {
@@ -337,12 +344,13 @@ body {
 
 
       .hero {
-        width: 100vw;
-        height: 85vh;
+        width: 100%;
+        height: auto;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0 5% 0 5%;
+        padding: 0;
+        padding-top: 140px;
         overflow: hidden;
       }
       
@@ -394,13 +402,186 @@ body {
       }
       
       .hero-img {
-        height: 100%;
-        width: auto;
+        width: 100%;
+        height: auto;
         object-fit: cover;
         border-radius: 10px;
       }
-      
 
+      .about-header-group {
+        margin-top: 80px;
+        height: 100vh;
+      }
+
+      .hero-card-header {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        width: 100vw;
+        left: 50%;
+        right: 0;
+        transform: translateX(-50%);
+    }
+    
+    .about-header-group .header-card {
+        background-color: #EDEDED;
+        width: 55%;
+        max-width: 55%;
+        height: 300px;
+        padding: 0 10%;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 0;
+    }
+
+    .header-content-box {
+      width: 450px;
+      height: 540px;
+      max-height: 540px;
+      background-color: #fff;
+      padding: 40px;
+      overflow: hidden;
+      position: relative;
+      transform: translateY(-25%);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    
+    .hero-subtitle2 {
+        font-size: 2.625rem;
+        font-family: "DM Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 200;
+        letter-spacing: 0.15rem;
+        color: #000000;
+        margin-top: 5px;
+    }
+
+    .about-statement {
+      max-width: 100%;
+    }
+
+    .about-btn {
+      display: block;
+      background-color: none;
+      text-decoration: none;
+      background-color: transparent;
+      border: none;
+      align-self: first baseline;
+  }
+
+    .about-btn a {
+      position: relative;
+      display: inline-block;
+      padding: 15px 30px;
+      border: 1.25px solid #000;
+      font-family: "DM Sans", sans-serif;
+      text-transform: uppercase;
+      color: #000;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 1rem;
+      transition: color 0.25s ease-in-out;
+  }
+
+    .about-btn a:hover {
+      background-color: #000;
+      border: 1.25px solid #fff;
+      color: #fff;
+  }
+    
+
+  .who-we-are-container {
+    width: 660px;
+    height: 100%;
+    max-height: 600px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    float: right;
+    margin-right: 7%;
+    transform: translateY(-30%);
+  }
+
+  .who-we-are-img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: cover center !important;
+    display: block;
+  }
+
+  .our-team-header {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    margin-top: 80px;
+    padding: 0;
+}
+
+.our-team-header .header-card {
+    background-color: #EDEDED;
+    width: 720px;
+    max-width: 720px;
+    padding: 15px 5%;
+    box-sizing: border-box;
+    margin-top: 0;
+    z-index: 0;
+    position: relative;
+}
+
+.our-team-title2 {
+    font-size: 2.625rem;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    color: #000;
+}
+
+.our-team-subtitle {
+    margin-top: 25px;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+    color: #000000;
+    max-width: 720px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 #journey {
     margin: 5% 0;
 }
@@ -451,11 +632,6 @@ body {
     gap: 15px;
 }
 
-.about-title i {
-    color: #000000;
-
-}
-
 .about-description {
     font-size: 22px;
     font-family: "Roboto", serif;
@@ -474,6 +650,7 @@ body {
   align-items: stretch;
   justify-content: space-between;
   margin: 10% 0;
+  padding: 15px;
 }
 
 /* Flex items should each take 50% width */
@@ -568,7 +745,6 @@ body {
   line-height: 25px;
   color: #000000;
   padding: 10px;
-  border-left: 4px solid #ddd;
   margin-bottom: 10px;
   padding-left: 15px;
   border-radius: 6px;
@@ -577,6 +753,7 @@ body {
 .text-card p {
   font-family: "Roboto", serif;
   font-weight: 300;
+  margin: 0 20px;
 }
 
 #text-card-2 {
@@ -927,4 +1104,29 @@ footer {
 /* Hover Effect */
 #scrollToTop:hover {
   background-color: grey;
+}
+
+
+
+
+
+@media only screen and (max-width: 1024px) {
+  /*--- Hero Styles ---*/
+
+
+
+
+  /*--- Hero Styles ---*/
+
+
+
+
+
+  /*--- Hero Styles ---*/
+
+
+
+
+
+  /*--- Hero Styles ---*/
 }

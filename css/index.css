@@ -96,7 +96,7 @@ body {
     margin: 0;
     min-height: 15vh;
     max-height: 15vh;
-    padding: 0 10%;
+    padding: 0 8%;
 }
 
 .navbar.sticky {
@@ -114,6 +114,7 @@ body {
     height: auto;
     max-width: 200px;
     object-fit: contain;
+    margin-left: 5%;
 }
 
 .nav-links {
