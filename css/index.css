@@ -1166,11 +1166,11 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
     opacity: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: flex-start;;
     transition: opacity 0.4s ease-in-out;
     z-index: 2;
     pointer-events: none;
@@ -1182,9 +1182,11 @@ body {
 }
 
 .overlay-text {
-    text-align: center;
     color: #fff;
     padding: 20px;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    font-family: "DM Sans", sans-serif;
 }
 
 .overlay-text h3 {
@@ -1198,14 +1200,25 @@ body {
 .overlay-text p {
     font-size: 1rem;
     color: #bdbdbd;
-    line-height: 1.4;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 25px;
 }
 
 .overlay-text {
     transform: translateY(30px);
     opacity: 0;
     transition: all 0.25s ease-in-out;
+}
+
+.overlay-text ul {
+    list-style: circle;
+    padding: 0;
+    margin: 0;
+    margin-left: 20px;
+}
+
+.overlay-text ul li {
+
 }
 
 .grid-item:hover .overlay-text {
