@@ -201,16 +201,16 @@ body {
   }
 
   .menu-toggle {
-      position: fixed;
-      top: 10px;
-      right: 16px;
-      font-size: 24px;
-      padding: 10px;
-      color: #000;
-      background-color: transparent;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 1100;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    font-size: 30px;
+    padding: 25px;
+    color: #000;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1100;
   }
   .menu-toggle:hover {
       transform: scale(1.2);
@@ -350,7 +350,7 @@ body {
           }
   
           .menu-toggle {
-              top: 10px;
+              top: 15px;
               right: 16px;
               font-size: 24px;
               padding: 10px;
@@ -727,18 +727,12 @@ body {
 }
 
 #our-process .image-container h1 {
+  font-size: 2.625rem;
   font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
   margin-bottom: 15px;
   color: #000;
   font-weight: 200;
-}
-
-.image-container p {
-  font-family: "DM Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  color: #000000;
 }
 
 .text-card-wrapper {
@@ -875,9 +869,55 @@ max-width: 720px;
   font-optical-sizing: auto;
   font-weight: 300;
   color: #000000;
-  margin: 0 5%;
+  margin: 0 10%;
   margin-top: 10px;
 }
+
+
+/*--- CTA Section Styles ---*/
+#cta {
+  width: 100%;
+  height: auto;
+  max-height: 40vh;
+  display: flex;
+  justify-content: center;
+  padding: 0 5%;
+  margin: 5% 0;
+}
+
+#cta .contact-title1 {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  color: #bdbdbd;
+}
+
+#cta .contact-title2 {
+  font-size: 2.625rem;
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  color: #000;
+  margin-top: 20px;
+}
+
+#cta p {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  color: #000000;
+  margin-top: 20px;
+}
+
+#cta .contact-subtitle {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  margin-top: 20px;
+}
+
+#cta .about-btn {
+  display: block;
+  margin-top: 20px;
+}
+
 
 /* Footer Styles */
 footer {
@@ -1114,7 +1154,7 @@ footer {
 .stats-container {
   gap: 30px;
 }
-  #divider3 {
+  .divider {
   display: none;
 }
 
@@ -1168,7 +1208,12 @@ footer {
     margin: 0 10%;
 }
 
-
+/*--- CTA Section Styles ---*/
+#cta {
+  width: 100%;
+  height: auto;
+  max-height: 40vh;
+}
 
 
 
@@ -1274,7 +1319,7 @@ box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
 .header-content {
 display: flex;
 flex-direction: column;
-gap: 10px;
+gap: 15px;
 }
 .hero-subtitle2 {
   font-size: 2em;
@@ -1283,7 +1328,7 @@ gap: 10px;
   font-size: 0.95em;
 }
 .about-btn {
-  margin-top: 5px;
+  margin-top: 30px;
 }
 .who-we-are-container {
   width: 100%;
@@ -1336,15 +1381,48 @@ gap: 10px;
 .process-header .header-card {
   max-width: 100%;
 }
-.process-title {
+.step-title {
   margin: 0;
-  text-align: right;
 }
+.step-text {
+  margin: 0;
+}
+#our-process .image-container img {
+  width: 375px;
+  height: 375px;
+}
+
+
+
 
 /*--- Our Team Styles ---*/ 
 #team .header-card {
   max-width: 100%;
 }
+#team .about-cards-container {
+  padding: 30px;
+}
+#team .image-container {
+  padding: 0;
+  gap: 15px;
+}
+#team .image-container img {
+  width: 375px;
+  height: 375px;
+}
+#team .image-container p {
+  margin: 0;
+}
+
+#cta {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  margin: 10% 0;
+}
+
+
+
 
 
 /*--- Footer Styles ---*/

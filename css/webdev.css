@@ -320,7 +320,7 @@ body {
 
 .services-header {
     margin: 0 5%;
-    margin-top: 15%;
+    margin-top: 5%;
 }
 
 .services-title {
@@ -348,7 +348,7 @@ body {
 sl-tab-group {
     display: flex;
     justify-content: center;
-    margin: 5% 10%;
+    margin: 5% 5%;
     margin-bottom: 5%;
     letter-spacing: 0.15rem;
     --indicator-color: #333;

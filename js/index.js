@@ -30,6 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+
   /*** RISE ANIMATION ***/
   const riseElements = document.querySelectorAll("[data-rise='true']");
   const riseObserver = new IntersectionObserver(entries => {
