@@ -1663,6 +1663,7 @@ footer {
         }
         .about-container {
             margin-top: 60px;
+            background-color: transparent;
         }
         .val .val-content {
             width: 100%;
