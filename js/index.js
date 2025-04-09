@@ -220,3 +220,12 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// About Us page specific scripts
+// About us popup modal
+const dialog = document.querySelector('.dialog-width');
+const openButton = dialog.nextElementSibling;
+const closeButton = dialog.querySelector('sl-button[slot="footer"]');
+
+openButton.addEventListener('click', () => dialog.show());
+closeButton.addEventListener('click', () => dialog.hide());
