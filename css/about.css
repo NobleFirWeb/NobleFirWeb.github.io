@@ -877,6 +877,7 @@ max-width: 720px;
 /*Dialog Modal Styles*/
 #team sl-dialog::part(panel) {
   height: 80vh;
+  margin-top: 15vh;
 }
 
 sl-button::part(base) {
@@ -915,7 +916,7 @@ sl-dialog .dialog-card-text {
 }
 
 sl-dialog .dialog-card-text h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 sl-dialog .dialog-card-text h3 {
@@ -924,7 +925,7 @@ sl-dialog .dialog-card-text h3 {
 }
 
 sl-dialog .dialog-subtext {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 sl-dialog .dialog-quote {
@@ -1293,9 +1294,8 @@ footer {
     padding: 0 10%;
 }
 #team sl-dialog::part(panel) {
-  height: 65vh;
+  height: 75vh;
 }
-
 sl-dialog .dialog-card-content {
   flex-direction: column;
   justify-content: center;
@@ -1304,7 +1304,6 @@ sl-dialog .dialog-card-content {
   padding: 20px;
   width: 100%;
 }
-
 img.dialog-img {
   width: 100%;
   height: auto;
@@ -1523,10 +1522,15 @@ gap: 15px;
   padding: 0 0;
   margin: 0 0;
 }
-
+#team sl-dialog::part(panel) {
+  height: 100vh;
+  width: 100vh;
+}
+  
 img.dialog-img {
   max-width: 250px;
   max-height: 250px;
+  margin-top: 40%;
 }
 sl-dialog .dialog-card-content {
   gap: 0;
@@ -1534,6 +1538,13 @@ sl-dialog .dialog-card-content {
   height: auto;
   max-height: 100%;
   padding: 0;
+  padding-top: 100px;
+}
+sl-dialog .dialog-card-text {
+  margin-top: 10px;
+}
+sl-dialog .dialog-quote {
+  display: none;
 }
 
 #cta {
