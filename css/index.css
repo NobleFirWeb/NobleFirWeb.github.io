@@ -1052,9 +1052,7 @@ body {
     margin-left: 20px;
 }
 
-.overlay-text ul li {
 
-}
 
 .grid-item:hover .overlay-text {
     transform: translateY(0);

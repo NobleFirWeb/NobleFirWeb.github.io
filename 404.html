@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Noble Fir Web Solutions - Offering Custom Web Design, Web Develoment, hosting, and other services. Based in Tualatin, Oregon.</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./css/index.css">
+        <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+        <style>
+                    /* 404 Page Content */
+        .body {
+            max-width: 100%;
+            max-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .navbar {
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            background-color: #fff;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 100vh;
+            max-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .text {
+            font-family: "DM Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 300;
+            font-size: 1.5rem;
+            color: #000;
+            margin-top: 120px;
+        }
+
+        /* Home Button */
+        .home-button {
+            position: absolute;
+            top: 15vh;
+            left: 40px;
+            transform: translateY(100%);
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            padding: 10px 20px;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        /* Rotated 404 */
+        .rotated-404 {
+            font-size: 19em;
+            color: #EDEDED;
+            transform: rotate(-18deg);
+            align-self: center;
+            text-align: center;
+            transform-origin: center;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.45);
+            animation: scaleUpDown 2s ease-in-out infinite;
+        }
+
+        @keyframes scaleUpDown {
+            0%, 100% {
+                transform: rotate(-18deg) scale(1);
+            }
+            50% {
+                transform: rotate(-18deg) scale(1.05);
+            }
+        }
+
+        .subtext {
+            font-size: 1.5rem;
+            font-family: "DM Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 300;
+            margin-top: 10px;
+        }
+
+        .back-arrow {
+            font-size: 1.2rem;
+        }
+
+
+        /* Media Queries for Mobile */
+        @media (max-width: 1024px) {
+            .home-button {
+                top: 14vh;
+                left: 45px
+            }
+
+            .text {
+                font-size: 2.625rem;
+                margin-top: 140px;
+            }
+
+            .rotated-404 {
+                font-size: 30em;
+                margin-top: 60px;
+                transform: rotate(-40deg);
+            }
+            @keyframes scaleUpDown {
+            0%, 100% {
+                transform: rotate(-40deg) scale(1);
+            }
+            50% {
+                transform: rotate(-40deg) scale(1.07);
+            }
+        }
+
+            .subtext {
+                font-size: 2.625rem;
+                margin-top: 15%;
+                max-width: 80%;
+                align-self: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                gap: 20px;
+            }
+            .home-button {
+                top: 13vh;
+                left: 25px;
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+            .rotated-404 {
+                margin-top: 30px;
+                padding-right: 35px;
+                font-size: 14.75em;
+                transform: rotate(-40deg);
+            }
+            .text {
+                margin-top: 60px;
+                font-size: 1.25rem;
+                font-weight: 300;
+            }
+            .subtext{
+                font-size: 1.25rem;
+                font-weight: 300;
+                max-width: 90%;
+                margin-top: 80px;
+            }
+        }
+
+        </style>
+    </head>
+    <body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="./img/Noblefir_nav_logo.png" alt="Logo">
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html"></span>Home</a></li>
+                <li><a href="about.html"></span>About Us</a></li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle">Services <i class="fa fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="webdesign.html">Web Design</a></li>
+                        <li><a href="webdev.html">Web Development</a></li>
+                        <li><a href="ecommerce.html">E-Commerce Development</a></li>
+                        <li><a href="support.html">Ongoing Support</a></li>
+                    </ul>
+                </li>
+                <li><a href="#portfolio">Projects</a></li>
+                <li><a class="nav-contact" href="#contact">Get in Touch</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Navbar -->
+        <div id="menuToggle" class="menu-toggle">
+            <span id="openIcon">&#9776;</span>
+            <span id="closeIcon" style="display: none;">&#x2715</span>
+        </div>
+        
+        <nav id="mobileMenu" class="mobile-menu">
+            <div class="menu-header">
+            <p>Noble Fir</p>
+                <hr />
+            </div>
+            <ul class="menu-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle">Services <i class="fa fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="webdesign.html">Web Design</a></li>
+                        <li><a href="webdev.html">Web Development</a></li>
+                        <li><a href="ecommerce.html">E-Commerce Development</a></li>
+                        <li><a href="support.html">Ongoing Support</a></li>
+                    </ul>
+                </li>
+                <li><a href="#portfolio">Projects</a></li>
+            </ul>
+            <hr />
+            <div class="menu-footer">
+                <p>SOCIALS</p>
+                <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
+            </div>
+            <div class="menu-logo">
+                <img src="./img/footer-logo.png" alt="Logo">
+            </div>
+        </nav>
+    </header>
+
+        <!-- 404 Content -->
+    <div class="container">
+        <h1 class="text">Uh oh...</h1>
+        <div class="rotated-404">404</div>
+        <a href="/" class="home-button">
+            <span class="back-arrow">&#8592;</span> Home
+        </a>
+        <h2 class="subtext">The page you're looking for does not exist. Please try back at a later date.</h2>
+    </div>
+
+    </body>
+        
+</html>
