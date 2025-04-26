@@ -1,20 +1,17 @@
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Space+Grotesk:wght@300&display=swap');
 
 /* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Geist", sans-serif;
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Geist", sans-serif;
     margin: 0;
     padding: 0;
     background-color: E5E5E5;
@@ -54,7 +51,7 @@ body {
     font-size: 6.5em;
     overflow: hidden;
     color: #000;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Geist Mono", sans-serif;
     font-weight: 200;
     text-transform: uppercase;
 }
@@ -128,7 +125,7 @@ body {
 .nav-links li {
     display: inline-block;
     position: relative;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Geist", sans-serif;
     font-weight: 500;
 }
 
@@ -143,7 +140,7 @@ body {
 
 .nav-links .nav-contact {
     padding: 10px 15px;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Geist", sans-serif;
     color: #fff;
     background-color: #000;
     font-size: 14px;
@@ -295,7 +292,7 @@ body {
         margin: 0;
         margin: 5% 5%;
         font-size: 16px;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Geist", sans-serif;
         letter-spacing: 2px;
         color: #fff;
         text-transform: uppercase;
@@ -308,7 +305,7 @@ body {
     .menu-links li {
         margin: 20px 0;
         font-size: 28px;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Geist", sans-serif;
         font-weight: 200;
         text-transform: uppercase;
     }
@@ -322,7 +319,7 @@ body {
             justify-content: space-between;
             margin: 20px 5%;
         
-            font-family: "DM Sans", sans-serif;
+            font-family: "Geist", sans-serif;
             font-weight: 200;
             text-transform: uppercase;
         }
@@ -432,7 +429,7 @@ body {
 #hero {
     display: flex;
     position: relative;
-    justify-content: center;
+    justify-content:space-around;
     align-items: center;
     margin: 0;
     margin-top: 15vh;
@@ -455,36 +452,35 @@ body {
 
 .hero-content h1 {
     font-size: 4.25rem;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Geist Mono", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
     color: #bdbdbd;
     text-transform: uppercase;
-    padding-top: 2%;
+    line-height: 1.1;
 }
 
 .hero-content h2 {
     font-size: 4.25rem;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Geist Mono", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 500;
+    font-weight: 400;
     color: #333;
-    margin-bottom: 15px;
     text-transform: uppercase;
-    padding-bottom: 2%;
+    line-height: 1.1;
 }
 
 .title {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Geist", sans-serif;
     font-size: 1.75rem;
     font-weight: 300;
     line-height: 1.1;
-    margin-top: 20px;
+    padding-top: 20px;
 }
 
 .text-updates {
     margin-top: 10px;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Geist", sans-serif;
     font-size: 1.75rem;
     font-weight: 500;
     line-height: 1.1;
@@ -543,7 +539,7 @@ body {
     max-width: 900px;
     height: auto;
     max-height: 70%;
-    padding: 5% 5%;
+    padding: 20px;
 }
 
 /* Inner Container that Slides */
@@ -849,7 +845,7 @@ body {
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: space-between;
-    padding: 30px 10%;
+    padding: 0 10%;
     max-width: 100%;
     box-sizing: border-box;
 }
@@ -1272,8 +1268,9 @@ sl-rating {
 }
 
 sl-details {
+    font-size: 1em;
     font-family: "DM Sans", sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     color: #000;
 }
 
@@ -1281,7 +1278,8 @@ sl-details p {
     font-family: "DM Sans", sans-serif;
     font-weight: 300;
     color: #000000;
-    margin: 0 50px;
+    margin: 0;
+    margin-right: 10%;
 }
 
 /* Contact Section Styles */
@@ -1449,6 +1447,10 @@ textarea,
     margin-bottom: 10px;
     border: 1px solid #000;
     font-size: 14px;
+}
+
+.contact-form select:hover {
+    cursor: pointer;
 }
 
 textarea {
@@ -1621,8 +1623,8 @@ footer {
             margin-top: 0;
         }
         dotlottie-player {
-            width: 80%;
-            height: 70%;
+            width: 90%;
+            height: 80%;
         }
         .hero-content {
             width: 100%;
@@ -1808,7 +1810,7 @@ footer {
 
     /*--- Misc Styles ---*/
     .loader {
-        font-size: 3.25em;
+        font-size: 2.8em;
     }
     .menu-toggle {
         top: 20px;
@@ -1854,6 +1856,9 @@ footer {
         margin: 0;
         padding: 20px;
         text-align: left;
+    }
+    .hero-content h1 {
+        margin-top: 30px;
     }
     .hero-content h1,
     .hero-content h2 {
