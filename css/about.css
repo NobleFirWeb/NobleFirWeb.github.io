@@ -402,7 +402,7 @@ body {
       }
 
       .hero-title1 {
-        color: #bdbdbd;
+        color: #999;
         font-size: 1.25em;
         font-family: "Geist Mono", sans-serif;
         font-weight: 500;
@@ -673,7 +673,7 @@ body {
 
 .process-title1 {
   font-weight: 500;
-  color: #bdbdbd;
+  color: #999;
   margin-top: 60px;
   margin-left: 5%;
 }
@@ -1321,7 +1321,7 @@ img.dialog-img {
   margin: 0 5%;
 }
 .hero-title1 {
-  color: #bdbdbd;
+  color: #999;
   font-size: 1.25em;
   font-weight: 500;
 }

@@ -377,7 +377,6 @@ body {
 #hero h1 {
     margin: 10% 5%;
     padding-top: 30px;
-    font-size: 3.625rem;
     font-size: 2.75rem;
     font-family: "Geist", sans-serif;
     font-optical-sizing: auto;
@@ -540,8 +539,8 @@ body {
 
 #design-details {
     width: 100%;
-    min-height: 100vh;
-    margin-top: 10%;
+    max-height: 60vh;
+    margin-top: 5%;
 }
 
 #design-details .container-fluid {
@@ -624,6 +623,11 @@ body {
 }
 
 /* Design Process Section Styles */
+#design-process {
+    width: 100%;
+    margin-top: 10%;
+}
+
 .process-header {
     position: relative;
     width: 100vw;
@@ -658,7 +662,7 @@ body {
     color: #000;
 }
 
-#our-process .process-description {
+#design-process .process-description {
     font-family: "DM Sans", sans-serif;
     font-weight: 300;
     color: #000;
@@ -667,22 +671,196 @@ body {
     max-width: 720px;
 }
 
-.banner-background {
-    width: 100%;
-    height: 60vh;
-    background-color: #EDEDED;
-    overflow: hidden;
+.banner-area {
+    margin: 0 8%;
 }
 
-.banner-background img {
+.banner-background {
+    display: flex;
+    align-self: center;
+    margin-top: 10%;
+    width: 100%;
+    min-height: 425px;
+    max-height: 50vh;
+    background-color: #EDEDED;
+    z-index: 0;
+}
+
+.text-card-wrapper {
+    display: flex;
+    align-self: center;
+    margin: -350px 10% 0 10%;
+    z-index: 1;
+}
+
+.text-card {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     width: 100%;
     height: auto;
-    object-fit: cover center !important;
+    max-height: 100%;
+    padding: 15px;
+    padding-top: 30px;
+    overflow: hidden;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.process-step {
+    margin-bottom: 40px;
+    position: relative;
+    padding-left: 40px;
+}
+
+.step-number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: "DM Sans", sans-serif;
+    font-size: 11rem;
+    font-weight: 500;
+    color: #EDEDED;
+    line-height: 1;
+    z-index: 0;
+    transform: translateX(-65px) translateY(-35px);
+}
+
+.step-title {
+    font-size: 24px;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.step-text {
+    font-size: 16px;
+    color: #000;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+    margin: 0 20px;
+}
+
+.step-text2 {
+    font-size: 16px;
+    color: #000;
+    position: relative;
+    z-index: 1;
+    margin: 0 20px;
+    margin-top: 20px;
+}
+
+.process-step ul {
+    list-style: circle;
+    padding-left: 20px;
+    margin: 0 20px;
+    margin-top: 10px;
+}
+
+/*--- FAQ Section Styles ---*/
+/* FAQs */
+#faq {
+    margin: 0 5%;
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.faq-header {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 60px 0 60px 0;
+    padding: 0;
+}
+
+.header-card {
+    background-color: #EDEDED;
+    width: 720px;
+    max-width: 720px;
+    padding: 15px 5%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 0;
+}
+
+.faq-title1 {
+    font-weight: 500;
+    color: #bdbdbd;
+    margin-top: 60px;
+    margin-left: 5%;
+}
+
+.faq-title2 {
+    font-size: 2.625rem;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    color: #000;
+}
+
+.faq .faq-description {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+    color: #000;
+    margin-top: 25px;
+    margin-bottom: 5%;
+    max-width: 720px;
+}
+.details-group-example {
+    margin-top: 60px; 
+}
+
+.details-group-example sl-details:not(:last-of-type) {
+    margin-bottom: var(--sl-spacing-2x-small);
+}
+
+sl-details {
+    font-size: 1em;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 500;
+    color: #000;
+}
+
+sl-details p {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+    color: #000000;
+    margin: 0;
+    margin-right: 10%;
 }
 
 
-
-
+/*--- Contact Section Styles ---*/
+#contact {
+    margin: 0 5%;
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.contact-header {
+    text-align: center;
+    margin-top: 30px;
+    margin: 0 20%;
+}
+.contact-title {
+    font-size: 2.625rem;
+    font-family: "Geist", sans-serif;
+    font-weight: 200;
+    color: #000;
+}
+.contact-text {
+    padding-top: 30px;
+    margin: 0 10%;
+}
 
 
 
@@ -849,6 +1027,8 @@ footer {
 #hero h1 {
     margin: 0 5%;
     margin-top: 25%;
+    max-width: 60%;
+    margin-bottom: 5%;
 }
 .hero-row {
     margin-top: 40px;
@@ -868,6 +1048,34 @@ footer {
 
 .banner-background {
     height: 33vh;
+}
+.banner-area {
+    margin: 0 5%;
+}
+
+.text-card-wrapper {
+    margin: -375px 5% 0 5%;
+}
+
+/*--- Contact Section Styles ---*/
+#contact {
+    margin: 0 5%;
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.contact-header {
+    text-align: center;
+    margin-top: 30px;
+    margin: 0 15%;
+}
+.contact-title {
+    font-size: 2.625rem;
+}
+.contact-text {
+    padding-top: 30px;
+    margin: 0 10%;
 }
 
 }
@@ -894,9 +1102,10 @@ footer {
     }
     #hero h1 {
         margin: 15% 0;
-        padding-top: 30%;
+        padding-top: 40%;
         font-size: 1.85rem;
-        max-width: 75%;
+        max-width: 100%;
+        margin-bottom: 5%;
     }
     #hero h2 {
         font-size: 1.75rem;
@@ -914,7 +1123,7 @@ footer {
 
     /*--- Why Us Styles ---*/
     #why-us {
-        padding-top: 30%;
+        padding-top: 30px;
     }
     #why-us .container-fluid {
         padding: 0 15px;
@@ -922,13 +1131,21 @@ footer {
     #why-us .container-fluid .why-us-row {
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        gap: 40px;
     }
     #why-us .why-us-text{
         max-width: 100%;
     }
     .why-us a {
         color: #000;
+    }
+    .why-us-image {
+        max-width: 100%;
+    }
+    
+    /*--- Design Details Styles ---*/
+    #design-details {
+        padding-top: 30px;
     }
     #design-details .container-fluid {
         padding: 0 15px;
@@ -939,12 +1156,64 @@ footer {
     .design-details-text {
         max-width: 100%;
     }
+
+    /*---Design Process Styles---*/
+    #design-process {
+        padding-top: 30px;
+    }
     .process-header .header-card {
         max-width: 100%;
+    }
+    .header-card {
+        max-width: 100%;
+    }
+    .banner-area {
+        margin: 0;
     }
     .banner-background {
         height: 45vh;
     }
+    .text-card-wrapper {
+        max-width: 100%;
+        margin: -350px 20px 0 20px;
+    }
+    .step-title {
+        margin: 0;
+    }
+    
+    .step-text {
+        margin: 0;
+    }
+    .step-text2 {
+        margin-left: 0;
+        font-weight: 500;
+    }
+    .process-step ul {
+        margin: 0;
+        margin-top: 10px;
+    }
+
+    /*--- Contact Section Styles ---*/
+#contact {
+    margin: 0;
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.contact-header {
+    margin: 0;
+}
+
+.contact-title {
+    font-size: 2.625rem;
+}
+
+.contact-text {
+    padding-top: 20px;
+    margin: 0;
+}
 
 
 
