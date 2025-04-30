@@ -466,7 +466,7 @@ body {
       height: 550px;
       max-height: 550px;
       background-color: #fff;
-      padding: 40px;
+      padding: 35px;
       overflow: hidden;
       position: relative;
       transform: translateY(-25%);
@@ -819,7 +819,7 @@ position: relative;
 
 .team-title1 {
 font-weight: 500;
-color: #bdbdbd;
+color: #999;
 margin-top: 60px;
 margin-left: 5%;
 }
@@ -968,7 +968,7 @@ sl-button::part(label):hover {
 #cta .contact-title1 {
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
-  color: #bdbdbd;
+  color: #999;
 }
 
 #cta .contact-title2 {
