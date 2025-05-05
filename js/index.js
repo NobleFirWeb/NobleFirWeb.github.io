@@ -46,6 +46,26 @@ window.addEventListener("DOMContentLoaded", () => {
     if (!el.closest(".hero-content")) riseObserver.observe(el);
   });
 
+  /*** SLIDE ANIMATION ***/
+const slideElements = document.querySelectorAll('[slide-right="true"], [slide-left="true"]');
+
+// Create observer
+const slideObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            slideObserver.unobserve(entry.target); // stop observing once revealed
+        }
+    });
+}, {
+    threshold: 0.2 // trigger when 20% visible
+});
+
+// Observe each slide element
+slideElements.forEach(el => slideObserver.observe(el));
+
+
+
   /*** HERO TEXT CYCLER ***/
   const textUpdates = document.querySelector(".text-updates");
   if (textUpdates) {
@@ -139,55 +159,7 @@ window.addEventListener("DOMContentLoaded", () => {
     statObserver.observe(statsSection);
   }
 
-  /*** SERVICES CAROUSEL (infinite scroll) ***/
-  const servicesCarousel = document.querySelector('.carousel');
-  const servicesInner = document.querySelector('.services-carousel-inner');
-  if (servicesCarousel && servicesInner) {
-    const clones = Array.from(servicesInner.children).map(child => child.cloneNode(true));
-    clones.forEach(clone => servicesInner.appendChild(clone));
 
-    const carouselObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        servicesCarousel.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
-      });
-    }, { threshold: 0.5 });
-
-    carouselObserver.observe(servicesCarousel);
-  }
-
-  /*** HERO CAROUSEL ***/
-  const heroCarousel = document.querySelector(".hero-carousel");
-  if (heroCarousel) {
-    const inner = heroCarousel.querySelector(".hero-carousel-inner");
-    const items = inner?.querySelectorAll(".hero-carousel-item");
-    const next = document.getElementById("nav-btn2");
-    const prev = document.getElementById("nav-btn1");
-    const current = document.getElementById("current-slide");
-    const total = document.getElementById("total-slides");
-
-    let index = 0;
-    const count = items?.length || 0;
-    let interval;
-
-    if (total) total.textContent = String(count).padStart(2, "0");
-
-    const update = () => {
-      if (!inner) return;
-      inner.style.transform = `translateX(-${index * 100}%)`;
-      if (current) current.textContent = String(index + 1).padStart(2, "0");
-    };
-
-    const nextSlide = () => { index = (index + 1) % count; update(); };
-    const prevSlide = () => { index = (index - 1 + count) % count; update(); };
-    const startAuto = () => interval = setInterval(nextSlide, 5000);
-    const resetAuto = () => { clearInterval(interval); startAuto(); };
-
-    if (next) next.addEventListener("click", () => { nextSlide(); resetAuto(); });
-    if (prev) prev.addEventListener("click", () => { prevSlide(); resetAuto(); });
-
-    update();
-    startAuto();
-  }
 
   /*** FAQs (Plus/Minus toggle) ***/
   document.querySelectorAll(".faq-item .faq-question").forEach(question => {

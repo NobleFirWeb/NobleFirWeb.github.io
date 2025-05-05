@@ -1087,6 +1087,29 @@ footer {
     transform: translateY(0);
 }
 
+/* Slide Animations */
+[slide-right="true"] {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+[slide-right="true"].visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+[slide-left="true"] {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+[slide-left="true"].visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 
 
 /* Tablet Styles */
