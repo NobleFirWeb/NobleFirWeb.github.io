@@ -1,17 +1,15 @@
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Space+Grotesk:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300&display=swap');
+
 
 /* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Geist", sans-serif;
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: "Geist", sans-serif;
     margin: 0;
     padding: 0;
     background-color: E5E5E5;
@@ -21,31 +19,31 @@ body {
 
 /* Navbar */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 950;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    transition: all 0.25s ease-in-out;
-    margin: 0;
-    min-height: 15vh;
-    max-height: 15vh;
-    padding: 0 8%;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 950;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  transition: all 0.25s ease-in-out;
+  margin: 0;
+  min-height: 15vh;
+  max-height: 15vh;
+  padding: 0 8%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar.sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.25s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease-in-out;
 }
 
 .logo img {
@@ -126,7 +124,8 @@ body {
 }
 
 .nav-links .dropdown-menu li {
-    padding: 10px 20px;
+    padding: 0 10px;
+    padding-top: 10px;
 }
 
 .nav-links .dropdown-menu li a {
@@ -137,7 +136,7 @@ body {
 }
 
 .nav-links .dropdown-menu li a:hover {
-    color: #bdbdbd;
+    color: #999;
 }
 
 /* Underline and Overline for Active Link */
@@ -232,7 +231,7 @@ body {
 
     .menu-header p, .menu-footer p {
         margin: 0;
-        margin: 5% 5%;
+        margin: 5% 0;
         font-size: 16px;
         font-family: "Geist", sans-serif;
         letter-spacing: 2px;
@@ -259,11 +258,15 @@ body {
         .social-links {
             display: flex;
             justify-content: space-between;
-            margin: 20px 5%;
-        
+            margin: 20px 0;
             font-family: "Geist", sans-serif;
             font-weight: 200;
             text-transform: uppercase;
+        }
+
+        .social-links span {
+            color: #fff;
+            padding: 0 5px;
         }
     
         a {
@@ -308,10 +311,21 @@ body {
     flex-direction: column;
     list-style: none;
     padding-left: 25px;
+    gap: 10px;
 }
 
 .mobile-menu .dropdown.open .dropdown-menu {
     display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-left: 25px;
+    padding-top: 10px;
+}
+
+.mobile-menu .dropdown.open .dropdown-menu li {
+    padding: 0;
+    padding-top: 10px;
+    margin: 0;
 }
 
 .mobile-menu .dropdown-toggle {
@@ -367,8 +381,6 @@ body {
         }
 
 
-
-
 /* Hero Section Styles */
 #hero {
     width: 100%;
@@ -378,9 +390,9 @@ body {
     margin: 10% 5%;
     padding-top: 30px;
     font-size: 2.75rem;
-    font-family: "Geist", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 500;
+    font-weight: 600;
     color: #000;
     text-transform: uppercase;
 }
@@ -421,9 +433,15 @@ body {
 
 .hero-text h2 {
     font-size: 2.625rem;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
     font-weight: 200;
+    color: #000;
+}
+
+.hero-text p {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
     color: #000;
 }
 
@@ -442,7 +460,7 @@ body {
     display: inline-block;
     padding: 15px 30px;
     border: 1.25px solid #000;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     text-transform: uppercase;
     color: #000;
     text-decoration: none;
@@ -489,9 +507,15 @@ body {
 
 .why-us-text h2 {
     font-size: 2.625rem;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
     font-weight: 200;
+    color: #000;
+}
+
+.why-us-text p {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
     color: #000;
 }
 
@@ -521,7 +545,7 @@ body {
     display: inline-block;
     padding: 15px 30px;
     border: 1.25px solid #000;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     text-transform: uppercase;
     color: #000;
     text-decoration: none;
@@ -581,45 +605,24 @@ body {
 
 .design-details-text h2 {
     font-size: 2.625rem;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
     font-weight: 200;
     color: #000;
 }
 
+.design-details-text p {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    color: #000;
+}
+
 .design-details-text ul {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    color: #000;
     list-style: circle;
     padding-left: 20px;
-}
-
-.design-details-btn {
-    display: block;
-    float: center;
-    background-color: none;
-    text-decoration: none;
-    background-color: transparent;
-    border: none;
-}
-
-.design-details-btn a {
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
-    border: 1.25px solid #000;
-    font-family: "DM Sans", sans-serif;
-    text-transform: uppercase;
-    color: #000;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 1rem;
-    transition: color 0.25s ease-in-out;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-}
-
-.design-details-btn a:hover {
-    background-color: #000;
-    border: 1.25px solid #fff;
-    color: #fff;
 }
 
 /* Design Process Section Styles */
@@ -649,6 +652,7 @@ body {
 }
 
 .process-title1 {
+    font-family: "Inter", sans-serif;
     font-weight: 500;
     color: #999;
     margin-left: 5%;
@@ -656,14 +660,14 @@ body {
 
 .process-title2 {
     font-size: 2.625rem;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
     font-weight: 200;
     color: #000;
 }
 
 #design-process .process-description {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 300;
     color: #000;
     margin-top: 25px;
@@ -715,9 +719,9 @@ body {
     position: absolute;
     left: 0;
     top: 0;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 11rem;
-    font-weight: 500;
+    font-weight: 600;
     color: #EDEDED;
     line-height: 1;
     z-index: 0;
@@ -726,9 +730,9 @@ body {
 
 .step-title {
     font-size: 24px;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 500;
+    font-weight: 600;
     color: #000;
     margin-bottom: 15px;
     position: relative;
@@ -738,6 +742,8 @@ body {
 }
 
 .step-text {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
     font-size: 16px;
     color: #000;
     line-height: 1.6;
@@ -747,6 +753,8 @@ body {
 }
 
 .step-text2 {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
     font-size: 16px;
     color: #000;
     position: relative;
@@ -756,6 +764,8 @@ body {
 }
 
 .process-step ul {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
     list-style: circle;
     padding-left: 20px;
     margin: 0 20px;
@@ -792,6 +802,7 @@ body {
 }
 
 .faq-title1 {
+    font-family: "Inter", sans-serif;
     font-weight: 500;
     color: #999;
     margin-top: 60px;
@@ -800,14 +811,14 @@ body {
 
 .faq-title2 {
     font-size: 2.625rem;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
     font-weight: 200;
     color: #000;
 }
 
 .faq .faq-description {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 300;
     color: #000;
     margin-top: 25px;
@@ -824,13 +835,13 @@ body {
 
 sl-details {
     font-size: 1em;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 500;
     color: #000;
 }
 
 sl-details p {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 300;
     color: #000000;
     margin: 0;
@@ -853,11 +864,13 @@ sl-details p {
 }
 .contact-title {
     font-size: 2.625rem;
-    font-family: "Geist", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-weight: 200;
     color: #000;
 }
 .contact-text {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
     padding-top: 30px;
     margin: 0 10%;
 }
@@ -915,7 +928,7 @@ textarea {
 .contact-form button {
     color: #000;
     background: transparent;
-    font-family: "Geit", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 300;
     margin-top: 15px;
     cursor: pointer;
@@ -975,7 +988,6 @@ footer {
     background-color: #2c2c2c;
     color: white;
     padding: 20px 0;
-    font-family: "DM Sans", sans-serif;
     border-top: 1px solid #3a3a3a;
 }
 
@@ -1007,7 +1019,7 @@ footer {
 }
 
 .footer h4 {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 24px;
     margin-bottom: 20px;
     margin-top: 5%;
@@ -1021,7 +1033,7 @@ footer {
 }
 
 .footer ul li {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 200;
     margin: 12px 0;
 }
@@ -1037,12 +1049,12 @@ footer {
 }
 
 .footer p {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     margin: 5px 0;
 }
 
 #footer-contact p {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     margin-top: 10%;
     font-weight: 200;
 }
@@ -1069,8 +1081,8 @@ footer {
 .footer .footer-bottom {
     text-align: center;
     padding: 15px 0;
-    font-family: "DM Sans", sans-serif;
-    font-weight: 200;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
     border-top: 1px solid #3a3a3a;
 }
 

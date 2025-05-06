@@ -161,15 +161,7 @@ slideElements.forEach(el => slideObserver.observe(el));
 
 
 
-  /*** FAQs (Plus/Minus toggle) ***/
-  document.querySelectorAll(".faq-item .faq-question").forEach(question => {
-    question.addEventListener("click", () => {
-      const parent = question.closest(".faq-item");
-      parent.classList.toggle("active");
-      const icon = question.querySelector(".icon");
-      if (icon) icon.textContent = parent.classList.contains("active") ? "−" : "+";
-    });
-  });
+
 
   /*** Shoelace FAQs - one open at a time ***/
   const faqContainer = document.querySelector(".details-group-example");
