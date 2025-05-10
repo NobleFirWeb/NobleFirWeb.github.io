@@ -424,6 +424,26 @@ body {
         text-transform: uppercase;
         margin-bottom: 20px;
       }
+
+      .divider {
+        max-width: 50%;
+        margin: 0 5%;
+        margin-top: 20px;
+        margin-bottom: 10%;
+        display: flex;
+        align-items: center;
+        height: 1px;
+        background-color: #000;
+        position: relative;
+    }
+    .divider::before {
+        content: "";
+        width: 5%;
+        height: 5px;
+        background-color: #999; /* your theme blue */
+        position: absolute;
+        left: 0;
+    }
       
       .hero-img-container {
         flex: 1;

@@ -19,31 +19,31 @@ body {
 
 /* Navbar */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 950;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  transition: all 0.25s ease-in-out;
-  margin: 0;
-  min-height: 15vh;
-  max-height: 15vh;
-  padding: 0 8%;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 950;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    transition: all 0.25s ease-in-out;
+    margin: 0;
+    min-height: 15vh;
+    max-height: 15vh;
+    padding: 0 8%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar.sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.25s ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.25s ease-in-out;
 }
 
 .logo img {
@@ -384,10 +384,38 @@ body {
 /* Hero Section Styles */
 #hero {
     width: 100%;
-    height: 100vh;
+    height: auto;
+}
+.divider {
+    max-width: 50%;
+    margin: 0 5%;
+    margin-top: 20px;
+    margin-bottom: 10%;
+    display: flex;
+    align-items: center;
+    height: 1px;
+    background-color: #000;
+    position: relative;
+}
+.divider::before {
+    content: "";
+    width: 5%;
+    height: 5px;
+    background-color: #999; /* your theme blue */
+    position: absolute;
+    left: 0;
+}
+#hero h1 span {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 2.75rem;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
 }
 #hero h1 {
-    margin: 10% 5%;
+    margin: 0 5%;
+    margin-top: 10%;
     padding-top: 30px;
     font-size: 2.75rem;
     font-family: "Space Grotesk", sans-serif;
@@ -1130,14 +1158,21 @@ footer {
 #hero {
     max-height: 750px;
 }
+#hero h1 span {
+    font-size: 2.25rem;
+}
 #hero h1 {
     margin: 0 5%;
+    font-size: 2.25rem;
     margin-top: 25%;
     max-width: 60%;
     margin-bottom: 5%;
 }
-.hero-row {
-    margin-top: 40px;
+#hero .divider {
+    max-width: 50%;
+}
+#hero .container-fluid .hero-row {
+    margin-top: 30px;
 }
 
 .why-us-text {
@@ -1215,12 +1250,20 @@ footer {
     #hero .top-banner {
         margin-top: 10%;
     }
+    #hero h1 span {
+        font-size: 2.25rem;
+        max-width: 100%;
+    }
     #hero h1 {
         margin: 15% 0;
         padding-top: 40%;
-        font-size: 1.85rem;
+        font-size: 2.25rem;
         max-width: 100%;
         margin-bottom: 5%;
+    }
+    #hero .divider {
+        margin: 0;
+        max-width: 75%;
     }
     #hero h2 {
         font-size: 1.75rem;
@@ -1229,7 +1272,7 @@ footer {
         flex-direction: column-reverse;
         align-items: center;
         gap: 40px;
-        margin-top: 0;
+        margin-top: 30px;
     }
     #hero .container-fluid .hero-row .hero-text {
         max-width: 100%;

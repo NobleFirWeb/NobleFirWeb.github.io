@@ -9,6 +9,11 @@
     scroll-behavior: smooth;
 }
 
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -386,8 +391,36 @@ position: fixed;
     width: 100%;
     height: auto;
 }
+.divider {
+    max-width: 75%;
+    margin: 0 5%;
+    margin-top: 20px;
+    margin-bottom: 10%;
+    display: flex;
+    align-items: center;
+    height: 1px;
+    background-color: #000;
+    position: relative;
+}
+.divider::before {
+    content: "";
+    width: 5%;
+    height: 5px;
+    background-color: #999; /* your theme blue */
+    position: absolute;
+    left: 0;
+}
+#hero h1 span {
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 2.75rem;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+}
 #hero h1 {
-    margin: 10% 5%;
+    margin: 0 5%;
+    margin-top: 10%;
     padding-top: 30px;
     font-size: 2.75rem;
     font-family: "Space Grotesk", sans-serif;
@@ -563,7 +596,8 @@ position: fixed;
 }
 
 .why-us-bg {
-    margin: 5% 0;
+    margin: 0;
+    margin-top: 120px;
     position: relative;
     width: 100%;
     height: auto;
@@ -580,7 +614,7 @@ position: fixed;
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 40px;
 }
 
 .why-us-bg .benefits-container .benefits-row {
@@ -588,7 +622,7 @@ position: fixed;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    column-gap: 30px;
+    column-gap: 60px;
     margin: 0;
 }
 
@@ -596,14 +630,21 @@ position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
     max-width: 300px;
 }
 
-.benefits-row .benefit-item i {
+.benefit-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.benefit-icon i {
     font-size: 3rem;
     color: #000;
-    align-self: center;
-    margin-bottom: 10px;
 }
 
 .benefits-row .benefit-item h3 {
@@ -611,6 +652,7 @@ position: fixed;
     font-size: 1.25rem;
     font-weight: 600;
     color: #000;
+    padding-top: 10px;
 }
 
 .benefits-row .benefit-item p {
@@ -620,16 +662,255 @@ position: fixed;
     margin-top: 10px;
 }
 
+/* Design Process Section Styles */
+#dev-process {
+    width: 100%;
+    margin-top: 10%;
+}
+
+.process-header {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 60px 0 60px 0;
+    padding: 0;
+}
+
+.process-header .header-card {
+    background-color: #EDEDED;
+    width: 720px;
+    max-width: 720px;
+    padding: 15px 5%;
+    box-sizing: border-box;
+    margin-top: 0;
+    z-index: 0;
+    position: relative;
+}
+
+.process-title1 {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    color: #999;
+    margin-left: 5%;
+}
+
+.process-title2 {
+    font-size: 2.625rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    color: #000;
+}
+
+#dev-process .process-description {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    color: #000;
+    margin-top: 25px;
+    margin-bottom: 5%;
+    max-width: 720px;
+}
+
+.banner-area {
+    margin: 0 8%;
+}
+
+.banner-background {
+    display: flex;
+    align-self: center;
+    margin-top: 10%;
+    width: 100%;
+    min-height: 425px;
+    max-height: 50vh;
+    background-color: #EDEDED;
+    z-index: 0;
+}
+
+.text-card-wrapper {
+    display: flex;
+    align-self: center;
+    margin: -350px 10% 0 10%;
+    z-index: 1;
+}
+
+.text-card {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    padding: 15px;
+    padding-top: 30px;
+    overflow: hidden;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.process-step {
+    margin-bottom: 40px;
+    position: relative;
+    padding-left: 40px;
+}
+
+.step-number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11rem;
+    font-weight: 600;
+    color: #EDEDED;
+    line-height: 1;
+    z-index: 0;
+    transform: translateX(-65px) translateY(-35px);
+}
+
+.step-title {
+    font-size: 24px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.step-text {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: #000;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+    margin: 0 20px;
+}
+
+.step-text2 {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: #000;
+    position: relative;
+    z-index: 1;
+    margin: 0 20px;
+    margin-top: 20px;
+}
+
+.process-step ul {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    list-style: circle;
+    padding-left: 20px;
+    margin: 0 20px;
+    margin-top: 10px;
+}
 
 
 
 
 
 
+/*--- Contact Section Styles ---*/
+#contact {
+    margin: 0 5%;
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.contact-header {
+    text-align: center;
+    margin-top: 30px;
+    margin: 0 20%;
+}
+.contact-title {
+    font-size: 2.625rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 200;
+    color: #000;
+}
+.contact-text {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    padding-top: 30px;
+    margin: 0 10%;
+}
+
+.contact-form {
+    width: 100%;
+    margin: 5% 0;
+    padding: 0 15%;
+}
+
+.form-group {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.form-group input {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #000;
+    font-size: 14px;
+    background-color: transparent;
+    color: #000;
+}
+
+textarea {
+    background-color: transparent;
+    color: #000;
+}
 
 
+input::placeholder,
+textarea::placeholder {
+    color: #000;
+}
 
 
+textarea,
+.contact-form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #000;
+    font-size: 14px;
+}
+
+.contact-form select:hover {
+    cursor: pointer;
+}
+
+textarea {
+    resize: none;
+}
+
+.contact-form button {
+    color: #000;
+    background: transparent;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    margin-top: 15px;
+    cursor: pointer;
+    border: 1px solid #000;
+    padding: 12px 20px;
+    transition: color 0.25s ease-in-out;
+    max-width: 25%;
+    float: right;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.contact-form button:hover {
+    background: black;
+    color: #fff;
+    border: 1px solid #000;
+}
 
 
 /* Footer Styles */
@@ -787,12 +1068,68 @@ footer {
         max-width: 75%;
         margin-bottom: 5%;
     }
-    .hero-row {
-        margin-top: 40px;
+    #hero .divider {
+        max-width: 60%;
+    }
+    #hero .container-fluid .hero-row {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        column-gap: 5px;
+    }
+    #why-us .container-fluid .why-us-row {
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+    .why-us-bg .benefits-container .benefits-row {
+        display: flex;
+        gap: 20px;
     }
     .why-us-text {
         max-width: 50%;
     }
+    .banner-background {
+        height: 33vh;
+    }
+    .banner-area {
+        margin: 0 5%;
+    }
+    
+    .text-card-wrapper {
+        margin: -375px 5% 0 5%;
+    }
+
+
+    /*--- Contact Section Styles ---*/
+#contact {
+    margin: 0 5%;
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.contact-header {
+    text-align: center;
+    margin-top: 30px;
+    margin: 0 15%;
+}
+.contact-title {
+    font-size: 2.625rem;
+}
+.contact-text {
+    padding-top: 30px;
+    margin: 0 5%;
+}
+.contact-form {
+    width: 100%;
+    margin: 7% 0;
+    padding-bottom: 30px;
+    padding: 0 10%;
+}
+.contact-form button {
+    margin-bottom: 20px;
+}
 
 }
 
@@ -823,21 +1160,29 @@ footer {
 #hero .top-banner {
     margin-top: 10%;
 }
+#hero h1 span {
+    font-size: 2.25rem;
+    max-width: 100%;
+}
 #hero h1 {
     margin: 15% 0;
     padding-top: 40%;
-    font-size: 1.85rem;
+    font-size: 2.25rem;
     max-width: 100%;
     margin-bottom: 5%;
+}
+#hero .divider {
+    margin: 0;
+    max-width: 75%;
 }
 #hero h2 {
     font-size: 1.75rem;
 }
 #hero .container-fluid .hero-row {
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     gap: 40px;
-    margin-top: 0;
+    margin-top: 30px;
 }
 #hero .container-fluid .hero-row .hero-text {
     max-width: 100%;
@@ -851,14 +1196,17 @@ footer {
     }
     #why-us .container-fluid {
         padding: 0 15px;
+        padding-top: 60px;
     }
     #why-us .container-fluid .why-us-row {
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: center;
         gap: 40px;
+        margin-top: 30px;
     }
     #why-us .why-us-text{
         max-width: 100%;
+        margin-top: 30px;
     }
     .why-us-text h2 {
         font-size: 1.75rem;
@@ -870,21 +1218,65 @@ footer {
         max-width: 100%;
     }
     .why-us-bg {
-        margin: 10% 0;
+        margin: 0;
+        margin-top: 60px;
         padding: 30px 0;
         max-height: 100%;
     }
     .why-us-bg .benefits-container {
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        gap: 30px;
+        padding: 0 5%;
     }
     .why-us-bg .benefits-container .benefits-row {
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        gap: 30px;
+    }
+    .benefits-row .benefit-item {
+        max-width: 100%;
+    }
+    .benefits-row .benefit-item h3 {
+        margin-top: 10px;
     }
 
+        /*---Design Process Styles---*/
+        #dev-process {
+            padding-top: 30px;
+        }
+        .process-header .header-card {
+            max-width: 100%;
+        }
+        .header-card {
+            max-width: 100%;
+        }
+        .banner-area {
+            margin: 0;
+        }
+        .banner-background {
+            height: 45vh;
+        }
+        .text-card-wrapper {
+            max-width: 100%;
+            margin: -350px 20px 0 20px;
+        }
+        .step-title {
+            margin: 0;
+        }
+        
+        .step-text {
+            margin: 0;
+            margin-top: 10px;
+        }
+        .step-text2 {
+            margin-left: 0;
+            font-weight: 500;
+        }
+        .process-step ul {
+            margin: 0;
+            margin-top: 10px;
+        }
 
 
 
@@ -892,6 +1284,36 @@ footer {
 
 
 
+    /*--- Contact Section Styles ---*/
+    #contact {
+        margin: 0;
+        margin-top: 60px;
+        margin-bottom: 30px;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+    
+    .contact-header {
+        margin: 0;
+    }
+    
+    .contact-title {
+        font-size: 1.75rem;
+    }
+    
+    .contact-text {
+        padding-top: 20px;
+        margin: 0;
+    }
+    .contact-form {
+        margin: 10% 0;
+        padding: 0 10px;
+    }
+    .form-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
 
 /*--- Footer Styles ---*/
 .footer-container {
