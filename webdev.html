@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
     </head>
     <body>
-        
+
         <!-- Navbar -->
     <header class="navbar">
         <div class="logo">
@@ -37,7 +37,7 @@
                     </ul>
                 </li>
                 <li><a href="#portfolio">Projects</a></li>
-                <li><a class="nav-contact" href="#contact">Get in Touch</a></li>
+                <li><a class="nav-contact" href="contact-us.html">Get in Touch</a></li>
             </ul>
         </nav>
 
@@ -49,7 +49,7 @@
         
         <nav id="mobileMenu" class="mobile-menu">
             <div class="menu-header">
-            <p>Noble Fir</p>
+            <p>Noble Fir Studio</p>
                 <hr />
             </div>
             <ul class="menu-links">
@@ -65,15 +65,18 @@
                     </ul>
                 </li>
                 <li><a href="#portfolio">Projects</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
             </ul>
             <hr />
             <div class="menu-footer">
                 <p>SOCIALS</p>
                 <div class="social-links">
-                <a href="#">Instagram</a>
-                <a href="#">Twitter</a>
-                <a href="#">LinkedIn</a>
-            </div>
+                    <a href="#">Instagram</a>
+                    <span> | </span>
+                    <a href="#">Twitter</a>
+                    <span> | </span>
+                    <a href="#">LinkedIn</a>
+                </div>
             </div>
             <div class="menu-logo">
                 <img src="./img/footer-logo.png" alt="Logo">
@@ -82,49 +85,100 @@
     </header>
 
     <section class="hero" id="hero">
-        <h1>Custom Website Development</h1>
-        <h2>Coming Soon...</h2>
+        <div class="top-banner">
+            <div class="container-fluid">
+                <div class="title-area">
+                    <h1 data-rise="true">Seamless Development, Exceptional Experience</h1>
+                </div>
+                <div class="hero-row">
+                    <div class="hero-text">
+                        <h2 class="hero-header" data-rise="true">Custom-Built Websites That Feel Effortless to Use</h2>
+                        <p>From custom web applications to dynamic websites, Noble Fir delivers web development that’s tailored to your exact business needs.</p>
+                        <p>With performance, security, and scalability at the forefront, we transform concepts into clean, reliable code — ensuring your online presence is as strong behind the scenes as it looks upfront.</p>
+                        <div class="hero-btn">
+                            <a href="#contact">Receive a Quote</a>
+                        </div>
+                    </div>
+                    <div class="hero-image" slide-left="true">
+                        <img src="./img/responsive-dev.png" alt="Hero Image" class="hero-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us" id="why-us">
+        <div class="container-fluid">
+            <div class="why-us-row">
+                <div class="why-us-image" slide-right="true">
+                    <img src="./img/coding.jpg" alt="" class="why-us-img">
+                </div>
+                <div class="why-us-text">
+                    <h2 data-rise="true">Why Choose Noble Fir for Custom Web Design?</h2>
+                    <p>We believe your brand deserves more than just a beautiful face — it deserves a digital foundation built for success. Every website we design is not only crafted with high-end aesthetics and brand credibility in mind but also engineered with expert web development practices behind the scenes.</p>
+                    <p>By blending custom design with professional-grade development, we create websites that are fast, secure, scalable, and easy to manage. This means your visitors experience a site that’s visually stunning and technically seamless — elevating your brand's reputation, improving engagement, and building long-term trust with your audience.</p>
+                    <div class="why-us-btn">
+                        <a href="#contact" class="quote-button">Start Your Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="why-us-bg">
+            <div class="benefits-container">
+                <div class="benefits-row">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fa fa-cogs"></i>
+                        </div>
+                        <h3 data-rise="true">Custom Solutions</h3>
+                        <p>We tailor our web development services to meet your unique business needs, ensuring a perfect fit for your goals.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fa fa-mobile-alt"></i>
+                        </div>
+                        <h3 data-rise="true">Performance & Security</h3>
+                        <p>Our websites are built with performance and security in mind, providing a seamless experience for your users.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fa fa-user-friends"></i>
+                        </div>
+                        <h3 data-rise="true">Ongoing Support</h3>
+                        <p>We offer ongoing support and maintenance to ensure your website remains up-to-date and secure.</p>
+                    </div>
+                </div>
+                <div class="benefits-row">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fa fa-chart-line"></i>
+                        </div>
+                        <h3 data-rise="true">Scalability</h3>
+                        <p>Our web development solutions are designed to grow with your business, ensuring long-term success.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fa fa-check-circle"></i>
+                        </div>
+                        <h3 data-rise="true">Quality Assurance</h3>
+                        <p>We're committed to extensive quality testing to ensure that every aspect of your website exceeds standards.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <h3 data-rise="true">Expert Team</h3>
+                        <p>Our team of experienced developers and designers work together to deliver high-quality web solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
 
 
-        
-    <!--
-        <sl-tab-group class="services-nav" placement="start" activation="auto">
-            <sl-tab class="tab-nav" slot="nav" panel="Web Development">Custom Web Development</sl-tab>
-            <sl-tab class="tab-nav" slot="nav" panel="Project Takeovers">Project Takeovers</sl-tab>
-            <sl-tab-panel name="Web Development">
-                <h2 class="service-title">Custom Web Development</h2>
-                <p class="service-subtitle">We build scalable websites from scratch that fit seamlessly with design. Our focus is on User Experience, micro-animations, transitions, and interactions.</p>
-                <ul class="service-list">
-                    <li class="item"><sl-icon name="graph-up-arrow" style="font-size: 28px; color: #bdbdbd;"></sl-icon>
-                        Build an Online Presence</li>
-                    <li class="item"><sl-icon name="person-up" style="font-size: 28px; color: #bdbdbd;"></sl-icon>Improve User Experience</li>
-                    <li class="item"><sl-icon name="window-sidebar" style="font-size: 28px; color: #bdbdbd;"></sl-icon>Custom Tailored Solutions</li>
-                </ul>
-                <div class="service-description">
-                    <p>Investing in custom web development services is an investment in the future of your business. By establishing a robust online presence, improving user experience, and delivering tailored solutions, your business can not only meet current demands but also adapt to future needs.</p>
-                    <sl-button size="medium" class="learn-more-btn">Learn More</sl-button>
-                </div>
-            </sl-tab-panel>
-            <sl-tab-panel name="Project Takeovers">
-                <h2 class="service-title">Project Takeovers</h2>
-                <p class="service-subtitle">Your success is our priority. If your project is stuck due to missed deadlines, lack of transparency, or poor execution, our experienced team can step in, assess the situation, and get things back on track—without unnecessary delays or added stress.</p>
-                <ul class="service-list">
-                    <li class="item"><sl-icon name="hourglass-bottom" style="font-size: 28px; color: #bdbdbd;"></sl-icon>
-                        Unfinished / Delayed Projects</li>
-                    <li class="item"><sl-icon name="braces" style="font-size: 28px; color: #bdbdbd;"></sl-icon>Poor Code Quality</li>
-                    <li class="item"><sl-icon name="cash-coin" style="font-size: 28px; color: #bdbdbd;"></sl-icon>Budget Overruns</li>   
-                    <li class="item"><sl-icon name="chat-dots" style="font-size: 28px; color: #bdbdbd;"></sl-icon>Poor Communication</li>
-                    <li class="item"><sl-icon name="bullseye" style="font-size: 28px; color: #bdbdbd;"></sl-icon>Missed Business Objectives</li>
-                </ul>
-                <div class="service-description">
-                    <p>Your project is an investment—don’t let it go to waste. In most cases, we can enhance and optimize your existing code without the need for a costly full rebuild. Our team specializes in rescuing projects efficiently, ensuring stability, maintainability, and scalability while keeping costs under control</p>
-                    <sl-button size="medium" class="learn-more-btn">Learn More</sl-button>
-                </div>
-            </sl-tab-panel>
-        </sl-tab-group>
-        -->
+
+
 
 
 

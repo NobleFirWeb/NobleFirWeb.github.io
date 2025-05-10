@@ -318,7 +318,7 @@ body {
     display: flex;
     flex-direction: column;
     list-style: none;
-    padding-left: 25px;
+    padding-left: 40px;
     padding-top: 10px;
 }
 
@@ -1238,7 +1238,8 @@ footer {
 
     /*--- Why Us Styles ---*/
     #why-us {
-        padding-top: 30px;
+        padding-top: 40px;
+        margin-top: 10%;
     }
     #why-us .container-fluid {
         padding: 0 15px;
