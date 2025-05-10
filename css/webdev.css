@@ -1154,6 +1154,7 @@ footer {
     }
 /*--- Hero Styles ---*/
 #hero {
+    height: auto;
     min-height: 100vh;
     margin-top: 10%;
 }
@@ -1206,7 +1207,7 @@ footer {
     }
     #why-us .why-us-text{
         max-width: 100%;
-        margin-top: 30px;
+        margin-top: 60px;
     }
     .why-us-text h2 {
         font-size: 1.75rem;
