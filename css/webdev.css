@@ -812,7 +812,7 @@ position: fixed;
 /*Dev-Project Section*/
 #dev-project {
     margin: 0 5%;
-    margin-top: 60px;
+    margin-top: 10%;
     padding: 20px;
 }
 
@@ -840,7 +840,7 @@ position: fixed;
     width: 100%;
     height: auto;
     max-height: 900px;
-    margin-top: 5%;
+    margin-top: 10%;
 }
 
 .projects-nav {
