@@ -890,6 +890,12 @@ sl-details p {
     margin-top: 30px;
     margin: 0 20%;
 }
+.contact-title span {
+    font-size: 2.625rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 200;
+    color: #999;
+}
 .contact-title {
     font-size: 2.625rem;
     font-family: "Space Grotesk", sans-serif;
@@ -1360,6 +1366,19 @@ footer {
         margin-top: 10px;
     }
 
+
+
+        /*--- FAQ Styles ===*/
+    #faq {
+        padding: 0;
+    }
+    #faq sl-details p {
+        margin: 0 10px;
+    }
+    #faq .header-card {
+        max-width: 100%;
+    }
+
     /*--- Contact Section Styles ---*/
 #contact {
     margin: 0;
@@ -1371,6 +1390,10 @@ footer {
 
 .contact-header {
     margin: 0;
+}
+
+.contact-title span {
+    font-size: 1.75rem;
 }
 
 .contact-title {

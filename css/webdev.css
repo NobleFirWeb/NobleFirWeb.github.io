@@ -809,9 +809,133 @@ position: fixed;
     margin-top: 10px;
 }
 
+/*Dev-Project Section*/
+#dev-project {
+    margin: 0 5%;
+    margin-top: 60px;
+    padding: 20px;
+}
 
+.project-header {
+    text-align: center;
+    margin: 0 20%;
+}
 
+.project-title {
+    font-size: 2.625rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 200;
+    color: #000;
+}
+.project-text {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    padding-top: 30px;
+    margin: 0 10%;
+}
+.project-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    max-height: 900px;
+    margin-top: 5%;
+}
 
+.projects-nav {
+    --indicator-color: #999;
+}
+
+sl-tab {
+    color: #000;
+}
+
+sl tab #sl-tab-1:hover {
+    background-color: #000;
+}
+
+sl-tab-panel img {
+    width: 980px;
+    max-width: 980px;
+    height: auto;
+    max-height: 470px;
+}
+
+/* FAQs */
+#faq {
+    margin: 0 5%;
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.faq-header {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 60px 0 60px 0;
+    padding: 0;
+}
+
+.header-card {
+    background-color: #EDEDED;
+    width: 720px;
+    max-width: 720px;
+    padding: 15px 5%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 0;
+}
+
+.faq-title1 {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    color: #999;
+    margin-top: 60px;
+    margin-left: 5%;
+}
+
+.faq-title2 {
+    font-size: 2.625rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    color: #000;
+}
+
+.faq .faq-description {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    color: #000;
+    margin-top: 25px;
+    margin-bottom: 5%;
+    max-width: 720px;
+}
+.details-group-example {
+    margin-top: 60px; 
+}
+
+.details-group-example sl-details:not(:last-of-type) {
+    margin-bottom: var(--sl-spacing-2x-small);
+}
+
+sl-details {
+    font-size: 1em;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    color: #000;
+}
+
+sl-details p {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    color: #000000;
+    margin: 0;
+    margin-right: 10%;
+}
 
 
 /*--- Contact Section Styles ---*/
@@ -820,12 +944,17 @@ position: fixed;
     margin-top: 60px;
     padding: 20px;
     background-color: #fff;
-    border-radius: 5px;
 }
 .contact-header {
     text-align: center;
     margin-top: 30px;
     margin: 0 20%;
+}
+.contact-title span {
+    font-size: 2.625rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 200;
+    color: #999;
 }
 .contact-title {
     font-size: 2.625rem;
@@ -1100,6 +1229,11 @@ footer {
         margin: -375px 5% 0 5%;
     }
 
+    /*Project Section*/
+    sl-tab-panel img {
+    max-width: 600px;
+}
+
 
     /*--- Contact Section Styles ---*/
 #contact {
@@ -1279,11 +1413,30 @@ footer {
             margin-top: 10px;
         }
 
+    /*Dev-Project Section Styles*/
+    .project-header {
+        margin: 0;
+    }
+    .project-title {
+        font-size: 1.75rem;
+    }
+    .project-text {
+        margin: 0;
+    }
+    sl-tab-panel img {
+    width: 200px;
+}
 
-
-
-
-
+    /*--- FAQ Styles ===*/
+    #faq {
+        padding: 0;
+    }
+    #faq sl-details p {
+        margin: 0 10px;
+    }
+    #faq .header-card {
+        max-width: 100%;
+    }
 
     /*--- Contact Section Styles ---*/
     #contact {
@@ -1291,13 +1444,14 @@ footer {
         margin-top: 60px;
         margin-bottom: 30px;
         background-color: #fff;
-        border-radius: 5px;
     }
     
     .contact-header {
         margin: 0;
     }
-    
+    .contact-title span {
+    font-size: 1.75rem;
+}
     .contact-title {
         font-size: 1.75rem;
     }
