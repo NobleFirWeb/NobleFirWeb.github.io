@@ -827,7 +827,7 @@ position: fixed;
     font-weight: 200;
     color: #000;
 }
-.project-text {
+.projects-text {
     font-family: "Inter", sans-serif;
     font-weight: 300;
     padding-top: 30px;
@@ -839,27 +839,109 @@ position: fixed;
     align-items: center;
     width: 100%;
     height: auto;
-    max-height: 900px;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .projects-nav {
+    width: 100%;
+    display: flex;
     --indicator-color: #999;
+    --track-color: transparent;
+    --sl-color-primary-600: #999;   /* Active tab text */
+    --sl-color-primary-500: #000;
 }
-
-sl-tab {
-    color: #000;
-}
-
-sl tab #sl-tab-1:hover {
-    background-color: #000;
+sl-tab-panel {
+    padding-top: 20px;
 }
 
 sl-tab-panel img {
-    width: 980px;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    min-width: 980px;
     max-width: 980px;
     height: auto;
-    max-height: 470px;
+    max-height: 550px;
+}
+
+sl-tab-group::part(base) {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+sl-tab-group::part(nav) {
+    display: flex;
+    justify-content: center;
+}
+
+.project-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    margin: 0;
+    max-width: 1440px;
+    padding: 0;
+}
+
+.project-text {
+    flex: 1;
+    max-width: 425px;
+    margin: 0 15px;
+}
+
+.project-text h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 200;
+    color: #000;
+}
+
+.project-text p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    color: #000;
+}
+
+.project-content img {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 980px;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.project-cta-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.view-projects-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    border: 1.25px solid #000;
+    font-family: "DM Sans", sans-serif;
+    text-transform: uppercase;
+    color: #000;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1rem;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.view-projects-btn:hover {
+    background-color: #000;
+    color: #fff;
+    border: 1.25px solid #fff;
 }
 
 /* FAQs */
@@ -1231,7 +1313,28 @@ footer {
 
     /*Project Section*/
     sl-tab-panel img {
-    max-width: 600px;
+    width: 100%;
+    min-width: 720px;
+    max-width: 720px;
+    height: auto;
+    max-height: 475px;
+}
+sl-tab-group::part(nav) {
+    justify-content: center;
+}
+.project-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.project-text {
+    max-width: 100%;
+    text-align: left;
+}
+
+.project-text h2 {
+    text-align: center;
 }
 
 
@@ -1414,18 +1517,65 @@ footer {
         }
 
     /*Dev-Project Section Styles*/
+    #dev-project {
+        padding: 0;
+    }
     .project-header {
         margin: 0;
+        padding-top: 30px;
     }
     .project-title {
         font-size: 1.75rem;
     }
-    .project-text {
+    .projects-text {
         margin: 0;
     }
+    .project-container {
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 ;
+        margin-top: 15%;
+    }
+
+    .projects-nav {
+        --sl-font-size-medium: 0.875rem;
+    }
+
+    sl-tab-group::part(base) {
+        width: 100%;
+    }
+
+    sl-tab::part(base) {
+        font-size: 0.9rem;
+    }
+
     sl-tab-panel img {
-    width: 200px;
-}
+        width: 100%;
+        max-width: 100%;
+        min-width: unset;
+        height: auto;
+        max-height: unset;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 15px;
+    }
+        .project-content {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+    
+        .project-text {
+            max-width: 100%;
+            text-align: left;
+        }
+    
+        .project-text h2 {
+            text-align: center;
+        }
+
 
     /*--- FAQ Styles ===*/
     #faq {

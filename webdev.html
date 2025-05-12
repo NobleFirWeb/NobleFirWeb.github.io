@@ -246,25 +246,55 @@
 
     <section class="dev-project" id="dev-project">
         <div class="project-header">
-            <h1 class="project-title"><span>Explore</span> Our Projects</h1>
-            <p class="project-text">Discover the diverse range of projects we've brought to life. Check out the work we've done.</p>
+            <h1 class="project-title" data-rise="true"><span>Explore</span> Our Projects</h1>
+            <p class="projects-text">Discover the diverse range of projects we've brought to life. Check out the work we've done.</p>
         </div>
         <div class="project-container">
-            <sl-tab-group placement="start" class="projects-nav">
-                <sl-tab slot="nav" panel="casa-designs">Casa Designs</sl-tab>
+            <sl-tab-group class="projects-nav" id="projects-nav">
                 <sl-tab slot="nav" panel="js-painting">J's Quality Custom Painting</sl-tab>
+                <sl-tab slot="nav" panel="casa-designs">Casa Designs</sl-tab>
                 <sl-tab slot="nav" panel="crown-clothing">Crown Clothing</sl-tab>
             
-                <sl-tab-panel name="casa-designs" class="project-panel">
-                    <img src="./img/casa-designs.png" alt="Casa Designs">
-                </sl-tab-panel>
                 <sl-tab-panel name="js-painting" class="project-panel">
-                    <img src="./img/js-painting.png" alt="J's Painting">
+                    <div class="project-content">
+                        <div class="project-text">
+                            <h2 data-rise="true">J's Quality Custom Painting</h2>
+                            <p class="project-description">A professional, clean website designed to showcase a local painting business’s services and build trust through visuals and simplicity.</p>
+                            <p><strong>Industry:</strong> Residential & Commerical Painting</p>
+                            <p><strong>Services:</strong> Web Design, Website Development, Image Optimization, SEO, Content Management</p>
+                            <p><strong>Technologies:</strong> HTML, CSS, JavaScript, Shoelace UI CSS</p>
+                        </div>
+                        <img src="./img/js-painting.png" alt="J's Painting" slide-left="true">
+                    </div>
+                </sl-tab-panel>
+                <sl-tab-panel name="casa-designs" class="project-panel">
+                    <div class="project-content">
+                        <div class="project-text">
+                            <h2 data-rise="true">Casa Designs</h2>
+                            <p class="project-description">A clean, modern portfolio site for a local Woodworking business based in Tualatin, OR.</p>
+                            <p><strong>Industry:</strong> Custom Wood Working</p>
+                            <p><strong>Services:</strong> Web Design, Website Development, SEO</p>
+                            <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
+                        </div>
+                        <img src="./img/casa-designs.png" alt="Casa Designs" slide-left="true">
+                        </div>
                 </sl-tab-panel>
                 <sl-tab-panel name="crown-clothing" class="project-panel">
-                    <img src="./img/clothing-store.png" alt="Crown Clothing">
+                    <div class="project-content">
+                        <div class="project-text">
+                            <h2 data-rise="true">Crown Clothing</h2>
+                            <p class="project-description">A modern e-commerce front-end for a streetwear brand, built to reflect bold identity and make product navigation seamless across devices.</p>
+                            <p><strong>Industry:</strong> E-Commerce</p>
+                            <p><strong>Services:</strong> Responsive Web Design, Website Development, E-Commerce Integration, SEO</p>
+                            <p><strong>Technologies:</strong> React, SCSS, Custom JS Cart System, Firebase DB</p>
+                        </div>
+                        <img src="./img/clothing-store.png" alt="Crown Clothing" slide-left="true">
+                    </div>
                 </sl-tab-panel>
             </sl-tab-group>
+        </div>
+        <div class="project-cta-wrapper">
+            <a href="/projects.html" class="view-projects-btn">View All Projects &#8594;</a>
         </div>
     </section>
 
@@ -281,26 +311,38 @@
         </div>
     
         <div class="details-group-example">
-            <sl-details summary="What services do you offer?">
-                <p>We provide web design, website redesigns, custom web development, Search Engine Optimization, hosting, and email services tailored for your business.</p>
+            <sl-details summary="What technologies do you use for custom web development?">
+                <p>Our core stack is built on clean, hand-coded HTML, CSS, and vanilla JavaScript, which gives us full control over performance and structure. We also have expertise level experience with modern frameworks like React and other JavaScript libraries, allowing us to scale solutions based on the specific needs of your project. Whether you need a lightweight static website or a dynamic, interactive application, we'll choose the best tools to deliver the right solution for your business needs.</p>
             </sl-details>
     
             <sl-details summary="How long does a web project take?">
-                <p>Project timelines vary based on complexity, but we strive to deliver within 4-8 weeks for most projects.
+                <p>Project timelines vary based on complexity, but we strive to deliver within 4-8 weeks for most projects. We can offer a more precise development timeline after discussing your specific requirements.
                 </p>
             </sl-details>
-            <sl-details summary="I already have a website but it is quite outdated. Can you assist?">
-                <p>Redesigns are our specialty! Aside from building custom websites from scratch, we offer development services to update and improve your existing site.</p>
+            <sl-details summary="Do you integrate APIs or third-party tools?">
+                <p>Yes. Whether it's embedding a booking system, connecting to CRMs, or adding social feeds, we can integrate a wide range of third-party APIs and tools directly into your site.</p>
             </sl-details>
-            <sl-details summary="Can you help with SEO?">
-                <p>Absolutely! Our Search Engine Optimization services are designed to enhance your website’s visibility and attract more visitors.</p>
+            <sl-details summary="Will my site be optimized for performance and speed?">
+                <p>Definitely. Performance is at the heart of every build. We optimize everything from code and image delivery to lazy loading and caching for lightning-fast experiences.</p>
+            </sl-details>
+            <sl-details summary="Can you create web applications, not just websites?">
+                <p>Yes. We can develop full-scale web applications with advanced functionality, user accounts, dashboards, and database interactions—whatever your project demands.
+                </p>
             </sl-details>
             <sl-details summary="I already have a design. Can you develop it?">
-                <p>Of Course! We're happy to provide additional feedback on your current design and can develop any designs you provide us with.</p>
+                <p>Of course! We’re happy to work with designs you provide. We’ll translate your mockups into clean, responsive code that performs just as beautifully as it looks.
+                </p>
             </sl-details>
-            <sl-details summary="What if I'm not happy with the results?">
-                <p>While we cannot offer refunds due to time and efforts spent on projects, we are committed to working
-                with our customers on revisions to ensure you are 100% satisfied with your product prior to launch!
+            <sl-details summary="Can you ensure my site is accessible and compliant with web standards?">
+                <p>Yes. We follow WCAG accessibility guidelines and W3C standards to ensure your site is usable by everyone and future-proof for evolving technologies.
+                </p>
+            </sl-details>
+            <sl-details summary="How do you handle cross-browser compatibility?">
+                <p>We rigorously test on major browsers (Chrome, Safari, Firefox, Edge) and screen sizes to ensure your website functions perfectly across the board.
+                </p>
+            </sl-details>
+            <sl-details summary="Can you connect my site to a content management system (CMS)?">
+                <p>Yes. We can integrate headless CMS platforms like Strapi or Sanity, giving you full control over your content without compromising design or performance.
                 </p>
             </sl-details>
         </div>

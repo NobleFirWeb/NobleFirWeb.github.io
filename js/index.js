@@ -185,7 +185,7 @@ slideElements.forEach(el => slideObserver.observe(el));
   }
 });
 
-// About Us page specific scripts
+
 // About us popup modal
 const dialog = document.querySelector('.dialog-width');
 const openButton = dialog.nextElementSibling;
@@ -193,3 +193,19 @@ const closeButton = dialog.querySelector('sl-button[slot="footer"]');
 
 openButton.addEventListener('click', () => dialog.show());
 closeButton.addEventListener('click', () => dialog.hide());
+
+
+
+// Web-Dev Shoelace UI tab group - Responsive
+const tabGroup = document.getElementById('projects-nav');
+
+function updateTabPlacement() {
+  if (window.innerWidth <= 1024) {
+    tabGroup.setAttribute('placement', 'top'); // Mobile/tablet
+  } else {
+    tabGroup.setAttribute('placement', 'start'); // Desktop
+  }
+}
+
+window.addEventListener('resize', updateTabPlacement);
+window.addEventListener('DOMContentLoaded', updateTabPlacement);
