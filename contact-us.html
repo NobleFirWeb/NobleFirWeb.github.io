@@ -11,6 +11,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./css/contact-us.css">
+        <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
     </head>
     <body>
         
@@ -81,7 +83,165 @@
             </div>
         </nav>
     </header>
+
+
+
+    <section class="hero" id="hero">
+        <div class="hero-contact-content">
+            <h3 data-rise="true">Get in touch with us</h3>
+            <h1 data-rise="true">Let's Bring Your Project to Life!</h1>
+            <div class="hero-text">
+                <p class="text1">Have a project in mind or questions about getting started?</p>
+                <p class="text2">Let's collaborate on a solution tailored to your goals.</p>
+            </div>
+            <div class="hero-buttons">
+                <button class="hero-btn">
+                    <a href="#portfolio"><span>Book a Call</span></a> 
+                </button>
+            </div>
+        </div>
+
+        <div class="hero-carousel">
+            <div class="hero-carousel-inner">
+                <img src="./img/collaboration.jpg" alt="Teamworking Illustration" slide-left="true">
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-items-section" id="contact-items-section">
+        <div class="contact-items">
+            <div class="contact-item">
+                <div class="contact-item-text">
+                    <h4>Location</h4>
+                    <p>Tualatin, Oregon 97062</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-item-text">
+                    <h4>Phone</h4>
+                    <p>971.500.6447</p>
+                </div>
+            </div>    
+            <div class="contact-item">
+                <div class="contact-item-text">
+                    <h4>Email</h4>
+                    <p>info@noblefirstudio.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-form-section" id="contact-form-section">
+        <div class="form-container">
+            <h3>Let's Build Something Remarkable Together</h3>
+            <p class="text1">Have a project in mind or questions about getting started?</p>
+            <p class="text2">Let's collaborate on a solution tailored to your goals.</p>
+            <form class="contact-form">
+                <div class="form-group">
+                    <div class="form-field">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
         
-        <script src="" async defer></script>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+        
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company">
+        
+                <label for="project-type">Project Type</label>
+                <select id="project-type" name="project-type">
+                    <option value="Select a project type" disabled selected>Select an Option</option>
+                    <option>Website Design</option>
+                    <option>Website Development</option>
+                    <option>E-Commerce</option>
+                    <option>Website Redesign</option>
+                    <option>Project Takeover</option>
+                    <option>Other</option>
+                </select>
+        
+                <label for="details">Tell us About your Project</label>
+                <textarea id="details" name="details" rows="3"></textarea>
+        
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <div class="why-noble-fir">
+            <h3>Why Work with Noble Fir?</h3>
+            <div class="noble-benefits-grid">
+                <div class="benefit-box">
+                    <div class="icon-box"><i class="fa fa-rocket"></i></div>
+                    <p>Custom-coded solutions that are fast, flexible, and future-ready.</p>
+                </div>
+                <div class="benefit-box">
+                    <div class="icon-box"><i class="fa fa-handshake"></i></div>
+                    <p>One-on-one collaboration with a focus on clarity and quality.</p>
+                </div>
+                <div class="benefit-box">
+                    <div class="icon-box"><i class="fa fa-chart-line"></i></div>
+                    <p>SEO-first builds designed to boost performance and visibility.</p>
+                </div>
+                <div class="benefit-box">
+                    <div class="icon-box"><i class="fa fa-briefcase"></i></div>
+                    <p>Support beyond launch, with ongoing updates and consulting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section logo-section">
+                <img src="./img/footer-logo.png" alt="Noble Fir Logo" class="logo">
+            </div>
+            <div class="footer-section" id="footer-menu">
+                <h4 data-rise="true">Information</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Projects</a></li>
+                </ul>
+            </div>
+            <div class="footer-section" id="footer-contact">
+                <h4 data-rise="true">Contacts</h4>
+                <p>Tualatin, Oregon 97062</p>
+                <p>971.500.6447</p>
+                <p>info@noblefirstudio.com</p>
+            </div>
+            <div class="footer-section">
+                <h4 data-rise="true">Social Media</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa fa-instagram"></i></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Nobile Fir Studio. All Rights Reserved</p>
+        </div>
+    </footer>
+        
+        <script src="./js/index.js" async defer></script>
     </body>
 </html>

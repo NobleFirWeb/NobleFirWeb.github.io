@@ -840,6 +840,7 @@ position: fixed;
     width: 100%;
     height: auto;
     margin-top: 5%;
+    overflow-x: hidden;
 }
 
 .projects-nav {
@@ -882,6 +883,8 @@ sl-tab-group::part(nav) {
     margin: 0;
     max-width: 1440px;
     padding: 0;
+    overflow-x: hidden;
+    position: relative;
 }
 
 .project-text {
