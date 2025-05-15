@@ -264,11 +264,13 @@
         <div class="contact-form">
             <form action="https://formspree.io/f/mnndlebe" method="POST">
                 <div class="form-group">
-                    <input type="text" placeholder="Name" required>
-                    <input type="email" placeholder="Email" required>
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
                 </div>
                 <textarea name="message" placeholder="Your message..." rows="8"></textarea>
 
+                <!-- Subject line for Formspree -->
+                <input type="hidden" name="_subject" value="Website Design Inquiry">
                 <button type="submit">Send</button>
             </form>
         </div>

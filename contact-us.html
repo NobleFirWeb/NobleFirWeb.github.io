@@ -183,7 +183,9 @@
         
                 <label for="details">Tell us About your Project</label>
                 <textarea id="details" name="details" rows="4"></textarea>
-        
+
+                <!-- Subject line for Formspree -->
+                <input type="hidden" name="_subject" id="form-subject" value="">
                 <button type="submit">Send Message</button>
             </form>
         </div>
@@ -282,6 +284,22 @@
                 });
             });
         </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const subjectInput = document.getElementById("form-subject");
+                const projectTypeSelect = document.getElementById("project-type");
+
+                // Set default on load if pre-selected option exists
+                subjectInput.value = "Noble Fir Studio – Inquiry";
+
+                projectTypeSelect.addEventListener("change", function () {
+                    const selected = this.value || "General";
+                    subjectInput.value = `Noble Fir Studio – ${selected} Inquiry`;
+                });
+            });
+        </script>
+
 
 
     </body>

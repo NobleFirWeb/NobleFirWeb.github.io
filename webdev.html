@@ -374,11 +374,12 @@
         <div class="contact-form">
             <form action="https://formspree.io/f/manoarpn" method="POST">
                 <div class="form-group">
-                    <input type="text" name="Name" placeholder="Name" required>
-                    <input type="email" name="Email" placeholder="Email" required>
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
                 </div>
                 <textarea name="message" placeholder="Your message..." rows="8"></textarea>
 
+                <input type="hidden" name="_subject" value="Website Development Inquiry">
                 <button type="submit">Send</button>
             </form>
         </div>
