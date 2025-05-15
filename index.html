@@ -504,31 +504,32 @@
             </div>
     
             <div class="contact-form">
-                <h2>Let's Build Something Great Together</h2>
+                <h2>Let's Build <span>Something Great</span> Together</h2>
                 <p>Noble Fir crafts custom solutions designed to elevate your business. Reach out today, and let's create a digital experience that drives success.</p>
                 
-                <form>
+                <form action="https://formspree.io/f/xbloqnav" method="POST">
                     <div class="form-group">
                         <input type="text" placeholder="First Name" required>
                         <input type="text" placeholder="Last Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Email" required>
-                        <input type="text" placeholder="Mobile" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="text" name="phone" placeholder="Phone" required>
                     </div>
     
-                    <select>
-                        <option>Services (Select an Option)</option>
+                    <select name="service" id="service-select" required>
+                        <option>Project Type (Select an Option)</option>
                         <option>Initial Consultation</option>
                         <option>Website Design</option>
                         <option>Website Redesign</option>
-                        <option>Web Development</option>
+                        <option>Website Development</option>
+                        <option>E-Commerce</option>
                         <option>Project Takeover</option>
-                        <option>Packages</option>
+                        <option>Other</option>
                     </select>
     
-                    <select>
-                        <option>How did you hear about us?</option>
+                    <select name="referral">
+                        <option>How did you hear about us? (Select an Option)</option>
                         <option>Google</option>
                         <option>Twitter</option>
                         <option>Instagram</option>
@@ -537,6 +538,9 @@
                     </select>
     
                     <textarea placeholder="Your message..." rows="4"></textarea>
+
+                    <!-- Hidden field to dynamically populate subject -->
+                    <input type="hidden" name="_subject" id="form-subject" value="General Inquiry">
     
                     <button type="submit">Send</button>
                 </form>
@@ -577,7 +581,17 @@
             <p>© 2025 Nobile Fir Studio. All Rights Reserved</p>
         </div>
     </footer>
-        
+
+    
+        <script>
+            const serviceSelect = document.getElementById('service-select');
+                const subjectInput = document.getElementById('form-subject');
+
+                serviceSelect.addEventListener('change', function () {
+                    const selectedService = this.value;
+                    subjectInput.value = `General Inquiry: ${selectedService}`;
+                });
+        </script>    
         <script src="./js/index.js" async defer></script>
         <script type="module"
             src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>

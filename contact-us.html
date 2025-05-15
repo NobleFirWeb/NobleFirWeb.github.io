@@ -141,7 +141,7 @@
             <h3 data-rise="true">Let's Build Something Remarkable Together</h3>
             <p class="text1">Have a project in mind or questions about getting started?</p>
             <p class="text2">Let's collaborate on a solution tailored to your goals.</p>
-            <form class="contact-form">
+            <form class="contact-form" action="https://formspree.io/f/xyzwlrnw" method="POST">
                 <div class="form-group">
                     <div class="form-field">
                         <label for="name">Name</label>
@@ -162,10 +162,11 @@
                 <label for="project-type">Project Type</label>
                 <select id="project-type" name="project-type">
                     <option value="Select a project type" disabled selected>Select an Option</option>
+                    <option>Initial Consultation</option>
                     <option>Website Design</option>
+                    <option>Website Redesign</option>
                     <option>Website Development</option>
                     <option>E-Commerce</option>
-                    <option>Website Redesign</option>
                     <option>Project Takeover</option>
                     <option>Other</option>
                 </select>
@@ -181,7 +182,7 @@
                     </select>
         
                 <label for="details">Tell us About your Project</label>
-                <textarea id="details" name="details" rows="3"></textarea>
+                <textarea id="details" name="details" rows="4"></textarea>
         
                 <button type="submit">Send Message</button>
             </form>
