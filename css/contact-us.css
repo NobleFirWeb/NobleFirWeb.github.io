@@ -89,6 +89,7 @@ position: fixed;
     color: #fff;
     background-color: #000;
     font-size: 14px;
+    border-radius: 18px;
 }
 
 .nav-links .nav-contact:hover {
@@ -505,7 +506,7 @@ position: fixed;
     justify-content: space-between;
     align-items: stretch;
     padding: 60px 5%;
-    max-width: 1440px;
+    max-width: 2480px;
     margin: 5% auto;
     flex-wrap: wrap;
 }
@@ -795,6 +796,13 @@ footer {
     opacity: 1;
     transform: translateX(0);
 }
+
+/*Animista Animations*/
+
+
+
+
+
 
 
 /* Tablet Styles */

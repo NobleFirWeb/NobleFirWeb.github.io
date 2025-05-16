@@ -84,10 +84,11 @@ body {
     color: #fff;
     background-color: #000;
     font-size: 14px;
+    border-radius: 18px;
 }
 
 .nav-links .nav-contact:hover {
-    color: #333;
+    color: #000;
     background-color: transparent;
     border: 1.25px solid #000;
 }
@@ -459,8 +460,8 @@ body {
     
     .about-header-group .header-card {
         background-color: #EDEDED;
-        width: 55%;
-        max-width: 55%;
+        width: 66%;
+        max-width: 66%;
         height: 300px;
         padding: 0 10%;
         box-sizing: border-box;
@@ -576,8 +577,8 @@ body {
 .mission-header .header-card,
 .vision-header .header-card {
     background-color: #EDEDED;
-    width: 100%;
-    max-width: 40%;
+    min-width: 33%;
+    max-width: 33%;
     padding: 0 5%;
     box-sizing: border-box;
     margin-top: 0;
@@ -1005,6 +1006,15 @@ sl-button::part(label):hover {
   margin-top: 20px;
 }
 
+#cta .contact-title2 span {
+  font-size: 2.625rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  color: #999;
+  margin-top: 20px;
+}
+
 #cta p {
   font-family: "Inter", sans-serif;
   font-weight: 300;
@@ -1165,6 +1175,9 @@ footer {
   transform: translateX(0);
 }
 
+/*--- Animista Animations ---*/
+
+
 
 
 
@@ -1186,8 +1199,8 @@ footer {
   
   .about-header-group .header-card {
     background-color: #EDEDED;
-    width: 55%;
-    max-width: 55%;
+    width: 66%;
+    max-width: 66%;
     height: 250px;
     padding-left: 5%;
     box-sizing: border-box;

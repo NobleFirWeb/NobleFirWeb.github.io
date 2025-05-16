@@ -143,6 +143,7 @@ body {
     color: #fff;
     background-color: #000;
     font-size: 14px;
+    border-radius: 18px;
 }
 
 .nav-links .nav-contact:hover {
@@ -1897,6 +1898,9 @@ footer {
         font-size: 32px;
         text-align: center;
     }
+    .contact-form h2 span {
+    font-size: 32px;
+}
 }
 
 /* Footer */
