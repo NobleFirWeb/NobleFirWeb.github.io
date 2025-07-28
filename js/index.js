@@ -3,22 +3,7 @@
 // Wait for DOM
 window.addEventListener("DOMContentLoaded", () => {
 
-  /*** LOADING SCREEN ***/
-  const loadingScreen = document.getElementById("loadingScreen");
-  const progressBar = document.getElementById("progressBar");
-  if (loadingScreen && progressBar) {
-    let progress = 0;
-    const interval = setInterval(() => {
-      progress += 33.33;
-      progressBar.style.width = `${progress}%`;
-      if (progress >= 100) {
-        clearInterval(interval);
-        loadingScreen.style.transform = "translateY(100%)";
-        setTimeout(() => loadingScreen.remove(), 500);
-        document.querySelectorAll(".hero-content [data-rise='true']").forEach(el => el.classList.add("visible"));
-      }
-    }, 750);
-  }
+
 
   /*** STICKY NAVBAR ***/
   const navbar = document.querySelector(".navbar");
@@ -40,11 +25,12 @@ window.addEventListener("DOMContentLoaded", () => {
         riseObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.5 });
-
-  riseElements.forEach(el => {
-    if (!el.closest(".hero-content")) riseObserver.observe(el);
+  }, { 
+    threshold: 0.5 
   });
+
+  //Observe the Rise Elements
+  riseElements.forEach(el => riseObserver.observe(el));
 
   /*** SLIDE ANIMATION ***/
 const slideElements = document.querySelectorAll('[slide-right="true"], [slide-left="true"]');
@@ -66,20 +52,7 @@ slideElements.forEach(el => slideObserver.observe(el));
 
 
 
-  /*** HERO TEXT CYCLER ***/
-  const textUpdates = document.querySelector(".text-updates");
-  if (textUpdates) {
-    const phrases = ['Succeed.', 'Thrive.', 'Innovate.', 'Grow.', 'Transform.', 'Excel.', 'Connect.', 'Elevate.'];
-    let i = 0;
-    setInterval(() => {
-      textUpdates.classList.remove("visible");
-      setTimeout(() => {
-        textUpdates.textContent = phrases[i];
-        textUpdates.classList.add("visible");
-        i = (i + 1) % phrases.length;
-      }, 500);
-    }, 3500);
-  }
+
 
   /*** MOBILE NAVIGATION ***/
   const menuToggle = document.getElementById("menuToggle");

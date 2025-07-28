@@ -1,0 +1,105 @@
+Noble Fir Web Solutions:
+
+Pages / Views:
+
+Home
+About Us
+Services
+	- Web Design
+	- Web Development
+	- The Full Package
+Portfolio
+Contact Us
+
+
+Navbar:
+Container > Flexbox row > Full width 100% >
+Justify content: center > Align items: center > gaps: row & cols: 20px > padding top & bottom 12px > position: default > z-index: 9999 > Sticky top > 
+
+Nav Content:
+BG color: #ffffff
+Flex Row:
+Logo (Home link)
+About Us
+Services
+Portfolio
+Testimonials
+Blog
+Button row:
+Our Work | Contact Us
+background-Color: #3A5BCC
+font-color: #020101
+Button Hover:
+background-Color: transparent
+font-color: #3A5BCC
+
+
+
+
+
+
+
+Noble Fir Website Enhancements:
+
+Services > Web Design:
+
+Pricing Cards:
+
+3 Cards - Flexbox layout 33.3% (Mobile Flex-direction: column, width: 100%;) (Tablet column flex, width: 80%)
+
+Card 1
+Basic Package:
+
+Price: Starting at $1,000
+
+Description: Perfect for small businesses or personal portfolios.
+
+Features:
+
+5 Custom Pages
+
+Mobile-Friendly Design
+
+Basic SEO Setup
+
+Contact Form Integration
+
+1 Round of Revisions
+
+CTA: Get Started
+
+
+Card 2
+Standard Package:
+
+Price: Starting at $1,500
+
+Description: Ideal for growing businesses needing more features.
+
+Features:
+
+Up to 10 Custom Pages
+
+Mobile-Friendly Design
+
+Advanced SEO Setup
+
+Blog Integration
+
+Social Media Integration
+
+3 Rounds of Revisions
+
+CTA: Contact Us
+
+
+
+Card 3:
+Enterprise Package (
+
+,
+500
+−
+3,500−7,000+): For larger businesses or complex websites with advanced functionality.
+
+Enterprise Package (Custom Pricing): For large-scale projects with unique requirements.
