@@ -1870,7 +1870,7 @@ footer {
         top: 10px;
         right: 20px;
         padding: 10px;
-        font-size: 20px;
+        font-size: 24px;
     }
     .menu-links li {
         font-size: 20px;
@@ -1908,7 +1908,7 @@ footer {
         margin-top: 0;
     }
     .hero-video-wrapper {
-        margin-top: -15%;
+        margin-top: -30%;
         max-width: 375px;
     }
     .video-overlay {
