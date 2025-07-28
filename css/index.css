@@ -1704,7 +1704,7 @@ footer {
             justify-content: center;
             align-self: center;
             overflow: hidden;
-            margin-top: -10%;
+            margin-top: -15%;
             border: 0.5px solid #999;
         }
         
@@ -1908,6 +1908,7 @@ footer {
         margin-top: 0;
     }
     .hero-video-wrapper {
+        margin-top: -15%;
         max-width: 375px;
     }
     .video-overlay {
@@ -1933,7 +1934,7 @@ footer {
         gap: 30px;
         padding: 0;
         height: 100%;
-        margin: 60px 0;
+        margin-top: 30px;
         padding-bottom: 30px;
         background-color: transparent;
     }
