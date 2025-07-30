@@ -1,5 +1,8 @@
 // site-scripts.js | Shared JavaScript for index.html and about.html
 
+
+
+
 // Wait for DOM
 window.addEventListener("DOMContentLoaded", () => {
 

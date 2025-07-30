@@ -281,7 +281,7 @@ body {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 100%;
+        width: 75%;
         height: 100%;
         background: #0f0e0f;
         transition: right 0.5s ease;
@@ -359,9 +359,8 @@ body {
             float: left;
         }
         .menu-logo img {
-            width: 500px;
+            width: 700px;
             height: auto;
-            object-fit: cover center !important;
         }
     
         .logo img {
