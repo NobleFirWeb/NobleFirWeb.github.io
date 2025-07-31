@@ -69,6 +69,7 @@ slideElements.forEach(el => slideObserver.observe(el));
       mobileMenu.style.right = isOpen ? "-100%" : "0px";
       openIcon.style.display = isOpen ? "block" : "none";
       closeIcon.style.display = isOpen ? "none" : "block";
+      document.body.classList.toggle("no-scroll", !isOpen);
     });
 
     // Dropdown toggle

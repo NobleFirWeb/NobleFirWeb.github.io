@@ -18,6 +18,12 @@ body {
     letter-spacing: 0.15rem;
 }
 
+/*--- No Scroll when mobile menu is open ---*/
+.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
 .custom-cursor {
     position: fixed;
     top: 0;
@@ -39,7 +45,7 @@ body {
     transform: translate(-9999px, -9999px);
     /* hide off-screen initially */
     transition: opacity 0.3s ease-in-out, transform 0.15s ease-out;
-    mix-blend-mode: difference;
+    /*mix-blend-mode: difference;*/
     display: flex;
     /* always present, hidden with opacity */
 }
@@ -58,13 +64,14 @@ body {
     align-items: center;
     padding: 0.25rem 4%;
     height: auto;
+    max-height: 100px;
     background-color: transparent;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 950;
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar.sticky {
@@ -101,7 +108,7 @@ body {
 }
 
 .logo img {
-    width: 200px;
+    width: 225px;
     height: auto;
     object-fit: contain;
 }
@@ -257,17 +264,24 @@ body {
     }
 
     .menu-toggle {
-        position: fixed;
-        top: 30;
-        right: 50px;
-        font-size: 30px;
-        padding: 25px;
-        color: #000;
-        background-color: transparent;
-        border-radius: 50%;
+        position: absolute;
+        right: 5rem;
+        top: 3.2rem;
+        z-index: 100;
+        width: 48px;
+        display: block;
         cursor: pointer;
         z-index: 1100;
     }
+
+    .menu-toggle span {
+        display: block;
+        height: 1px;
+        background-color: #ffffff;
+        cursor: pointer;
+        margin-top: 8px;
+    }
+
     .menu-toggle:hover {
         Transition: transform 0.3s ease-in-out;
     }
@@ -365,7 +379,7 @@ body {
         }
     
         .logo img {
-            width: 100%;
+            width: 300px;
             height: auto;
             object-fit: cover center !important;
         }
@@ -377,6 +391,7 @@ body {
     list-style: none;
     padding-left: 25px;
     gap: 10px;
+
 }
 
 .mobile-menu .dropdown.open .dropdown-menu {
@@ -385,6 +400,7 @@ body {
     list-style: none;
     padding-left: 40px;
     padding-top: 10px;
+    transition: all 0.3s ease-in-out;
 }
 
 .mobile-menu .dropdown.open .dropdown-menu li {
@@ -445,7 +461,7 @@ body {
                 margin-left: 5%;
             }
             .logo img {
-                width: 200px;
+                width: 225px;
             }
 
         }
@@ -664,8 +680,8 @@ body {
     background-color: transparent;
     width: 720px;
     max-width: 1200px;
-    padding: 15px 0;
-    padding-left: 5%;
+    padding: 20px 0;
+    padding-left: 6%;
     box-sizing: border-box;
     position: relative;
     z-index: 0;
@@ -833,8 +849,8 @@ body {
     background-color: transparent;
     width: 720px;
     max-width: 720px;
-    padding: 15px 0;
-    padding-left: 5%;
+    padding: 20px 0;
+    padding-left: 6%;
     box-sizing: border-box;
     margin-top: 100px;
     z-index: 0;
@@ -978,7 +994,8 @@ body {
     background-color: transparent;
     width: 720px;
     max-width: 720px;
-    padding: 15px 5%;
+    padding: 20px 0;
+    padding-left: 6%;
     box-sizing: border-box;
     margin-top: 0;
     z-index: 0;
@@ -1141,7 +1158,8 @@ body {
     background-color: transparent;
     width: 720px;
     max-width: 720px;
-    padding: 15px 5%;
+    padding: 20px 0;
+    padding-left: 6%;
     box-sizing: border-box;
     margin-top: 0;
     z-index: 0;
@@ -1188,7 +1206,6 @@ body {
     font-family: "Inter", sans-serif;
     font-weight: 300;
     color: #a6a6a6;
-    margin-left: 5%;
     max-width: 720px;
 }
 
@@ -1283,7 +1300,8 @@ sl-rating {
     background-color: transparent;
     width: 720px;
     max-width: 720px;
-    padding: 15px 5%;
+    padding: 20px 0;
+    padding-left: 6%;
     box-sizing: border-box;
     margin-top: 0;
     z-index: 0;
@@ -1317,7 +1335,6 @@ sl-rating {
     font-optical-sizing: auto;
     font-weight: 200;
     color: #fff;
-    margin-left: 5%;
 }
 
 .faq-title2 sl-icon {
@@ -1332,7 +1349,6 @@ sl-rating {
     color: #a6a6a6;
     margin-top: 25px;
     margin-bottom: 5%;
-    margin-left: 5%;
     max-width: 720px;
 }
 
@@ -1385,7 +1401,8 @@ sl-details::part(base) {
     background-color: transparent;
     width: 720px;
     max-width: 720px;
-    padding: 15px 5%;
+    padding: 20px 0;
+    padding-left: 6%;
     box-sizing: border-box;
     margin-top: 0;
     z-index: 0;
@@ -1420,7 +1437,6 @@ sl-details::part(base) {
     font-optical-sizing: auto;
     font-weight: 200;
     color: #fff;
-    margin-left: 5%;
 }
 
 .contact-subtitle {
@@ -1429,7 +1445,6 @@ sl-details::part(base) {
     font-weight: 300;
     color: #a6a6a6;
     max-width: 720px;
-    margin-left: 5%;
 }
 
 .contact-container {
