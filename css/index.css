@@ -194,6 +194,7 @@ body {
     color: black;
     font-size: 14px;
     text-transform: uppercase;
+    letter-spacing: 0;
 }
 
 .nav-links .dropdown-menu li a:hover {
@@ -572,6 +573,7 @@ body {
 
 .about-right {
     width: 75%;
+    max-width: 1600px;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -621,6 +623,31 @@ body {
     color: #fff;
 }
 
+.slider {
+    background-color: transparent;
+    padding: 8em 2em;
+    display: none;
+}
+
+.slide-track {
+    width: 100%;
+    display: flex;
+    gap: 3em;
+    overflow: hidden;
+}
+
+.slide {
+    width: 50px;
+    height: 50px;
+    animation: scroll 10s linear infinite;
+    border: 0.5px solid #999;
+}
+
+@keyframes scroll {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(-1000%);}
+}
+
 .about-header {
     margin: 0;
     padding: 0;
@@ -630,24 +657,39 @@ body {
     right: 0;
     transform: translateX(-50%);
     padding-top: 30px;
+    margin-top: 60px;
 }
 
-.header-card {
-    background-color: #111111;
+.about-header .header-card {
+    background-color: transparent;
     width: 720px;
-    max-width: 720px;
-    padding: 15px 5%;
+    max-width: 1200px;
+    padding: 15px 0;
+    padding-left: 5%;
     box-sizing: border-box;
     position: relative;
     z-index: 0;
+    margin-top: 100px;
 }
 
 .about-subtitle1 {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 8rem;
+    font-weight: 800;
     color: #343434;
-    margin-top: 60px;
-    margin-left: 5%;
+    margin-top: 30px;
+    margin-left: 2.5%;
+    text-transform: uppercase;
+    z-index: 0;
+    font-optical-sizing: auto;
+}
+
+.about-subtitle1 strong {
+    color: #ff0000;
+    font-weight: 500;
 }
 
 .about-subtitle2 {
@@ -664,7 +706,6 @@ body {
     margin-top: 25px;
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    max-width: 720px;
     color: #a6a6a6;
 }
 
@@ -784,27 +825,40 @@ body {
     width: 100vw;
     left: 50%;
     transform: translateX(-50%);
-    margin: 60px 0 0 0;
-    padding: 0;
+    margin: 120px 0 0 0;
+    padding-top: 30px;
 }
 
 .services-header .header-card {
-    background-color: #111111;
+    background-color: transparent;
     width: 720px;
     max-width: 720px;
-    padding: 15px 5%;
+    padding: 15px 0;
+    padding-left: 5%;
     box-sizing: border-box;
-    margin-top: 0;
+    margin-top: 100px;
     z-index: 0;
     position: relative;
 }
 
 .services-title1 {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 8rem;
+    font-weight: 800;
     color: #343434;
-    margin-top: 60px;
-    margin-left: 5%;
+    margin-top: 30px;
+    margin-left: 2.5%;
+    text-transform: uppercase;
+    z-index: 0;
+    font-optical-sizing: auto;
+}
+
+.services-title1 strong {
+    color: #ff0000;
+    font-weight: 500;
 }
 
 .services-title2 {
@@ -813,6 +867,8 @@ body {
     font-optical-sizing: auto;
     font-weight: 200;
     color: #fff;
+    margin-top: 5px;
+    margin-left: 0;
 }
 
 .services-title2 sl-icon {
@@ -836,6 +892,7 @@ body {
     padding: 0 10%;
     max-width: 100%;
     box-sizing: border-box;
+    margin-top: 120px;
 }
 
 .service {
@@ -913,12 +970,12 @@ body {
     width: 100vw;
     left: 50%;
     transform: translateX(-50%);
-    margin: 5% 0;
-    padding: 0;
+    margin: 120px 0;
+    padding-top: 30px;
 }
 
 .portfolio-header .header-card {
-    background-color: #111111;
+    background-color: transparent;
     width: 720px;
     max-width: 720px;
     padding: 15px 5%;
@@ -926,14 +983,27 @@ body {
     margin-top: 0;
     z-index: 0;
     position: relative;
+    margin-top: 100px;
 }
 
 .portfolio-title1 {
-    font-family: "Inter", sans-serif;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 8rem;
+    font-weight: 800;
+    color: #343434;
+    margin-top: 30px;
+    margin-left: 2.5%;
+    text-transform: uppercase;
+    z-index: 0;
+    font-optical-sizing: auto;
+}
+
+.portfolio-title1 strong {
+    color: #ff0000;
     font-weight: 500;
-    color: #999;
-    margin-top: 60px;
-    margin-left: 5%;
 }
 
 .portfolio-title2 {
@@ -1063,16 +1133,40 @@ body {
     width: 100vw;
     left: 50%;
     transform: translateX(-50%);
-    margin: 5% 0 0 0;
-    padding: 0;
+    margin: 120px 0 0 0;
+    padding-top: 60px;
+}
+
+.testimonials .header-card {
+    background-color: transparent;
+    width: 720px;
+    max-width: 720px;
+    padding: 15px 5%;
+    box-sizing: border-box;
+    margin-top: 0;
+    z-index: 0;
+    position: relative;
+    margin-top: 70px;
 }
 
 .testimonials-title1 {
-    font-family: "Inter", sans-serif;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 8rem;
+    font-weight: 800;
+    color: #343434;
+    margin-top: 30px;
+    margin-left: 2.5%;
+    text-transform: uppercase;
+    z-index: 0;
+    font-optical-sizing: auto;
+}
+
+.testimonials-title1 strong {
+    color: #ff0000;
     font-weight: 500;
-    color: #999;
-    margin-top: 60px;
-    margin-left: 5%;
 }
 
 .testimonials-title2 {
@@ -1094,6 +1188,7 @@ body {
     font-family: "Inter", sans-serif;
     font-weight: 300;
     color: #a6a6a6;
+    margin-left: 5%;
     max-width: 720px;
 }
 
@@ -1180,16 +1275,40 @@ sl-rating {
     width: 100vw;
     left: 50%;
     transform: translateX(-50%);
-    margin: 60px 0 60px 0;
-    padding: 0;
+    margin: 120px 0 0 0;
+    padding-top: 60px;
+}
+
+.faq .header-card {
+    background-color: transparent;
+    width: 720px;
+    max-width: 720px;
+    padding: 15px 5%;
+    box-sizing: border-box;
+    margin-top: 0;
+    z-index: 0;
+    position: relative;
+    margin-top: 70px;
 }
 
 .faq-title1 {
-    font-family: "Inter", sans-serif;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 8rem;
+    font-weight: 800;
+    color: #343434;
+    margin-top: 30px;
+    margin-left: 2.5%;
+    text-transform: uppercase;
+    z-index: 0;
+    font-optical-sizing: auto;
+}
+
+.faq-title1 strong {
+    color: #ff0000;
     font-weight: 500;
-    color: #999;
-    margin-top: 60px;
-    margin-left: 5%;
 }
 
 .faq-title2 {
@@ -1198,6 +1317,7 @@ sl-rating {
     font-optical-sizing: auto;
     font-weight: 200;
     color: #fff;
+    margin-left: 5%;
 }
 
 .faq-title2 sl-icon {
@@ -1212,6 +1332,7 @@ sl-rating {
     color: #a6a6a6;
     margin-top: 25px;
     margin-bottom: 5%;
+    margin-left: 5%;
     max-width: 720px;
 }
 
@@ -1256,16 +1377,41 @@ sl-details::part(base) {
     width: 100vw;
     left: 50%;
     transform: translateX(-50%);
-    margin: 80px 0 60px 0;
-    padding: 0;
+    margin: 120px 0 0 0;
+    padding-top: 60px;
 }
 
+.contact-header .header-card {
+    background-color: transparent;
+    width: 720px;
+    max-width: 720px;
+    padding: 15px 5%;
+    box-sizing: border-box;
+    margin-top: 0;
+    z-index: 0;
+    position: relative;
+    margin-top: 70px;
+}
+
+
 .contact-title1 {
-    font-family: "Inter", sans-serif;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 8rem;
+    font-weight: 800;
+    color: #343434;
+    margin-top: 30px;
+    margin-left: 2.5%;
+    text-transform: uppercase;
+    z-index: 0;
+    font-optical-sizing: auto;
+}
+
+.contact-title1 strong {
+    color: #ff0000;
     font-weight: 500;
-    color: #999;
-    margin-top: 60px;
-    margin-left: 5%;
 }
 
 .contact-title2 {
@@ -1274,6 +1420,7 @@ sl-details::part(base) {
     font-optical-sizing: auto;
     font-weight: 200;
     color: #fff;
+    margin-left: 5%;
 }
 
 .contact-subtitle {
@@ -1282,6 +1429,7 @@ sl-details::part(base) {
     font-weight: 300;
     color: #a6a6a6;
     max-width: 720px;
+    margin-left: 5%;
 }
 
 .contact-container {
@@ -1291,7 +1439,7 @@ sl-details::part(base) {
     height: 100%;
     min-height: 50vh;
     background: transparent;
-    padding: 40px;
+    padding: 5% 10%;
     margin-top: 5%;
     margin-bottom: 5%;
 }
@@ -1719,17 +1867,58 @@ footer {
             margin-top: 60px;
             background-color: transparent;
         }
+        .about-header {
+            margin-top: 120px;
+        }
+        .about-header .header-card {
+            margin-top: 40px;
+        }
+        .about-subtitle1 {
+            font-size: 6rem;
+            margin-top: 0;
+        }
         .val .val-content {
             width: 100%;
         }
         .val .about-card {
             display: none;
         }
+        .slider {
+            background-color: transparent;
+            padding: 2em 2em;
+        }
+
+        .slide-track {
+            width: 100%;
+            display: flex;
+            gap: 3em;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 50px;
+            height: 50px;
+            animation: scroll 10s linear infinite;
+            border: 0.5px solid #999;
+        }
     }
 
     /*----- Services -----*/
 
     @media only screen and (max-width: 1024px) {
+        .services-header {
+            margin-top: 60px;
+        }
+        .services-header .header-card {
+            margin-top: 60px;
+        }
+        .services-title1 {
+            font-size: 6rem;
+        }
+        .service-container {
+            margin-bottom: 60px;
+        }
+
 }
 
 
@@ -1742,8 +1931,11 @@ footer {
 
     /*----- Portfolio -----*/
     @media only screen and (max-width: 1024px) {
-    .portfolio-header {
-        margin-top: 10%;
+    .portfolio-header .header-card {
+        margin-top: 60px;
+    }
+    .portfolio-title1 {
+        font-size: 6rem;
     }
     .bento-grid {
         grid-template-columns: 1fr;
@@ -1769,6 +1961,15 @@ footer {
     .testimonials-header {
         margin-top: 15%;
     }
+    .testimonials-title1 {
+        font-size: 6rem;
+    }
+    .testimonials-subtitle  {
+        margin-left: 2.5%;
+    }
+    .testimonials .header-card {
+        margin-top: 40px;
+    }
 }
 
 
@@ -1782,6 +1983,18 @@ footer {
         }
         .details-group-example {
             margin-top: 10%;
+        }
+        .faq-title1 {
+            font-size: 6rem;
+        }
+        .faq .header-card {
+            margin-top: 40px;
+        }
+        .faq-title2 {
+            margin-left: 0;
+        }
+        .faq .faq-description {
+            margin-left: 0;
         }
     }
 
@@ -1798,6 +2011,18 @@ footer {
     }
     .contact-header {
         margin-top: 15vh;
+    }
+    .contact-title1 {
+        font-size: 6rem;
+    }
+    .contact-header .header-card {
+        margin-top: 40px;
+    }
+    .contact-title2 {
+        margin-left: 0;
+    }
+    .contact-subtitle {
+        margin-left: 0;
     }
     .contact-info, .contact-form {
         width: 100%;
@@ -1879,6 +2104,12 @@ footer {
         overflow-x: hidden;
         max-width: 100%;
     }
+    .services-title2 sl-icon,
+    .portfolio-title2 sl-icon,
+    .testimonials-title2 sl-icon,
+    .contact-title2 sl-icon {
+        display: none;
+    }
 
     /*--- Hero ---*/
     #hero {
@@ -1925,7 +2156,7 @@ footer {
 
     /* About */
     #about {
-        margin-top: 120px;
+        margin-top: 80px;
         padding: 20px;
     }
     .about-container {
@@ -1952,10 +2183,17 @@ footer {
         font-weight: 500;
     }
     .about-header {
-        margin-top: 120px;
+        margin-top: 60px;
     }
-    .about .header-card {
+    .about-subtitle1 {
+        font-size: 3rem;
+        margin-left: 2.5%;
+        top: 45px;
+    }
+    .about-header .header-card {
         max-width: 100%;
+        margin-top: 45px;
+
     }
     .vals {
         margin: 0;
@@ -1975,6 +2213,16 @@ footer {
     /*--- Services Styles ---*/
     #services-section .header-card {
         max-width: 100%;
+        margin-top: 60px;
+    }
+    .services-header {
+        padding-top: 0;
+    }
+    .services-title1 {
+        font-size: 3rem;
+    }
+    .service-container {
+        margin-top: 70px;
     }
 
 
@@ -1990,6 +2238,10 @@ footer {
     }
     #portfolio .header-card {
         max-width: 100%;
+        margin-top: 35px;
+    }
+    .portfolio-title1 {
+        font-size: 3rem;
     }
     .bento-section {
         margin: 0;
@@ -2028,18 +2280,23 @@ footer {
 
     /*--- Testimonial Styles ---*/
     #testimonials {
-        margin-top: 120px;
+        margin-top: 160px;
         min-height: 70%;
     }
     .testimonials-header {
-        margin-top: 140px;
+        margin-top: 60px;
     }
     #testimonials .header-card {
         max-width: 100%;
+        margin-top: 5px;
+    }
+    .testimonials-title1 {
+        font-size: 3rem;
     }
     .testimonial-container {
         height: 500px;
         max-height: 600px;
+        margin-top: 15%;
     }
     sl-carousel {
         padding: 0;
@@ -2102,10 +2359,15 @@ footer {
         margin: 0 10px;
     }
     .faq-title1 {
-        margin-top: 120px;
+        margin-top: 35px;
+        font-size: 2.85rem;
+    }
+    .faq-header {
+        margin-top: 60px;
     }
     #faq .header-card {
         max-width: 100%;
+        margin-top: 10px;
     }
 
 
@@ -2117,11 +2379,25 @@ footer {
     #contact {
         padding: 0;
     }
+    .contact-header {
+        padding-top: 50px;
+    }
     .contact .header-card {
         max-width: 100%;
+        margin-top: 5px;
+    }
+    .contact-title1 {
+        font-size: 2.4rem;
+    }
+    .contact-title2 {
+        font-size: 2.4rem;
+    }
+    .contact-subtitle {
+        margin-bottom: 30px;
     }
     .contact-container {
         padding: 5px;
+        margin-top: 10%;
     }
     .contact-info {
         flex-wrap: wrap;
