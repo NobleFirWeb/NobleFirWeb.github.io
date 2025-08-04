@@ -18,15 +18,10 @@
         
     <!-- Navbar -->
     <header class="navbar">
-        <div class="logo">
-            <a href="index.html">
-                <img src="./img/Noblefir_nav_logo.png" alt="Logo">
-            </a>
-        </div>
-        <nav>
+        <!-- Left: Navigation Links -->
+        <div class="nav-left">
             <ul class="nav-links">
-                <li><a href="index.html"></span>Home</a></li>
-                <li><a href="about.html"></span>About Us</a></li>
+                <li><a href="about.html">About Us</a></li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle">Services <i class="fa fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
@@ -37,14 +32,27 @@
                     </ul>
                 </li>
                 <li><a href="#portfolio">Projects</a></li>
-                <li><a class="nav-contact" href="contact-us.html">Get in Touch</a></li>
             </ul>
-        </nav>
+        </div>
+        
+        <!-- Center: Logo -->
+        <div class="nav-center" data-rise="true">
+            <a href="index.html" class="logo">
+                <img src="./img/Noblefir_nav_logo.png" alt="Logo" />
+            </a>
+        </div>
+        
+        <!-- Right: Email + Button -->
+        <div class="nav-right">
+            <a href="mailto:info@noblefirstudio.com" class="nav-email">info@noblefirstudio.com</a>
+            <a href="contact-us.html" class="nav-contact">Let's Talk</a>
+        </div>
 
         <!-- Mobile Navbar -->
         <div id="menuToggle" class="menu-toggle">
-            <span id="openIcon">&#9776;</span>
-            <span id="closeIcon" style="display: none;">&#x2715</span>
+            <span id="openIcon"></span>
+            <span></span>
+            <span id="closeIcon" style="display: none;"></span>
         </div>
         
         <nav id="mobileMenu" class="mobile-menu">
