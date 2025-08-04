@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Portfolio - Noble Fir Studio</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./css/portfolio.css">
+        <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+    </head>
+    <body>
+
+        <!-- Navbar -->
+        <header class="navbar">
+            <!-- Left: Navigation Links -->
+            <div class="nav-left">
+                <ul class="nav-links">
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle">Services <i class="fa fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="webdesign.html">Web Design</a></li>
+                            <li><a href="webdev.html">Web Development</a></li>
+                            <li><a href="ecommerce.html">E-Commerce Development</a></li>
+                            <li><a href="support.html">Ongoing Support</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="portfolio.html">Projects</a></li>
+                </ul>
+            </div>
+            
+            <!-- Center: Logo -->
+            <div class="nav-center" data-rise="true">
+                <a href="index.html" class="logo">
+                    <img src="./img/Noblefir_nav_logo.png" alt="Logo" />
+                </a>
+            </div>
+            
+            <!-- Right: Email + Button -->
+            <div class="nav-right">
+                <a href="mailto:info@noblefirstudio.com" class="nav-email">info@noblefirstudio.com</a>
+                <a href="contact-us.html" class="nav-contact">Let's Talk</a>
+            </div>
+
+            <!-- Mobile Navbar -->
+            <div id="menuToggle" class="menu-toggle">
+                <span id="openIcon"></span>
+                <span></span>
+                <span id="closeIcon" style="display: none;"></span>
+            </div>
+            
+            <nav id="mobileMenu" class="mobile-menu">
+                <div class="menu-header">
+                <p>Noble Fir Studio</p>
+                    <hr />
+                </div>
+                <ul class="menu-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle">Services <i class="fa fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="webdesign.html">Web Design</a></li>
+                            <li><a href="webdev.html">Web Development</a></li>
+                            <li><a href="ecommerce.html">E-Commerce Development</a></li>
+                            <li><a href="support.html">Ongoing Support</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="portfolio.html">Projects</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+                <hr />
+                <div class="menu-footer">
+                    <p>SOCIALS</p>
+                    <div class="social-links">
+                        <a href="#">Instagram</a>
+                        <span> | </span>
+                        <a href="#">Twitter</a>
+                        <span> | </span>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="menu-logo">
+                    <img src="./img/footer-logo.png" alt="Logo">
+                </div>
+            </nav>
+        </header>
+        
+        <div class="project-scroller" id="scroller">
+            <section class="project-slide" id="slide1" style="background-image: url('./img/js-painting.png');">
+                <div class="overlay">
+                    <h1>Airbnb Clone</h1>
+                    <p>Role: Designer / Dev<br>Duration: 8 Weeks<br>Tools: Figma, Webflow</p>
+                    <a href="#">View Project</a>
+                </div>
+            </section>
+            <section class="project-slide" style="background-image: url('./img/spaceman3.png');">
+                <div class="overlay">
+                    <h1>Olympic Club</h1>
+                    <p>Role: Frontend Lead<br>Duration: 6 Weeks<br>Tools: HTML, CSS, JS</p>
+                    <a href="#">View Project</a>
+                </div>
+            </section>
+            <section class="project-slide" style="background-image: url('./img/casa-designs.png');">
+                <div class="overlay">
+                    <h1>Casa Designs</h1>
+                    <p>Role: Dev & SEO<br>Duration: 10 Weeks<br>Tools: GSAP, ScrollTrigger</p>
+                    <a href="#">View Project</a>
+                </div>
+            </section>
+            <section class="project-slide" style="background-image: url('./img/crown-clothing.png');">
+                <div class="overlay">
+                    <h1>Arcadia Build</h1>
+                    <p>Role: UX + Code<br>Duration: 12 Weeks<br>Tools: Tailwind, Alpine.js</p>
+                    <a href="#">View Project</a>
+                </div>
+            </section>
+            <section class="project-slide" style="background-image: url('./img/gracefully-captured.png');">
+                <div class="overlay">
+                    <h1>Custom Portfolio</h1>
+                    <p>Role: Fullstack<br>Duration: Ongoing<br>Tools: Node.js, Firebase</p>
+                    <a href="#">View Project</a>
+                </div>
+            </section>
+        </div>
+        
+        <div class="pagination">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+
+        
+        <script src="./js/index.js" async defer></script>
+
+        <script>
+            const scroller = document.getElementById('scroller');
+                const dots = document.querySelectorAll('.dot');
+                const slides = document.querySelectorAll('.project-slide');
+
+                // Handle scroll event to activate the correct dot
+                scroller.addEventListener('scroll', () => {
+                    const index = Math.round(scroller.scrollTop / (window.innerHeight - 100));
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+                });
+
+                // Handle click events on dots
+                dots.forEach((dot, i) => {
+                    dot.addEventListener('click', () => {
+                        const offsetTop = i * (window.innerHeight - 100);
+                        scroller.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    });
+                });
+        </script>
+    </body>
+</html>
