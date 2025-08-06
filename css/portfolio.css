@@ -192,12 +192,12 @@ body {
 }
 
 .project-slide {
-    height: calc(100vh - 100px);
+    height: calc(100% - 100px);
     width: 100%;
     max-width: 100%;
     scroll-snap-align: start;
     background-size: cover;
-    background-position: center;
+    background-position: center !important;
     position: relative;
     display: flex;
     align-items: flex-end;
