@@ -15,7 +15,6 @@ body {
     padding: 0;
     background-color: #0f0e0f;
     overflow-x: hidden;
-    letter-spacing: 0.15rem;
 }
 
 /*--- No Scroll when mobile menu is open ---*/
@@ -71,7 +70,7 @@ body {
     left: 0;
     width: 100%;
     z-index: 950;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .navbar.sticky {
@@ -80,7 +79,7 @@ body {
     left: 0;
     width: 100%;
     background-color: #0f0e0f;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     transition: all 0.25s ease-in-out;
 }
 
@@ -156,7 +155,7 @@ body {
     color: #fff;
     font-size: 12px;
     font-family: "Geist", sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     border-radius: 18px;
     text-decoration: none;
     text-transform: uppercase;
@@ -177,13 +176,15 @@ body {
 
 .nav-links .dropdown-menu {
     display: none;
-    position: absolute;
-    top: 100%;
-    background-color: white;
+    position: fixed;
+    width: 100vw;
+    left: 0;
+    top: 100px;
+    background-color: #0f0e0f;
     list-style: none;
     padding: 10px 0;
     min-width: 180px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
 
@@ -198,7 +199,7 @@ body {
 
 .nav-links .dropdown-menu li a {
     text-decoration: none;
-    color: black;
+    color: #fff;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0;
@@ -993,7 +994,7 @@ body {
 }
 
 .services-title2 sl-icon {
-    margin-left: 10px;
+    font-size: 24px;
     color: #fff;
 }
 
@@ -1140,6 +1141,7 @@ body {
 
 .portfolio-title2 sl-icon {
     margin-left: 10px;
+    font-size: 24px;
     color: #fff;
 }
 
@@ -1156,10 +1158,10 @@ body {
   grid-template-columns: repeat(2, 1fr);
   column-gap: 10%;
   position: relative;
+  max-width: 1800px;
   width: 100%;
-  max-width: 1600px;
   margin: 0 auto;
-  padding: 30px 0;
+  padding: 30px 30px;
 }
 
 .grid-item {
@@ -1267,20 +1269,24 @@ body {
 
 .projects-btn {
     display: block;
-    float: right;
-    background-color: none;
     text-decoration: none;
     background-color: #ff0000;
+    width: 250px;
     border: none;
-    margin: 30px 5%;
+    margin: 30px auto;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    border: 1.25px solid #000;
+}
+
+.projects-btn:hover {
+    border: 1.25px solid #fff;
+    background-color: #000;
 }
 
 .projects-btn a {
     position: relative;
     display: inline-block;
     padding: 15px 30px;
-    border: 1.25px solid #000;
     font-family: "Inter", sans-serif;
     text-transform: uppercase;
     color: #fff;
@@ -1291,9 +1297,7 @@ body {
 }
 
 .projects-btn a:hover {
-    background-color: #000;
     color: #fff;
-    border: 1.25px solid #fff;
 }
 
 
@@ -1354,8 +1358,8 @@ body {
 
 .testimonials-title2 sl-icon {
     margin-left: 10px;
+    font-size: 24px;
     color: #fff;
-    font-weight: 100;
 }
 
 .testimonials-subtitle {
@@ -1496,8 +1500,8 @@ sl-rating {
 
 .faq-title2 sl-icon {
     margin-left: 10px;
+    font-size: 24px;
     color: #fff;
-    font-weight: 100;
 }
 
 .faq .faq-description {
@@ -1715,6 +1719,8 @@ sl-details::part(base) {
     color: #fff;
 }
 
+
+
 select,
 textarea {
     background-color: transparent;
@@ -1754,7 +1760,7 @@ textarea {
     color: #fff;
     background-color: #ff0000;
     font-family: "Inter", sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     margin-top: 15px;
     cursor: pointer;
     border: 1px solid #000;
@@ -1789,12 +1795,12 @@ textarea {
 }
 
 .form-success-message {
-    background: #bdbdbd;
-    color: #000;
+    background: #0f0e0f;
+    color: #fff;
     border: 1px solid #999;
     border-radius: 8px;
     padding: 20px 30px;
-    max-width: 500px;
+    max-width: 720px;
     text-align: center;
     font-family: "Inter", sans-serif;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
@@ -1804,12 +1810,12 @@ textarea {
 
 #close-alert {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    top: 0;
+    right: 0;
     font-size: 24px;
     cursor: pointer;
-    background: #bdbdbd;
-    color: #000;
+    background: #0f0e0f;
+    color: #fff;
     border: none;
     padding: 0;
     line-height: 1;
@@ -1817,7 +1823,7 @@ textarea {
 }
 
 #close-alert:hover {
-    scale: 1.1;
+    scale: 1.01;
     transition: scale 0.2s ease-in-out;
 }
 
