@@ -17,26 +17,20 @@
     <body>
         
     <!-- Navbar -->
-    <header class="navbar">
+    <header class="navbar sticky">
         <!-- Left: Navigation Links -->
         <div class="nav-left">
             <ul class="nav-links">
                 <li><a href="about.html">About Us</a></li>
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle">Services <i class="fa fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="webdesign.html">Web Design</a></li>
-                        <li><a href="webdev.html">Web Development</a></li>
-                        <li><a href="ecommerce.html">E-Commerce Development</a></li>
-                        <li><a href="support.html">Ongoing Support</a></li>
-                    </ul>
+                    <a href="" class="dropdown-toggle">Services</a>
                 </li>
-                <li><a href="#portfolio">Projects</a></li>
+                <li><a href="#portfolio">Our Work</a></li>
             </ul>
         </div>
         
         <!-- Center: Logo -->
-        <div class="nav-center" data-rise="true">
+        <div class="nav-center">
             <a href="index.html" class="logo">
                 <img src="./img/Noblefir_nav_logo.png" alt="Logo" />
             </a>
@@ -64,13 +58,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle">Services <i class="fa fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="webdesign.html">Web Design</a></li>
-                        <li><a href="webdev.html">Web Development</a></li>
-                        <li><a href="ecommerce.html">E-Commerce Development</a></li>
-                        <li><a href="support.html">Ongoing Support</a></li>
-                    </ul>
+                    <a href="" class="dropdown-toggle">Services</a>
                 </li>
                 <li><a href="#portfolio">Projects</a></li>
                 <li><a href="contact-us.html">Contact Us</a></li>
@@ -92,19 +80,95 @@
         </nav>
     </header>
 
-
-    <div class="hero" id="hero">
-        <div class="hero-content">
-            <div class="hero-header">
-                <h1 class="hero-title1">Get in touch to see how</h1>
-                <h1 class="hero-title2">Collaboration Builds More Than Just Websites</h1>
+    <section class="why-hero" aria-labelledby="why-title">
+        <h1 id="why-title" class="sr-only">All In. Every Time.</h1>
+    
+        <!-- Row 1 -->
+        <div class="why-row why-row-top">
+            <span class="why-left" slide-right="true">ALL</span>
+            <span class="why-right" slide-left="true">IN</span>
+        </div>
+    
+        <!-- Row 2 -->
+        <div class="why-row why-row-bottom">
+            <span class="why-left" slide-right="true">EVERY</span>
+            <span class="why-right" slide-left="true">TIME</span>
+        </div>
+    
+        <!-- Center Circle -->
+        <div class="why-center">
+            <div class="why-circle">
+                <nav class="why-list" aria-label="Reasons">
+                    <a href="#mission"><span>(01)</span> THE MISSION</a>
+                    <a href="#expertise"><span>(02)</span> THE EXPERTISE</a>
+                    <a href="#team"><span>(03)</span> THE TEAM</a>
+                    <a href="#vibes"><span>(04)</span> THE VIBES</a>
+                </nav>
             </div>
-            <div class="hero-img-container">
-                <img class="hero-img" src="./img/global1.jpg" alt="Global Map Image">
+        </div>
+    </section>
+
+    <div class="appendix">
+        <div class="appendix-container">
+            <div class="appendix-card" id="card1">
+                <a href="#mission" class="row-text">
+                    <div class="card-number">(01)</div>
+                    <p class="card-text">The Mission</p>
+                </a>
+            </div>
+            <div class="appendix-card" id="card2">
+                <a href="#expertise" class="row-text">
+                    <div class="card-number">(02)</div>
+                    <p class="card-text">The Expertise</p>
+                </a>
+            </div>
+            <div class="appendix-card" id="card3">
+                <a href="#team" class="row-text">
+                    <div class="card-number">(03)</div>
+                    <p class="card-text">The Team</p>
+                </a>
+            </div>
+            <div class="appendix-card">
+                <a href="#vibes" class="row-text">
+                    <div class="card-number">(04)</div>
+                    <p class="card-text">The Vibes</p>
+                </a>
             </div>
         </div>
     </div>
 
+    <section class="mission" id="mission">
+        <h1 class="mission-title" data-rise="true">{The Mission<strong>*</strong>}</h1>
+
+        <div class="section-header">
+            <p class="header-paragraph">
+                We’re Noble Fir — small, intentional, and built for impact.
+            </p>
+            <p class="header-paragraph">
+                Our process is personal. Our standards are high. And our mission is your success. We help businesses cut through the noise and make their mark online—with clean code, sharp design, and relentless focus.
+            </p>
+        </div>
+
+        <div class="mission-content">
+            <div class="mission-text">
+                <p>
+                    Our mission is to empower businesses with innovative digital tools and custom web solutions that inspire growth and visibility. We are committed to delivering strategic design and development services that help our clients stand out, connect with their audience, and thrive in an ever-evolving online world.
+                </p>
+                <p>
+                    We don’t just build websites—we build opportunities. Every project begins with a conversation, where we listen to your goals, understand your brand, and craft tailored digital experiences that work for you. Our approach blends design, functionality, and strategy, ensuring each solution not only looks great but also performs seamlessly across all platforms. From local entrepreneurs to growing enterprises, we provide the framework and support businesses need to compete and grow online with confidence.
+                </p>
+                <p>
+                    We envision a digital landscape where every business—regardless of size—has access to high-quality, customized web experiences that reflect their unique identity and goals. As we grow, we remain committed to building lasting partnerships rooted in transparency, creativity, and performance. Whether launching a new venture or evolving an existing brand, our goal is to be the go-to ally businesses turn to when they’re ready to scale, stand out, and succeed online with clarity and confidence.
+                </p>
+            </div>
+            <div class="mission-image">
+                <img src="./img/go-team.jpg" alt="Mission Image" slide-left="true">
+            </div>
+        </div>
+    </section>
+
+
+    <!--
     <div class="about-header-group">
         <div class="hero-card-header">
             <div class="header-card">
@@ -244,7 +308,6 @@
         </div>
     
         <div class="about-cards-container">
-            <!-- Founder Card -->
             <div class="image-container">
                 <img src="./img/jesse2.JPG" alt="Founder Portrait">
                 <h1 class="about-img-title" data-rise="true">Jesse Kuykendall</h1>
@@ -269,8 +332,6 @@
                 
                 <sl-button>Learn More</sl-button>
             </div>
-    
-            <!-- Fiancée Card -->
             <div class="image-container" id="fianceeCard">
                 <img src="./img/jasmine2.jpg" alt="Designer Portrait">
                 <h1 class="about-img-title" data-rise="true">Jasmine Quang</h1>
@@ -307,6 +368,7 @@
             </button>
         </div>
     </section>
+    -->
 
 
     <footer class="footer">

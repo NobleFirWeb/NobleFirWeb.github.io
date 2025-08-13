@@ -16,7 +16,7 @@ body {
 }
 
 
-/* Nav Styles */
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -30,7 +30,17 @@ body {
     left: 0;
     width: 100%;
     z-index: 950;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.navbar.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0f0e0f;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.25s ease-in-out;
 }
 
 .nav-left,
@@ -105,7 +115,7 @@ body {
     color: #fff;
     font-size: 12px;
     font-family: "Geist", sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     border-radius: 18px;
     text-decoration: none;
     text-transform: uppercase;
@@ -558,8 +568,8 @@ body {
 .scroll-cue {
     position: absolute;
     bottom: 2rem;
-    left: 5.5rem;
-    color: white;
+    left: 10rem;
+    color: #fff;
     font-size: 1rem;
     /* small, readable */
     opacity: 0.8;
@@ -567,6 +577,27 @@ body {
     pointer-events: none;
     /* avoid blocking button clicks */
     user-select: none;
+}
+
+.scroll-cue p {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.scroll-cue span i {
+    display: inline-block;
+    animation: floatArrow 2s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes floatArrow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
 }
 
 .pagination {
