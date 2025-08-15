@@ -156,12 +156,22 @@
                 <p>
                     We don’t just build websites—we build opportunities. Every project begins with a conversation, where we listen to your goals, understand your brand, and craft tailored digital experiences that work for you. Our approach blends design, functionality, and strategy, ensuring each solution not only looks great but also performs seamlessly across all platforms. From local entrepreneurs to growing enterprises, we provide the framework and support businesses need to compete and grow online with confidence.
                 </p>
-                <p>
-                    We envision a digital landscape where every business—regardless of size—has access to high-quality, customized web experiences that reflect their unique identity and goals. As we grow, we remain committed to building lasting partnerships rooted in transparency, creativity, and performance. Whether launching a new venture or evolving an existing brand, our goal is to be the go-to ally businesses turn to when they’re ready to scale, stand out, and succeed online with clarity and confidence.
-                </p>
             </div>
             <div class="mission-image">
                 <img src="./img/go-team.jpg" alt="Mission Image" slide-left="true">
+            </div>
+        </div>
+        <div class="mission-content">
+            <div class="mission-image">
+                <img src="./img/service1.jpg" alt="Mission Image" slide-left="true">
+            </div>
+            <div class="mission-text text2">
+                <p>
+                    We envision a digital landscape where every business—regardless of size—has access to high-quality, customized web experiences that reflect their unique identity and goals. As we grow, we remain committed to building lasting partnerships rooted in transparency, creativity, and performance. Whether launching a new venture or evolving an existing brand, our goal is to be the go-to ally businesses turn to when they’re ready to scale, stand out, and succeed online with clarity and confidence.
+                </p>
+                <button class="about-btn">
+                    <a href="portfolio.html">View Our Work</a>
+                </button>
             </div>
         </div>
     </section>
@@ -176,6 +186,62 @@
 
     <section class="vibes" id="vibes">
         <h1 class="vibes-title" data-rise="true">{The Vibes<strong>*</strong>}</h1>
+        <aside class="vibes-nav" aria-label="Vibes navigation">
+            <ol class="vibes-nav-list">
+                <li><button data-target="#vibe-1" aria-current="true">01</button></li>
+                <li><button data-target="#vibe-2">02</button></li>
+                <li><button data-target="#vibe-3">03</button></li>
+                <li><button data-target="#vibe-4">04</button></li>
+            </ol>
+        </aside>
+        
+        <!-- 01 : number left, copy right -->
+        <article id="vibe-1" class="vibe-row">
+            <div class="vibe-figure">
+                <span class="vibe-num vibe-white">01</span>
+            </div>
+            <div class="vibe-copy">
+                <h2 class="vibe-title">VIBE 1</h2>
+                <p class="vibe-text">Short supporting copy about this vibe. Keep it crisp and confident.</p>
+            </div>
+        </article>
+        
+        <!-- 02 : copy left, number right -->
+        <article id="vibe-2" class="vibe-row">
+            <div class="vibe-copy">
+                <h2 class="vibe-title">VIBE 2</h2>
+                <p class="vibe-text">Another concise statement that reinforces your ethos.</p>
+            </div>
+            <div class="vibe-figure">
+                <span class="vibe-num vibe-red">02</span>
+            </div>
+        </article>
+        
+        <!-- 03 : number left, copy right -->
+        <article id="vibe-3" class="vibe-row">
+            <div class="vibe-figure">
+                <span class="vibe-num vibe-gray">03</span>
+            </div>
+            <div class="vibe-copy">
+                <h2 class="vibe-title">VIBE 3</h2>
+                <p class="vibe-text">One more powerful line that speaks to how you deliver.</p>
+            </div>
+        </article>
+        
+        <!-- 04 : copy left, number right (color TBD) -->
+        <article id="vibe-4" class="vibe-row">
+            <div class="vibe-copy">
+                <h2 class="vibe-title">VIBE 4</h2>
+                <p class="vibe-text">Placeholder copy for the fourth vibe.</p>
+            </div>
+            <div class="vibe-figure">
+                <span class="vibe-num vibe-white">04</span>
+            </div>
+        </article>
+    </section>
+
+    <section class="contact" id="contact">
+
     </section>
 
 
@@ -361,7 +427,7 @@
     </section>
     
 
-
+    -->
     <section id="cta" class="contact-section">
         <div class="contact-header">
             <h2 class="contact-title1" data-rise="true">Ready to Launch Your Project?</h2>
@@ -379,7 +445,7 @@
             </button>
         </div>
     </section>
-    -->
+    
 
 
     <footer class="footer">
@@ -415,6 +481,72 @@
             <p>© 2025 Nobile Fir Studio. All Rights Reserved</p>
         </div>
     </footer>
+
+    <script>
+        // ===== Vibes behavior =====
+        (function () {
+            const header = document.querySelector('.navbar');
+            const vibes = document.querySelector('#vibes');
+            const rail = document.querySelector('.vibes-nav');
+            if (!vibes || !rail) return;
+
+            // keep scroll offset correct vs actual navbar height
+            function setNavHeightVar() {
+                const h = header ? header.offsetHeight : 100;
+                document.documentElement.style.setProperty('--nav-h', h + 'px');
+            }
+            setNavHeightVar();
+            window.addEventListener('resize', setNavHeightVar);
+
+            // show the right rail only while #vibes is on screen
+            const showObs = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            rail.classList.add('is-visible');
+                        } else {
+                            rail.classList.remove('is-visible');
+                        }
+                    });
+                },
+                { root: null, threshold: 0.01 }
+            );
+            showObs.observe(vibes);
+
+            // highlight active item based on which row is centered
+            const rows = [...vibes.querySelectorAll('.vibe-row')];
+            const navItems = [...rail.querySelectorAll('.vibes-nav-list li')];
+
+            const activeObs = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach(e => {
+                        if (!e.isIntersecting) return;
+                        const id = '#' + e.target.id;
+                        navItems.forEach(li => {
+                            const btn = li.querySelector('button');
+                            const active = btn.getAttribute('data-target') === id;
+                            li.classList.toggle('active', active);
+                            btn.setAttribute('aria-current', active ? 'true' : 'false');
+                        });
+                    });
+                },
+                { root: null, threshold: 0.55 } // "mostly in view"
+            );
+            rows.forEach(r => activeObs.observe(r));
+
+            // smooth scroll with navbar offset
+            rail.addEventListener('click', (e) => {
+                const btn = e.target.closest('button[data-target]');
+                if (!btn) return;
+                const target = document.querySelector(btn.dataset.target);
+                if (!target) return;
+
+                const headerH = header ? header.offsetHeight : 100;
+                const y = target.getBoundingClientRect().top + window.scrollY - headerH;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            });
+        })();
+    </script>
         
         <script src="./js/index.js" async defer></script>
         <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
