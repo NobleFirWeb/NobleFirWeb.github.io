@@ -561,11 +561,7 @@ body {
   padding: 0 clamp(24px,6vw,7%);
   scroll-margin-top: var(--nav-h);
 }
-.vibe-row.reverse{ 
-  min-height: 100svh;
-  display: flex;
-  flex-direction: row-reverse; 
-}
+
 
 /* Left/right halves */
 .vibe-figure, .vibe-copy{
@@ -580,21 +576,56 @@ body {
   font-weight: 700;
   /* scale with viewport height so it spans the column */
   font-size: clamp(16rem, 60vh, 80rem);
-  color: transparent;
-  -webkit-text-stroke-width: clamp(4px, 0.9vh, 8px);
+  color: #0f0e0f;           /* make text itself transparent */
+  -webkit-text-stroke: 1px transparent; /* removes ugly borders */
+  
+  /* Shadow gives the “same color as background” effect */
+  text-shadow: 
+    2px 2px 0 #111,   /* dark shadow offset */
+    -2px -2px 0 #111, /* adjust #111 to match your section bg */
+    2px -2px 0 #111,
+    -2px 2px 0 #111;
   transform: rotate(-90deg);
   transform-origin: center;
   /* make sure it vertically centers nicely */
   margin: 0 auto;
   white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
 }
 
 /* Color coding for numbers */
-.vibe-gray   { -webkit-text-stroke-color: var(--nf-gray); }
-.vibe-white  { -webkit-text-stroke-color: #fff; }
-.vibe-red    { -webkit-text-stroke-color: var(--nf-red); }
-.vibe-neutral{ -webkit-text-stroke-color: var(--nf-neutral); }
+.vibe-gray {
+  text-shadow:
+    4px 4px 0 var(--nf-gray),
+    -4px -4px 0 var(--nf-gray),
+    4px -4px 0 var(--nf-gray),
+    -4px 4px 0 var(--nf-gray);
+}
 
+.vibe-white {
+  text-shadow:
+    2px 2px 0 #fff,
+    -2px -2px 0 #fff,
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff;
+}
+
+.vibe-red {
+  text-shadow:
+    2px 2px 0 var(--nf-red),
+    -2px -2px 0 var(--nf-red),
+    2px -2px 0 var(--nf-red),
+    -2px 2px 0 var(--nf-red);
+}
+
+.vibe-neutral {
+  text-shadow:
+    2px 2px 0 var(--nf-neutral),
+    -2px -2px 0 var(--nf-neutral),
+    2px -2px 0 var(--nf-neutral),
+    -2px 2px 0 var(--nf-neutral);
+}
 /* Copy */
 .vibe-title{
   font-family: "Space Grotesk", sans-serif;
@@ -680,7 +711,10 @@ body {
   .vibe-row{ padding: 0 24px; }
   .vibe-figure, .vibe-copy{ flex-basis: 100%; }
   .vibe-row.reverse{ flex-direction: column; }
-  .vibe-row{ flex-direction: column; }
+  .vibe-row{ flex-direction: column;
+    padding: 5% 10px;
+}
+
 }
 
 
@@ -1718,12 +1752,14 @@ sl-dialog .dialog-quote {
   display: none;
 }
 
+*/
 #cta {
   width: 100%;
   height: auto;
   max-height: 70vh;
   margin: 10% 0;
 }
+/*
 
 
 
