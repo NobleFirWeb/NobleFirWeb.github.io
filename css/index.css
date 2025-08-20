@@ -1679,6 +1679,7 @@ textarea {
     @media only screen and (max-width: 1024px) {
     .contact-container {
         flex-direction: column;
+        padding: 5% 5%;
     }
     .contact-header {
         margin-top: 15vh;
@@ -1711,6 +1712,10 @@ textarea {
         gap: 15px;
         padding: 0;
         margin-left: 0;
+        padding-bottom: 20px;
+    }
+    .contact-item-hr {
+        display: none;
     }
     .contact-item {
         display: flex;
