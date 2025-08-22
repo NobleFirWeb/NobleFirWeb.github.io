@@ -443,6 +443,7 @@
     position: relative;
     width: 100%;
     min-height: 45vh;
+    height: auto;
     background-color: #0f0e0f;
     /* black background */
     color: #fff;
@@ -463,8 +464,12 @@
     font-weight: 700;
     letter-spacing: -0.04em;
     font-size: 24vw;
-    color: #ff0000;
-    /* red */
+    color: #0f0e0f;
+    text-shadow:
+    2px 2px 0 var(--nf-red),
+    -2px -2px 0 var(--nf-red),
+    2px -2px 0 var(--nf-red),
+    -2px 2px 0 var(--nf-red);
     z-index: 0;
     user-select: none;
     pointer-events: none;
@@ -472,11 +477,11 @@
 }
 
 .nf-footer-bg-letter.nf-left {
-    left: max(-6vw, -48px);
+    left: -30px;
 }
 
 .nf-footer-bg-letter.nf-right {
-    right: max(-6vw, -30px);
+    right: -16px;
 }
 
 /* Centered menu stack */
@@ -548,6 +553,8 @@
     gap: 12px;
     z-index: 2;
     margin-top: 2.5vh;
+    max-width: 70%;
+    margin: 0 auto;
 }
 
 .nf-copy {
@@ -623,7 +630,35 @@
 .nf-social-icon:hover,
 .nf-social-icon:active,
 .nf-social-icon:focus {
-  text-decoration: none !important;
+    text-decoration: none !important;
+}
+
+
+@media (max-width: 1024px) {
+    .nf-footer {
+        min-height: 60vh;
+    }
+    .nf-footer-bg-letter {
+        font-size: 33vw;
+    }
+    .nf-footer-bg-letter.nf-left {
+    left: 15px;
+}
+
+.nf-footer-bg-letter.nf-right {
+    right: 0;
+}
+.nf-footer-bottom {
+    margin-top: 0;
+    max-width: 100%;
+}
+.nf-social {
+    margin-bottom: 10vh;
+}
+.nf-copy,
+.nf-legal {
+    font-size: 14px;
+}
 }
 
 @media (max-width: 768px) {
@@ -631,32 +666,24 @@
         min-height: 70vh;
         padding-top: 5vh;
         padding-bottom: 18vh;
-        /* space for the big letters peeking up */
     }
 
-    /* BIG letters sit in the bottom corners, barely peeking up */
     .nf-footer-bg-letter {
-        top: auto;
-        /* override desktop */
-        bottom: -4vh;
-        /* push below viewport to show just the upper arcs */
+        bottom: 0;
         transform: none;
-        /* override desktop */
         font-size: 52vw;
-        /* large, but responsive to viewport width */
-        opacity: 0.45;
-        /* softer on mobile so content pops */
+        opacity: 1;
     }
 
     .nf-footer-bg-letter.nf-left {
-        left: -3vw;
+        left: -2vw;
     }
 
     .nf-footer-bg-letter.nf-right {
-        right: -2vw;
+        right: 10px;
     }
 
-    /* Center stack: menu items with comfy spacing */
+
     .nf-footer-nav ul {
         gap: 14px;
     }
@@ -673,11 +700,8 @@
         border-width: 2px;
     }
 
-    /* Bottom cluster becomes a vertical stack:
-     social icons (top) -> copyright -> legal links */
     .nf-footer-bottom {
         position: static;
-        /* release from absolute bottom */
         display: grid;
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -687,6 +711,8 @@
         justify-items: center;
         gap: 14px;
         padding-top: 0;
+        margin-top: 0;
+        margin-bottom: 8vh;
     }
 
     .nf-social {
@@ -704,6 +730,7 @@
     /* Social icons centered, slightly smaller squares */
     .nf-social {
         gap: 12px;
+        margin-bottom: 3vh;
     }
 
     .nf-social-icon {
@@ -731,5 +758,18 @@
         color: #a6a6a6;
         /* stays grey on mobile per spec */
         letter-spacing: 0.08em;
+    }
+}
+
+@media (max-width: 480px) {
+    .nf-footer-bg-letter {
+        top: auto;
+        bottom: -5vh;
+    }
+    .nf-footer-bg-letter.nf-right {
+        right: 7px;
+    }
+    .nf-footer-bottom {
+        margin-bottom: 3vh;
     }
 }

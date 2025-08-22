@@ -1748,18 +1748,11 @@ textarea {
 }
 }
 
-/* Footer */
-@media only screen and (max-width: 1024px) {
-
+@media (max-width: 768px) {
+    .hero-video-wrapper {
+        max-width: 680px;
+    }
 }
-
-
-
-
-
-
-
-
 
 
 @media (max-width: 480px) {

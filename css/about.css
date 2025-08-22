@@ -602,9 +602,34 @@ body {
 }
 
 #vibes.vibes{
-  position: relative;
-  color: var(--nf-fg);
-  overflow: clip;
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+    color: var(--nf-fg);
+    overflow: clip;
+}
+
+#vibes .section-header {
+    width: 75%;
+    max-width: 1600px;
+    margin: 100px auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 24px;
+}
+
+#vibes .header-paragraph {
+    font-family: "inter", sans-serif;
+    font-weight: 300;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.header-paragraph span {
+    color: #ff0000;
+    font-weight: 500;
 }
 
 /* Each row fills the viewport minus navbar */
@@ -614,7 +639,7 @@ body {
   justify-content:space-between;
   gap: clamp(16px,4vw,48px);
   min-height: 100svh;
-  padding: 0 5%;
+  padding: 0 10%;
   scroll-margin-top: var(--nav-h);
 }
 
@@ -692,12 +717,24 @@ body {
   letter-spacing: .02em;
   margin-bottom: .5rem;
 }
+
+.vibe-title span {
+  color: #ff0000;
+  font-weight: 500;
+}
+
 .vibe-text{
   font-family: "Inter", sans-serif;
   font-weight: 300;
   color: #a6a6a6;
   font-size: clamp(1rem, 2.2vw, 1.25rem);
   max-width: 52ch;
+  margin: 15px 0;
+}
+
+.vibe-text span {
+  color: #ff0000;
+  font-weight: 500;
 }
 
 /* Right rail nav (fixed while in section) */
@@ -764,11 +801,14 @@ body {
     padding-top: 15%;
   }
   .vibe-num{ 
-    font-size: clamp(12rem, 52vh, 52rem); 
+    font-size: 40vh; 
   }
   .vibes-title {
     font-size: 7rem;
   }
+  #vibes .section-header {
+    margin: 60px auto;
+}
   .vibe-row {
     display:flex;
     flex-direction: column;
@@ -795,6 +835,14 @@ body {
 @media (max-width: 768px){
   .vibes-title {
     font-size: 4.75rem;
+  }
+    #vibes .section-header {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 5%;
+  }
+  #vibes .header-paragraph {
+    padding: 0 5%;
   }
   .vibe-row { 
     padding: 0 24px; 
@@ -824,6 +872,15 @@ body {
   }
   .vibe-row {
     padding: 0 5vw;
+    margin: 15vh 0;
+  }
+  #vibe2,
+  #vibe4 {
+    padding: 0 5vw;
+    margin: 5vh 0;
+  }
+  .vibe-num {
+    font-size: 33vh;
   }
 }
 
