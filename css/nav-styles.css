@@ -439,131 +439,297 @@
    ======================= */
 
 /* Footer Styles */
-footer {
+.nf-footer {
+    position: relative;
+    width: 100%;
+    min-height: 45vh;
     background-color: #0f0e0f;
-    color: white;
-    padding: 20px 0;
-    border-top: 1px solid #3a3a3a;
+    /* black background */
+    color: #fff;
+    display: grid;
+    place-items: center;
+    /* center the nav stack */
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 2vh;
 }
 
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    max-width: 100vw;
-    margin: 0 5%;
-    padding: 0 10px;
+/* Big background letters (N and F) */
+.nf-footer-bg-letter {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    font-size: 24vw;
+    color: #ff0000;
+    /* red */
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+    opacity: 1;
 }
 
-.footer-section {
-    flex: 1;
-    min-width: 200px;
+.nf-footer-bg-letter.nf-left {
+    left: max(-6vw, -48px);
+}
+
+.nf-footer-bg-letter.nf-right {
+    right: max(-6vw, -30px);
+}
+
+/* Centered menu stack */
+.nf-footer-nav {
+    position: relative;
+    z-index: 2;
     text-align: center;
-    margin: 0 15px;
-    margin-top: 25px;
 }
 
-.footer .logo-section {
-    text-align: center;
-}
-
-.footer .logo {
-    height: auto;
-    max-width: 100%;
-    display: block;
-    margin: 0 auto 5px;
-}
-
-.footer h4 {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 24px;
-    margin-bottom: 20px;
-    margin-top: 5%;
-    text-transform: uppercase;
-    letter-spacing: 0.15rem;
-}
-
-.footer ul {
+.nf-footer-nav ul {
     list-style: none;
+    margin: 0;
     padding: 0;
+    display: grid;
+    gap: clamp(10px, 1.8vh, 18px);
 }
 
-.footer ul li {
-    font-family: "Inter", sans-serif;
-    font-weight: 200;
-    margin: 12px 0;
-}
-
-.footer ul li a {
-    color: white;
+.nf-footer-nav a {
+    color: #fff;
+    /* white links */
     text-decoration: none;
-    transition: color 0.3s ease;
+    text-transform: uppercase;
+    font-family: "Geist", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-size: 1.25rem;
+    transition: transform .2s ease-in-out;
 }
 
-.footer ul li a:hover {
-    color: #ccc;
+.nf-footer-nav a:hover {
+    text-decoration: underline;
 }
 
-.footer p {
-    font-family: "Inter", sans-serif;
-    margin: 5px 0;
+/* Contact button (red pill) */
+.nf-footer-nav .nf-contact-btn {
+    display: block;
 }
 
-#footer-contact p {
-    font-family: "Inter", sans-serif;
-    margin-top: 10%;
-    font-weight: 200;
+.nf-footer-nav .nf-contact-btn a {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #ff0000;
+    border: 1.25px solid #000;
+    font-family: "Geist", sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.25rem;
+    transition: all 0.25s ease-in-out;
+    border-radius: 24px;
 }
 
-.footer .social-icons {
-    display: flex;
-    flex-direction: column;
+.nf-footer-nav .nf-contact-btn a:hover {
+    background-color: #000;
+    border: 1.25px solid #fff;
+    color: #fff;
+}
+
+/* Bottom row: copy (left), socials (center), legal (right) */
+.nf-footer-bottom {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
     gap: 12px;
+    z-index: 2;
+    margin-top: 2.5vh;
+}
+
+.nf-copy {
+    margin-left: clamp(16px, 5vw, 60px);
+    color: #a6a6a6;
+    /* muted grey */
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    bottom: 0;
+}
+
+.nf-legal {
+    justify-self: end;
+    margin-right: clamp(16px, 5vw, 60px);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nf-legal a {
+    color: #a6a6a6;
+    /* muted grey for legal links */
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    transition: color .2s ease, opacity .2s ease;
+}
+
+.nf-legal a:hover {
+    color: #fff;
+}
+
+.nf-sep {
+    color: #a6a6a6;
+}
+
+/* Socials */
+.nf-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-self: center;
+    margin-bottom: 5vh;
+}
+
+.nf-social-icon {
+    width: 45px;
+    height: 45px;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    margin: 8px 0;
+    border: 1.4px solid #fff;
+    color: #fff;
+    border-radius: 6px;
+    transition: color .25s ease-in-out, border-color .25s ease-in-out, transform .25s ease-in-out;
 }
 
-.footer .social-icons a {
-    color: white;
-    font-size: 24px;
-    transition: color 0.3s ease;
-    margin: 5px 0;
+.nf-social-icon i {
+    text-decoration: none;
+    font-size: 1.5rem;
 }
 
-.footer .social-icons a:hover {
-    color: #ccc;
+.nf-social-icon:hover {
+    color: #ff0000;
+    border-color: #ff0000;
 }
 
-.footer .footer-bottom {
-    text-align: center;
-    padding: 15px 0;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    border-top: 1px solid #3a3a3a;
+.nf-social-icon,
+.nf-social-icon:link,
+.nf-social-icon:visited,
+.nf-social-icon:hover,
+.nf-social-icon:active,
+.nf-social-icon:focus {
+  text-decoration: none !important;
 }
-
 
 @media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column;
+.nf-footer {
+        min-height: 70vh;
+        padding-top: 5vh;
+        padding-bottom: 18vh;
+        /* space for the big letters peeking up */
+    }
+
+    /* BIG letters sit in the bottom corners, barely peeking up */
+    .nf-footer-bg-letter {
+        top: auto;
+        /* override desktop */
+        bottom: -4vh;
+        /* push below viewport to show just the upper arcs */
+        transform: none;
+        /* override desktop */
+        font-size: 52vw;
+        /* large, but responsive to viewport width */
+        opacity: 0.45;
+        /* softer on mobile so content pops */
+    }
+
+    .nf-footer-bg-letter.nf-left {
+        left: -3vw;
+    }
+
+    .nf-footer-bg-letter.nf-right {
+        right: -2vw;
+    }
+
+    /* Center stack: menu items with comfy spacing */
+    .nf-footer-nav ul {
+        gap: 14px;
+    }
+
+    .nf-footer-nav a {
+        font-size: 16px;
+        letter-spacing: 0.08em;
+    }
+
+    .nf-footer-nav .nf-contact-btn {
+        margin-top: 6px;
+        padding: 10px 22px;
+        font-size: 16px;
+        border-width: 2px;
+    }
+
+    /* Bottom cluster becomes a vertical stack:
+     social icons (top) -> copyright -> legal links */
+    .nf-footer-bottom {
+        position: static;
+        /* release from absolute bottom */
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "social"
+            "copy"
+            "legal";
+        justify-items: center;
+        gap: 14px;
+        padding-top: 0;
+    }
+
+    .nf-social {
+        grid-area: social;
+    }
+
+    .nf-copy {
+        grid-area: copy;
+    }
+
+    .nf-legal {
+        grid-area: legal;
+    }
+
+    /* Social icons centered, slightly smaller squares */
+    .nf-social {
+        gap: 12px;
+    }
+
+    .nf-social-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+    }
+
+    /* Centered, compact legal/copyright text */
+    .nf-copy {
+        margin: 0;
         text-align: center;
-        justify-content: space-around;
-        align-items: center;
+        font-size: 12px;
+        letter-spacing: 0.08em;
     }
-    .footer-section {
-        margin-bottom: 0;
+
+    .nf-legal {
+        margin: 0;
+        gap: 18px;
+        justify-self: center;
     }
-    .footer-section h4 {
-        margin-top: 20px;
-        font-size: 22px;
-        text-decoration: underline;
-    }
-    .footer-section .social-icons {
-        flex-direction: row;
-        gap: 25px;
-        margin-bottom: 10px;
-    }
-    .footer-bottom p {
-        margin: 0 15px;
-        margin-top: 10px;
+
+    .nf-legal a {
+        font-size: 12px;
+        color: #a6a6a6;
+        /* stays grey on mobile per spec */
+        letter-spacing: 0.08em;
     }
 }

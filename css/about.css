@@ -434,9 +434,6 @@ body {
     width: 100%;
     max-width: 850px;
   }
-  .about-btn {
-    margin: 0 auto;
-  }
 }
 
 @media (max-width: 768px) {
@@ -445,6 +442,14 @@ body {
   }
   .mission-title {
     font-size: 4.75rem;
+  }
+  .mission .section-header {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 5%;
+  }
+  .mission .header-paragraph {
+    padding: 0 5%;
   }
   .mission-image {
     max-width: 85%;
@@ -458,11 +463,6 @@ body {
 @media (max-width: 480px) {
   #mission {
     padding-top: 25%;
-  }
-  .mission .section-header {
-    width: 100%;
-    max-width: 100%;
-    padding: 0 5%;
   }
   .mission-title {
     font-size: 3.25rem;
@@ -1322,6 +1322,7 @@ sl-button::part(label):hover {
   display: flex;
   justify-content: center;
   padding: 0 5%;
+  padding-bottom: 10%;
   margin: 5% 0;
 }
 
@@ -1394,7 +1395,6 @@ sl-button::part(label):hover {
   #cta .contact-title2, 
   #cta .contact-title2 span {
   font-size: 3.5rem;
-  text-align: center;
 }
 }
 
