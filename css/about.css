@@ -135,6 +135,10 @@ body {
   text-underline-offset:2px;
 }
 
+.why-list a span {
+  color: #ff0000;
+}
+
 /* Accessibility helper for the visual-only H1 */
 .sr-only{
   position:absolute !important;
@@ -314,6 +318,13 @@ body {
   font-weight: 500;
 }
 
+.mission-title span {
+  color: #ff0000;
+  font-size: 5rem;
+  line-height: 0.5;
+  padding-right: 4rem;
+}
+
 .mission .section-header {
     width: 75%;
     max-width: 1600px;
@@ -409,6 +420,11 @@ body {
   .mission-title {
     font-size: 7rem;
   }
+  .mission-title span {
+  font-size: 3rem;
+  padding-right: 2rem;
+  }
+
   .mission .section-header {
     margin: 60px auto;
 }
@@ -443,6 +459,10 @@ body {
   .mission-title {
     font-size: 4.75rem;
   }
+  .mission-title span {
+  font-size: 1.75rem;
+  padding-right: 1rem;
+  }
   .mission .section-header {
     width: 100%;
     max-width: 100%;
@@ -468,6 +488,10 @@ body {
     font-size: 3.25rem;
     text-align: center;
   }
+  .mission-title span {
+  font-size: 1.5rem;
+  padding-right: 0.75rem;
+  }
 }
 
 #expertise {
@@ -492,17 +516,32 @@ body {
   font-weight: 500;
 }
 
+.expertise-title span {
+  color: #ff0000;
+  font-size: 5rem;
+  line-height: 0.5;
+  padding-right: 4rem;
+}
+
 @media (max-width: 1024px) {
   .expertise-title {
     margin-left: 0;
     font-size: 7rem;
     text-align: center;
   }
+  .expertise-title span {
+  font-size: 3rem;
+  padding-right: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
   .expertise-title {
     font-size: 4.75rem;
+  }
+  .expertise-title span {
+  font-size: 1.75rem;
+  padding-right: 1rem;
   }
 }
 
@@ -514,6 +553,10 @@ body {
     font-size: 3.5rem;
     margin-left: 0;
     text-align: center;
+  }
+  .expertise-title span {
+  font-size: 1.5rem;
+  padding-right: 0.75rem;
   }
 }
 
@@ -540,6 +583,13 @@ body {
   font-weight: 500;
 }
 
+.team-title span {
+  color: #ff0000;
+  font-size: 5rem;
+  line-height: 0.5;
+  padding-right: 4rem;
+}
+
 @media (max-width: 1024px) {
   .team-title {
     font-size: 7rem;
@@ -547,11 +597,19 @@ body {
     margin-right: 0;
     text-align: center;
   }
+  .team-title span {
+  font-size: 3rem;
+  padding-right: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
   .team-title {
     font-size: 4.75rem;
+  }
+  .team-title span {
+  font-size: 1.75rem;
+  padding-right: 1rem;
   }
 }
 
@@ -564,6 +622,10 @@ body {
     margin-right: 0;
     text-align: center;
     float: none;
+  }
+  .team-title span {
+  font-size: 1.5rem;
+  padding-right: 0.75rem;
   }
 }
 
@@ -589,6 +651,13 @@ body {
 .vibes-title strong {
   color: #ff0000;
   font-weight: 500;
+}
+
+.vibes-title span {
+  color: #ff0000;
+  font-size: 5rem;
+  line-height: 0.5;
+  padding-right: 4rem;
 }
 
 /* ===== Vibes Section ===== */
@@ -741,7 +810,7 @@ body {
 .vibes-nav{
   position: fixed;
   right: clamp(12px, 5vw, 75px);
-  top: 33%;
+  top: 50%;
   transform: translateY(-50%);
   z-index: 20;
   opacity: 0;
@@ -806,6 +875,10 @@ body {
   .vibes-title {
     font-size: 7rem;
   }
+  .vibes-title span {
+  font-size: 3rem;
+  padding-right: 2rem;
+  }
   #vibes .section-header {
     margin: 60px auto;
 }
@@ -835,6 +908,10 @@ body {
 @media (max-width: 768px){
   .vibes-title {
     font-size: 4.75rem;
+  }
+  .vibes-title span {
+  font-size: 1.75rem;
+  padding-right: 1rem;
   }
     #vibes .section-header {
     width: 100%;
@@ -866,6 +943,10 @@ body {
     font-size: 3.5rem;
     margin-left: 0;
     text-align: center;
+  }
+  .vibes-title span {
+  font-size: 1.5rem;
+  padding-right: 0.75rem;
   }
   .vibes-nav {
     display: none;
