@@ -555,7 +555,7 @@ body {
     content: "";
     width: 10%;
     height: 2px;
-    background-color: #fff;
+    background-color: #ff0000;
     position: absolute;
 }
 
@@ -565,7 +565,7 @@ body {
   font-weight: 400;
   justify-content: flex-end;
   align-items: flex-end;
-  color: #ff0000;
+  color: #fff;
 }
 
 @media (max-width: 1024px) {
