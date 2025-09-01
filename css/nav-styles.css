@@ -442,7 +442,7 @@
 .nf-footer {
     position: relative;
     width: 100%;
-    min-height: 45vh;
+    min-height: 60vh;
     height: auto;
     background-color: #0f0e0f;
     /* black background */
@@ -561,7 +561,7 @@
     margin-left: clamp(16px, 5vw, 60px);
     color: #a6a6a6;
     /* muted grey */
-    font-size: 1rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     bottom: 0;
@@ -571,7 +571,7 @@
     justify-self: end;
     margin-right: clamp(16px, 5vw, 60px);
     display: inline-flex;
-    align-items: center;
+    justify-content: space-evenly;
     gap: 10px;
 }
 
@@ -580,7 +580,7 @@
     /* muted grey for legal links */
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 0.75rem;
     letter-spacing: 0.08em;
     transition: color .2s ease, opacity .2s ease;
 }
@@ -599,7 +599,7 @@
     align-items: center;
     gap: 10px;
     justify-self: center;
-    margin-bottom: 5vh;
+    margin-bottom: 2vh;
 }
 
 .nf-social-icon {

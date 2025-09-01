@@ -16,6 +16,46 @@ body {
     background-color: #0f0e0f;
 }
 
+/* ===== Text Spinner ===== */
+.text-spinner {
+  position: fixed;
+  bottom: 0;
+  right: 24px;
+  z-index: 9999;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  --spin-duration: 12s;
+}
+
+.text-spinner svg {
+  display: block;
+  transform-origin: 50% 50%;
+  animation: spin var(--spin-duration) linear infinite;
+  transition: transform 200ms ease;
+}
+
+.text-spinner:hover svg {
+  transform: rotate(0deg) scale(1.04);
+}
+
+.text-spinner text {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 4px;
+  fill: #ffffff;                  /* white text */
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .text-spinner svg { animation: none; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
   .why-hero{
   position:relative;
   width:100vw;
@@ -37,14 +77,19 @@ body {
   pointer-events:none;
 }
 .why-row-top { 
-  top: 40vh;
-  color: #464646;
+  top: 35vh;
+  color: #0f0e0f;
+  text-shadow:
+    2.5px 2.5px 0 var(--nf-gray),
+    -2.5px -2.5px 0 var(--nf-gray),
+    2.5px -2.5px 0 var(--nf-gray),
+    -2.5px 2.5px 0 var(--nf-gray);
   font-family: 'Inter', sans-serif;
   font-weight: 300;
   padding: 0 5vw;
 }
 .why-row-bottom { 
-  bottom: 10vh; 
+  bottom: 15vh; 
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 800;
 }
@@ -97,7 +142,7 @@ body {
     box-shadow: 0 0 0 0 rgba(225, 6, 18, 0.6);
   }
   100% {
-    box-shadow: 0 0 0 14px rgba(225, 6, 18, 0);
+    box-shadow: 0 0 0 16px rgba(225, 6, 18, 0);
   }
 }
 
@@ -131,8 +176,12 @@ body {
   letter-spacing:.04em;
 }
 .why-list a:hover{ 
-  text-decoration:underline;
-  text-underline-offset:2px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.why-list a:hover span {
+  text-decoration: none;
 }
 
 .why-list a span {
@@ -304,13 +353,14 @@ body {
 
 .mission-title {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 10rem;
+    font-size: 8rem;
     font-weight: 800;
     color: #343434;
     text-align: center;
     text-transform: uppercase;
     z-index: 0;
     font-optical-sizing: auto;
+    padding: 0 5%;
 }
 
 .mission-title strong {
@@ -320,9 +370,10 @@ body {
 
 .mission-title span {
   color: #ff0000;
-  font-size: 5rem;
+  font-size: 2rem;
   line-height: 0.5;
-  padding-right: 4rem;
+  display: inline-flex;
+  float: left;
 }
 
 .mission .section-header {
@@ -341,6 +392,20 @@ body {
     font-weight: 300;
     color: #fff;
     font-size: 1.5rem;
+}
+
+.mission .header-paragraph strong {
+  color: #ff0000;
+}
+
+.mission .header-paragraph span {
+    font-family: "inter", sans-serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: line-through;
+    text-decoration-color: #ff0000;
+    text-decoration-thickness: 0.1rem;
 }
 
 .mission-content {
@@ -365,7 +430,7 @@ body {
   flex-direction: column;
   justify-content: center;
   gap: 30px;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #a6a6a6;
   padding: 0 100px;
 }
@@ -413,16 +478,105 @@ body {
   border-radius: 10px;
 }
 
+.mission-content3 {
+  margin: 8% 8%;
+}
+
+.global-container {
+  width: 100%;
+  height: 75vh;
+  background: url('../img/map.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.global1, .global2 {
+  display: flex;
+  flex-direction: column;
+  font-size: 3rem;
+  justify-content: space-between;
+}
+
+.global1 .global-title{
+  font-size: 5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: #343434;
+}
+
+.global-title .divider {
+  width: 50%;
+    display: flex;
+    align-items: center;
+    height: 0.5px;
+    background-color: #464646;
+    position: relative;
+}
+
+.global1 .divider::before {
+    content: "";
+    width: 10%;
+    height: 2px;
+    background-color: #ff0000;
+    position: absolute;
+    left: 0;
+}
+
+.global-text {
+  max-width: 40vw;
+    font-family: "inter", sans-serif;
+    font-weight: 300;
+    color: #fff;
+    font-size: 1.5rem;
+    justify-self: flex-end;
+}
+
+.global-text span {
+  color: #ff0000;
+  font-weight: 500;
+}
+
+.global2 .divider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 0.5px;
+    background-color: #464646;
+    position: relative;
+}
+
+.global2 .divider::before {
+    content: "";
+    width: 10%;
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+}
+
+
+.global2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  justify-content: flex-end;
+  align-items: flex-end;
+  color: #ff0000;
+}
+
 @media (max-width: 1024px) {
   #mission {
     padding-top: 15%;
   }
   .mission-title {
-    font-size: 7rem;
+    font-size: 6rem;
   }
   .mission-title span {
-  font-size: 3rem;
-  padding-right: 2rem;
+    font-size: 1.5rem;
   }
 
   .mission .section-header {
@@ -502,13 +656,14 @@ body {
 
 .expertise-title {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 10rem;
+    font-size: 8rem;
     font-weight: 800;
     color: #343434;
     text-transform: uppercase;
     z-index: 0;
     font-optical-sizing: auto;
-    margin-left: 5%;
+    text-align: left;
+    padding: 0 5%;
 }
 
 .expertise-title strong {
@@ -518,9 +673,10 @@ body {
 
 .expertise-title span {
   color: #ff0000;
-  font-size: 5rem;
+  font-size: 2rem;
   line-height: 0.5;
-  padding-right: 4rem;
+  display: inline-flex;
+  float: right;
 }
 
 @media (max-width: 1024px) {
@@ -568,14 +724,14 @@ body {
 
 .team-title {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 10rem;
+    font-size: 8rem;
     font-weight: 800;
     color: #343434;
     text-transform: uppercase;
     z-index: 0;
     font-optical-sizing: auto;
-    float: right;
-    margin-right: 5%;
+    text-align: right;
+    padding: 0 5%;
 }
 
 .team-title strong {
@@ -585,9 +741,10 @@ body {
 
 .team-title span {
   color: #ff0000;
-  font-size: 5rem;
+  font-size: 2rem;
   line-height: 0.5;
-  padding-right: 4rem;
+  display: inline-flex;
+  float: left;
 }
 
 @media (max-width: 1024px) {
@@ -655,9 +812,11 @@ body {
 
 .vibes-title span {
   color: #ff0000;
-  font-size: 5rem;
+  font-size: 1.5rem;
   line-height: 0.5;
-  padding-right: 4rem;
+  display: inline-flex;
+  float: left;
+  padding-left: 5%;
 }
 
 /* ===== Vibes Section ===== */
@@ -696,8 +855,41 @@ body {
     font-size: 1.5rem;
 }
 
+.header-paragraph .text p {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.header-paragraph p .word {
+  position: absolute;
+  opacity: 0;
+}
+
+.letter {
+  display: inline-flex;
+  position: relative;
+  float: left;
+  transform: translateZ(25px);
+  transform-origin: 50% 50% 25px;
+}
+
+.letter.out {
+  transform: rotateX(90deg);
+  transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.letter.behind {
+  transform: rotateX(-90deg);
+}
+
+.letter.in {
+  transform: rotateX(0deg);
+  transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
 .header-paragraph span {
     color: #ff0000;
+    font-size: 1.75rem;
     font-weight: 500;
 }
 
@@ -1456,7 +1648,7 @@ sl-button::part(label):hover {
 #cta {
   width: 100%;
   height: auto;
-  max-height: 40vh;
+  max-height: 60vh;
   display: flex;
   justify-content: center;
   padding: 0 5%;

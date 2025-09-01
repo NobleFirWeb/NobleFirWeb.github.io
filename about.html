@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
     <head>
         <meta charset="utf-8">
@@ -16,6 +12,20 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
     </head>
     <body>
+
+    <!-- Text Spinner (place near the end of <body> in about.html) -->
+    <a class="text-spinner" href="contact-us.html" aria-label="Go to Contact" data-text="LET’S TALK! • " data-speed="12s">
+        <svg viewBox="0 0 120 120" width="120" height="10" role="img" aria-hidden="true">
+            <defs>
+                <!-- Circle path the text follows -->
+                <path id="spinnerCircle" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"></path>
+            </defs>
+            <text dy="4">
+                <textPath id="spinnerText" href="#spinnerCircle" startOffset="0%"></textPath>
+            </text>
+        </svg>
+    </a>
+
         
     <!-- Navbar -->
     <header class="navbar sticky">
@@ -99,7 +109,7 @@
             <div class="why-circle">
                 <nav class="why-list" aria-label="Reasons">
                     <a href="#mission"><span>[01]</span> THE MISSION</a>
-                    <a href="#expertise"><span>[02]</span> THE EXPERTISE</a>
+                    <a href="#expertise"><span>[02]</span> THE SKILLS</a>
                     <a href="#team"><span>[03]</span> THE TEAM</a>
                     <a href="#vibes"><span>[04]</span> THE VIBES</a>
                 </nav>
@@ -118,7 +128,7 @@
             <div class="appendix-card" id="card2">
                 <a href="#expertise" class="row-text">
                     <div class="card-number">[02]</div>
-                    <p class="card-text">The Expertise</p>
+                    <p class="card-text">The Skills</p>
                 </a>
             </div>
             <div class="appendix-card" id="card3">
@@ -141,10 +151,10 @@
 
         <div class="section-header">
             <p class="header-paragraph">
-                We’re Noble Fir — small, intentional, and built for impact.
+                We’re Noble Fir — small, intentional, and <strong>built for impact</strong>.
             </p>
             <p class="header-paragraph">
-                Our process is personal, our standards are high, and our mission is your success. We help businesses cut through the noise and make their mark online — with sharp design, clean code, and relentless focus.
+                Our process is personal, our standards are high, and our mission is your success. We help businesses cut through <span>the noise</span> and make their mark online — with sharp design, clean code, and relentless focus.
             </p>
         </div>
 
@@ -154,7 +164,7 @@
                     Our mission is to empower businesses with innovative digital tools and custom web solutions that inspire growth and visibility. We are committed to delivering strategic design and development services that help our clients stand out, connect with their audience, and thrive in an ever-evolving online world.
                 </p>
                 <p>
-                    We don’t just build websites—we build opportunities. Every project begins with a conversation, where we listen to your goals, understand your brand, and craft tailored digital experiences that work for you. Our approach blends design, functionality, and strategy, ensuring each solution not only looks great but also performs seamlessly across all platforms. From local entrepreneurs to growing enterprises, we provide the framework and support businesses need to compete and grow online with confidence.
+                    We don’t just build websites — we build opportunities. Every project begins with a conversation, where we listen to your goals, understand your brand, and craft tailored digital experiences that work for you. Our approach blends design, functionality, and strategy, ensuring each solution not only looks great but also performs seamlessly across all platforms. From local entrepreneurs to growing enterprises, we provide the framework and support businesses need to compete and grow online with confidence.
                 </p>
             </div>
             <div class="mission-image" slide-left="true">
@@ -174,10 +184,28 @@
                 </button>
             </div>
         </div>
+        <div class="mission-content3">
+            <div class="global-container" data-rise="true">
+                <div class="global1">
+                    <h2 class="global-title" slide-right="true">
+                        Local Feel
+                        <div class="divider"></div>
+                    </h2>
+                    <p class="global-text">
+                        Based in the Pacific Northwest, we’re proud to serve our community of local businesses, startups, and entrepreneurs. But <span>our reach is global</span> — we’ve worked with clients across the U.S. and around the world.
+                </div>
+                <div class="global2">
+                    <h2 class="global-subtitle" slide-left="true">
+                        Global Reach
+                    </h2>
+                    <div class="divider"></div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="expertise" id="expertise">
-        <h1 class="expertise-title" slide-right="true"><span>[02]</span>The Expertise<strong>*</strong></h1>
+        <h1 class="expertise-title" slide-right="true">The Skills<strong>*</strong><span>[02]</span></h1>
     </section>
 
     <section class="team" id="team">
@@ -188,9 +216,18 @@
         <h1 class="vibes-title" data-rise="true"><span>[04]</span>The Vibes<strong>*</strong></h1>
 
         <div class="section-header">
-            <p class="header-paragraph">
-                At Noble Fir, the Vibes are <span>HIGH</span>.
-            </p>
+            <div class="header-paragraph">
+                <div class="text">
+                    <p>
+                        At Noble Fir, the Vibes are
+                    </p> 
+                    <p>
+                        <span class="word">HIGH.</span>
+                        <span class="word">POPPIN.</span>
+                        <span class="word">FORWARD.</span>
+                    </p>
+                </div>
+            </div>
             <p class="header-paragraph">
                 lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
@@ -480,53 +517,98 @@
         // ===== Vibes behavior =====
         (function () {
             const header = document.querySelector('.navbar');
-            const vibes = document.querySelector('#vibes');
             const rail = document.querySelector('.vibes-nav');
-            if (!vibes || !rail) return;
+            if (!rail) return;
 
             // keep scroll offset correct vs actual navbar height
             function setNavHeightVar() {
                 const h = header ? header.offsetHeight : 100;
                 document.documentElement.style.setProperty('--nav-h', h + 'px');
+                // also update observer (rootMargin depends on header height)
+                rebuildObservers(h);
             }
+            let currentHeaderH = 0;
+
+            // Elements we care about (#vibe-1 ... #vibe-4)
+            const vibeIds = ['#vibe-1', '#vibe-2', '#vibe-3', '#vibe-4'];
+            const vibeEls = vibeIds.map(id => document.querySelector(id)).filter(Boolean);
+
+            // --- helpers ---
+            function isFullyInViewport(el, headerH) {
+                const r = el.getBoundingClientRect();
+                const vh = window.innerHeight || document.documentElement.clientHeight;
+                return (r.top >= headerH) && (r.bottom <= vh);
+            }
+
+            // Track visibility ratios per row
+            const visRatio = new Map(vibeEls.map(el => [el.id, 0]));
+
+            let showObs, activeObs;
+            const thresholds = [0, 0.25, 0.5, 0.6, 0.75, 0.9, 1];
+
+            function rebuildObservers(headerH) {
+                currentHeaderH = headerH;
+                if (showObs) { showObs.disconnect(); }
+                if (activeObs) { activeObs.disconnect(); }
+
+                // SHOW/HIDE observer — use generous thresholds + header offset
+                showObs = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach(e => {
+                            const fullFitPossible = e.boundingClientRect.height <= (window.innerHeight - headerH);
+                            // true-full if it actually fits and is within viewport bounds
+                            const isTrulyFull = fullFitPossible && isFullyInViewport(e.target, headerH);
+
+                            // Otherwise, fall back to a strong ratio (>= 0.6) meaning "you're on this card"
+                            const ratio = (e.intersectionRect.height / e.boundingClientRect.height);
+                            visRatio.set(e.target.id, Math.max(0, Math.min(1, ratio)));
+
+                            // Decide visibility for this target
+                            const rowCountsAsVisible = isTrulyFull || ratio >= 0.6;
+                            visRatio.set(e.target.id, rowCountsAsVisible ? 1 : ratio);
+                        });
+
+                        // Show rail if ANY vibe row qualifies as visible
+                        const anyVisible = [...visRatio.values()].some(v => v === 1 || v >= 0.6);
+                        rail.classList.toggle('is-visible', anyVisible);
+                    },
+                    {
+                        root: null,
+                        // Pull the top boundary down by the header height so content under header still "counts"
+                        rootMargin: `-${headerH}px 0px 0px 0px`,
+                        threshold: thresholds
+                    }
+                );
+
+                vibeEls.forEach(el => showObs.observe(el));
+
+                // ACTIVE state observer — highlight the mostly visible row
+                const navItems = [...rail.querySelectorAll('.vibes-nav-list li')];
+                activeObs = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach(e => {
+                            if (!e.isIntersecting) return;
+                            const id = '#' + e.target.id;
+                            navItems.forEach(li => {
+                                const btn = li.querySelector('button');
+                                const active = btn?.getAttribute('data-target') === id;
+                                li.classList.toggle('active', !!active);
+                                if (btn) btn.setAttribute('aria-current', active ? 'true' : 'false');
+                            });
+                        });
+                    },
+                    {
+                        root: null,
+                        rootMargin: `-${headerH}px 0px 0px 0px`,
+                        threshold: 0.55
+                    }
+                );
+                vibeEls.forEach(r => activeObs.observe(r));
+            }
+
+            // initial build + on resize
             setNavHeightVar();
             window.addEventListener('resize', setNavHeightVar);
-
-            // show the right rail only while #vibes is on screen
-            const showObs = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach(e => {
-                        if (e.isIntersecting) {
-                            rail.classList.add('is-visible');
-                        } else {
-                            rail.classList.remove('is-visible');
-                        }
-                    });
-                },
-                { root: null, threshold: 0.01 }
-            );
-            showObs.observe(vibes);
-
-            // highlight active item based on which row is centered
-            const rows = [...vibes.querySelectorAll('.vibe-row')];
-            const navItems = [...rail.querySelectorAll('.vibes-nav-list li')];
-
-            const activeObs = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach(e => {
-                        if (!e.isIntersecting) return;
-                        const id = '#' + e.target.id;
-                        navItems.forEach(li => {
-                            const btn = li.querySelector('button');
-                            const active = btn.getAttribute('data-target') === id;
-                            li.classList.toggle('active', active);
-                            btn.setAttribute('aria-current', active ? 'true' : 'false');
-                        });
-                    });
-                },
-                { root: null, threshold: 0.55 } // "mostly in view"
-            );
-            rows.forEach(r => activeObs.observe(r));
 
             // smooth scroll with navbar offset
             rail.addEventListener('click', (e) => {
@@ -535,14 +617,15 @@
                 const target = document.querySelector(btn.dataset.target);
                 if (!target) return;
 
-                const headerH = header ? header.offsetHeight : 100;
-                const y = target.getBoundingClientRect().top + window.scrollY - headerH;
+                const y = target.getBoundingClientRect().top + window.scrollY - currentHeaderH;
                 window.scrollTo({ top: y, behavior: 'smooth' });
             });
         })();
     </script>
+
         
         <script src="./js/index.js" async defer></script>
+        <script src="./js/about.js" async defer></script>
         <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
 
 </body>

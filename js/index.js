@@ -2,7 +2,6 @@
 
 
 
-
 // Wait for DOM
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -186,6 +185,5 @@ function updateTabPlacement() {
 
 window.addEventListener('resize', updateTabPlacement);
 window.addEventListener('DOMContentLoaded', updateTabPlacement);
-
 
 
