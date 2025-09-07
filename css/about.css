@@ -748,7 +748,6 @@ body {
   grid-template-columns: 1.15fr 0.85fr;
   gap: clamp(24px, 4vw, 48px);
   margin: 0 5%;
-  min-height: 90vh;
 }
 
 /* LEFT — list */
@@ -883,6 +882,51 @@ body {
   color: #ff0000;
 }
 
+.stats-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3%;
+  padding: 20px;
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 60px 5%;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.stats-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stat-box {
+  text-align: center;
+  padding: 20px;
+}
+.stat-box h2 {
+  font-size: 4.25rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.stat-box p {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  color: #fff;
+}
+.divider {
+  width: 1px;
+  height: auto;
+  min-height: 100px;
+  max-height: 175px;
+  background: #bdbdbd;
+  opacity: 0.5;
+}
 
 
 @media (max-width: 1024px) {
@@ -926,6 +970,12 @@ body {
     max-width: 100%;
     margin: 0 5%;
   }
+  .stats-container {
+  gap: 30px;
+}
+  .divider {
+  display: none;
+}
 }
 
 @media (max-width: 768px) {
@@ -1411,171 +1461,7 @@ body {
 
 
 
-      /*
-    .about-statement-header {
-      font-family: "Inter", sans-serif;
-      font-optical-sizing: auto;
-      font-weight: 300;
-      color: #000;
-    }
-
-    .about-statement {
-      max-width: 100%;
-      font-family: "Inter", sans-serif;
-      font-optical-sizing: auto;
-      font-weight: 300;
-      color: #000;
-      margin-top: 15px;
-    }
-
-    .about-btn {
-      display: block;
-      background-color: none;
-      text-decoration: none;
-      background-color: transparent;
-      border: none;
-      align-self: first baseline;
-  }
-
-    .about-btn a {
-      position: relative;
-      display: inline-block;
-      padding: 15px 30px;
-      border: 1.25px solid #000;
-      font-family: "Inter", sans-serif;
-      text-transform: uppercase;
-      color: #000;
-      text-decoration: none;
-      font-weight: 400;
-      font-size: 1rem;
-      transition: color 0.25s ease-in-out;
-  }
-
-    .about-btn a:hover {
-      background-color: #000;
-      border: 1.25px solid #fff;
-      color: #fff;
-  }
-
-  .who-we-are-container {
-    width: 660px;
-    height: 100%;
-    max-height: 600px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-    float: right;
-    margin-right: 7%;
-    transform: translateY(-30%);
-  }
-
-  .who-we-are-img {
-    width: 100%;
-    height: auto;
-    max-height: 100%;
-    object-fit: cover center !important;
-    display: block;
-  }
-
-  .mission-header,
-  .vision-header {
-    position: relative;
-    width: 100vw;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.mission-header .header-card,
-.vision-header .header-card {
-    background-color: #EDEDED;
-    min-width: 33%;
-    max-width: 33%;
-    padding: 0 5%;
-    box-sizing: border-box;
-    margin-top: 0;
-    z-index: 0;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.mission-title,
-.vision-title {
-    font-size: 2.625rem;
-    font-family: "Space Grotesk", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    color: #000;
-}
-
-.mission-subtitle,
-.vision-subtitle {
-    margin: 0 5%;
-    font-family: "Inter", sans-serif;
-    font-weight: 300;
-    color: #000000;
-}
-
-.vision-header {
-  margin-top: 90px;
-}
-
-
-
-.stats-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 3%;
-  padding: 20px;
-  background: transparent;
-  border-top: 1px solid #ededed;
-  border-bottom: 1px solid #ededed;
-  margin: 0 5%;
-  margin-top: 80px;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.stats-container.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.stat-box {
-  text-align: center;
-  padding: 20px;
-}
-.stat-box h2 {
-  font-size: 4.25rem;
-  font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  color: #000;
-  margin-bottom: 10px;
-}
-.stat-box p {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  color: #000;
-}
-.divider {
-  width: 1px;
-  height: auto;
-  min-height: 100px;
-  max-height: 175px;
-  background: #bdbdbd;
-  opacity: 0.5;
-}
-
-
+/*
 #our-process {
     min-height: 50vh;
     margin-top: 60px;
