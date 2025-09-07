@@ -72,3 +72,73 @@ function splitLetters(word) {
 
 changeWord();
 setInterval(changeWord, 3000);
+
+
+(function(){
+  const section = document.querySelector('#skills');
+  if (!section) return;
+
+  const items = Array.from(section.querySelectorAll('.skill'));
+  const img   = section.querySelector('#skills-image');
+
+  if (!items.length || !img) return;
+
+  function activate(item){
+    items.forEach(li => {
+      const isActive = li === item;
+      li.classList.toggle('skill--active', isActive);
+      const btn = li.querySelector('.skill__row');
+      if (btn) btn.setAttribute('aria-expanded', String(isActive));
+    });
+
+    const url = item.getAttribute('data-img');
+    const alt = item.getAttribute('data-alt') || '';
+    if (url) {
+      img.style.opacity = 0;
+      const preload = new Image();
+      preload.onload = () => {
+        img.src = url;
+        img.alt = alt;
+        img.style.opacity = 1;
+      };
+      preload.src = url;
+    }
+  }
+
+  // init: ensure one active (first has skill--active in HTML)
+  const initial = items.find(li => li.classList.contains('skill--active')) || items[0];
+  if (initial) activate(initial);
+
+  items.forEach(li => {
+    const btn = li.querySelector('.skill__row');
+    if (!btn) return;
+
+    // Hover and focus activate
+    btn.addEventListener('mouseenter', () => activate(li));
+    btn.addEventListener('focus', () => activate(li));
+
+    // Click also locks selection
+    btn.addEventListener('click', () => activate(li));
+  });
+
+  // Arrow key navigation for accessibility
+  const list = section.querySelector('.skills__ul');
+  list.addEventListener('keydown', (e) => {
+    const keys = ['ArrowUp','ArrowDown','Home','End'];
+    if (!keys.includes(e.key)) return;
+    e.preventDefault();
+
+    const current = items.findIndex(li => li.classList.contains('skill--active'));
+    let idx = current;
+
+    if (e.key === 'ArrowDown') idx = Math.min(items.length - 1, current + 1);
+    if (e.key === 'ArrowUp')   idx = Math.max(0, current - 1);
+    if (e.key === 'Home')      idx = 0;
+    if (e.key === 'End')       idx = items.length - 1;
+
+    const target = items[idx];
+    activate(target);
+    const btn = target.querySelector('.skill__row');
+    if (btn) btn.focus();
+  });
+})();

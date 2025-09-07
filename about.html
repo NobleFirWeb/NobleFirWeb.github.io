@@ -15,7 +15,7 @@
 
     <!-- Text Spinner (place near the end of <body> in about.html) -->
     <a class="text-spinner" href="contact-us.html" aria-label="Go to Contact" data-text="LET’S TALK! • " data-speed="12s">
-        <svg viewBox="0 0 120 120" width="120" height="10" role="img" aria-hidden="true">
+        <svg viewBox="0 0 120 120" width="120" height="120" role="img" aria-hidden="true">
             <defs>
                 <!-- Circle path the text follows -->
                 <path id="spinnerCircle" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"></path>
@@ -175,7 +175,7 @@
             <div class="mission-image" data-rise="true">
                 <img src="./img/service1.jpg" alt="Mission Image">
             </div>
-            <div class="mission-text text2">
+            <div class="mission-text text2" data-rise="true">
                 <p>
                     We envision a digital landscape where every business—regardless of size—has access to high-quality, customized web experiences that reflect their unique identity and goals. As we grow, we remain committed to building lasting partnerships rooted in transparency, creativity, and performance. Whether launching a new venture or evolving an existing brand, our goal is to be the go-to ally businesses turn to when they’re ready to scale, stand out, and succeed online with confidence.
                 </p>
@@ -185,20 +185,19 @@
             </div>
         </div>
         <div class="mission-content3">
-            <div class="global-container" data-rise="true">
+            <div class="global-container">
                 <div class="global1">
                     <h2 class="global-title" slide-right="true">
-                        Local Feel
-                        <div class="divider"></div>
+                        Local Feels
                     </h2>
-                    <p class="global-text">
+                    <p class="global-text" data-rise="true">
                         Based in the Pacific Northwest, we’re proud to serve our community of local businesses, startups, and entrepreneurs. But <span>our reach is global</span> — we’ve worked with clients across the U.S. and around the world.
+                    </p>
                 </div>
                 <div class="global2">
                     <h2 class="global-subtitle" slide-left="true">
-                        Global Reach
+                        Global Reach<span>.</span>
                     </h2>
-                    <div class="divider"></div>
                 </div>
             </div>
         </div>
@@ -206,6 +205,173 @@
 
     <section class="expertise" id="expertise">
         <h1 class="expertise-title" slide-right="true">The Skills<strong>*</strong><span>[02]</span></h1>
+        <div class="section-header">
+            <div class="header-paragraph">
+                <div class="text">
+                    <p>
+                        What does Noble Fir bring to the table?
+                    </p>
+                    <p>
+                        A progressive fusion of bold design, clean code, and strategy — built to bring your vision to life.
+                    </p>
+                    <p class="subtext">
+                        We stay ahead of the curve by embracing the latest technologies and design trends - not because we're trendy, but because we want your product to withstand the test of time. We craft digital experiences that are as future-ready as they are functional, ensuring longevity and relevance in a fast-paced and ever-changing digital landscape.
+                    </p>
+                </div>
+                <button class="about-btn">
+                    <a href="contact-us.html">Let's Talk</a>
+                </button>
+            </div>
+        </div>
+
+        <div class="skills" id="skills">
+            <div class="skills__inner">
+            
+                <!-- LEFT: Skills / Expertise list -->
+                <aside class="skills__list" aria-label="Expertise & Skills">
+                    <ul class="skills__ul">
+                        <li class="skill skill--active"
+                            data-img="./img/skill1.png"
+                            data-alt="End-to-end delivery preview">
+                            <button class="skill__row" type="button" aria-expanded="true">
+                                <span class="skill__number">01</span>
+                                <span class="skill__title">Conversion-Driven Design</span>
+                            </button>
+                            <div class="skill__details" role="region" aria-label="End-to-End Product Delivery details">
+                                <p>
+                                    We design with purpose — every pixel and interaction is mapped to a measurable outcome. By combining tools like
+                                    <strong>Figma</strong>, <strong>Adobe XD</strong>, and <strong>Illustrator</strong>, we create interfaces that not only
+                                    look
+                                    sharp but guide users toward action. It’s not just design, it’s design that converts.
+                                </p>
+                            </div>
+                        </li>
+            
+                        <li class="skill"
+                            data-img="./img/skill2.png"
+                            data-alt="Creative design preview">
+                            <button class="skill__row" type="button" aria-expanded="false">
+                                <span class="skill__number">02</span>
+                                <span class="skill__title">Cutting-Edge Development</span>
+                            </button>
+                            <div class="skill__details" role="region" aria-label="Creative Design Solutions details">
+                                <p>
+                                    Our codebase is built with tomorrow in mind. We stay ahead of the curve by leveraging modern frameworks like
+                                    <strong>React</strong>, <strong>Next.js</strong>, and <strong>Node.js</strong>, paired with toolchains like
+                                    <strong>Vite</strong> and <strong>Webpack</strong>. The result? Products that are faster, leaner, and ready to scale.
+                                </p>
+                            </div>
+                        </li>
+            
+                        <li class="skill"
+                            data-img="./img/skill3.png"
+                            data-alt="Mobile app development preview">
+                            <button class="skill__row" type="button" aria-expanded="false">
+                                <span class="skill__number">03</span>
+                                <span class="skill__title">Interactive Storytelling</span>
+                            </button>
+                            <div class="skill__details" role="region" aria-label="Mobile App Development details">
+                                <p>
+                                    We transform static websites into experiences that tell your story. Using motion libraries like
+                                    <strong>GSAP</strong>, <strong>Framer Motion</strong>, and micro-animation frameworks like <strong>Lottie</strong>,
+                                    we weave in moments of delight that make your brand unforgettable.
+                                </p>
+                            </div>
+                        </li>
+            
+                        <li class="skill"
+                            data-img="./img/skill4.png"
+                            data-alt="Web app development preview">
+                            <button class="skill__row" type="button" aria-expanded="false">
+                                <span class="skill__number">04</span>
+                                <span class="skill__title">Mobile Development</span>
+                            </button>
+                            <div class="skill__details" role="region" aria-label="Web App Development details">
+                                <p>
+                                    Mobile-first isn’t a buzzword, it’s our standard. With frameworks like <strong>React Native</strong> and
+                                    <strong>Expo</strong>, paired with testing tools such as <strong>Jest</strong> and <strong>Detox</strong>, we build
+                                    apps that feel at home on iOS and Android — seamless, intuitive, and lightning fast.
+                                </p>
+                            </div>
+                        </li>
+            
+                        <li class="skill"
+                            data-img="./img/skill5.png"
+                            data-alt="AI & ML solutions preview">
+                            <button class="skill__row" type="button" aria-expanded="false">
+                                <span class="skill__number">05</span>
+                                <span class="skill__title">Frontend Expertise</span>
+                            </button>
+                            <div class="skill__details" role="region" aria-label="Custom AI + ML Solutions details">
+                                <p>
+                                    We own the frontend. From <strong>responsive design</strong> and <strong>HTML5 semantic markup</strong> to scalable
+                                    styling systems like <strong>CSS3</strong>, <strong>Sass</strong>, and <strong>Tailwind</strong>, we bring ideas to life
+                                    with <strong>JavaScript (ES6+)</strong> and modern frameworks like <strong>React</strong>. Our builds are optimized for
+                                    <strong>performance</strong>, tested across browsers, and engineered to be both beautiful and bulletproof.
+                                </p>
+                            </div>
+                        </li>
+            
+                        <li class="skill"
+                            data-img="./img/skill6.png"
+                            data-alt="Data engineering preview">
+                            <button class="skill__row" type="button" aria-expanded="false">
+                                <span class="skill__number">06</span>
+                                <span class="skill__title">Backend Infrastructure</span>
+                            </button>
+                            <div class="skill__details" role="region" aria-label="Data Engineering & Governance details">
+                                <p>
+                                    Behind every great interface is an engine built to last. We architect backend systems with <strong>Node.js</strong>
+                                    and <strong>Express</strong>, structured with databases like <strong>MySQL</strong>, <strong>PostgreSQL</strong>, and
+                                    <strong>MongoDB</strong>. APIs? We build and integrate with <strong>REST</strong> and <strong>GraphQL</strong>.
+                                    Authentication is secured with <strong>OAuth</strong> and <strong>JWT</strong>. For content, we empower teams with
+                                    headless CMS solutions like <strong>Strapi</strong>, <strong>Sanity</strong>, and <strong>Contentful</strong>. Hosting
+                                    lives on <strong>AWS</strong>, <strong>Azure</strong>, or <strong>Vercel</strong>, tied together with automated
+                                    pipelines
+                                    via <strong>GitHub Actions</strong>.
+                                </p>
+                            </div>
+                        </li>
+            
+                        <li class="skill"
+                            data-img="./img/skill7.png"
+                            data-alt="Cloud solutions preview">
+                            <button class="skill__row" type="button" aria-expanded="false">
+                                <span class="skill__number">07</span>
+                                <span class="skill__title">Communication & Transparency</span>
+                            </button>
+                            <div class="skill__details" role="region" aria-label="Comprehensive Cloud Solutions details">
+                                <p>
+                                    That's right, our skills stretch far beyond the technical realm. We're all about keeping things clear and
+                                    straightforward. No BS, no smoke and mirrors—just honest, open communication every step of the way. Clear processes,
+                                    regular updates, and honest feedback keep everything on track and stress-free.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+            
+                <!-- RIGHT: Heading + subtext + preview image -->
+                <div class="skills__hero">
+                    <header class="skills__head">
+                        <h2 class="skills__heading">Creative firepower & <span>technical precision</span></h2>
+                        <p class="skills__sub">
+                            Like you, we're here to build solutions that we can be <span>proud</span> of. That's why we design with your customers in mind and develop with your business goals at heart. 
+                        </p>
+                        <p class="skills__sub">
+                            We’re not here to sell templates — we’re here to build partnerships. With us, you get a team that sweats the details, stands behind the work, and <span>strives for excellence</span> in everything we do. Every decision — from layout to code — is made to deliver a site that wins.
+                        </p>
+                    </header>
+            
+                    <figure class="skills__figure">
+                        <img id="skills-image"
+                            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop"
+                            alt="End-to-end delivery preview" />
+                    </figure>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <section class="team" id="team">
@@ -224,7 +390,7 @@
                     <p>
                         <span class="word">HIGH.</span>
                         <span class="word">POPPIN.</span>
-                        <span class="word">FORWARD.</span>
+                        <span class="word">LIT.</span>
                     </p>
                 </div>
             </div>

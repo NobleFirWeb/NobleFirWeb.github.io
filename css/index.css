@@ -21,8 +21,8 @@ body {
 /* ===== Text Spinner ===== */
 .text-spinner {
     position: fixed;
-    bottom: 0;
-    right: 24px;
+    bottom: 10px;
+    left: 10px;
     z-index: 9999;
     display: inline-block;
     cursor: pointer;
@@ -47,6 +47,10 @@ body {
     letter-spacing: 4px;
     fill: #ffffff;
     /* white text */
+}
+
+.text-spinner text:hover {
+    color: #ff0000;
 }
 
 /* Accessibility: respect reduced motion */
