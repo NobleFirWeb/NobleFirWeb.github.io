@@ -261,9 +261,7 @@ body {
     font-size: 110px; 
   }
   .text-spinner {
-    font-size: 1rem;   /* Even smaller for mobile */
-    bottom: 0;
-    left: 0;
+    display: none;
   }
 }
 
@@ -442,8 +440,9 @@ body {
   flex-direction: column;
   justify-content: center;
   gap: 30px;
-  font-size: 1.5rem;
-  color: #a6a6a6;
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  color: var(--muted);
   padding: 0 100px;
 }
 
@@ -515,10 +514,15 @@ body {
 .global1 .global-title{
   font-size: 7rem;
   font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600;
+  font-weight: 200;
   justify-content: flex-start;
   align-items: flex-start;
-  color: #fff;
+  color: #0f0e0f;
+  text-shadow:
+    2px 2px 0 var(--nf-gray),
+    -2px -2px 0 var(--nf-gray),
+    2px -2px 0 var(--nf-gray),
+    -2px 2px 0 var(--nf-gray);
 }
 
 .global1 .global-title span {
@@ -627,7 +631,7 @@ body {
   }
   .mission-title span {
   font-size: 1.75rem;
-  padding-right: 1rem;
+  padding-right: 0;
   }
   .mission .section-header {
     width: 100%;
@@ -667,10 +671,15 @@ body {
     gap: 20%;
   }
   .global1 .global-title {
-    font-size: 3.5rem;
+    font-size: 3rem;
+    text-shadow:
+    1px 1px 0 var(--nf-gray),
+    -1px -1px 0 var(--nf-gray),
+    1px -1px 0 var(--nf-gray),
+    -1px 1px 0 var(--nf-gray);
   }
   .global2 .global-subtitle {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
 }
 
@@ -855,7 +864,7 @@ body {
 .skills__sub{
   font-family: "Inter", system-ui, sans-serif;
   color: var(--muted);
-  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
   line-height: 1.6;
   margin: 0;
   padding-top: 10px 0;
@@ -882,50 +891,101 @@ body {
   color: #ff0000;
 }
 
-.stats-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 3%;
-  padding: 20px;
-  background: transparent;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  margin: 60px 5%;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+/* -- Stats section -- */
+:root{
+  --nf-bg: #0f0e0f;
+  --nf-red: #ff0000;
+  --nf-white: #ffffff;
+  --nf-muted: #a6a6a6;
+  /* ensure this exists elsewhere; fallback provided */
+  --nav-h: 100px;
 }
-.stats-container.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.stat-box {
-  text-align: center;
-  padding: 20px;
-}
-.stat-box h2 {
-  font-size: 4.25rem;
-  font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  color: #fff;
-  margin-bottom: 10px;
-}
-.stat-box p {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  color: #fff;
-}
-.divider {
-  width: 1px;
+
+.nf-stats{
+  position: relative;
+  width: 100vw;
   height: auto;
-  min-height: 100px;
-  max-height: 175px;
-  background: #bdbdbd;
-  opacity: 0.5;
+  min-height: 60vh;
+  background: var(--nf-bg);
+  color: var(--nf-white);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  margin-top: 10%;
+  box-sizing: border-box;
+}
+
+.nf-stats__inner{
+  width: 75%;
+  min-height: 30vh;
+  height: auto;
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.nf-stats__grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20%;
+}
+
+/* Single stat */
+.nf-stat__value {
+  font-weight: 800;
+  line-height: 1.1;
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.5px;
+  font-size: clamp(64px, 12vw, 150px);
+  color: var(--nf-red);
+}
+
+.nf-stat__label{
+  margin-top: 10px;
+  font-size: clamp(14px, 1.1vw, 1rem);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Cascadia Mono",
+    "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", monospace;
+  letter-spacing: 0.6px;
+  color: var(--nf-muted);
+  text-transform: uppercase;
+}
+
+/* Huge background word */
+.nf-stats__bg{
+  position: absolute;
+  left: -2.5vw;
+  top: 0;
+  display: grid;
+  font-weight: 700;
+  line-height: 0.8;
+  text-transform: uppercase;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(240px, 50vw, 30rem);
+  color: #ffffff;
+  opacity: 0.03;
+  user-select: none;
+  pointer-events: none;
+  transform: translateY(2%);
+}
+
+
+.nf-stats__inner::before,
+.nf-stats__inner::after{
+  content: "";
+  display: block;
+}
+
+/* If your site uses a different base font, this keeps weighty numerals crisp */
+.nf-stat__value,
+.nf-stats__bg{
+  font-family: "Syne", "Anton", "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Prevent accidental image/child overflow in cards */
+.nf-stat{
+  isolation: isolate;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 
@@ -970,12 +1030,32 @@ body {
     max-width: 100%;
     margin: 0 5%;
   }
-  .stats-container {
-  gap: 30px;
-}
-  .divider {
-  display: none;
-}
+  .nf-stats__inner {
+    width: 94vw;
+    padding: 40px 20px;
+  }
+
+  /* 2 columns on tablet */
+  .nf-stats__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    justify-items: center;
+  }
+
+  .nf-stat__value {
+    font-size: clamp(56px, 18vw, 100px);
+  }
+
+  .nf-stat__label {
+    font-size: 12px;
+  }
+
+  .nf-stats__bg {
+    /* keep the big word calm on smaller screens */
+    font-size: clamp(200px, 60vw, 22rem);
+    opacity: 0.04;
+    transform: translateY(50%);
+  }
 }
 
 @media (max-width: 768px) {
@@ -984,7 +1064,7 @@ body {
   }
   .expertise-title span {
   font-size: 1.75rem;
-  padding-right: 1rem;
+  padding-right: 0;
   }
   .expertise .section-header {
     padding-left: 0;
@@ -995,6 +1075,25 @@ body {
   }
   .skills__figure { 
     display: none; 
+  }
+  .nf-stats {
+    margin-top: 10vh;
+  }
+  .nf-stats__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .nf-stat {
+    width: 100%;
+    padding-block: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .nf-stat:last-child {
+    border-bottom: 0;
+  }
+  .nf-stats__bg {
+    font-size: clamp(150px, 70vw, 16rem);
+    transform: translateY(-5%);
   }
 }
 
@@ -1011,8 +1110,22 @@ body {
   font-size: 1.5rem;
   padding-right: 0.75rem;
   }
+  .skills__sub {
+    margin-top: 10px;
+  }
   .skill__details{
   padding-left: 7%;
+  }
+  .nf-stats {
+    height: 90vh;
+    margin-top: 5vh;
+  }
+  .nf-stats__bg {
+    font-size: clamp(120px, 80vw, 8rem);
+    transform: translateY(15vh);
+  }
+  .nf-stat__value {
+    font-size: clamp(48px, 20vw, 3.5rem);
   }
 }
 
@@ -1912,12 +2025,7 @@ sl-button::part(label):hover {
 
 /*
 @media only screen and (max-width: 1024px) {
-.stats-container {
-  gap: 30px;
-}
-  .divider {
-  display: none;
-}
+
 
 
   .process-container {

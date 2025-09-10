@@ -102,41 +102,6 @@ slideElements.forEach(el => slideObserver.observe(el));
     });
   });
 
-  /*** COUNTER ANIMATION ***/
-  const statsSection = document.getElementById("statsSection");
-  const counters = document.querySelectorAll(".counter");
-  let counterAnimated = false;
-
-  if (statsSection && counters.length) {
-    const statObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !counterAnimated) {
-          statsSection.classList.add("visible");
-          counters.forEach(counter => {
-            const target = +counter.getAttribute("data-target");
-            const suffix = counter.getAttribute("data-suffix") || "";
-            let value = 0;
-            const step = target / 100;
-            const increment = () => {
-              value += step;
-              if (value < target) {
-                counter.textContent = `${Math.ceil(value)}${suffix}`;
-                setTimeout(increment, 30);
-              } else {
-                counter.textContent = `${target}${suffix}`;
-              }
-            };
-            increment();
-          });
-          counterAnimated = true;
-        }
-      });
-    }, { threshold: 0.5 });
-    statObserver.observe(statsSection);
-  }
-
-
-
 
 
   /*** Shoelace FAQs - one open at a time ***/

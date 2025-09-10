@@ -142,3 +142,70 @@ setInterval(changeWord, 3000);
     if (btn) btn.focus();
   });
 })();
+
+// Counter functionality
+(() => {
+  const statsSection =
+    document.getElementById("statsSection") || document.getElementById("stats");
+  const counters = document.querySelectorAll(".counter");
+  if (!statsSection || !counters.length) return;
+
+  let hasAnimated = false;
+
+  // Format numbers with commas when requested
+  const formatNumber = (n, useCommas) =>
+    useCommas ? n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : n.toString();
+
+  const animateCounter = (el) => {
+    // Backward compatible: data-count-to (preferred) OR data-target
+    const target =
+      Number(el.getAttribute("data-count-to") ?? el.getAttribute("data-target")) || 0;
+
+    const suffix = el.getAttribute("data-suffix") ?? "";
+    const prefix = el.getAttribute("data-prefix") ?? "";
+    const useCommas = (el.getAttribute("data-format") || "").toLowerCase() === "commas";
+    // Default to 2000ms if not provided
+    const duration = Math.max(300, Number(el.getAttribute("data-duration")) || 2000);
+
+    const startTime = performance.now();
+    const startVal = 0;
+
+    const step = (now) => {
+      const t = Math.min(1, (now - startTime) / duration);
+      // Ease-out cubic for a nice finish
+      const eased = 1 - Math.pow(1 - t, 3);
+      const current = Math.round(startVal + (target - startVal) * eased);
+
+      el.textContent = `${prefix}${formatNumber(current, useCommas)}${suffix}`;
+
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        // Ensure exact final value
+        el.textContent = `${prefix}${formatNumber(target, useCommas)}${suffix}`;
+      }
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          statsSection.classList.add("visible");
+          counters.forEach(animateCounter);
+          hasAnimated = true;
+          obs.disconnect(); // don’t run again
+        }
+      });
+    },
+    {
+      threshold: 0.5, // roughly half the section in view
+      root: null,
+      rootMargin: "0px",
+    }
+  );
+
+  observer.observe(statsSection);
+})();
