@@ -1,0 +1,317 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300&display=swap');
+
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #0f0e0f;
+}
+
+/* ===== Text Spinner ===== */
+.text-spinner {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 9999;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    --spin-duration: 12s;
+}
+
+.text-spinner svg {
+    display: block;
+    transform-origin: 50% 50%;
+    animation: spin var(--spin-duration) linear infinite;
+    transition: transform 200ms ease;
+}
+
+.text-spinner:hover svg {
+    transform: rotate(0deg) scale(1.04);
+    animation-play-state: running;
+}
+
+.text-spinner text {
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    fill: #ffffff;
+    /* white text */
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .text-spinner svg {
+        animation: none;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+:root {
+  --nf-black: #0f0e0f;
+  --nf-grey: #a6a6a6;
+  --nf-white: #ffffff;
+  --nf-red: #ff0000;
+}
+
+.policy-hero {
+  margin-top: 15vh;
+  padding: 6rem 5% 2rem;
+  width: 100%;
+}
+
+.policy-hero__content {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.policy-hero h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: clamp(3.5rem, 8vw, 10rem);
+  color: var(--nf-grey);
+  letter-spacing: 0.1rem;
+}
+
+.policy-meta {
+  margin-top: 1rem;
+  color: var(--nf-grey);
+  font-size: 1.25rem;
+  letter-spacing: 0.05rem;
+}
+
+.policy {
+  width: 100%;
+  padding: 1rem 5% 6rem;
+}
+
+.policy__container {
+  max-width: 1200px;              /* centered, comfortable line length */
+  margin: 0 auto;
+  background: var(--nf-black);
+  padding: 2rem 3rem;
+}
+
+.policy.lead {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 1rem 0 2rem;
+  color: #fff;
+}
+
+.policy h2 {
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+  font-size: 1.75rem;
+  color: var(--nf-grey);
+  letter-spacing: 0.03rem;
+  font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+}
+
+.policy h3 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.35rem;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--nf-white);
+}
+
+.policy h3,
+.policy ul {
+    margin-left: 2.5rem;
+}
+
+.policy p,
+.policy li {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #fff;
+  margin-left: 4rem;
+}
+
+.policy ul {
+  margin: 0.5rem 0 1rem 1.2rem;
+}
+
+.contact-block {
+  margin-top: 0.5rem;
+  line-height: 1.8;
+  color: var(--nf-white);
+  margin-left: 4rem;
+}
+
+.policy a {
+  color: var(--nf-white);
+  text-decoration: underline;
+}
+.policy a strong {
+    color: var(--nf-white);
+  text-decoration: underline;
+}
+
+#cta {
+  width: 100%;
+  height: auto;
+  max-height: 60vh;
+  display: flex;
+  justify-content: center;
+  padding: 0 5%;
+  padding-bottom: 10%;
+  margin: 5% 0;
+}
+
+#cta .contact-title1 {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  color: #343434;
+}
+
+#cta .contact-title2 {
+  font-size: 5rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  color: #fff;
+  margin-top: 20px;
+}
+
+#cta .contact-title2 span {
+  font-size: 5rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  color: #ff0000;
+  margin-top: 20px;
+}
+
+#cta p {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  color: #a6a6a6;
+  margin-top: 20px;
+}
+
+#cta .contact-subtitle {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  margin-top: 20px;
+}
+
+#cta .about-btn {
+  display: block;
+  margin-top: 20px;
+}
+
+.about-btn {
+    display: block;
+    align-self: flex-start;
+    text-decoration: none;
+    background-color: #ff0000;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.about-btn a {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    border: 1.25px solid #000;
+    font-family: "Inter", sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.about-btn a:hover {
+    background-color: #000;
+    border: 1.25px solid #fff;
+    color: #fff;
+}
+
+@media (max-width: 1024px) {
+  #cta {
+  width: 100%;
+  height: auto;
+  max-height: 5%;
+}
+}
+
+@media (max-width: 768px) {
+  #cta {
+  max-height: 70vh;
+  margin: 10% auto;
+}
+  #cta .contact-title2, 
+  #cta .contact-title2 span {
+  font-size: 4.75rem;
+}
+}
+
+@media (max-width: 480px) {
+  #cta {
+    margin: 120px auto;
+  }
+  #cta .contact-title2, 
+  #cta .contact-title2 span {
+  font-size: 3.5rem;
+}
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .policy-hero {
+    margin-top: 10vh;
+    padding-top: 5rem;
+  }
+  .policy__container {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-spinner {
+    display: none;
+  }
+  .policy-hero {
+    margin-top: 12vh;
+    padding: 4rem 6% 1rem;
+  }
+  .policy,
+  .policy-hero__content {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .policy__container {
+    max-width: 100%;
+    padding: 0;
+  }
+  .policy h3,
+  .policy ul {
+    margin-left: 0;
+  }
+  .policy li {
+    margin-left: 2rem;
+  }
+}

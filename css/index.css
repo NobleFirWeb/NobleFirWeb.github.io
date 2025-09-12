@@ -1817,6 +1817,9 @@ textarea {
 
 @media (max-width: 480px) {
 
+    .text-spinner {
+        display: none;
+    }
     /*--- Misc Styles ---*/
     .services-title2 sl-icon,
     .portfolio-title2 sl-icon,

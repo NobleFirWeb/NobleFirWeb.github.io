@@ -1329,27 +1329,22 @@ body {
   line-height: 1;
   font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
-  /* scale with viewport height so it spans the column */
   font-size: clamp(16rem, 60vh, 80rem);
-  color: #0f0e0f;           /* make text itself transparent */
-  -webkit-text-stroke: 1px transparent; /* removes ugly borders */
-  
-  /* Shadow gives the “same color as background” effect */
+  color: #0f0e0f;
+  -webkit-text-stroke: 1px transparent;
   text-shadow: 
-    2px 2px 0 #111,   /* dark shadow offset */
-    -2px -2px 0 #111, /* adjust #111 to match your section bg */
+    2px 2px 0 #111,
+    -2px -2px 0 #111,
     2px -2px 0 #111,
     -2px 2px 0 #111;
   transform: rotate(-90deg);
   transform-origin: center;
-  /* make sure it vertically centers nicely */
   margin: 0 auto;
   white-space: nowrap;
   user-select: none;
   pointer-events: none;
 }
 
-/* Color coding for numbers */
 .vibe-gray {
   text-shadow:
     4px 4px 0 var(--nf-gray),
@@ -1381,7 +1376,7 @@ body {
     2px -2px 0 var(--nf-neutral),
     -2px 2px 0 var(--nf-neutral);
 }
-/* Copy */
+
 .vibe-title{
   font-family: "Space Grotesk", sans-serif;
   font-weight: 800;
@@ -1389,7 +1384,7 @@ body {
   color: #fff;
   font-size: clamp(2.25rem, 6vw, 7.5rem);
   letter-spacing: .02em;
-  margin-bottom: .5rem;
+  margin-bottom: 2.5rem;
 }
 
 .vibe-title span {
@@ -1403,7 +1398,7 @@ body {
   color: #a6a6a6;
   font-size: clamp(1rem, 2.2vw, 1.25rem);
   max-width: 52ch;
-  margin: 15px 0;
+  margin: 20px 0;
 }
 
 .vibe-text span {
