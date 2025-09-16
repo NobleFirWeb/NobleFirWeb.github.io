@@ -437,7 +437,14 @@
 /* =======================
     Footer Styles
    ======================= */
-
+:root{
+    --nf-bg:#0f0e0f;
+    --nf-fg:#fff;
+    --nf-gray:#464646;
+    --nf-red:#ff0000;
+    --nf-neutral:#bdbdbd;      /* temp color for 04 */
+    --nav-h: 100px;            /* JS sets this accurately on load/resize */
+}
 /* Footer Styles */
 .nf-footer {
     position: relative;
