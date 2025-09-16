@@ -94,11 +94,98 @@
     </header>
 
     <section class="services-hero">
-        <div class="services-hero-content" data-rise="true">
-            <h1>Our Services</h1>
-            <p>At Noble Fir Studio, we specialize in crafting bespoke web solutions that empower businesses to thrive in the digital landscape. Our comprehensive suite of services is designed to meet the unique needs of each client, ensuring a tailored approach that drives results.</p>
+        <div class="services-hero-content">
+            <div class="services-hero-top">
+                <h1 class="services-hero-title1">
+                    Growth
+                </h1>
+                <div class="services-hero-spinner">
+                    <span class="simple-icons--apacheairflow"></span>
+                </div>
+            </div>
+            <div class="services-hero-bottom">
+                <h1 class="services-hero-title2" data-rise="true">
+                Starts Here
+                </h1>
+            </div>
+        </div>
+        <div class="mini-service-list">
+            <div class="mini-service-item">
+                <a>UX/UI Design</a>
+                <sl-icon name="arrow-up-right"></sl-icon>
+
+            </div>
+            <div class="mini-service-item">
+                <a>Brand Identity</a>
+                <sl-icon name="arrow-up-right"></sl-icon>
+            </div>
+            <div class="mini-service-item">
+                <a>Web Development</a>
+                <sl-icon name="arrow-up-right"></sl-icon>
+            </div>
         </div>
     </section>
+
+    <section class="nf-reveal" aria-label="Brand analytics & content section">
+        <div class="nf-reveal__col nf-reveal__left">
+            <h2 class="nf-reveal__eyebrow">Unlocking brand potential through data analytics.</h2>
+    
+            <div class="nf-reveal__toggle-row">
+                <hr class="nf-reveal__rule" />
+                <button class="nf-reveal__btn" id="nfExpandBtn" type="button" aria-expanded="false"
+                    aria-controls="nfRevealBody">
+                    <span class="nf-reveal__icon" aria-hidden="true"></span>
+                    <span class="sr-only">Expand details</span>
+                </button>
+            </div>
+    
+            <div class="nf-reveal__body" id="nfRevealBody" hidden>
+                <p>
+                    Donec aliquet eros facilisis cursus sodales erat mi viverra ut imperdiet ex nulla orci.
+                    Nunc et auctor est. Aenean dapibus placerat ante quis porttitor metus consequat. Fusce
+                    lacinia quam auctor pulvinar quis velit vel vulputate maximus felis.
+                </p>
+            </div>
+        </div>
+    
+        <div class="nf-reveal__col nf-reveal__right">
+            <h3 class="nf-reveal__card-title">Storytelling &amp; Content Marketing</h3>
+    
+            <div class="nf-reveal__media">
+                <img src="./img/responsive-dev.png" alt="Content marketing in action">
+            </div>
+    
+            <p class="nf-reveal__card-copy">
+                Donec aliquet eros facilisis cursus sodales erat viverra imperdiet nulla orci quis velit
+                vulputate maximus felis mauris dolor.
+            </p>
+    
+            <a class="nf-reveal__cta" href="#learn-more">
+                <span class="nf-reveal__cta-icon" aria-hidden="true">➜</span>
+                Learn More
+            </a>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <footer class="nf-footer" role="contentinfo">
         <!-- giant background letters -->
@@ -136,8 +223,43 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        (() => {
+                const btn = document.getElementById('nfExpandBtn');
+                const body = document.getElementById('nfRevealBody');
+
+                if (!btn || !body) return;
+
+                const show = () => {
+                    body.hidden = false;                  // make it measurable
+                    body.setAttribute('data-anim', 'enter');
+                    btn.setAttribute('aria-expanded', 'true');
+                };
+
+                const hide = () => {
+                    body.setAttribute('data-anim', 'leave');
+                    btn.setAttribute('aria-expanded', 'false');
+                    // wait for fade-out before hiding from a11y tree
+                    body.addEventListener('animationend', function onEnd() {
+                        body.hidden = true;
+                        body.removeAttribute('data-anim');
+                        body.removeEventListener('animationend', onEnd);
+                    });
+                };
+
+                btn.addEventListener('click', () => {
+                    const expanded = btn.getAttribute('aria-expanded') === 'true';
+                    if (expanded) { hide(); } else { show(); }
+                });
+
+                // keyboard affordance when button is focused: Enter/Space already click
+            })();
+
+    </script>
         
         <script src="./js/index.js" async defer></script>
         <script src="./js/about.js" async defer></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
     </body>
 </html>

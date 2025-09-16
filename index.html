@@ -516,72 +516,85 @@
     <section class="testimonials" id="testimonials">
         <div class="testimonials-header">
             <h1 class="testimonials-title1">The Proof<strong>*</strong></h1>
-            <div class="header-card">
-                <h1 class="testimonials-title2" data-rise="true">
-                    Don't take our word for it..<sl-icon name="arrow-down-right"></sl-icon>
-                </h1>
-                <p class="testimonials-subtitle" data-rise="true">Hear what our clients have to say about how we've helped them succeed online.</p>
+        </div>
+        <!-- ===== Review Slider (Index page) ===== -->
+        <div class="nf-reviews" id="nf-reviews" aria-label="Client reviews">
+            <div class="nf-reviews__viewport">
+                <div class="nf-reviews__track" role="list">
+                    <!-- Slide 1 -->
+                    <article class="nf-review" role="listitem">
+                        <div class="nf-review__media"" aria-hidden="true">
+                            <img src="./img/review1.png" alt="Review 1">
+                        </div>
+                        <div class="nf-review__content">
+                            <div class="nf-review__quote-mark" aria-hidden="true">“</div>
+                            <h3 class="nf-review__headline">
+                                From logo to launch, Noble Fir took time to understand our goals and turned our vision
+                                into a cohesive, modern web presence.
+                            </h3>
+                            <p class="nf-review__blurb">
+                                We’ve never looked more professional online. Their process brought clarity, creativity,
+                                and deep insight into our user journeys.
+                            </p>
+                            <div class="nf-review__author">
+                                <strong>J. Labue</strong>
+                                <span>CEO at Casa Designs</span>
+                            </div>
+                        </div>
+                    </article>
+        
+                    <!-- Slide 2 -->
+                    <article class="nf-review" role="listitem">
+                        <div class="nf-review__media" aria-hidden="true">
+                            <img src="./img/review2.png" alt="Review 2">
+                        </div>
+                        <div class="nf-review__content">
+                            <div class="nf-review__quote-mark" aria-hidden="true">“</div>
+                            <h3 class="nf-review__headline">
+                                Clean design, fast performance, and a painless build—Noble Fir delivered exactly what our
+                                team needed to grow.
+                            </h3>
+                            <p class="nf-review__blurb">
+                                Communication was on point and timelines were clear. We’d recommend them to any
+                                small business that wants agency-level results.
+                            </p>
+                            <div class="nf-review__author">
+                                <strong>J. Kuykendall</strong>
+                                <span>Owner at J's Quality Custom Painting</span>
+                            </div>
+                        </div>
+                    </article>
+        
+                    <!-- Slide 3 -->
+                    <article class="nf-review" role="listitem">
+                        <div class="nf-review__media" aria-hidden="true">
+                            <img src="./img/review3.png" alt="Review 3">
+                        </div>
+                        <div class="nf-review__content">
+                            <div class="nf-review__quote-mark" aria-hidden="true">“</div>
+                            <h3 class="nf-review__headline">
+                                They treated our project like a partnership—thoughtful strategy, meticulous execution,
+                                and a site our customers love.
+                            </h3>
+                            <p class="nf-review__blurb">
+                                The rollout was smooth and measurable. Our inquiries increased immediately after launch.
+                            </p>
+                            <div class="nf-review__author">
+                                <strong>A. Taylor</strong>
+                                <span>Project Manager at Crown Clothing</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        
+            <!-- Controls -->
+            <div class="nf-reviews__controls">
+                <button class="nf-reviews__btn" id="nfPrev" aria-label="Previous review" type="button">←</button>
+                <button class="nf-reviews__btn" id="nfNext" aria-label="Next review" type="button">→</button>
             </div>
         </div>
-        <div class="testimonial-container">
-            
-            <sl-carousel autoplay loop navigation mouse-dragging>
-                <sl-carousel-item>
-                    <div class="testimonial">
-                        <sl-card class="card-footer">
-                            <p>"Noble Fir transformed our online presence! Our sales have doubled since the redesign."</p>
-            
-                            <div class="details">
-                                <sl-avatar initials="JL" label="Avatar with initials: JL"></sl-avatar>
-                                <p class="testimonial-author">J. Labue</p>
-                                <span>|</span>
-                                <p class="testimonial-company">Casa Designs</p>
-                            </div>
-            
-                            <div slot="footer">
-                                <sl-rating readonly value="5" style="--symbol-size: 1.25rem;"></sl-rating>
-                            </div>
-                        </sl-card>
-                    </div>
-                </sl-carousel-item>
-                <sl-carousel-item>
-                    <div class="testimonial">
-                        <sl-card class="card-footer">
-                            <p>"Working with Noble Fir was an incredible experience! They took my vision and brought it to life better than I imagined. I couldn’t be happier with my new website—highly recommend!"</p>
-            
-                            <div class="details">
-                                <sl-avatar initials="JK" label="Avatar with initials: JK"></sl-avatar>
-                                <p class="testimonial-author">J. Kuyendall</p>
-                                <span>|</span>
-                                <p class="testimonial-company">J's Quality Custom Painting</p>
-                            </div>
-            
-                            <div slot="footer">
-                                <sl-rating readonly value="5" style="--symbol-size: 1.25rem;"></sl-rating>
-                            </div>
-                        </sl-card>
-                    </div>
-                </sl-carousel-item>
-                <sl-carousel-item>
-                    <div class="testimonial">
-                        <sl-card class="card-footer">
-                            <p>"Noble Fir nailed it! We came to them with our own design, and they brought it to life flawlessly. The development was smooth, fast, and pixel-perfect. We’re thrilled with the final product!"</p>
-            
-                            <div class="details">
-                                <sl-avatar initials="AT" label="Avatar with initials: AT"></sl-avatar>
-                                <p class="testimonial-author">A. Taylor</p>
-                                <span>|</span>
-                                <p class="testimonial-company">Crown Clothing</p>
-                            </div>
-            
-                            <div slot="footer">
-                                <sl-rating readonly value="5" style="--symbol-size: 1.25rem;"></sl-rating>
-                            </div>
-                        </sl-card>
-                    </div>
-                </sl-carousel-item>
-            </sl-carousel>
-        </div>
+
     </section>
 
     <section class="faq" id="faq">
@@ -865,6 +878,30 @@
                         icon.classList.add('fa-play');
                     }
                 });
+            </script>
+            <script>
+                (() => {
+                        const track = document.querySelector('.nf-reviews__track');
+                        const slides = Array.from(document.querySelectorAll('.nf-review'));
+                        const prev = document.getElementById('nfPrev');
+                        const next = document.getElementById('nfNext');
+                        let index = 0;
+
+                        function go(i) {
+                            index = (i + slides.length) % slides.length;          // wrap around
+                            const offset = -100 * index;                           // percent
+                            track.style.transform = `translateX(${offset}vw)`;     // slide by viewport widths
+                        }
+
+                        prev.addEventListener('click', () => go(index - 1));
+                        next.addEventListener('click', () => go(index + 1));
+
+                        // keyboard support when section is focused
+                        document.getElementById('nf-reviews').addEventListener('keydown', (e) => {
+                            if (e.key === 'ArrowLeft') go(index - 1);
+                            if (e.key === 'ArrowRight') go(index + 1);
+                        });
+                    })();
             </script>
     </body>
 </html>

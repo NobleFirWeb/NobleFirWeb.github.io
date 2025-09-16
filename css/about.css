@@ -1160,6 +1160,184 @@ body {
   float: left;
 }
 
+/* ===== Review Slider styles ===== */
+.nf-reviews {
+    width: 100vw;
+    height: 50vh;
+    background: #0f0e0f;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+.nf-reviews__viewport {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.nf-reviews__track {
+    display: flex;
+    width: 300%;
+    /* 3 slides */
+    height: 100%;
+    transform: translateX(0%);
+    transition: transform .6s cubic-bezier(.22, .61, .36, 1);
+}
+
+.nf-review {
+    width: 100vw;
+    height: 50vh;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    align-items: center;
+    gap: min(7vw, 25vw);
+    padding: min(4vw, 40px);
+    box-sizing: border-box;
+}
+
+.nf-review__media {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(0deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .05)),
+        var(--img, none) center/cover no-repeat;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .35);
+}
+
+.nf-review__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nf-review__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    max-width: 900px;
+}
+
+.nf-review__quote-mark {
+    position: absolute;
+    left: -.1em;
+    top: -.25em;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: clamp(56px, 9vw, 120px);
+    line-height: .6;
+    color: #ff0000;
+    /* red opening quote */
+}
+
+.nf-review__headline {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    margin: 0 0 12px 0;
+    color: #ffffff;
+    /* primary text white */
+    font-size: clamp(18px, 2.4vw, 28px);
+}
+
+.nf-review__blurb {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    margin: 4px 0 18px 0;
+    color: #a6a6a6;
+    /* nf-gray small text */
+    font-size: clamp(14px, 1.4vw, 1rem);
+    line-height: 1.35;
+}
+
+.nf-review__author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: clamp(14px, 1.2vw, 1rem);
+}
+
+.nf-review__author span {
+    color: #a6a6a6;
+}
+
+.nf-reviews__controls {
+    position: absolute;
+    right: min(5vw, 60px);
+    bottom: min(2.5vh, 20px);
+    display: flex;
+    gap: 12px;
+}
+
+.nf-reviews__btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    /* white border, transparent bg */
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform .2s ease-in-out, opacity .2s ease-in-out, color .2s ease-in-out;
+}
+
+.nf-reviews__btn:hover {
+    color: #ffffff;
+    border: 1px solid #fff;
+    background: #ff0000;
+}
+
+.nf-reviews__btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* Tablet & below */
+@media (max-width:1024px) {
+    .nf-reviews {
+        height: 60vh;
+    }
+    .nf-review {
+        grid-template-columns: 1fr;
+        grid-template-rows: 45% 55%;
+        height: 55vh;
+    }
+
+    .nf-review__media {
+        order: 1;
+    }
+
+    .nf-review__content {
+        order: 2;
+    }
+}
+
+/* Mobile */
+@media (max-width:480px) {
+    .nf-reviews {
+        height: 75vh;
+    }
+
+    /* a little taller for readability */
+    .nf-review {
+        padding: 16px;
+        gap: 16px;
+        height: 75vh;
+    }
+
+    .nf-reviews__controls {
+        right: 16px;
+        bottom: 16px;
+    }
+}
+
+
 @media (max-width: 1024px) {
   .team-title {
     font-size: 6rem;

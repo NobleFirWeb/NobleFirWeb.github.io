@@ -209,3 +209,61 @@ setInterval(changeWord, 3000);
 
   observer.observe(statsSection);
 })();
+
+// ===== Review Slider logic (no autoslide) =====
+(() => {
+  const track = document.querySelector('.nf-reviews__track');
+  const slides = Array.from(document.querySelectorAll('.nf-review'));
+  const prev = document.getElementById('nfPrev');
+  const next = document.getElementById('nfNext');
+  let index = 0;
+
+  function go(i){
+    index = (i + slides.length) % slides.length;          // wrap around
+    const offset = -100 * index;                           // percent
+    track.style.transform = `translateX(${offset}vw)`;     // slide by viewport widths
+  }
+
+  prev.addEventListener('click', () => go(index - 1));
+  next.addEventListener('click', () => go(index + 1));
+
+  // keyboard support when section is focused
+  document.getElementById('nf-reviews').addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') go(index - 1);
+    if (e.key === 'ArrowRight') go(index + 1);
+  });
+})();
+
+
+
+// ===== NF Expand/Reveal Interaction =====
+(() => {
+  const btn = document.getElementById('nfExpandBtn');
+  const body = document.getElementById('nfRevealBody');
+
+  if (!btn || !body) return;
+
+  const show = () => {
+    body.hidden = false;                  // make it measurable
+    body.setAttribute('data-anim','enter');
+    btn.setAttribute('aria-expanded','true');
+  };
+
+  const hide = () => {
+    body.setAttribute('data-anim','leave');
+    btn.setAttribute('aria-expanded','false');
+    // wait for fade-out before hiding from a11y tree
+    body.addEventListener('animationend', function onEnd(){
+      body.hidden = true;
+      body.removeAttribute('data-anim');
+      body.removeEventListener('animationend', onEnd);
+    });
+  };
+
+  btn.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    if (expanded) { hide(); } else { show(); }
+  });
+
+  // keyboard affordance when button is focused: Enter/Space already click
+})();
