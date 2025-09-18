@@ -111,24 +111,24 @@
         </div>
         <div class="mini-service-list">
             <div class="mini-service-item">
+                <sl-icon name="arrow-down-left"></sl-icon>
                 <a>UX/UI Design</a>
-                <sl-icon name="arrow-up-right"></sl-icon>
 
             </div>
             <div class="mini-service-item">
+                <sl-icon name="arrow-down-left"></sl-icon>
                 <a>Brand Identity</a>
-                <sl-icon name="arrow-up-right"></sl-icon>
             </div>
             <div class="mini-service-item">
+                <sl-icon name="arrow-down-left"></sl-icon>
                 <a>Web Development</a>
-                <sl-icon name="arrow-up-right"></sl-icon>
             </div>
         </div>
     </section>
 
     <section class="nf-reveal" aria-label="Brand analytics & content section">
         <div class="nf-reveal__col nf-reveal__left">
-            <h2 class="nf-reveal__eyebrow">Unlocking brand potential through data analytics.</h2>
+            <h2 class="nf-reveal__eyebrow" data-rise="true">Unlock your brand's potential through <span>Creative Solutions</span>.</h2>
     
             <div class="nf-reveal__toggle-row">
                 <hr class="nf-reveal__rule" />
@@ -141,31 +141,177 @@
     
             <div class="nf-reveal__body" id="nfRevealBody" hidden>
                 <p>
-                    Donec aliquet eros facilisis cursus sodales erat mi viverra ut imperdiet ex nulla orci.
-                    Nunc et auctor est. Aenean dapibus placerat ante quis porttitor metus consequat. Fusce
-                    lacinia quam auctor pulvinar quis velit vel vulputate maximus felis.
+                    At Noble Fir, every line of code and every design decision is made with intention. We believe that websites aren’t just digital storefronts — they’re living extensions of your brand.
+                </p>
+                <p>
+                    By combining timeless design, modern development practices, and a customer-first approach, we craft digital experiences that help businesses grow, connect, and stand out in a crowded market.
                 </p>
             </div>
         </div>
     
         <div class="nf-reveal__col nf-reveal__right">
-            <h3 class="nf-reveal__card-title">Storytelling &amp; Content Marketing</h3>
-    
-            <div class="nf-reveal__media">
-                <img src="./img/responsive-dev.png" alt="Content marketing in action">
+            <h3 class="nf-reveal__card-title">Digital Products with Impact</h3>
+            <div class="nf-reveal__media" slide-left="true">
+                <img src="./img/casa-designs-front.png" alt="Content marketing in action">
             </div>
-    
             <p class="nf-reveal__card-copy">
-                Donec aliquet eros facilisis cursus sodales erat viverra imperdiet nulla orci quis velit
-                vulputate maximus felis mauris dolor.
+                From design to deployment, our solutions are tailored for businesses that need a professional, modern presence. Whether it’s a new build, a redesign, or an e-commerce integration, we create experiences that are both beautiful and functional.
             </p>
-    
-            <a class="nf-reveal__cta" href="#learn-more">
-                <span class="nf-reveal__cta-icon" aria-hidden="true">➜</span>
-                Learn More
-            </a>
         </div>
     </section>
+    <hr class="bottom-hr" />
+
+    <!-- ===== Noble Fir • Creative Process ===== -->
+    <section id="nf-process" aria-label="Creative process">
+        <div class="nf-proc__wrap">
+            <!-- TL -->
+            <article class="nf-proc__card" slide-right="true">
+                <span class="nf-proc__step">01</span>
+                <h3 class="nf-proc__title">Discovery &amp; Strategy</h3>
+                <p class="nf-proc__copy">
+                    We kick things off by learning about your business, goals, and target audience to create a tailored digital strategy.
+                </p>
+            </article>
+    
+            <!-- TR -->
+            <article class="nf-proc__card" slide-left="true">
+                <span class="nf-proc__step">02</span>
+                <h3 class="nf-proc__title">Planning &amp; Design</h3>
+                <p class="nf-proc__copy">
+                    From structure to style, we design visually compelling mockups that align with your brand—and only move forward when you approve.
+                </p>
+            </article>
+    
+            <!-- BL -->
+            <article class="nf-proc__card" slide-right="true">
+                <span class="nf-proc__step">03</span>
+                <h3 class="nf-proc__title">Agile Development</h3>
+                <p class="nf-proc__copy">
+                    Using modern frameworks, we build responsive, fast-loading websites through clean, modular code and an iterative approach.
+                </p>
+            </article>
+    
+            <!-- BR -->
+            <article class="nf-proc__card" slide-left="true">
+                <span class="nf-proc__step">04</span>
+                <h3 class="nf-proc__title">Launch &amp; Support</h3>
+                <p class="nf-proc__copy">
+                    Once launched, we offer post-launch support and updates to ensure long-term success. We’re in it for the long haul.
+                </p>
+            </article>
+    
+            <!-- Centerpiece -->
+            <div class="nf-proc__center">
+                <span class="nf-proc__eyebrow">From idea to <strong>identity</strong></span>
+                <h2 class="nf-proc__headline" data-rise="true">
+                    <span class="nf-proc__word--gray">Creative</span>
+                    <span class="nf-proc__word--white">Process</span>
+                </h2>
+                <button class="about-btn">
+                <a href="contact-us.html">Get In Touch</a>
+            </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Noble Fir • Services Index (FLIPPED) ===== -->
+    <section class="nf-svcs-flip" aria-labelledby="nf-svcs-title">
+        <div class="nf-svcs__grid">
+            <!-- LEFT: Heading + Sub + Preview image (changes on hover) -->
+            <div class="nf-svcs__left">
+                <h2 id="nf-svcs-title" class="nf-svcs__heading">Our Services</h2>
+                <p class="nf-svcs__sub">We offer a range of services to design, build and scale your products.</p>
+    
+                <div class="nf-svcs__preview" aria-hidden="true">
+                    <img class="nf-svcs__img nf-svcs__img--current" src="./img/services/preview-default.jpg" alt="">
+                    <img class="nf-svcs__img nf-svcs__img--next" src="" alt="">
+                </div>
+            </div>
+    
+            <!-- RIGHT: Interactive list -->
+            <div class="nf-svcs__right">
+                <ol class="nf-svcs__list">
+                    <!-- 01 -->
+                    <li class="nf-svcs__item">
+                        <a class="nf-svcs__link" href="#end-to-end" data-img="./img/services/end-to-end.jpg">
+                            <span class="nf-svcs__num">01</span>
+                            <span class="nf-svcs__title">End-to-End Product Delivery</span>
+                            <span class="nf-svcs__desc">
+                                Discovery, strategy, design, development, QA, and launch—handled from start to finish.
+                            </span>
+                        </a>
+                    </li>
+    
+                    <!-- 02 -->
+                    <li class="nf-svcs__item">
+                        <a class="nf-svcs__link" href="#creative-design" data-img="./img/services/creative.jpg">
+                            <span class="nf-svcs__num">02</span>
+                            <span class="nf-svcs__title">Creative Design Solutions</span>
+                            <span class="nf-svcs__desc">
+                                Brand-aligned UI/UX, component systems, and content that converts.
+                            </span>
+                        </a>
+                    </li>
+    
+                    <!-- 03 -->
+                    <li class="nf-svcs__item">
+                        <a class="nf-svcs__link" href="#mobile-apps" data-img="./img/services/mobile.jpg">
+                            <span class="nf-svcs__num">03</span>
+                            <span class="nf-svcs__title">Mobile App Development</span>
+                            <span class="nf-svcs__desc">
+                                Prototypes to production for iOS/Android with performance in mind.
+                            </span>
+                        </a>
+                    </li>
+    
+                    <!-- 04 -->
+                    <li class="nf-svcs__item">
+                        <a class="nf-svcs__link" href="#web-apps" data-img="./img/services/web-app.jpg">
+                            <span class="nf-svcs__num">04</span>
+                            <span class="nf-svcs__title">Web App Development</span>
+                            <span class="nf-svcs__desc">
+                                Scalable, secure applications built with modern stacks and best practices.
+                            </span>
+                        </a>
+                    </li>
+    
+                    <!-- 05 -->
+                    <li class="nf-svcs__item">
+                        <a class="nf-svcs__link" href="#ai-ml" data-img="./img/services/ai-ml.jpg">
+                            <span class="nf-svcs__num">05</span>
+                            <span class="nf-svcs__title">Custom AI + ML Solutions</span>
+                            <span class="nf-svcs__desc">
+                                Practical AI integrations that enhance search, insights, and automation.
+                            </span>
+                        </a>
+                    </li>
+    
+                    <!-- 06 -->
+                    <li class="nf-svcs__item">
+                        <a class="nf-svcs__link" href="#data-eng" data-img="./img/services/data.jpg">
+                            <span class="nf-svcs__num">06</span>
+                            <span class="nf-svcs__title">Data Engineering &amp; Governance Solutions</span>
+                            <span class="nf-svcs__desc">
+                                Clean pipelines, dashboards, and controls to make decisions with confidence.
+                            </span>
+                        </a>
+                    </li>
+    
+                    <!-- 07 -->
+                    <li class="nf-svcs__item">
+                        <a class="nf-svcs__link" href="#cloud" data-img="./img/services/cloud.jpg">
+                            <span class="nf-svcs__num">07</span>
+                            <span class="nf-svcs__title">Comprehensive Cloud Solutions</span>
+                            <span class="nf-svcs__desc">
+                                Deploy, monitor, and scale with reliability, security, and cost in balance.
+                            </span>
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
 
 
 
@@ -260,6 +406,7 @@
         
         <script src="./js/index.js" async defer></script>
         <script src="./js/about.js" async defer></script>
+        <script src="./js/services.js" async defer></script>
         <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
     </body>
 </html>
