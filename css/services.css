@@ -430,7 +430,8 @@ body {
 #nf-process {
     --nf-black: #0f0e0f;
     --nf-white: #ffffff;
-    --nf-gray: #a6a6a6;
+    --nf-gray: #464646;
+    --nf-light-gray: #a6a6a6;
     --nf-red: #ff0000;
 
     width: 100vw;
@@ -494,7 +495,7 @@ body {
     margin-top: 14px;
     font-size: 1rem;
     line-height: 1.5;
-    color: var(--nf-gray);
+    color: var(--nf-light-gray);
     font-family: "Inter", sans-serif;
 }
 
@@ -538,7 +539,7 @@ body {
     font-size: 16px;
     letter-spacing: .18em;
     text-transform: uppercase;
-    color: var(--nf-gray);
+    color: var(--nf-white);
 }
 
 .nf-proc__eyebrow strong {
@@ -614,7 +615,8 @@ body {
 .nf-svcs-flip {
     --nf-black: #0f0e0f;
     --nf-white: #ffffff;
-    --nf-gray: #a6a6a6;
+    --nf-gray: #464646;
+    --nf-light-gray: #a6a6a6;
     --nf-red: #ff0000;
     width: 100vw;
     background: var(--nf-black);
@@ -631,20 +633,34 @@ body {
 }
 
 /* LEFT */
+.nf-svcs__left {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 24px;
+}
 .nf-svcs__heading {
-    margin: 0 0 10px;
+    margin: 0;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: .02em;
-    font-size: clamp(36px, 5vw, 56px);
+    font-size: 4rem;
     font-family: "Space Grotesk", sans-serif;
+    color: var(--nf-gray);
+}
+
+.nf-svcs__heading span {
+    color: var(--nf-red);
+    font-weight: 500;
 }
 
 .nf-svcs__sub {
-    color: var(--nf-gray);
+    color: var(--nf-light-gray);
     max-width: 60ch;
     line-height: 1.6;
     margin: 10px 0 24px;
+    font-size: 1rem;
+    font-family: "Inter", sans-serif;
 }
 
 .nf-svcs__preview {
@@ -653,6 +669,7 @@ body {
     aspect-ratio: 16/9;
     border-radius: 12px;
     overflow: hidden;
+    margin-top: 44px;
 }
 
 .nf-svcs__img {
@@ -684,7 +701,7 @@ body {
     display: grid;
     grid-template-columns: 80px 1fr;
     grid-template-rows: auto auto;
-    column-gap: 20px;
+    column-gap: 30px;
     padding: 26px 26px;
     color: inherit;
     text-decoration: none;
@@ -711,7 +728,7 @@ body {
 .nf-svcs__desc {
     grid-column: 2;
     grid-row: 2;
-    color: var(--nf-gray);
+    color: var(--nf-light-gray);
     max-width: 70ch;
     line-height: 1.5;
     opacity: 0;
@@ -732,7 +749,12 @@ body {
     outline-offset: 2px;
 }
 
-
+.btn-group {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 40px;
+}
 
 
 
