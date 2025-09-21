@@ -112,16 +112,16 @@
         <div class="mini-service-list">
             <div class="mini-service-item">
                 <sl-icon name="arrow-down-left"></sl-icon>
-                <a>UX/UI Design</a>
+                <a href="#ux-ui-design">UX/UI Design</a>
 
             </div>
             <div class="mini-service-item">
                 <sl-icon name="arrow-down-left"></sl-icon>
-                <a>Brand Identity</a>
+                <a href="#web-development">Web Development</a>
             </div>
             <div class="mini-service-item">
                 <sl-icon name="arrow-down-left"></sl-icon>
-                <a>Web Development</a>
+                <a href="#managed-services">Managed Services</a>
             </div>
         </div>
     </section>
@@ -164,7 +164,7 @@
     <section id="nf-process" aria-label="Creative process">
         <div class="nf-proc__wrap">
             <!-- TL -->
-            <article class="nf-proc__card" slide-right="true">
+            <article class="nf-proc__card nf-proc__card--1" slide-right="true">
                 <span class="nf-proc__step">01</span>
                 <h3 class="nf-proc__title">Discovery &amp; Strategy</h3>
                 <p class="nf-proc__copy">
@@ -173,7 +173,7 @@
             </article>
     
             <!-- TR -->
-            <article class="nf-proc__card" slide-left="true">
+            <article class="nf-proc__card nf-proc__card--2" slide-left="true">
                 <span class="nf-proc__step">02</span>
                 <h3 class="nf-proc__title">Planning &amp; Design</h3>
                 <p class="nf-proc__copy">
@@ -182,7 +182,7 @@
             </article>
     
             <!-- BL -->
-            <article class="nf-proc__card" slide-right="true">
+            <article class="nf-proc__card nf-proc__card--3" slide-right="true">
                 <span class="nf-proc__step">03</span>
                 <h3 class="nf-proc__title">Agile Development</h3>
                 <p class="nf-proc__copy">
@@ -191,7 +191,7 @@
             </article>
     
             <!-- BR -->
-            <article class="nf-proc__card" slide-left="true">
+            <article class="nf-proc__card nf-proc__card--4" slide-left="true">
                 <span class="nf-proc__step">04</span>
                 <h3 class="nf-proc__title">Launch &amp; Support</h3>
                 <p class="nf-proc__copy">
@@ -218,7 +218,7 @@
         <div class="nf-svcs__grid">
             <!-- LEFT: Heading + Sub + Preview image (changes on hover) -->
             <div class="nf-svcs__left">
-                <h2 id="nf-svcs-title" class="nf-svcs__heading">Our Services <span>*</span></h2>
+                <h2 id="nf-svcs-title" class="nf-svcs__heading" data-rise="true">Our Services <span>*</span></h2>
                 <p class="nf-svcs__sub">We offer a range of services to design, build and scale your products.</p>
     
                 <div class="nf-svcs__preview" aria-hidden="true">
@@ -232,7 +232,7 @@
                 <ol class="nf-svcs__list">
                     <!-- 01 -->
                     <li class="nf-svcs__item">
-                        <a class="nf-svcs__link" href="#end-to-end" data-img="./img/ux-ui.jpg">
+                        <a class="nf-svcs__link" href="#ux-ui-design" data-img="./img/ux-ui.jpg">
                             <span class="nf-svcs__num">01</span>
                             <span class="nf-svcs__title">UX/UI Design</span>
                             <span class="nf-svcs__desc">
@@ -243,7 +243,7 @@
     
                     <!-- 02 -->
                     <li class="nf-svcs__item">
-                        <a class="nf-svcs__link" href="#creative-design" data-img="./img/web-dev.jpg">
+                        <a class="nf-svcs__link" href="#web-development" data-img="./img/web-dev.jpg">
                             <span class="nf-svcs__num">02</span>
                             <span class="nf-svcs__title">Custom Web Development</span>
                             <span class="nf-svcs__desc">
@@ -254,7 +254,7 @@
     
                     <!-- 03 -->
                     <li class="nf-svcs__item">
-                        <a class="nf-svcs__link" href="#mobile-apps" data-img="./img/e-commerce.jpg">
+                        <a class="nf-svcs__link" href="#e-commerce" data-img="./img/e-commerce.jpg">
                             <span class="nf-svcs__num">03</span>
                             <span class="nf-svcs__title">E-Commerce Development</span>
                             <span class="nf-svcs__desc">
@@ -265,7 +265,7 @@
     
                     <!-- 04 -->
                     <li class="nf-svcs__item">
-                        <a class="nf-svcs__link" href="#web-apps" data-img="./img/web-app.png">
+                        <a class="nf-svcs__link" href="#web-apps" data-img="./img/web-app.jpg">
                             <span class="nf-svcs__num">04</span>
                             <span class="nf-svcs__title">Web App Development</span>
                             <span class="nf-svcs__desc">
@@ -276,7 +276,7 @@
     
                     <!-- 05 -->
                     <li class="nf-svcs__item">
-                        <a class="nf-svcs__link" href="#ai-ml" data-img="./img/services/ai-ml.jpg">
+                        <a class="nf-svcs__link" href="#int-api" data-img="./img/integrations.jpg">
                             <span class="nf-svcs__num">05</span>
                             <span class="nf-svcs__title">Custom Integrations &amp; API Solutions</span>
                             <span class="nf-svcs__desc">
@@ -287,7 +287,7 @@
     
                     <!-- 06 -->
                     <li class="nf-svcs__item">
-                        <a class="nf-svcs__link" href="#data-eng" data-img="./img/managed-services.jpg">
+                        <a class="nf-svcs__link" href="#managed services" data-img="./img/managed-services.jpg">
                             <span class="nf-svcs__num">06</span>
                             <span class="nf-svcs__title">Managed Services</span>
                             <span class="nf-svcs__desc">
@@ -299,36 +299,365 @@
                 </ol>
                 <div class="btn-group">
                     <button class="about-btn">
-                        <a href="contact-us.html">Let's Talk</a>
+                        <a href="contact-us.html">Free Consultation</a>
                     </button>
-                    <button class="about-btn">
-                        <a href="contact-us.html">View All Services</a>
+                    <button class="about-btn btn2">
+                        <a href="">View All Services <sl-icon name="arrow-down"></sl-icon></a>
                     </button>
                 </div>
             </div>
         </div>
     </section>
 
+        <!-- ===== WHY PARTNER WITH US ===== -->
+    <section class="nf-why">
+        <div class="nf-why__grid">
+            <h2 class="nf-why__heading">
+                WHY PARTNER<br>
+                WITH US
+            </h2>
+    
+            <div class="nf-why__content">
+                <span class="nf-why__eyebrow">WE'RE ALL IN</span>
+                <p class="nf-why__lede">
+                    We <span>consistently</span> deliver results across a variety of industries.
+                </p>
+                <p class="nf-why__sublede">
+                    Here’s why our partners choose to work with us.
+                </p>
+            </div>
+        </div>
+    </section>
 
+    <!-- ===== Review Slider (About page) ===== -->
+        <section class="nf-reviews" id="nf-reviews" aria-label="Client reviews">
+            <div class="nf-reviews__viewport">
+                <div class="nf-reviews__track" role="list">
+                    <!-- Slide 1 -->
+                    <article class="nf-review" role="listitem">
+                        <div class="nf-review__media"" aria-hidden=" true">
+                            <img src="./img/review1.png" alt="Review 1">
+                        </div>
+                        <div class="nf-review__content">
+                            <div class="nf-review__quote-mark" aria-hidden="true">“</div>
+                            <h3 class="nf-review__headline">
+                                From logo to launch, Noble Fir took time to understand our goals and turned our vision
+                                into a cohesive, modern web presence.
+                            </h3>
+                            <p class="nf-review__blurb">
+                                We’ve never looked more professional online. Their process brought clarity, creativity,
+                                and deep insight into our user journeys.
+                            </p>
+                            <div class="nf-review__author">
+                                <strong>J. Labue</strong>
+                                <span>CEO at Casa Designs</span>
+                            </div>
+                        </div>
+                    </article>
+        
+                    <!-- Slide 2 -->
+                    <article class="nf-review" role="listitem">
+                        <div class="nf-review__media" aria-hidden="true">
+                            <img src="./img/review2.png" alt="Review 2">
+                        </div>
+                        <div class="nf-review__content">
+                            <div class="nf-review__quote-mark" aria-hidden="true">“</div>
+                            <h3 class="nf-review__headline">
+                                Clean design, fast performance, and a painless build—Noble Fir delivered exactly what our
+                                team needed to grow.
+                            </h3>
+                            <p class="nf-review__blurb">
+                                Communication was on point and timelines were clear. We’d recommend them to any
+                                small business that wants agency-level results.
+                            </p>
+                            <div class="nf-review__author">
+                                <strong>J. Kuykendall</strong>
+                                <span>Owner at J's Quality Custom Painting</span>
+                            </div>
+                        </div>
+                    </article>
+        
+                    <!-- Slide 3 -->
+                    <article class="nf-review" role="listitem">
+                        <div class="nf-review__media" aria-hidden="true">
+                            <img src="./img/review3.png" alt="Review 3">
+                        </div>
+                        <div class="nf-review__content">
+                            <div class="nf-review__quote-mark" aria-hidden="true">“</div>
+                            <h3 class="nf-review__headline">
+                                They treated our project like a partnership—thoughtful strategy, meticulous execution,
+                                and a site our customers love.
+                            </h3>
+                            <p class="nf-review__blurb">
+                                The rollout was smooth and measurable. Our inquiries increased immediately after launch.
+                            </p>
+                            <div class="nf-review__author">
+                                <strong>A. Taylor</strong>
+                                <span>Project Manager at Crown Clothing</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        
+            <!-- Controls -->
+            <div class="nf-reviews__controls">
+                <button class="nf-reviews__btn" id="nfPrev" aria-label="Previous review" type="button">←</button>
+                <button class="nf-reviews__btn" id="nfNext" aria-label="Next review" type="button">→</button>
+            </div>
+        </section>
 
+        <!-- ===== SERVICES • Fullscreen Panels ===== -->
+        <nav class="svc-rail" aria-label="Service pager">
+            <ol class="svc-rail__list">
+                <li><a href="#ux-ui-design">01</a></li>
+                <li><a href="#web-development">02</a></li>
+                <li><a href="#e-commerce">03</a></li>
+                <li><a href="#web-apps">04</a></li>
+                <li><a href="#int-api">05</a></li>
+                <li><a href="#managed-services">06</a></li>
+            </ol>
+        </nav>
+        
+        <section id="ux-ui-design" class="svc">
+            <a class="svc__badge" href="#ux-ui-design">01</a>
+            <div class="svc__inner">
+                <h1 class="svc__title">UX/UI Design<span> *</span></h1>
+                <p class="svc__lead">
+                    Every site we design is tailored for performance, mobile responsiveness, and future growth. Let’s build something bold that works as hard as you do.
+                </p>
+                <p class="svc__lead">
+                    By blending custom design with professional-grade development, we create websites that are fast, secure, scalable, and easy to manage. This means your visitors experience a site that’s visually stunning and technically seamless — elevating your brand's reputation, improving engagement, and building long-term trust with your audience.
+                </p>
+        
+                <div class="svc__grid">
+                    <figure class="svc__media">
+                        <img src="./img/ux-ui.jpg" alt="Placeholder image">
+                    </figure>
+        
+                    <div class="svc__listwrap">
+                        <h4 class="svc__eyebrow">What we do</h4>
+                        <p class="svc-list__header">We take a strategic and comprehensive approach to web design — ensuring that every detail, from research to responsive layouts, is built with purpose, quality, and your users in mind.</p>
+                        <ul class="svc__list">
+                            <li>Identify &amp; Research</li>
+                            <li>UX/UI Design</li>
+                            <li>Wireframing &amp; Prototypes</li>
+                            <li>User research &amp; insights</li>
+                            <li>Icons, Fonts, &amp; Characteristics</li>
+                            <li>Responsive Design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="web-development" class="svc">
+            <a class="svc__badge" href="#web-development">02</a>
+            <div class="svc__inner">
+                <h1 class="svc__title">Custom Web Development<span> *</span></h1>
+                <p class="svc__lead">
+                    From custom web applications to dynamic websites, Noble Fir's web development is tailored to your exact business needs. With performance, security, and scalability at the forefront, we transform concepts into clean, reliable code — ensuring your online presence is as strong behind the scenes as it looks upfront.
+                </p>
+                <p class="svc__lead">
+                    We know how overwhelming it can be for business owners trying to navigate the digital space. That’s why we prioritize clarity, communication, and transparency from day one. Our process is built for people who don’t have a dev team or a massive budget — just a vision and the need for a site that actually works. With Noble Fir, you get enterprise-level development packaged for real-world business owners who deserve a real shot online.
+                </p>
+        
+                <div class="svc__grid">
+                    <figure class="svc__media">
+                        <img src="./img/web-dev.jpg" alt="Placeholder image">
+                    </figure>
+        
+                    <div class="svc__listwrap">
+                        <h4 class="svc__eyebrow">What we do</h4>
+                        <p class="svc-list__header">Our development process is more than just writing code — it's about building scalable, secure, and high-performing solutions tailored to your business needs.</p>
+                        <ul class="svc__list">
+                            <li>Custom websites &amp; CMS</li>
+                            <li>Front End Architecture</li>
+                            <li>Interactive Storytelling</li>
+                            <li>API Integration &amp; Backend Logic</li>
+                            <li>Security hardening</li>
+                            <li>Testing &amp; Deployment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="e-commerce" class="svc">
+            <a class="svc__badge" href="#e-commerce">03</a>
+            <div class="svc__inner">
+                <h1 class="svc__title">E-Commerce Development<span> *</span></h1>
+                <p class="svc__lead">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                    suscipit, mi a mattis gravida, arcu mauris feugiat neque, a accumsan
+                    nunc risus id augue.
+                </p>
+                <p class="svc__lead">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
+                    mauris ac quam bibendum aliquet. Sed varius mi non felis porttitor,
+                    id interdum felis pharetra. Integer nec
+                    mauris ac quam bibendum aliquet. Sed varius mi non felis porttitor,
+                    id interdum felis pharetra.
+                </p>
+        
+                <div class="svc__grid">
+                    <figure class="svc__media">
+                        <img src="./img/e-commerce.jpg" alt="Placeholder image">
+                    </figure>
+        
+                    <div class="svc__listwrap">
+                        <h4 class="svc__eyebrow">What we do</h4>
+                        <p class="svc-list__header">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                        suscipit, mi a mattis gravida, arcu mauris feugiat neque, a accumsan
+                        nunc risus id augue.</p>
+                        <ul class="svc__list">
+                            <li>Storefront design</li>
+                            <li>Checkout &amp; payments</li>
+                            <li>Product catalogs</li>
+                            <li>Subscriptions &amp; promos</li>
+                            <li>Integrations &amp; automations</li>
+                            <li>Performance &amp; CRO</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="web-apps" class="svc">
+            <a class="svc__badge" href="#web-apps">04</a>
+            <div class="svc__inner">
+                <h1 class="svc__title">Web App Development<span> *</span></h1>
+                <p class="svc__lead">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non
+                    vulputate augue. Integer id arcu vitae eros fermentum efficitur.
+                </p>
+                <p class="svc__lead">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
+                    mauris ac quam bibendum aliquet. Sed varius mi non felis porttitor,
+                    id interdum felis pharetra. Integer nec
+                    mauris ac quam bibendum aliquet. Sed varius mi non felis porttitor,
+                    id interdum felis pharetra.
+                </p>
+        
+                <div class="svc__grid">
+                    <figure class="svc__media">
+                        <img src="./img/web-app.jpg">
+                    </figure>
+        
+                    <div class="svc__listwrap">
+                        <h4 class="svc__eyebrow">What we do</h4>
+                        <p class="svc-list__header">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                        suscipit, mi a mattis gravida, arcu mauris feugiat neque, a accumsan
+                        nunc risus id augue.</p>
+                        <ul class="svc__list">
+                            <li>SPAs &amp; SSR apps</li>
+                            <li>APIs &amp; microservices</li>
+                            <li>Auth &amp; roles</li>
+                            <li>Dashboards &amp; data viz</li>
+                            <li>Testing &amp; QA</li>
+                            <li>DevOps &amp; monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="int-api" class="svc">
+            <a class="svc__badge" href="#int-api">05</a>
+            <div class="svc__inner">
+                <h1 class="svc__title">Integrations &amp; API<strong>s</strong><span> *</span></h1>
+                <p class="svc__lead">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec
+                    dignissim urna. In hac habitasse platea dictumst.
+                </p>
+                <p class="svc__lead">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
+                    mauris ac quam bibendum aliquet. Sed varius mi non felis porttitor,
+                    id interdum felis pharetra. Integer nec
+                    mauris ac quam bibendum aliquet. Sed varius mi non felis porttitor,
+                    id interdum felis pharetra.
+                </p>
+        
+                <div class="svc__grid">
+                    <figure class="svc__media">
+                        <img src="./img/integrations.jpg" alt="Placeholder image">
+                    </figure>
+        
+                    <div class="svc__listwrap">
+                        <h4 class="svc__eyebrow">What we do</h4>
+                        <p class="svc-list__header">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                        suscipit, mi a mattis gravida, arcu mauris feugiat neque, a accumsan
+                        nunc risus id augue.</p>
+                        <ul class="svc__list">
+                            <li>3rd-party APIs</li>
+                            <li>Webhooks &amp; queues</li>
+                            <li>Data migrations</li>
+                            <li>SSO &amp; identity</li>
+                            <li>Automation workflows</li>
+                            <li>Documentation &amp; SDKs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="managed-services" class="svc">
+            <a class="svc__badge" href="#managed-services">06</a>
+            <div class="svc__inner">
+                <h1 class="svc__title">Managed Services<span> *</span></h1>
+                <p class="svc__lead">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel
+                    orci id libero interdum facilisis. Curabitur nec mi vitae arcu
+                    porttitor faucibus.
+                </p>
+                <p class="svc__lead">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
+                    mauris ac quam bibendum aliquet. Sed varius mi non felis porttitor,
+                    id interdum felis pharetra. Integer nec
+                    mauris ac quam bibendum aliquet. Sed varius mi non felis porttitor,
+                    id interdum felis pharetra.
+                </p>
+        
+                <div class="svc__grid">
+                    <figure class="svc__media">
+                        <img src="./img/managed-services.jpg" alt="Placeholder image">
+                    </figure>
+        
+                    <div class="svc__listwrap">
+                        <h4 class="svc__eyebrow">What we do</h4>
+                        <p class="svc-list__header">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                        suscipit, mi a mattis gravida, arcu mauris feugiat neque, a accumsan
+                        nunc risus id augue.</p>
+                        <ul class="svc__list">
+                            <li>Hosting &amp; infra support</li>
+                            <li>Content &amp; site updates</li>
+                            <li>Backups &amp; hardening</li>
+                            <li>Monitoring &amp; alerting</li>
+                            <li>SLAs &amp; reporting</li>
+                            <li>Roadmap &amp; iteration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <section id="cta" class="contact-section">
+        <div class="contact-header">
+            <h2 class="contact-title1" data-rise="true">Ready to Launch Your Project?</h2>
+            <h1 class="contact-title2" data-rise="true">Let’s Build <span>Something Great</span> Together</h1>
+            <p>
+                Tell us what you're envisioning—we’ll follow 
+                up to get the conversation started within 3 business days.
+            </p>
+            <p class="contact-subtitle">
+                Whether you're starting fresh or leveling up your online presence, Noble Fir is here to bring your vision to
+                life.
+            </p>
+            <button class="about-btn">
+                <a href="contact-us.html">Get In Touch</a>
+            </button>
+        </div>
+    </section>
 
     <footer class="nf-footer" role="contentinfo">
         <!-- giant background letters -->
