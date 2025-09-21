@@ -237,33 +237,3 @@ setInterval(changeWord, 3000);
 
 
 // ===== NF Expand/Reveal Interaction =====
-(() => {
-  const btn = document.getElementById('nfExpandBtn');
-  const body = document.getElementById('nfRevealBody');
-
-  if (!btn || !body) return;
-
-  const show = () => {
-    body.hidden = false;                  // make it measurable
-    body.setAttribute('data-anim','enter');
-    btn.setAttribute('aria-expanded','true');
-  };
-
-  const hide = () => {
-    body.setAttribute('data-anim','leave');
-    btn.setAttribute('aria-expanded','false');
-    // wait for fade-out before hiding from a11y tree
-    body.addEventListener('animationend', function onEnd(){
-      body.hidden = true;
-      body.removeAttribute('data-anim');
-      body.removeEventListener('animationend', onEnd);
-    });
-  };
-
-  btn.addEventListener('click', () => {
-    const expanded = btn.getAttribute('aria-expanded') === 'true';
-    if (expanded) { hide(); } else { show(); }
-  });
-
-  // keyboard affordance when button is focused: Enter/Space already click
-})();

@@ -1164,10 +1164,8 @@ body {
   position:absolute;
   top:15%; left:3%;
   color:var(--nf-red);
-  font-family:"Inter",sans-serif;
-  font-weight:700;
-  letter-spacing:.14em;
-  font-size:1rem;
+  font-family:"Space Grotesk",sans-serif;
+  font-size: 2rem;
   text-decoration:none;
 }
 
@@ -1208,20 +1206,26 @@ body {
 
 .svc__grid{
   display:grid;
-  grid-template-columns: minmax(300px, 500px) 1fr;
+  grid-template-columns: minmax(500px, 500px) 1fr;
   gap: 20%;
   align-items:start;
   margin-top: 2.5%;
 }
 
 .svc__media{
-  margin:0;
+  width: 500px;
+  height: auto;
+  margin-top: 24px;
   background:#0a0a0a;
   border:1px solid rgba(255,255,255,.08);
   border-radius:12px;
   overflow:hidden;
 }
-.svc__media img{ display:block; width:100%; height:auto; }
+.svc__media img { 
+    display:block; 
+    width:100%; 
+    height:auto;
+}
 .svc__cap{
   font: 400 12px/1.4 "Inter",sans-serif;
   color:var(--nf-gray);
