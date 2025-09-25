@@ -11,6 +11,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./css/contact-us.css">
+        <link rel="stylesheet" href="./css/nav-styles.css">
         <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
         <!--Calendly Integration files-->
@@ -20,35 +21,51 @@
     </head>
     <body>
         
+    <!-- Text Spinner (place near the end of <body> in about.html) -->
+    <a class="text-spinner" href="contact-us.html" aria-label="Go to Contact" data-text="LET’S TALK! • " data-speed="12s">
+        <svg viewBox="0 0 110 110" width="110" height="110" role="img" aria-hidden="true">
+            <defs>
+                <!-- Circle path the text follows -->
+                <path id="spinnerCircle" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"></path>
+            </defs>
+            <text dy="4">
+                <textPath id="spinnerText" href="#spinnerCircle" startOffset="0%"></textPath>
+            </text>
+        </svg>
+    </a>
+
         
-        <header class="navbar">
-        <div class="logo">
-            <a href="index.html">
-                <img src="./img/Noblefir_nav_logo.png" alt="Logo">
+    <!-- Navbar -->
+    <header class="navbar sticky">
+        <!-- Left: Navigation Links -->
+        <div class="nav-left">
+            <ul class="nav-links">
+                <li><a href="about.html">About Us</a></li>
+                <li class="dropdown">
+                    <a href="services.html" class="dropdown-toggle">Services</a>
+                </li>
+                <li><a href="portfolio.html">Our Work</a></li>
+            </ul>
+        </div>
+        
+        <!-- Center: Logo -->
+        <div class="nav-center">
+            <a href="index.html" class="logo">
+                <img src="./img/Noblefir_nav_logo.png" alt="Logo" />
             </a>
         </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html"></span>Home</a></li>
-                <li><a href="about.html"></span>About Us</a></li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle">Services <i class="fa fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="webdesign.html">Web Design</a></li>
-                        <li><a href="webdev.html">Web Development</a></li>
-                        <li><a href="ecommerce.html">E-Commerce Development</a></li>
-                        <li><a href="support.html">Ongoing Support</a></li>
-                    </ul>
-                </li>
-                <li><a href="#portfolio">Projects</a></li>
-                <li><a class="nav-contact" href="contact-us.html">Get in Touch</a></li>
-            </ul>
-        </nav>
+        
+        <!-- Right: Email + Button -->
+        <div class="nav-right">
+            <a href="mailto:info@noblefirstudio.com" class="nav-email">info@noblefirstudio.com</a>
+            <a href="contact-us.html" class="nav-contact">Let's Talk</a>
+        </div>
 
         <!-- Mobile Navbar -->
         <div id="menuToggle" class="menu-toggle">
-            <span id="openIcon">&#9776;</span>
-            <span id="closeIcon" style="display: none;">&#x2715</span>
+            <span id="openIcon"></span>
+            <span></span>
+            <span id="closeIcon" style="display: none;"></span>
         </div>
         
         <nav id="mobileMenu" class="mobile-menu">
@@ -59,16 +76,8 @@
             <ul class="menu-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle">Services <i class="fa fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="webdesign.html">Web Design</a></li>
-                        <li><a href="webdev.html">Web Development</a></li>
-                        <li><a href="ecommerce.html">E-Commerce Development</a></li>
-                        <li><a href="support.html">Ongoing Support</a></li>
-                    </ul>
-                </li>
-                <li><a href="#portfolio">Projects</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Projects</a></li>
                 <li><a href="contact-us.html">Contact Us</a></li>
             </ul>
             <hr />
@@ -226,37 +235,40 @@
 
 
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section logo-section">
-                <img src="./img/footer-logo.png" alt="Noble Fir Logo" class="logo">
+    <footer class="nf-footer" role="contentinfo">
+        <!-- giant background letters -->
+        <span class="nf-footer-bg-letter nf-left" aria-hidden="true">N</span>
+        <span class="nf-footer-bg-letter nf-right" aria-hidden="true">F</span>
+    
+        <!-- centered nav -->
+        <nav class="nf-footer-nav" aria-label="Footer">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Projects</a></li>
+                <li class="nf-contact-btn"><a href="contact-us.html">Let's Talk</a></li>
+            </ul>
+        </nav>
+    
+        <!-- bottom row -->
+        <div class="nf-footer-bottom">
+            <p class="nf-copy">@ 2025 NOBLE FIR STUDIO, LLC. ALL RIGHTS RESERVED.</p>
+    
+            <div class="nf-social">
+                <a href="#" aria-label="Instagram" class="nf-social-icon">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="#" aria-label="LinkedIn" class="nf-social-icon">
+                    <i class="fa fa-linkedin"></i>
+                </a>
             </div>
-            <div class="footer-section" id="footer-menu">
-                <h4 data-rise="true">Information</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Projects</a></li>
-                </ul>
+    
+            <div class="nf-legal">
+                <a href="privacy.html">Privacy Policy</a>
+                <span class="nf-sep" aria-hidden="true">•</span>
+                <a href="terms.html">Terms &amp; Conditions</a>
             </div>
-            <div class="footer-section" id="footer-contact">
-                <h4 data-rise="true">Contacts</h4>
-                <p>Tualatin, Oregon 97062</p>
-                <p>971.500.6447</p>
-                <p>info@noblefirstudio.com</p>
-            </div>
-            <div class="footer-section">
-                <h4 data-rise="true">Social Media</h4>
-                <div class="social-icons">
-                    <a href="#"><i class="fa fa-instagram"></i></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 Nobile Fir Studio. All Rights Reserved</p>
         </div>
     </footer>
         

@@ -1685,6 +1685,7 @@ body {
     top: 50%;
   }
 }
+
 @media (max-width: 768px){
   .vibes-title {
     font-size: 4.75rem;
