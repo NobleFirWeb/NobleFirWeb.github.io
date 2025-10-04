@@ -226,7 +226,7 @@ body {
     display: flex;
     align-self: center;
     justify-content: space-evenly;
-    margin-top: 100px;
+    margin-top: 120px;
     margin-bottom: 30px;
     width: 100%;
     min-height: 425px;
@@ -249,6 +249,7 @@ body {
     font-weight: 300;
     color: #fff;
     font-size: 1.5rem;
+    line-height: 1.6;
 }
 
 .about-text strong {
@@ -389,37 +390,24 @@ body {
 .about-header {
     margin: 0;
     padding: 0;
-    position: relative;
-    width: 100vw;
-    left: 50%;
-    right: 0;
-    transform: translateX(-50%);
-    padding-top: 30px;
-    margin-top: 60px;
+    max-width: 100%;
+    padding-top: 90px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .about-header .header-card {
     background-color: transparent;
-    width: 720px;
-    max-width: 1200px;
-    padding: 20px 0;
-    padding-left: 10%;
+    width: 600px;
     box-sizing: border-box;
-    position: relative;
     z-index: 0;
-    margin-top: 100px;
 }
 
 .about-subtitle1 {
-    position: absolute;
-    top: 0;
-    left: 0;
     font-family: "Space Grotesk", sans-serif;
     font-size: 8rem;
     font-weight: 800;
     color: #343434;
-    margin-top: 30px;
-    margin-left: 5%;
     text-transform: uppercase;
     z-index: 0;
     font-optical-sizing: auto;
@@ -437,14 +425,16 @@ body {
     font-weight: 200;
     letter-spacing: 0.15rem;
     color: #fff;
-    margin-top: 5px;
 }
 
 .statement {
     margin-top: 25px;
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    color: #a6a6a6;
+    color: #fff;
+    font-size: 1.25rem;
+    max-width: 720px;
+    line-height: 1.6;
 }
 
 .vals {
@@ -555,34 +545,26 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 4rem;
-    justify-content: space-between;
+    margin: 0 5%;
 }
 
 .services-header {
-    position: relative;
-    width: 100vw;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 120px 0 0 0;
-    padding-top: 30px;
+    width: 100%;
+    padding-top: 190px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .services-header .header-card {
     background-color: transparent;
-    width: 720px;
+    width: 600px;
     max-width: 720px;
-    padding: 20px 0;
-    padding-left: 10%;
     box-sizing: border-box;
-    margin-top: 100px;
     z-index: 0;
-    position: relative;
 }
 
 .services-header.managed {
     position: relative;
-    right: 50%;
-    transform: translateX(-50%);
     display: flex;
     position: relative;
     width: 100vw;
@@ -592,8 +574,6 @@ body {
 
 .services-header.managed .header-card {
     margin-top: 0;
-    padding: 20px 0;
-    padding-right: 10%;
 }
 
 .service-container.managed {
@@ -611,15 +591,10 @@ body {
 
 
 .services-title1 {
-    position: absolute;
-    top: 0;
-    left: 0;
     font-family: "Space Grotesk", sans-serif;
     font-size: 8rem;
     font-weight: 800;
     color: #343434;
-    margin-top: 30px;
-    margin-left: 5%;
     text-transform: uppercase;
     z-index: 0;
     font-optical-sizing: auto;
@@ -636,12 +611,11 @@ body {
     font-optical-sizing: auto;
     font-weight: 200;
     color: #fff;
-    margin-top: 5px;
     margin-left: 0;
 }
 
 .services-title2 sl-icon {
-    font-size: 24px;
+    font-size: 28px;
     color: #fff;
 }
 
@@ -649,8 +623,9 @@ body {
     margin-top: 25px;
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    color: #a6a6a6;
-    max-width: 720px;
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1.6;
 }
 
 .service-container {
@@ -661,8 +636,7 @@ body {
     padding: 0 10%;
     max-width: 100%;
     box-sizing: border-box;
-    margin-top: 120px;
-    margin: 0 auto;
+    margin: 120px auto;
 }
 
 .service {
@@ -731,44 +705,32 @@ body {
 
 
 #portfolio {
-    height: auto;
-    width: 100%;
-    min-height: 100vh;
-    margin: 5% 0;
+    width: 100vw;
+    padding: 0 5%;
+
 }
 
 .portfolio-header {
-    position: relative;
-    width: 100vw;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 120px 0;
-    padding-top: 30px;
+    width: 100%;
+    padding-top: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .portfolio-header .header-card {
     background-color: transparent;
-    width: 720px;
+    width: 600px;
     max-width: 720px;
-    padding: 20px 0;
-    padding-left: 10%;
     box-sizing: border-box;
-    margin-top: 0;
     z-index: 0;
-    position: relative;
-    margin-top: 100px;
 }
 
 .portfolio-title1 {
-    position: absolute;
-    top: 0;
-    left: 0;
     font-family: "Space Grotesk", sans-serif;
     font-size: 8rem;
     font-weight: 800;
     color: #343434;
-    margin-top: 30px;
-    margin-left: 5%;
     text-transform: uppercase;
     z-index: 0;
     font-optical-sizing: auto;
@@ -788,8 +750,7 @@ body {
 }
 
 .portfolio-title2 sl-icon {
-    margin-left: 10px;
-    font-size: 24px;
+    font-size: 28px;
     color: #fff;
 }
 
@@ -797,24 +758,25 @@ body {
     margin-top: 25px;
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    color: #a6a6a6;
-    max-width: 720px;
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1.6;
 }
 
 .staggered-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 10%;
+  column-gap: 15%;
   position: relative;
-  max-width: 1800px;
+  max-width: 2000px;
   width: 100%;
   margin: 0 auto;
-  padding: 30px 30px;
+  padding: 100px 0;
 }
 
 .grid-item {
   width: 100%;
-  max-width: 700px;
+  max-width: 1200px;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -824,7 +786,6 @@ body {
   max-width: 100%;
   height: auto;
   object-fit: cover center !important;
-  border-radius: 8px;
 }
 
 .grid-item:hover img {
@@ -835,19 +796,20 @@ body {
 .grid-item .caption {
     margin-top: 15px;
     padding: 10px;
+    text-align: center;
 
 }
 
 .caption h3 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-family: "Inter", sans-serif;
   font-weight: 500;
   color: #fff;
-  margin-bottom: 5px;
 }
 
 .caption p {
-  margin: 10px 0;
+  text-align: center;
+  margin: 15px 0;
   color: #a6a6a6;
 }
 
@@ -859,6 +821,7 @@ body {
     display: flex;
     gap: 10px;
     align-items: center;
+    justify-content: center;
     margin: 10px 0;
 }
 
@@ -952,28 +915,35 @@ body {
 
 
 /* Testimonials Section Styles */
-
+#testimonials {
+    width: 100vw;
+    max-width: 100vw;
+    margin-top: 120px;
+    padding-top: 5%;
+}
 
 .testimonials-header {
-    position: relative;
-    width: 100vw;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 120px 0;
-    padding-top: 60px;
+    width: 100%;
+    margin-top: 120px;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+.testimonials-header .header-card {
+    background-color: transparent;
+    width: 600px;
+    max-width: 720px;
+    box-sizing: border-box;
+    z-index: 0;
 }
 
 .testimonials-title1 {
-    position: absolute;
-    top: 0;
-    left: 0;
     font-family: "Space Grotesk", sans-serif;
     font-size: 8rem;
     font-weight: 800;
     color: #343434;
-    margin-top: 30px;
-    margin-left: 5%;
     text-transform: uppercase;
     z-index: 0;
     font-optical-sizing: auto;
@@ -984,9 +954,26 @@ body {
     font-weight: 500;
 }
 
+.testimonials-title2 {
+    font-size: 2.625rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    color: #fff;
+}
+
+.testimonials-subtitle {
+    margin-top: 25px;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+
 /* ===== Review Slider styles ===== */
 .nf-reviews {
-    margin-top: 10%;
+    margin-top: 5%;
     width: 100vw;
     height: 60vh;
     background: #0f0e0f;
@@ -1012,12 +999,12 @@ body {
 
 .nf-review {
     width: 100vw;
-    height: 50vh;
+    height: 45vh;
     display: grid;
     grid-template-columns: 40% 60%;
     align-items: center;
     gap: min(7vw, 25vw);
-    padding: min(4vw, 40px);
+    padding: min(4vw, 60px);
     box-sizing: border-box;
 }
 
@@ -1044,9 +1031,9 @@ body {
 .nf-review__quote-mark {
     position: absolute;
     left: -.1em;
-    top: -.25em;
-    font-family: "DM Sans", sans-serif;
-    font-weight: 700;
+    top: -.5em;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
     font-size: clamp(56px, 9vw, 120px);
     line-height: .6;
     color: #ff0000;
@@ -1141,6 +1128,7 @@ body {
 @media (max-width:480px) {
     .nf-reviews {
         height: 70vh;
+        margin-top: 10vh;
     }
 
     /* a little taller for readability */
@@ -1161,43 +1149,33 @@ body {
 /* FAQs */
 #faq {
     margin: 0 5%;
-    margin-top: 60px;
-    padding: 20px;
+    padding-top: 120px;
     border-radius: 5px;
 }
 
 .faq-header {
-    position: relative;
-    width: 100vw;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 120px 0 0 0;
-    padding-top: 60px;
+    width: 100%;
+    margin-top: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .faq .header-card {
     background-color: transparent;
-    width: 720px;
+    width: 600px;
     max-width: 720px;
-    padding: 20px 0;
-    padding-left: 10%;
     box-sizing: border-box;
     margin-top: 0;
     z-index: 0;
     position: relative;
-    margin-top: 70px;
 }
 
 .faq-title1 {
-    position: absolute;
-    top: 0;
-    left: 0;
     font-family: "Space Grotesk", sans-serif;
     font-size: 8rem;
     font-weight: 800;
     color: #343434;
-    margin-top: 30px;
-    margin-left: 5%;
     text-transform: uppercase;
     z-index: 0;
     font-optical-sizing: auto;
@@ -1218,21 +1196,21 @@ body {
 
 .faq-title2 sl-icon {
     margin-left: 10px;
-    font-size: 24px;
+    font-size: 28px;
     color: #fff;
 }
 
 .faq .faq-description {
+    margin-top: 25px;
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    color: #a6a6a6;
-    margin-top: 25px;
-    margin-bottom: 5%;
-    max-width: 720px;
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1.6;
 }
 
 .details-group-example {
-    margin-top: 60px; 
+    padding: 5%; 
     margin: 60px 5%;
 }
 
@@ -1687,6 +1665,10 @@ sl-details::part(base) {
 
 @media (max-width: 480px) {
 
+    .header-card h1 {
+        font-size: 2rem;
+    }
+
     .text-spinner {
         display: none;
     }
@@ -1770,16 +1752,21 @@ sl-details::part(base) {
     }
 
     .about-header {
+        padding: 0;
         margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
     .about-subtitle1 {
         font-size: 3rem;
-        margin-left: 2.5%;
         top: 45px;
     }
     .about-header .header-card {
         max-width: 100%;
-        margin-top: 45px;
+        margin-top: 20px;
 
     }
     .vals {
@@ -1804,12 +1791,18 @@ sl-details::part(base) {
     /*--- Services Styles ---*/
     #services-section .header-card {
         max-width: 100%;
-        margin-top: 60px;
-        padding-left: 6%;
-        padding-right: 5%;
     }
     .services-header {
-        padding-top: 0;
+        padding: 0;
+        margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .services-header .header-card{
+        margin-top: 20px;
     }
     .services-title1 {
         font-size: 3rem;
@@ -1819,9 +1812,16 @@ sl-details::part(base) {
     }
     .service-container.managed {
         margin-top: 60px;
+        padding: 0 auto;
+    }
+    .services-header.managed {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
     }
     #services-section .header-card.managed {
         margin-top: 0;
+        padding: 0;
     }
 
 
@@ -1833,37 +1833,22 @@ sl-details::part(base) {
         margin: 60px 0;
     }
     .portfolio-header {
-        margin-top: 120px;
+        margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
     #portfolio .header-card {
         max-width: 100%;
-        margin-top: 35px;
-        padding-left: 6%;
-        padding-right: 5%;
+        margin-top: 20px;
     }
     .portfolio-title1 {
         font-size: 3rem;
     }
-    .bento-section {
-        margin: 0;
-    }
-    .bento-grid {
-        grid-template-columns: 1fr !important;
-        grid-template-rows: auto !important;
-    }
-    .grid-item {
-        grid-column: span 1 !important;
-        grid-row: span 1 !important;
-        width: 100% !important;
-    }
-    .overlay-text h3 {
-        font-size: 1.5rem;
-    }
-    .overlay-text p {
-        font-size: 0.75rem;
-    }
-    .overlay-text li {
-        font-size: 0.5rem;
+    .staggered-grid {
+        padding: 0;
     }
     .projects-btn a {
         font-size: 0.75rem;
@@ -1886,12 +1871,15 @@ sl-details::part(base) {
     }
     .testimonials-header {
         margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
     #testimonials .header-card {
         max-width: 100%;
-        margin-top: 5px;
-        padding-left: 6%;
-        padding-right: 5%;
+        margin-top: 20px;
     }
     .testimonials-title1 {
         font-size: 3rem;
@@ -1967,10 +1955,22 @@ sl-details::part(base) {
     }
     .faq-header {
         margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
     #faq .header-card {
         max-width: 100%;
-        margin-top: 10px;
+        margin-top: 20px;
+    }
+    .faq-title2 sl-icon {
+        display: none;
+    }
+    .details-group-example {
+        padding: 0;
+        margin-top: 60px;
     }
 
 
@@ -1983,7 +1983,7 @@ sl-details::part(base) {
         padding: 0;
     }
     .contact-header {
-        padding-top: 50px;
+        margin-top: 0;
     }
     .contact .header-card {
         max-width: 100%;

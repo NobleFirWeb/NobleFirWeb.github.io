@@ -231,28 +231,28 @@ body {
     color: #ff0000;
 }
 
-@media (max-width: 1024px) {
-    .appendix-container {
-        height: 25vh;
-    }
-}
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .appendix {
+        margin: 15% 0;
+    }
     .appendix-container {
-        flex-direction: column;
         width: 100%;
         height: auto;
+        flex-direction: column;
     }
 
     .appendix-card {
         width: 100%;
-        padding: 16px 0;
+        padding: 25px 0;
         border-bottom: 1px solid #3a3a3a;
     }
 }
 
 @media (max-width: 480px) {
-
+    .appendix {
+        margin: 10% 0;
+    }
     .appendix-card a.row-text .card-text {
         font-size: 1.5rem;
     }
@@ -338,26 +338,34 @@ body {
 }
 
 .contact-form button {
-    color: #fff;
-    background: #ff0000;
-    font-family: "Inter", sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    margin-top: 15px;
-    cursor: pointer;
-    border: 1px solid #000;
-    padding: 12px 20px;
-    transition: color 0.25s ease-in-out;
-    text-transform: uppercase;
-    width: 25%;
-    max-width: 200px;
-    margin: 20px auto;
+    margin-top: 25px;
+    display: block;
+    align-self: center;
+    text-decoration: none;
+    background-color: #ff0000;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
 
-.contact-form button:hover {
-    background: black;
+.contact-form button a {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    border: 1.25px solid #000;
+    font-family: "Inter", sans-serif;
+    text-transform: uppercase;
     color: #fff;
-    border: 1px solid #fff;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.contact-form button a:hover {
+    cursor: pointer;
+    background-color: #000;
+    border: 1.25px solid #fff;
+    color: #fff;
 }
 
 .form-group {
@@ -421,7 +429,7 @@ body {
 @media only screen and (max-width: 1024px) {
     /* Hero Section Styles */
     #hero {
-        max-height: 100vh;
+        max-height: 100dvh;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -432,18 +440,25 @@ body {
     width: 100%;
     max-width: 100%;
     height: auto;
-}
+    display: flex;
+    justify-content: center;
+    }
 
     .hero-contact-content h1 {
         max-width: 100%;
+        text-align: center;
     }
     #contact-items-section {
         margin-top: 0;
+    }
+    .hero-carousel {
+        width: 90%;
     }
 
     /*--- Contact Form Section Styles ---*/
     .contact-form-section {
         flex-direction: column-reverse;
+        padding: 0;
     }
     .form-container {
         padding-top: 30px;
@@ -456,7 +471,14 @@ body {
 
 
 
-
+@media (max-width: 768px) {
+    #hero {
+        margin-top: 25%;
+    }
+    .hero-contact-content h1 {
+        font-size: 6rem;
+    }
+}
 
 
 
@@ -465,13 +487,13 @@ body {
 @media (max-width: 480px) {
 /*--- Hero Styles ---*/
 #hero {
-    height: 100vh;
-    max-height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 30px;
-    margin-top: 15%;
+    margin-top: 25%;
     padding: 0 5%;
 }
 
@@ -481,8 +503,13 @@ body {
 }
 
 .hero-contact-content h1 {
-    font-size: 3.25rem;
+    font-size: 3.45rem;
     max-width: 100%;
+    text-shadow:
+        1.5px 1.5px 0 #464646,
+        -1.5px -1.5px 0 #464646,
+        1.5px -1.5px 0 #464646,
+        -1.5px 1.5px 0 #464646;
 }
 
 .hero-buttons {
@@ -491,14 +518,17 @@ body {
 
 .hero-carousel {
     width: 100%;
-    height: 50vh;
-    padding-top: 20px;
+    padding-top: 30px;
 }
 
 .hero-carousel img {
     width: 100%;
     height: auto;
     object-fit: cover center;
+}
+
+.appendix {
+    margin-bottom: 5%;
 }
 
 /*--- Contact Items Section Styles ---*/
@@ -522,6 +552,8 @@ body {
 /*--- Contact Form Section Styles ---*/
 .contact-form-section {
     flex-direction: column-reverse;
+    margin-top: 5%;
+    padding: 10% 5%;
 }
 .form-container h3 {
     font-size: 3rem;
