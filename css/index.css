@@ -481,7 +481,7 @@ body {
     font-size: 11rem;
     font-family: "Space Grotesk", sans-serif;
     font-weight: 500;
-    color: #232323;
+    color: #464646;
     z-index: 1;
 }
 
@@ -496,7 +496,9 @@ body {
 
 .val-description {
     font-family: "Inter", sans-serif;
-    font-weight: 300;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25;
     color: #a6a6a6;
     max-width: 100%;
     margin: 15px 0;
@@ -504,7 +506,9 @@ body {
 }
 .val-description2{
     font-family: "Inter", sans-serif;
-    font-weight: 300;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25;
     color: #a6a6a6;
     max-width: 100%;
     z-index: 2;
@@ -650,8 +654,8 @@ body {
 .service-number {
     font-size: 3rem;
     font-family: "Space Grotesk", sans-serif;
-    font-weight: 700;
-    color: #232323;
+    font-weight: 800;
+    color: #464646;
 }
 
 .service-number strong {
@@ -660,8 +664,8 @@ body {
 }
 
 .service-title {
-    font-size: 1.25rem;
-    font-family: "Inter", sans-serif;
+    font-size: 2rem;
+    font-family: "Space Grotesk", sans-serif;
     font-weight: 600;
     text-transform: uppercase;
     color: #fff;
@@ -1041,7 +1045,7 @@ body {
 }
 
 .nf-review__headline {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: .02em;
@@ -1055,8 +1059,10 @@ body {
     margin: 4px 0 18px 0;
     color: #a6a6a6;
     /* nf-gray small text */
-    font-size: clamp(14px, 1.4vw, 18px);
-    line-height: 1.35;
+    font-size: clamp(14px, 1.4vw, 1rem);
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    line-height: 1.25;
 }
 
 .nf-review__author {
@@ -1809,10 +1815,11 @@ sl-details::part(base) {
     }
     .service-container {
         margin-top: 60px;
+        padding: 0;
     }
     .service-container.managed {
         margin-top: 60px;
-        padding: 0 auto;
+        padding: 0;
     }
     .services-header.managed {
         align-items: center;
@@ -1970,7 +1977,7 @@ sl-details::part(base) {
     }
     .details-group-example {
         padding: 0;
-        margin-top: 60px;
+        margin: 60px 0;
     }
 
 

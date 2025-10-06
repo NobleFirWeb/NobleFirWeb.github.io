@@ -516,7 +516,7 @@ body {
 .global1 .global-title{
   font-size: 7rem;
   font-family: 'Space Grotesk', sans-serif;
-  font-weight: 200;
+  font-weight: 600;
   justify-content: flex-start;
   align-items: flex-start;
   color: #0f0e0f;
@@ -641,21 +641,18 @@ body {
     max-width: 100%;
     padding: 0 5%;
   }
-  .mission .header-paragraph {
-    padding: 0 5%;
-  }
   .mission-image {
     max-width: 85%;
   }
   .mission-text {
-    padding: 0 5%;
+    padding: 0;
     max-width: 100%;
   }
   .global1 .global-title {
-    font-size: 4.75rem;
+    font-size: 5.5rem;
   }
   .global2 .global-subtitle {
-    font-size: 4.75rem;
+    font-size: 5.5rem;
   }
 }
 
@@ -673,8 +670,11 @@ body {
   .global-container {
     gap: 20%;
   }
+  .mission-content3 {
+    margin: 5% 0;
+  }
   .global1 .global-title {
-    font-size: 3rem;
+    font-size: 4rem;
     text-shadow:
     1px 1px 0 var(--nf-gray),
     -1px -1px 0 var(--nf-gray),
@@ -682,7 +682,7 @@ body {
     -1px 1px 0 var(--nf-gray);
   }
   .global2 .global-subtitle {
-    font-size: 3rem;
+    font-size: 3.75rem;
   }
 }
 
@@ -867,8 +867,9 @@ body {
 }
 .skills__sub{
   font-family: "Inter", system-ui, sans-serif;
-  color: var(--muted);
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  color: #a6a6a6;
+  font-size: 1rem;
+  font-weight: 500;
   line-height: 1.25;
   margin: 0;
   padding-top: 10px 0;
@@ -1021,7 +1022,7 @@ body {
     aspect-ratio: 21/9; 
   }
   .skill__details{
-  padding: 0;
+  height: auto;
   padding-left: 10%;
   }
   .skills-heading {
@@ -1075,7 +1076,7 @@ body {
     padding: 0 5%;
   }
   .expertise .header-paragraph {
-    padding: 0 5%;
+    padding: 0;
   }
   .skills__figure { 
     display: none; 
@@ -1113,6 +1114,15 @@ body {
   .expertise-title span {
   font-size: 1.5rem;
   padding-right: 0.75rem;
+  }
+  .skills__hero {
+    margin: 0;
+  }
+  .skills__heading {
+    font-size: 2.05rem;
+  }
+  .skills__list {
+    margin: 0;
   }
   .skills__sub {
     margin-top: 10px;
@@ -1326,6 +1336,7 @@ body {
 @media (max-width:480px) {
     .nf-reviews {
         height: 75vh;
+        margin-top: 25%;
     }
 
     /* a little taller for readability */
@@ -1378,6 +1389,9 @@ body {
   .team-title span {
   font-size: 1.5rem;
   padding-right: 0;
+  }
+  #team .about-cards-container {
+    padding: 0;
   }
 }
 
@@ -1576,11 +1590,12 @@ body {
 
 .vibe-text{
   font-family: "Inter", sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   color: #a6a6a6;
   font-size: clamp(1rem, 2.2vw, 1.25rem);
   max-width: 52ch;
   margin: 20px 0;
+  line-height: 1.25;
 }
 
 .vibe-text span {
@@ -1733,20 +1748,29 @@ body {
   font-size: 1.5rem;
   padding-right: 0;
   }
+  #vibes .header-paragraph {
+    padding: 0;
+  }
   .vibes-nav {
     display: none;
   }
   .vibe-row {
-    padding: 0 5vw;
+    padding: 0 5%;
     margin: 15vh 0;
   }
   #vibe2,
   #vibe4 {
-    padding: 0 5vw;
+    padding: 0 5%;
     margin: 5vh 0;
   }
   .vibe-num {
     font-size: 33vh;
+  }
+  .vibe-title {
+    font-size: 3rem;
+  }
+  .vibe-text {
+    max-width: 100%;
   }
 }
 
@@ -1866,7 +1890,7 @@ sl-dialog .dialog-card-text h1 {
 sl-dialog .dialog-card-text h3 {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
-  color: #999;
+  color: #a6a6a6;
 }
 
 sl-dialog .dialog-subtext {
@@ -1935,9 +1959,22 @@ sl-button::part(label):hover {
     max-width: 300px;
     max-height: 300px;
   }
+
   #team .about-img-title {
     font-size: 3rem;
     text-align: center;
+  }
+  #team .dialog-card-content {
+    padding: 0;
+    flex-direction: column;
+  }
+  #team .dialog-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover top !important;
+  }
+  sl-dialog .dialog-card-text h1 {
+    margin-top: 10px;
   }
 }
 
@@ -2211,90 +2248,3 @@ sl-button::part(label):hover {
   opacity: 1;
   transform: translateX(0);
 }
-
-
-
-
-
-
-/*
-@media only screen and (max-width: 1024px) {
-
-
-
-  .process-container {
-    flex-direction: column-reverse;
-    align-items: center;
-    gap: 60px;
-  }
-  .image-container,
-  .text-card-wrapper {
-    flex: 1 1 100%;
-    max-width: 100%;
-    height: auto;
-  }
-
-  .text-card li {
-    font-size: 18px;
-  }
-  .text-card {
-    margin: 0 5%;
-  }
-  .step-title {
-    margin: 0 25px;
-  }
-  .step-text {
-    margin: 0 25px;
-  }
-
-
-
-  #team .image-container {
-    width: 100%;
-    height: auto;
-    max-height: 100%;
-    padding: 50px;
-  }
-  #team .image-container .image-text {
-    margin: 0 5%;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    color: #000000;
-    padding: 0 10%;
-}
-#team sl-dialog::part(panel) {
-  height: 75vh;
-}
-sl-dialog .dialog-card-content {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
-  width: 100%;
-}
-img.dialog-img {
-  width: 100%;
-  height: auto;
-  max-width: 400px;
-  max-height: 400px;
-  border-radius: none;
-}
-}
-
-
-
-.process-header .header-card {
-  max-width: 100%;
-}
-.step-title {
-  margin: 0;
-}
-.step-text {
-  margin: 0;
-}
-#our-process .image-container img {
-  width: 375px;
-  height: 375px;
-}
-*/

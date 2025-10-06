@@ -112,6 +112,7 @@ body {
 
 .hero-contact-content h1 span {
     color: #fff;
+    text-shadow: none;
 }
 
 .hero-text {
