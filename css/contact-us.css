@@ -224,7 +224,10 @@ body {
     transition: color 0.15s ease-in-out;
     color: #fff;
     text-decoration: none;
+}
 
+.appendix-card a.row-text:hover {
+    cursor: pointer;
 }
 
 .appendix-card a.row-text:hover .card-text {
