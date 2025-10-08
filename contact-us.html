@@ -205,14 +205,16 @@
             </form>
         </div>
     </section>
-            
 
-
-
-
-
-
-
+    <!-- Success Modal -->
+    <div id="nf-modal" class="nf-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="nf-modal-title">
+        <div class="nf-modal__backdrop" data-close-modal></div>
+        <div class="nf-modal__dialog" role="document">
+            <h3 id="nf-modal-title">Message sent ✅</h3>
+            <p>Thanks for reaching out. We’ll be in touch within <strong>three business days</strong>.</p>
+            <button type="button" class="nf-modal__close" data-close-modal>Close</button>
+        </div>
+    </div>
 
 
 
@@ -284,11 +286,40 @@
         <script>
             (function () {
                 const form = document.getElementById('nf-contact-form');
-                if (!form) return;
+                const modal = document.getElementById('nf-modal');
+                const closeEls = modal?.querySelectorAll('[data-close-modal]');
+                let lastFocused;
 
-                function val(id) { return (document.getElementById(id)?.value || '').trim(); }
+                if (!form || !modal) return;
 
-                form.addEventListener('submit', function (e) {
+                const endpoint = form.getAttribute('action'); // https://formspree.io/f/xyzwlrnw
+
+                const q = (id) => document.getElementById(id);
+                const val = (id) => (q(id)?.value || '').trim();
+
+                function openModal() {
+                    lastFocused = document.activeElement;
+                    modal.setAttribute('aria-hidden', 'false');
+                    // focus the close button
+                    const btn = modal.querySelector('.nf-modal__close');
+                    btn && btn.focus();
+                    // Esc to close
+                    function onKey(e) { if (e.key === 'Escape') { closeModal(); } }
+                    modal.dataset.keyHandler = '1';
+                    document.addEventListener('keydown', onKey, { once: true });
+                }
+
+                function closeModal() {
+                    modal.setAttribute('aria-hidden', 'true');
+                    lastFocused && lastFocused.focus();
+                }
+
+                closeEls.forEach(el => el.addEventListener('click', closeModal));
+
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    // collect values
                     const name = val('name');
                     const email = val('email');
                     const phone = val('phone');
@@ -298,19 +329,14 @@
                     const details = val('details');
 
                     if (!proj || !ref) {
-                        e.preventDefault();
                         alert('Please choose both Project Type and How you heard about us.');
                         return;
                     }
 
-                    // Subject: New Contact • Project Type • Name (Company)
-                    const subj = [
-                        'New Contact',
-                        proj || 'Project',
-                        name ? (company ? `${name} (${company})` : name) : null
-                    ].filter(Boolean).join(' • ');
+                    // Build subject and summary block
+                    const subj = ['New Contact', proj, name ? (company ? `${name} (${company})` : name) : null]
+                        .filter(Boolean).join(' • ');
 
-                    // Preformatted summary (single field in the email)
                     const summary = [
                         'Noble Fir — Contact Submission',
                         '================================',
@@ -337,15 +363,52 @@
                         `When:     ${new Date().toLocaleString()}`
                     ].join('\n');
 
-                    // Fill hidden helpers
-                    document.getElementById('form-subject').value = subj;
-                    document.getElementById('reply-to').value = email;     // sets Reply-To header
-                    document.getElementById('page-url').value = location.href;
-                    document.getElementById('submitted-at').value = new Date().toISOString();
-                    document.getElementById('summary-message').value = summary;
+                    // Disable UI while sending
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.style.opacity = 0.7;
+
+                    try {
+                        // Build payload for Formspree
+                        const data = new FormData(form);
+                        data.set('_subject', subj);
+                        data.set('_replyto', email);
+                        data.set('page_url', location.href);
+                        data.set('submitted_at', new Date().toISOString());
+                        data.set('message', summary); // shows up clearly on free plan
+
+                        const res = await fetch(endpoint, {
+                            method: 'POST',
+                            headers: { 'Accept': 'application/json' },
+                            body: data
+                        });
+
+                        if (res.ok) {
+                            form.reset();                 // clear values
+                            // If you use custom selects, also clear their UI labels here.
+
+                            openModal();                  // show confirmation
+                        } else {
+                            // Try to parse Formspree error for details
+                            let msg = 'Something went wrong sending your message.';
+                            try {
+                                const j = await res.json();
+                                if (j && j.errors && j.errors.length) {
+                                    msg = j.errors.map(e => e.message).join('\n');
+                                }
+                            } catch (_) { }
+                            alert(msg);
+                        }
+                    } catch (err) {
+                        alert('Network error. Please try again.');
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = '';
+                    }
                 });
             })();
         </script>
+
 
 
 
