@@ -143,51 +143,64 @@
             <h3 data-rise="true">Let's Build <span>Something Great</span> Together</h3>
             <p class="text1">Have a project in mind or questions about getting started?</p>
             <p class="text2">Let's collaborate on a solution tailored to your goals.</p>
-            <form class="contact-form" action="https://formspree.io/f/xyzwlrnw" method="POST">
+            <form class="contact-form" action="https://formspree.io/f/xyzwlrnw" method="POST" id="nf-contact-form">
                 <div class="form-group">
                     <div class="form-field">
                         <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" autocomplete="name" required>
                     </div>
                     <div class="form-field">
                         <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone" required>
+                        <input type="tel" id="phone" name="phone" autocomplete="tel" required>
                     </div>
                 </div>
-        
+            
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-        
+                <input type="email" id="email" name="email" autocomplete="email" required>
+            
                 <label for="company">Company</label>
-                <input type="text" id="company" name="company">
-        
+                <input type="text" id="company" name="company" autocomplete="organization">
+            
                 <label for="project-type">Project Type</label>
-                <select id="project-type" name="project-type">
-                    <option value="Select a project type" disabled selected>Select an Option</option>
-                    <option>Initial Consultation</option>
-                    <option>Website Design</option>
-                    <option>Website Redesign</option>
-                    <option>Website Development</option>
-                    <option>E-Commerce</option>
-                    <option>Project Takeover</option>
-                    <option>Other</option>
+                <select id="project-type" name="project_type" class="nf-select" required>
+                    <option value="" disabled selected>Select an Option</option>
+                    <option value="Initial Consultation">Initial Consultation</option>
+                    <option value="Website Design">Website Design</option>
+                    <option value="Website Redesign">Website Redesign</option>
+                    <option value="Website Development">Website Development</option>
+                    <option value="E-Commerce">E-Commerce</option>
+                    <option value="Project Takeover">Project Takeover</option>
+                    <option value="Other">Other</option>
                 </select>
-
+            
                 <label for="reference">How did you hear about us?</label>
-                <select id="reference" name="reference">
-                        <option value="Select an Option" disabled selected>Select an Option</option>
-                        <option>Google</option>
-                        <option>Twitter</option>
-                        <option>Instagram</option>
-                        <option>Referral</option>
-                        <option>Other</option>
-                    </select>
-        
+                <select id="reference" name="referrer" class="nf-select" required>
+                    <option value="" disabled selected>Select an Option</option>
+                    <option value="Google">Google</option>
+                    <option value="Twitter / X">Twitter / X</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="Referral">Referral</option>
+                    <option value="Other">Other</option>
+                </select>
+            
                 <label for="details">Tell us About your Project</label>
-                <textarea id="details" name="details" rows="4"></textarea>
-
-                <!-- Subject line for Formspree -->
-                <input type="hidden" name="_subject" id="form-subject" value="">
+                <textarea id="details" name="details" rows="4"
+                    placeholder="What are you trying to build? Timeline? Budget? Must-haves?"></textarea>
+            
+                <!-- Honeypot -->
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
+            
+                <!-- Free-plan helpers -->
+                <input type="hidden" name="_subject" id="form-subject" value="New Contact • Noble Fir">
+                <input type="hidden" name="_replyto" id="reply-to" value="">
+                <input type="hidden" name="page_url" id="page-url" value="">
+                <input type="hidden" name="submitted_at" id="submitted-at" value="">
+                <!-- Preformatted summary the email will show as a single field -->
+                <textarea name="message" id="summary-message" style="display:none"></textarea>
+            
+                <!-- Optional: redirect after submit -->
+                <!-- <input type="hidden" name="_next" value="https://noblefirstudio.com/thank-you.html"> -->
+            
                 <button type="submit"><a>Send Message</a></button>
             </form>
         </div>
@@ -269,19 +282,72 @@
         </script>
 
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const subjectInput = document.getElementById("form-subject");
-                const projectTypeSelect = document.getElementById("project-type");
+            (function () {
+                const form = document.getElementById('nf-contact-form');
+                if (!form) return;
 
-                // Set default on load if pre-selected option exists
-                subjectInput.value = "Noble Fir Studio – Inquiry";
+                function val(id) { return (document.getElementById(id)?.value || '').trim(); }
 
-                projectTypeSelect.addEventListener("change", function () {
-                    const selected = this.value || "General";
-                    subjectInput.value = `Noble Fir Studio: ${selected} Inquiry`;
+                form.addEventListener('submit', function (e) {
+                    const name = val('name');
+                    const email = val('email');
+                    const phone = val('phone');
+                    const company = val('company');
+                    const proj = val('project-type');
+                    const ref = val('reference');
+                    const details = val('details');
+
+                    if (!proj || !ref) {
+                        e.preventDefault();
+                        alert('Please choose both Project Type and How you heard about us.');
+                        return;
+                    }
+
+                    // Subject: New Contact • Project Type • Name (Company)
+                    const subj = [
+                        'New Contact',
+                        proj || 'Project',
+                        name ? (company ? `${name} (${company})` : name) : null
+                    ].filter(Boolean).join(' • ');
+
+                    // Preformatted summary (single field in the email)
+                    const summary = [
+                        'Noble Fir — Contact Submission',
+                        '================================',
+                        '',
+                        'Contact',
+                        '-------',
+                        `Name:     ${name || '—'}`,
+                        `Email:    ${email || '—'}`,
+                        `Phone:    ${phone || '—'}`,
+                        `Company:  ${company || '—'}`,
+                        '',
+                        'Project',
+                        '-------',
+                        `Type:     ${proj}`,
+                        `Heard via:${ref}`,
+                        '',
+                        'Details',
+                        '-------',
+                        details || '—',
+                        '',
+                        'Meta',
+                        '----',
+                        `Page:     ${location.href}`,
+                        `When:     ${new Date().toLocaleString()}`
+                    ].join('\n');
+
+                    // Fill hidden helpers
+                    document.getElementById('form-subject').value = subj;
+                    document.getElementById('reply-to').value = email;     // sets Reply-To header
+                    document.getElementById('page-url').value = location.href;
+                    document.getElementById('submitted-at').value = new Date().toISOString();
+                    document.getElementById('summary-message').value = summary;
                 });
-            });
+            })();
         </script>
+
+
 
 
 
