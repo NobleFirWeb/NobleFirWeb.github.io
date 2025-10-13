@@ -79,119 +79,91 @@
             </nav>
         </header>
         
-        <div class="project-scroller" id="scroller">
-            <section class="project-slide" id="slide1" style="background-image: url('./img/js-painting.png');">
-                <div class="overlay">
-                    <div class="overlay-text">
-                        <h1 data-rise="true">J's Quality Custom Painting</h1>
-                        <p>Project Type: Corporate Website</p>
-                        <p>Tools Used: Figma, HTML, CSS3, JavaScript</p>
-                        <p>Website Goals: High-performance frontend for local painting services</p>
-                    </div>
-                    <div class="overlay-img" slide-left="true">
-                        <img src="./img/js-mobile.png" alt="J's Quality Custom Painting">
-                    </div>
-                    <a href="https://noblefirstudio.com/js-quality-custom-painting/" target="_blank">View Site</a>
-                    <div class="scroll-cue">
-                    <p>Scroll to explore 
-                        <span><i class="fa fa-arrow-down"></i></span>
-                    </p>
-                    </div>
+        <section class="hero" id="hero">
+            <div class="hero-header">
+                <div class="has-animation animation-ltr" data-delay="10">
+                    <h1 class="hero-title">Projects</h1>
                 </div>
-            </section>
-            <section class="project-slide" id="slide2" style="background-image: url('./img/spaceman3.png');">
-                <div class="overlay">
-                    <div class="overlay-text">
-                        <h1 data-rise="true">CosmiQ Labs</h1>
-                        <p>Project Type: Custom Web App</p>
-                        <p>Tools Used: Figma, HTML, CSS3, JavaScript</p>
-                        <p>Web App Goals: High-performance frontend gallery for showcasing artwork</p>
-                    </div>
-                    <div class="overlay-img" slide-left="true">
-                        <img src="./img/spaceman3-front.png" alt="J's CosmiQ Mobile view">
-                    </div>
-                    <a href="#">View Project</a>
+            </div>
+            <div class="has-animation animation-rtl" data-delay="1500">
+                <div class="container">
+                    <div class="box box-1" style="--img: url(https://i.postimg.cc/sgBkfbtx/img-1.jpg);" data-text="Casa Designs"></div>
+                    <div class="box box-2" style="--img: url(https://i.postimg.cc/3RZ6bhDS/img-2.jpg);" data-text="J's Painting"></div>
+                    <div class="box box-3" style="--img: url(https://i.postimg.cc/DZhHg0m4/img-3.jpg);" data-text="CosmiQ"></div>
+                    <div class="box box-4" style="--img: url(https://i.postimg.cc/KjqWx5ft/img-4.jpg);" data-text="Gracefully Captured"></div>
+                    <div class="box box-5" style="--img: url(https://i.postimg.cc/nrcWyW4H/img-5.jpg);" data-text="Crown Clothing"></div>
                 </div>
-            </section>
-            <section class="project-slide" id="slide3" style="background-image: url('./img/casa-designs.png');">
-                <div class="overlay">
-                    <div class="overlay-text">
-                        <h1 data-rise="true">Casa Designs</h1>
-                        <p>Project Type: Small Business Website</p>
-                        <p>Tools Used: Figma, HTML, CSS3, JavaScript</p>
-                        <p>Web App Goals: High-performance frontend gallery for showcasing custom woodwork</p>
-                    </div>
-                    <div class="overlay-img" slide-left="true">
-                        <img src="./img/casa-designs-mobile-portrait.png" alt="Casa Designs">
-                    </div>
-                    <a href="https://noblefirstudio.com/casa-designs/" target="_blank">View Site</a>
-                </div>
-            </section>
-            <section class="project-slide" id="slide4" style="background-image: url('./img/crown-clothing.png');">
-                <div class="overlay">
-                    <div class="overlay-text">
-                        <h1 data-rise="true">Crown Clothing</h1>
-                        <p>Project Type: Modern E-Commerce Platform</p>
-                        <p>Tools Used: React, SASS, Firebase DB, Stripe Payments</p>
-                        <p>Web App Goals: Fast, responsive shopping experience for trend-forward apparel</p>
-                    </div>
-                    <div class="overlay-img" slide-left="true">
-                        <img src="./img/crown-mobile-left.png" alt="Crown Clothing">
-                    </div>
-                    <a href="#">View Project</a>
-                </div>
-            </section>
-            <section class="project-slide" id="slide5" style="background-image: url('./img/gracefully-captured.png');">
-                <div class="overlay">
-                    <div class="overlay-text">
-                        <h1 data-rise="true">Gracefully Captured</h1>
-                        <p>Project Type: Photography Portfolio Website</p>
-                        <p>Tools Used: HTML, CSS, JavaScript, SliderJS</p>
-                        <p>Web App Goals: Fluid image gallery and booking-friendly user flow</p>
-                    </div>
-                    <div class="overlay-img" slide-left="true">
-                        <img src="./img/gracefully-captured-mobile-portrait.png" alt="Gracefully Captured">
-                    </div>
-                    <a href="#">View Project</a>
-                </div>
-            </section>
-        </div>
+            </div>
+        </section>
+
+        <section class="appendix">
+
+        </section>
+
+
+
+
+        <footer class="nf-footer" role="contentinfo">
+            <!-- giant background letters -->
+            <span class="nf-footer-bg-letter nf-left" aria-hidden="true">N</span>
+            <span class="nf-footer-bg-letter nf-right" aria-hidden="true">F</span>
         
-        <div class="pagination">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-
-
+            <!-- centered nav -->
+            <nav class="nf-footer-nav" aria-label="Footer">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Projects</a></li>
+                    <li class="nf-contact-btn"><a href="contact-us.html">Let's Talk</a></li>
+                </ul>
+            </nav>
+        
+            <!-- bottom row -->
+            <div class="nf-footer-bottom">
+                <p class="nf-copy">@ 2025 NOBLE FIR STUDIO, LLC. ALL RIGHTS RESERVED.</p>
+        
+                <div class="nf-social">
+                    <a href="#" aria-label="Instagram" class="nf-social-icon">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="LinkedIn" class="nf-social-icon">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                </div>
+        
+                <div class="nf-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <span class="nf-sep" aria-hidden="true">•</span>
+                    <a href="terms.html">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </footer>
         
         <script src="./js/index.js" async defer></script>
 
         <script>
-            const scroller = document.getElementById('scroller');
-                const dots = document.querySelectorAll('.dot');
-                const slides = document.querySelectorAll('.project-slide');
+            (function () {
+                    const items = document.querySelectorAll('.has-animation');
 
-                // Handle scroll event to activate the correct dot
-                scroller.addEventListener('scroll', () => {
-                    const index = Math.round(scroller.scrollTop / (window.innerHeight - 100));
-                    dots.forEach((dot, i) => {
-                        dot.classList.toggle('active', i === index);
-                    });
-                });
+                    const io = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (!entry.isIntersecting) return;
 
-                // Handle click events on dots
-                dots.forEach((dot, i) => {
-                    dot.addEventListener('click', () => {
-                        const offsetTop = i * (window.innerHeight - 100);
-                        scroller.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
+                            const el = entry.target;
+                            const delay = parseInt(el.dataset.delay || '0', 10);
+
+                            // Only trigger once
+                            if (!el.classList.contains('animate-in')) {
+                                setTimeout(() => el.classList.add('animate-in'), delay);
+                            }
+
+                            io.unobserve(el);
                         });
-                    });
-                });
+                    }, { threshold: 0.2 }); // 20% of the element visible
+
+                    items.forEach(el => io.observe(el));
+                })();
         </script>
     </body>
 </html>
