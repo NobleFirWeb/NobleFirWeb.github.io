@@ -296,5 +296,10 @@ body {
 
 
 @media (max-width: 480px) {
-
+    .hero-header {
+        top: 20vh;
+    }
+    .container {
+        top: 30vh;
+    }
 }
