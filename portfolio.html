@@ -85,25 +85,84 @@
             </nav>
         </header>
         
-        <section class="hero" id="hero">
-            <div class="hero-header">
-                <div class="has-animation animation-ltr" data-delay="10">
-                    <h1 class="hero-title">Projects</h1>
-                </div>
+        <section class="work-hero" id="work-hero">
+            <div class="work-hero__inner">
+                <h1 class="work-hero__title" aria-label="WORK" data-rise="true"><span>WORK</span></h1>
             </div>
-            <div class="has-animation animation-rtl" data-delay="1500">
-                <div class="container">
+        </section>
+
+        <section class="work-grid" id="work-grid">
+            <div class="work-grid__inner">
+                <!-- Card 1 -->
+                <article class="work-card visible">
+                    <figure class="work-card__media">
+                        <img src="./img/js-painting-card.jpg"
+                            alt="Js Painting project preview">
+                    </figure>
+                    <figcaption class="work-card__caption">
+                        <a href="#" class="work-card__title">J's Quality Painting</a>
+                        <span class="work-card__meta">Web Design, Development | <span>2024</span></span>
+                    </figcaption>
+                </article>
+        
+                <!-- Card 2 -->
+                <article class="work-card visible">
+                    <figure class="work-card__media">
+                        <img src="./img/casa-designs-card.jpg"
+                            alt="Casa Designs project preview">
+                    </figure>
+                    <figcaption class="work-card__caption">
+                        <a href="#" class="work-card__title">Casa Designs</a>
+                        <span class="work-card__meta">Web Design, Development | <span>2025</span></span>
+                    </figcaption>
+                </article>
+        
+                <!-- Card 3 -->
+                <article class="work-card" data-rise="true">
+                    <figure class="work-card__media">
+                        <img src="./img/spaceman3.png"
+                            alt="CosmiQ project preview">
+                    </figure>
+                    <figcaption class="work-card__caption">
+                        <a href="#" class="work-card__title">CosmiQ</a>
+                        <span class="work-card__meta">UX, App Design, Development | <span>2024</span></span>
+                    </figcaption>
+                </article>
+        
+                <!-- Card 4 -->
+                <article class="work-card" data-rise="true">
+                    <figure class="work-card__media">
+                        <img src="./img/gracefully-captured-card.jpg"
+                            alt="Gracefully Captured project preview">
+                    </figure>
+                    <figcaption class="work-card__caption">
+                        <a href="#" class="work-card__title">Gracefully Captured</a>
+                        <span class="work-card__meta">Brand, Web Design, Development | <span>2023</span></span>
+                    </figcaption>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="work-card" data-rise="true">
+                    <figure class="work-card__media">
+                        <img src="./img/crown-clothing-card.jpg"
+                            alt="Crown Clothing project preview">
+                    </figure>
+                    <figcaption class="work-card__caption">
+                        <a href="#" class="work-card__title">Crown Clothing</a>
+                        <span class="work-card__meta">Brand, Site Build, <span>2023</span></span>
+                    </figcaption>
+                </article>
+            </div>
+        </section>
+
+        <section class="appendix">
+            <div class="container">
                     <div class="box box-1" style="--img: url(https://i.postimg.cc/sgBkfbtx/img-1.jpg);" data-text="Casa Designs"></div>
                     <div class="box box-2" style="--img: url(https://i.postimg.cc/3RZ6bhDS/img-2.jpg);" data-text="J's Painting"></div>
                     <div class="box box-3" style="--img: url(https://i.postimg.cc/DZhHg0m4/img-3.jpg);" data-text="CosmiQ"></div>
                     <div class="box box-4" style="--img: url(https://i.postimg.cc/KjqWx5ft/img-4.jpg);" data-text="Gracefully Captured"></div>
                     <div class="box box-5" style="--img: url(https://i.postimg.cc/nrcWyW4H/img-5.jpg);" data-text="Crown Clothing"></div>
                 </div>
-            </div>
-        </section>
-
-        <section class="appendix">
-
         </section>
 
 
@@ -147,29 +206,5 @@
         </footer>
         
         <script src="./js/index.js" async defer></script>
-
-        <script>
-            (function () {
-                    const items = document.querySelectorAll('.has-animation');
-
-                    const io = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (!entry.isIntersecting) return;
-
-                            const el = entry.target;
-                            const delay = parseInt(el.dataset.delay || '0', 10);
-
-                            // Only trigger once
-                            if (!el.classList.contains('animate-in')) {
-                                setTimeout(() => el.classList.add('animate-in'), delay);
-                            }
-
-                            io.unobserve(el);
-                        });
-                    }, { threshold: 0.2 }); // 20% of the element visible
-
-                    items.forEach(el => io.observe(el));
-                })();
-        </script>
     </body>
 </html>
