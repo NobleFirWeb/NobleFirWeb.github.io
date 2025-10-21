@@ -48,7 +48,6 @@ body {
     letter-spacing: -8.25rem;
     line-height: 0.75;
     margin-left: -5vw;
-    color: #ffffff;
     text-align: center;
     white-space: nowrap;
 }
@@ -57,7 +56,12 @@ body {
     display: block;
     width: 100%;
     font-size: clamp(8rem, 46vw, 50vw);
-    text-shadow: 0 2px 0 rgba(0,0,0,.35);
+    background-image: linear-gradient(to bottom,
+        hsla(0, 0%, 100%, 1) 40%, hsla(0, 100%, 50%, 1) 56%);
+    
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* ===== GRID ===== */
