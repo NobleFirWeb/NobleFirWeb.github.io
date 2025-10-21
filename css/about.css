@@ -86,7 +86,7 @@ body {
     2.5px -2.5px 0 var(--nf-gray),
     -2.5px 2.5px 0 var(--nf-gray);
   font-family: 'Inter', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   padding: 0 5vw;
 }
 .why-row-bottom { 
@@ -105,20 +105,28 @@ body {
   z-index: 1;
 }
 
-/* Slightly off-screen pushes */
 .why-left{ 
   position:relative; 
-  left:-4.25vw;         /* “A / E” nudge off left edge */
+  left:-3.25vw;
 }
 .why-right{ 
   position:relative; 
-  right:-4.25vw;        /* last letter nudge off right edge */
+  right:-2.75vw;
+}
+
+.why-row-bottom .why-left,
+.why-row-bottom .why-right {
+  background-image: linear-gradient(to bottom,
+        hsla(0, 0%, 100%, 1) 35%, hsla(0, 100%, 50%, 1) 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* Center circle w/ links */
 .why-center{
   position:absolute;
-  inset:0;                 /* full overlay for centering */
+  inset:0;
   display:grid;
   place-items:center;
   pointer-events:none;
@@ -1058,7 +1066,7 @@ body {
   .nf-stats__bg {
     /* keep the big word calm on smaller screens */
     font-size: clamp(200px, 60vw, 22rem);
-    opacity: 0.04;
+    opacity: 0.08;
     transform: translateY(50%);
   }
 }

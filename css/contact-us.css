@@ -70,7 +70,7 @@ body {
 #hero {
     width: 100%;
     height: auto;
-    min-height: 45vh;
+    min-height: 50vh;
     max-height: 65vh;
     display: flex;
     flex-direction: row;
@@ -86,7 +86,8 @@ body {
     max-height: 100%;
     display: inline-flex;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 40px;
+    margin-top: 5%;
 }
 
 .hero-contact-content h3 {
@@ -97,22 +98,30 @@ body {
 
 .hero-contact-content h1 {
     font-size: 8rem;
-    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(8rem, 10rem, 7vw);
+    font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 800;
+    font-weight: 500;
     color: #0f0e0f;
     text-shadow:
-        2.5px 2.5px 0 #464646,
-        -2.5px -2.5px 0 #464646,
-        2.5px -2.5px 0 #464646,
-        -2.5px 2.5px 0 #464646;
+        2.25px 2.25px 0 #464646,
+        -2.25px -2.25px 0 #464646,
+        2.25px -2.25px 0 #464646,
+        -2.25px 2.25px 0 #464646;
     text-transform: uppercase;
-    line-height: 1.1;
+    line-height: 0.85;
 }
 
 .hero-contact-content h1 span {
-    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
     text-shadow: none;
+    background-image: linear-gradient(to bottom,
+        hsla(0, 0%, 100%, 1) 40%, hsla(0, 100%, 50%, 1) 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-text {
@@ -162,6 +171,7 @@ body {
     max-height: 650px;
     padding-top: 60px;
     overflow: hidden;
+    margin-top: 5%;
 }
 .hero-carouse-inner {
     width: 100%;

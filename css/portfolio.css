@@ -44,7 +44,7 @@ body {
 .work-hero__title {
     margin: 0;
     font-family: "Space Grotesk", system-ui, sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: -8.25rem;
     line-height: 0.75;
     margin-left: -5vw;
@@ -58,10 +58,43 @@ body {
     font-size: clamp(8rem, 46vw, 50vw);
     background-image: linear-gradient(to bottom,
         hsla(0, 0%, 100%, 1) 40%, hsla(0, 100%, 50%, 1) 70%);
-    
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+/* Hero Responsive styles */
+@media (max-width: 1024px) {
+  .work-hero { 
+    min-height:70vh; 
+}
+  .work-hero__title span { 
+    font-size: clamp(5.5rem, 48vw, 48vw);
+    letter-spacing: -4.5rem;
+}
+}
+
+@media (max-width: 768px) {
+    .work-hero { 
+        min-height:60vh; 
+    }
+    .work-hero__title span { 
+        font-size: clamp(3.5rem, 48vw, 48vw); 
+        letter-spacing: -3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .work-hero { 
+        min-height: 60vh; 
+    }
+    .work-hero-inner {
+        padding-top: 10vh;
+    }
+    .work-hero__title span { 
+        font-size: clamp(2.5rem, 48vw, 48vw); 
+        letter-spacing: -2rem;
+    }
 }
 
 /* ===== GRID ===== */
@@ -140,6 +173,23 @@ body {
     color: #ff0000;
 }
 
+/* Grid Responsive styles */
+@media (max-width: 1024px) {
+}
+
+@media (max-width: 768px) {
+    .work-grid {
+    background: var(--nf-bg);
+    padding: 0;
+    margin: 0 15px;
+}
+    .work-grid__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 40px;
+}
+}
 
 .container {
 	position: relative;
