@@ -57,7 +57,7 @@ body {
     width: 100%;
     font-size: clamp(8rem, 46vw, 50vw);
     background-image: linear-gradient(to bottom,
-        hsla(0, 0%, 100%, 1) 40%, hsla(0, 100%, 50%, 1) 56%);
+        hsla(0, 0%, 100%, 1) 40%, hsla(0, 100%, 50%, 1) 70%);
     
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
