@@ -88,11 +88,11 @@ body {
     .work-hero { 
         min-height: 60vh; 
     }
-    .work-hero-inner {
-        padding-top: 10vh;
+    .work-hero__inner {
+        padding-top: 8vh;
     }
     .work-hero__title span { 
-        font-size: clamp(2.5rem, 48vw, 48vw); 
+        font-size: clamp(2.5rem, 50vw, 50vw); 
         letter-spacing: -2rem;
     }
 }
@@ -175,6 +175,10 @@ body {
 
 /* Grid Responsive styles */
 @media (max-width: 1024px) {
+    .work-grid {
+        padding-top: 0;
+        margin: 0 25px;
+    }
 }
 
 @media (max-width: 768px) {

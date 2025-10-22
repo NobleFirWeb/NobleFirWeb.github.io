@@ -192,7 +192,7 @@
 }
 
 /* =======================
-   Tablet & below (≤1024px)
+Tablet & below (≤1024px)
    ======================= */
 @media (max-width: 1024px) {
     .navbar {
@@ -223,7 +223,7 @@
 
     .menu-toggle {
         position: absolute;
-        right: 5rem;
+        right: 4rem;
         top: 3.2rem;
         width: 48px;
         cursor: pointer;
@@ -272,7 +272,7 @@
     .menu-footer p {
         margin: 5% 0;
         font-size: 16px;
-        font-family: "Geist", sans-serif;
+        font-family: "Inter", sans-serif;
         letter-spacing: 2px;
         color: #a6a6a6;
         text-transform: uppercase;
@@ -287,8 +287,8 @@
     .menu-links li {
         margin: 20px 0;
         font-size: 28px;
-        font-family: "Geist", sans-serif;
-        font-weight: 200;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
         text-transform: uppercase;
     }
 
@@ -301,7 +301,7 @@
         display: flex;
         justify-content: space-between;
         margin: 20px 0;
-        font-family: "Geist", sans-serif;
+        font-family: "Inter", sans-serif;
         font-weight: 200;
         text-transform: uppercase;
     }
@@ -401,7 +401,7 @@
 
     .menu-toggle {
         top: 1rem;
-        right: 2rem;
+        right: 1rem;
         font-size: 24px;
         padding: 10px;
     }

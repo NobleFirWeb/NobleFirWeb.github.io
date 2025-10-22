@@ -117,7 +117,7 @@ body {
 .why-row-bottom .why-left,
 .why-row-bottom .why-right {
   background-image: linear-gradient(to bottom,
-        hsla(0, 0%, 100%, 1) 35%, hsla(0, 100%, 50%, 1) 60%);
+    hsla(0, 0%, 100%, 1) 40%, hsla(0, 100%, 50%, 1) 65%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -258,6 +258,11 @@ body {
 .why-row-top {
   top: 18vh;
   padding: 0 7vw;
+  text-shadow:
+        2px 2px 0 var(--nf-gray),
+        -2px -2px 0 var(--nf-gray),
+        2px -2px 0 var(--nf-gray),
+        -2px 2px 0 var(--nf-gray);
 }
 .why-row-bottom {
     bottom: 7vh;
