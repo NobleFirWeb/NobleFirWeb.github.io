@@ -159,7 +159,7 @@ body {
     line-height: 1;
     margin-top: -1.5rem;
     background-image: linear-gradient(to bottom,
-    hsla(0, 0%, 100%, 1) 40%, hsla(0, 100%, 50%, 1) 65%);
+    hsla(0, 0%, 100%, 1) 60%, hsla(0, 100%, 50%, 1) 75%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -439,102 +439,69 @@ body {
     line-height: 1.6;
 }
 
-.vals {
-    display: flex;
-    flex-direction: column;
-    row-gap: 60px;
-    justify-content: space-evenly;
-    margin: 0 5%;
-    margin-top: 10%;
-}
-
-.val {
+.values {
+    width: 100%;
+    min-height: 50vh;
+    margin: 5% auto;
+    padding-top: 5%;
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: auto;
-    background-color: #111111;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-    padding: 30px;
-    overflow: hidden;
 }
 
-.val-content {
+.value-card {
+    width: 25%;
+    height: 600px;
+    border-radius: 8px;
+    padding: 30px;
+    transition: background 0.3s ease-in-out;
+}
+
+.value-card:hover {
+    background: #111111;
+}
+
+.value-content {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    margin: 0 15px;
-}
-
-.val-header {
-    display: flex;
     align-items: center;
-    flex: 1;
-    gap: 15px;
-    margin-bottom: 10px;
+    text-align: center;
+    row-gap: 3rem;
 }
 
-.val-number {
-    position: absolute;
-    left: 0;
-    transform: translateX(-90px);
-    font-size: 11rem;
+.value-number {
+    font-size: 4rem;
     font-family: "Space Grotesk", sans-serif;
     font-weight: 500;
     color: #464646;
-    z-index: 1;
 }
 
-.val-title {
-    font-size: 2.625rem;
+.value-number span {
+    color: #ff0000;
+}
+
+.value-title {
+    font-size: 4rem;
+    color: #ffffff;
     font-family: "Space Grotesk", sans-serif;
-    font-weight: 200;
-    color: #fff;
-    margin: 0;
-    z-index: 2;
-}
-
-.val-description {
-    font-family: "Inter", sans-serif;
-    font-size: 1rem;
     font-weight: 500;
-    line-height: 1.25;
-    color: #a6a6a6;
-    max-width: 100%;
-    margin: 15px 0;
-    z-index: 2;
 }
-.val-description2{
+
+.value-description {
+    font-size: 1.25rem;
     font-family: "Inter", sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
     line-height: 1.25;
-    color: #a6a6a6;
-    max-width: 100%;
-    z-index: 2;
 }
 
-.val .about-card {
-    width: 400px;
-    height: 100%;
-    max-height: 300px;
-    overflow: hidden;
-    position: relative;
+.value-card sl-icon {
+    font-size: 32px;
+    color: #ffffff;
+    transition: color 0.3s ease-in-out;
 }
 
-.val .about-img {
-    width: 100%;
-    height: auto;
-    object-fit: cover center !important;
-    display: none;
-}
-
-.val .about-img:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: transform 3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+.value-card:hover sl-icon {
+    color: #ff0000;
 }
 
 
@@ -770,28 +737,28 @@ body {
 }
 
 .staggered-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 15%;
-  position: relative;
-  max-width: 2000px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 100px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 15%;
+    position: relative;
+    max-width: 2000px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 100px 0;
 }
 
 .grid-item {
-  width: 100%;
-  max-width: 1200px;
-  border-radius: 8px;
-  overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .grid-item img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: cover center !important;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover center !important;
 }
 
 .grid-item:hover img {
@@ -807,20 +774,20 @@ body {
 }
 
 .caption h3 {
-  font-size: 1.5rem;
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  color: #fff;
+    font-size: 1.5rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    color: #fff;
 }
 
 .caption p {
-  text-align: center;
-  margin: 15px 0;
-  color: #a6a6a6;
+    text-align: center;
+    margin: 15px 0;
+    color: #a6a6a6;
 }
 
 .grid-item.right {
-  margin-top: 200px;
+    margin-top: 200px;
 }
 
 .pill-container {
@@ -842,43 +809,45 @@ body {
 
 
 @media (max-width: 1024px) {
-  .staggered-grid {
-    grid-template-columns: repeat(1, 1fr);
-    padding: 0 10%;
-  }
+.staggered-grid {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 0 10%;
+    }
 
-  .grid-item {
-    margin-bottom: 60px;
-    max-width: 100%;
-    margin: 30px auto;
-  }
+    .grid-item {
+        margin-bottom: 60px;
+        max-width: 100%;
+        margin: 30px auto;
+    }
 
-  .grid-item.right {
-    margin-top: 30px;
-  }
+    .grid-item.right {
+        margin-top: 30px;
+    }
 }
 
 /* Responsive stack on mobile */
 @media (max-width: 768px) {
-  .staggered-grid {
-    grid-template-columns: 1fr;
-    padding: 0 20px;
-  }
+    .staggered-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
 
-  .grid-item {
-    margin-bottom: 60px;
-  }
+    .grid-item {
+        margin-bottom: 60px;
+    }
 
-  .grid-item.right {
-    margin-top: 0;
-  }
-  .projects-btn {
-    margin: 0 5%;
-  }
-  .pill-container {
-    flex-wrap: wrap;
-    gap: 5px;
-  }
+    .grid-item.right {
+        margin-top: 0;
+    }
+
+    .projects-btn {
+        margin: 0 5%;
+    }
+
+    .pill-container {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
 }
 
 
@@ -1438,7 +1407,25 @@ sl-details::part(base) {
             margin-top: -15%;
             border: 0.5px solid #999;
         }
-        
+        .about-header,
+        .services-header,
+        .portfolio-header,
+        .testimonials-header,
+        .faq-header {
+        padding: 0;
+        margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .services-title2 sl-icon,
+    .portfolio-title2 sl-icon,
+    .testimonials-title2 sl-icon,
+    .faq-title2 sl-icon {
+        display: none;
+
     }
 
     /*----- About -----*/
@@ -1452,21 +1439,50 @@ sl-details::part(base) {
             background-color: transparent;
         }
         .about-header {
-            margin-top: 120px;
+            margin-top: 10%;
+            padding: 0 5%;
+            padding-top: 60px;
         }
         .about-header .header-card {
-            margin-top: 40px;
+            margin-top: 20px;
         }
         .about-subtitle1 {
             font-size: 6rem;
             margin-top: 0;
         }
-        .val .val-content {
-            width: 100%;
-        }
-        .val .about-card {
-            display: none;
-        }
+                .values {
+                    flex-wrap: wrap;
+                    column-gap: 4rem;
+                    align-items: center;
+                    padding-top: 10%;
+                    margin: 5% auto;
+                }
+        
+                .value-card {
+                    width: 40%;
+                    height: auto;
+                    min-height: 400px;
+                    padding: 12px;
+                }
+                #value-card3 {
+                    margin-top: 2rem;
+                }
+                .value-content {
+                    row-gap: 2.5rem;
+                }
+        
+                .value-number,
+                .value-title {
+                    font-size: 3rem;
+                }
+        
+                .value-description {
+                    font-size: 1.1rem;
+                }
+        
+                .value-card sl-icon {
+                    font-size: 28px;
+                }
         .slider {
             background-color: transparent;
             padding: 2em 2em;
@@ -1492,9 +1508,7 @@ sl-details::part(base) {
     @media only screen and (max-width: 1024px) {
         .services-header {
             margin-top: 60px;
-        }
-        .services-header .header-card {
-            margin-top: 60px;
+            padding-top: 60px;
         }
         .services-title1 {
             font-size: 6rem;
@@ -1518,15 +1532,18 @@ sl-details::part(base) {
 
     /*----- Portfolio -----*/
     @media only screen and (max-width: 1024px) {
-    .portfolio-header .header-card {
-        margin-top: 60px;
-    }
     .portfolio-title1 {
         font-size: 6rem;
+    }
+    .portfolio-header .header-card {
+        margin-top: 40px;
     }
     .bento-grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
+    }
+    #portfolio .staggered-grid {
+        margin-top: 10%;
     }
     .grid-item {
         width: 100%;
@@ -1568,6 +1585,9 @@ sl-details::part(base) {
         #faq {
             margin-top: 5%;
         }
+        .faq-title2 sl-icon {
+            display: none;
+        }
         .details-group-example {
             margin-top: 10%;
         }
@@ -1599,9 +1619,6 @@ sl-details::part(base) {
     }
     .contact-header {
         margin-top: 15vh;
-    }
-    .contact-title1 {
-        font-size: 6rem;
     }
     .contact-header .header-card {
         margin-top: 40px;
@@ -1668,6 +1685,33 @@ sl-details::part(base) {
     .hero-video-wrapper {
         max-width: 680px;
     }
+        .values {
+            padding-top: 2.5%;
+        }
+    
+        .value-card {
+            width: 90%;
+            margin: 3% 5%;
+            padding: 20px;
+        }
+    
+        .value-content {
+            row-gap: 2rem;
+        }
+    
+        .value-number,
+        .value-title {
+            font-size: 2.5rem;
+        }
+    
+        .value-description {
+            font-size: 1rem;
+            line-height: 1.35;
+        }
+    
+        .value-card sl-icon {
+            font-size: 24px;
+        }
 }
 
 
@@ -1737,7 +1781,7 @@ sl-details::part(base) {
     /* About */
     #about {
         margin-top: 80px;
-        padding: 20px;
+        padding: 0 5%;
     }
     .about-container {
         flex-direction: column-reverse;
@@ -1784,21 +1828,36 @@ sl-details::part(base) {
         margin-top: 20px;
 
     }
-    .vals {
-        margin: 0;
-        margin-top: 60px;
-    }
-    .val {
-        padding: 25px;
-    }
-    .val-content {
-        margin: 0;
-    }
+        .values {
+            margin: 5% 0;
+            row-gap: 2rem;
+            padding-top: 5%;
 
-    #value3 {
-        margin-top: 12px;
-    }
-
+        }
+    
+        .value-card {
+            width: 100%;
+            margin: 4% 0;
+            padding: 12px 12px;
+        }
+    
+        .value-content {
+            row-gap: 2.5rem;
+        }
+    
+        .value-number,
+        .value-title {
+            font-size: 2.25rem;
+        }
+    
+        .value-description {
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+    
+        .value-card sl-icon {
+            font-size: 22px;
+        }
 
 
 
@@ -1825,6 +1884,9 @@ sl-details::part(base) {
     .service-container {
         margin-top: 60px;
         padding: 0;
+    }
+    .service-title {
+        font-weight: 500;
     }
     .service-container.managed {
         margin-top: 60px;
@@ -1865,6 +1927,10 @@ sl-details::part(base) {
     }
     .staggered-grid {
         padding: 0;
+        margin-top: 10%;
+    }
+    #portfolio .projects-btn {
+        margin-top: 0;
     }
     .projects-btn a {
         font-size: 0.75rem;
@@ -2006,9 +2072,6 @@ sl-details::part(base) {
         margin-top: 5px;
         padding-left: 6%;
         padding-right: 5%;
-    }
-    .contact-title1 {
-        font-size: 2.25rem;
     }
     .contact-title2 {
         font-size: 2.4rem;
