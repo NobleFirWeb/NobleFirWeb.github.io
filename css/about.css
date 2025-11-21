@@ -680,6 +680,9 @@ body {
   .mission-title span {
   font-size: 1.5rem;
   }
+  .mission-image {
+    max-width: 100%;
+  }
   .global-container {
     gap: 20%;
   }
@@ -687,7 +690,7 @@ body {
     margin: 5% 0;
   }
   .global1 .global-title {
-    font-size: 4rem;
+    font-size: 4.5rem;
     text-shadow:
     1px 1px 0 var(--nf-gray),
     -1px -1px 0 var(--nf-gray),
@@ -1142,6 +1145,9 @@ body {
   }
   .skill__details{
   padding-left: 7%;
+  }
+  .skill__details p {
+    display: none;
   }
   .nf-stats {
     height: 90vh;

@@ -18,6 +18,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
 
+
   /*** RISE ANIMATION ***/
   const riseElements = document.querySelectorAll("[data-rise='true']");
   const riseObserver = new IntersectionObserver(entries => {
@@ -53,7 +54,31 @@ const slideObserver = new IntersectionObserver((entries) => {
 slideElements.forEach(el => slideObserver.observe(el));
 
 
+/* GSAP Animations */
+gsap.registerPlugin(ScrollTrigger,SplitText,TextPlugin);
 
+
+  /* Animation */
+  const aboutText = new SplitText(".about-text_home", {
+    type: "words, chars" 
+  });
+
+  gsap.fromTo(
+		aboutText.chars,
+		{ color: "#333333" },
+		{
+			color: "#ffffff",
+			stagger: 0.05,
+			scrollTrigger: {
+				trigger: ".about-text_home",
+				start: "top bottom-=20%",
+				end: "bottom top+=45%",
+				scrub: 1
+			}
+		}
+	);
+
+  
 
 
   /*** MOBILE NAVIGATION ***/
@@ -137,19 +162,7 @@ closeButton.addEventListener('click', () => dialog.hide());
 
 
 
-// Web-Dev Shoelace UI tab group - Responsive
-const tabGroup = document.getElementById('projects-nav');
 
-function updateTabPlacement() {
-  if (window.innerWidth <= 1024) {
-    tabGroup.setAttribute('placement', 'top'); // Mobile/tablet
-  } else {
-    tabGroup.setAttribute('placement', 'start'); // Desktop
-  }
-}
-
-window.addEventListener('resize', updateTabPlacement);
-window.addEventListener('DOMContentLoaded', updateTabPlacement);
 
 
 

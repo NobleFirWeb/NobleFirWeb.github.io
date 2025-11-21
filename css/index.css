@@ -228,16 +228,19 @@ body {
     display: flex;
     align-self: center;
     justify-content: space-evenly;
+    padding-top: 12vh;
     margin-top: 120px;
     margin-bottom: 30px;
     width: 100%;
-    min-height: 425px;
-    max-height: 50vh;
+    min-height: 60vh;
+    max-height: 75vh;
     background-color: transparent;
+    overflow-y: auto;
+    scroll-behavior: auto;
 }
 
 .about-right {
-    width: 75%;
+    width: 85%;
     max-width: 1600px;
     padding: 10px;
     display: flex;
@@ -246,17 +249,26 @@ body {
     row-gap: 24px;
 }
 
-.about-text {
+.about-text_home {
     font-family: "inter", sans-serif;
-    font-weight: 300;
-    color: #fff;
-    font-size: 1.5rem;
+    font-weight: 400;
+    color: #333333;
+    font-size: 3rem;
     line-height: 1.6;
+    text-align: center;
 }
 
-.about-text strong {
-    font-weight: 600;
-    color: #ff0000;
+.about-text_home span {
+    display: inline-block;
+    background-color: #ffffff;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#about .about-btn {
+    margin: 0 auto;
 }
 
 .about-btn {
@@ -296,13 +308,13 @@ body {
     flex-direction: column;
     margin-top: 80px;
     margin-bottom: 100px;
+    padding: 60px 0;
 }
 
 .scroll {
     position: relative;
     display: flex;
     width: 100%;
-    max-width: 1400px;
     overflow: hidden;
     -webkit-mask-image: linear-gradient(90deg, transparent, #fff 30%, #fff 70%, transparent);
 }
@@ -354,7 +366,6 @@ body {
     position: relative;
     display: flex;
     width: 100%;
-    max-width: 1400px;
     overflow: hidden;
     -webkit-mask-image: linear-gradient(90deg, transparent, #fff 30%, #fff 70%, transparent);
 }
@@ -451,7 +462,7 @@ body {
 }
 
 .value-card {
-    width: 25%;
+    width: 30%;
     height: 600px;
     border-radius: 8px;
     padding: 30px;
@@ -1192,7 +1203,7 @@ body {
 }
 
 .details-group-example sl-details:not(:last-of-type) {
-    margin-bottom: var(--sl-spacing-2x-small);
+    margin-bottom: 1rem;
 }
 
 sl-details {
@@ -1425,7 +1436,7 @@ sl-details::part(base) {
     .testimonials-title2 sl-icon,
     .faq-title2 sl-icon {
         display: none;
-
+    }
     }
 
     /*----- About -----*/
@@ -1788,7 +1799,8 @@ sl-details::part(base) {
         justify-content: center;
         gap: 30px;
         padding: 0;
-        height: 100%;
+        height: 75vh;
+        max-height: 75vh;
         margin-top: 30px;
         padding-bottom: 30px;
         background-color: transparent;
@@ -1802,12 +1814,21 @@ sl-details::part(base) {
         width: 100%;
         padding: 0;
     }
+    .about-text_home {
+        font-size: 1.5rem;
+    }
     .about-btn a {
         font-size: 0.75rem;
         font-weight: 500;
     }
     .scroll-container {
     margin-top: 60px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    }
+    .scroll,
+    .scroll-icons {
+        -webkit-mask-image: none;
     }
 
     .about-header {
@@ -1886,7 +1907,7 @@ sl-details::part(base) {
         padding: 0;
     }
     .service-title {
-        font-weight: 500;
+        font-weight: 200;
     }
     .service-container.managed {
         margin-top: 60px;
@@ -2051,8 +2072,12 @@ sl-details::part(base) {
         display: none;
     }
     .details-group-example {
-        padding: 0;
+        padding: 30px 0;
         margin: 60px 0;
+
+    }
+    .details-group-example sl-details:not(:last-of-type) {
+        margin-bottom: 0.5rem;
     }
 
 
