@@ -867,7 +867,7 @@ body {
 
 /* RIGHT — heading + image */
 .skills__hero{ align-self: start; }
-.skills__head{ margin-bottom: 20px; }
+.skills__head{ margin-bottom: 80px; }
 
 .skills__heading{
   font-family: "Space Grotesk", system-ui, sans-serif;
@@ -884,7 +884,6 @@ body {
 .skills__sub{
   font-family: "Inter", system-ui, sans-serif;
   color: #a6a6a6;
-  font-size: 1rem;
   font-weight: 500;
   line-height: 1.25;
   margin: 0;
@@ -1478,10 +1477,13 @@ body {
 
 #vibes .header-paragraph {
     font-family: "inter", sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     color: #fff;
     font-size: 1.5rem;
+    text-align: center;
+    line-height: 1.6;
 }
+
 
 .header-paragraph .text p {
   display: inline-block;
@@ -1489,7 +1491,6 @@ body {
 }
 
 .header-paragraph p .word {
-  position: absolute;
   opacity: 0;
 }
 

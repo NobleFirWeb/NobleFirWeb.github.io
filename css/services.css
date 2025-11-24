@@ -233,6 +233,7 @@ body {
 .nf-reveal{
   --nf-black:#0f0e0f;
   --nf-gray:#a6a6a6;
+  --nf-gray-dark: #464646;
   --nf-red:#ff0000;
   --nf-white: #ffffff;
   display:grid;
@@ -254,15 +255,10 @@ body {
 /* Left column */
 .nf-reveal__eyebrow{
   font-family:"Space Grotesk",sans-serif;
-  font-weight:800;
+  font-weight:900;
   text-transform:uppercase;
   letter-spacing:.02em;
-  color:#0f0e0f;
-  text-shadow:
-        1px 1px 0 var(--nf-gray),
-        -1px -1px 0 var(--nf-gray),
-        1px -1px 0 var(--nf-gray),
-        -1px 1px 0 var(--nf-gray);
+  color: var(--nf-gray-dark);
   font-size: clamp(28px,4vw,56px);
   line-height:1.05;
 }

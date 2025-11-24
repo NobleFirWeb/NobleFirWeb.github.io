@@ -14,6 +14,12 @@
         <link rel="stylesheet" href="./css/nav-styles.css">
         <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
         <!-- Favicon Links -->
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -155,6 +161,74 @@
             </div>
         </section>
 
+        <section class="nf-scroll-gallery">
+        
+            <div class="demo-wrapper">
+        
+                <header class="df aic jcc nf-dust-header">
+                    <div id ="nf-header-capture">
+                        <h1>WE BUILD <span>POWERFUL</span> DIGITAL SOLUTIONS</h1>
+                        <h2>Scroll to see more of our select work</h2>
+                    </div>
+                </header>
+        
+                <!-- TEXT WRAPPER #1 -->
+                <section class="demo-text">
+                    <div class="wrapper text">
+                        Speed.  <span>Structure.</span>  <strong>Scale.</strong>
+                    </div>
+                </section>
+        
+                <!-- GALLERY ROW 1 -->
+                <section class="demo-gallery">
+                    <ul class="wrapper">
+                        <li><img src="" alt=""></li>
+                        <li><img src="" alt=""></li>
+                        <li><img src="" alt=""></li>
+                        <li><img src="" alt=""></li>
+                    </ul>
+                </section>
+        
+                <!-- GALLERY ROW 2 -->
+                <section class="demo-gallery">
+                    <ul class="wrapper">
+                        <li><img src="" alt=""></li>
+                        <li><img src="" alt=""></li>
+                        <li><img src="" alt=""></li>
+                        <li><img src="" alt=""></li>
+                    </ul>
+                </section>
+        
+                <!-- GALLERY ROW 3 -->
+                <section class="demo-gallery">
+                    <ul class="wrapper">
+                        <li><img src="" alt=""></li>
+                        <li><img src="" alt=""></li>
+                        <li><img src="" alt=""></li>
+                        <li><img src="" alt=""></li>
+                    </ul>
+                </section>
+        
+                <!-- GALLERY ROW 4 -->
+                <section class="demo-gallery">
+                    <ul class="wrapper">
+                        <li><img src="" alt=""></li>
+                        <li><img src="" alt=""></li>
+                        <li><img src="" alt=""></li>
+                        <li><img src="" alt=""></li>
+                    </ul>
+                </section>
+        
+                <!-- TEXT WRAPPER #2 -->
+                <section class="demo-text">
+                    <div class="wrapper text">
+                        <span>Real Results.</span>  Bold Vision.
+                    </div>
+                </section>
+        
+            </div>
+        
+        </section>
         
 
         <section class="appendix">
@@ -223,5 +297,187 @@
         </footer>
         
         <script src="./js/index.js"></script>
+        <script>
+            
+            gsap.registerPlugin(ScrollTrigger);
+
+                // ============================
+                // TEXT SWEEP + GALLERY SCROLL
+                // (now in a function so we can control when it runs)
+                // ============================
+                function initTextAndGalleries() {
+                    const root = document.querySelector(".nf-scroll-gallery");
+                    if (!root) return;
+
+                    // ---- TEXT SECTIONS ("Speed..." + "Real Results/Bold Vision...")
+                    const textSections = Array.prototype.slice.call(
+                        root.querySelectorAll(".demo-text")
+                    );
+
+                    textSections.forEach(function (section, index) {
+                        const textEl = section.querySelector(".text");
+                        if (!textEl) return;
+
+                        let fromXPercent, toXPercent;
+
+                        // index 0: right -> left ("Speed. Structure. Scale.")
+                        // index 1: left -> right ("Real Results. Bold Vision.")
+                        if (index % 2 === 0) {
+                            fromXPercent = 100;
+                            toXPercent = -100;
+                        } else {
+                            fromXPercent = -100;
+                            toXPercent = 100;
+                        }
+
+                        gsap.fromTo(
+                            textEl,
+                            { xPercent: fromXPercent },
+                            {
+                                xPercent: toXPercent,
+                                ease: "none",
+                                scrollTrigger: {
+                                    trigger: section,
+                                    start: "bottom bottom",
+                                    end: "top top",
+                                    scrub: true
+                                }
+                            }
+                        );
+                    });
+
+                    // ---- GALLERY SECTIONS (horizontal scroll rows)
+                    const gallerySections = Array.prototype.slice.call(
+                        root.querySelectorAll(".demo-gallery")
+                    );
+
+                    gallerySections.forEach(function (section, index) {
+                        const wrapper = section.querySelector(".wrapper");
+                        if (!wrapper) return;
+
+                        let startX;
+                        let endX;
+
+                        // Alternate direction per row
+                        if (index % 2 === 1) {
+                            // odd: right -> left
+                            startX = "100%";
+                            endX = (wrapper.scrollWidth - section.offsetWidth) * -1;
+                        } else {
+                            // even: left -> right
+                            startX = wrapper.scrollWidth * -1;
+                            endX = 0;
+                        }
+
+                        gsap.fromTo(
+                            wrapper,
+                            { x: startX },
+                            {
+                                x: endX,
+                                ease: "none",
+                                scrollTrigger: {
+                                    trigger: section,
+                                    start: "top bottom",
+                                    end: "bottom top",
+                                    scrub: 0.5
+                                }
+                            }
+                        );
+                    });
+                }
+
+                // ============================
+                // HEADER DUST EFFECT
+                // ============================
+                (function () {
+                    const COUNT = 75;
+                    const REPEAT_COUNT = 3;
+
+                    const headerSection = document.querySelector(".nf-dust-header");
+                    const captureEl = document.querySelector("#nf-header-capture");
+
+                    if (!headerSection || !captureEl) return;
+
+                    function createHeaderCanvases() {
+                        html2canvas(captureEl, { backgroundColor: null }).then((canvas) => {
+                            const width = canvas.width;
+                            const height = canvas.height;
+                            const ctx = canvas.getContext("2d");
+                            const imageData = ctx.getImageData(0, 0, width, height);
+
+                            const dataList = [];
+
+                            // Hide original text once we capture it
+                            captureEl.style.visibility = "hidden";
+
+                            for (let i = 0; i < COUNT; i++) {
+                                dataList.push(ctx.createImageData(width, height));
+                            }
+
+                            // Distribute pixels across the data buckets
+                            for (let x = 0; x < width; x++) {
+                                for (let y = 0; y < height; y++) {
+                                    for (let l = 0; l < REPEAT_COUNT; l++) {
+                                        const index = (x + y * width) * 4;
+                                        const dataIndex = Math.floor(
+                                            (COUNT * (Math.random() + (2 * x) / width)) / 3
+                                        );
+                                        for (let p = 0; p < 4; p++) {
+                                            dataList[dataIndex].data[index + p] =
+                                                imageData.data[index + p];
+                                        }
+                                    }
+                                }
+                            }
+
+                            // How long (in scroll px) the header stays pinned
+                            const pinDuration = window.innerHeight * 2; // tweak for longer/shorter dust
+
+                            // Pin the header section during the dust animation
+                            ScrollTrigger.create({
+                                trigger: headerSection,
+                                start: "top top",
+                                end: "+=" + pinDuration,
+                                pin: true,
+                                scrub: true
+                            });
+
+                            // Create and animate each canvas
+                            dataList.forEach((data, i) => {
+                                const clonedCanvas = canvas.cloneNode();
+                                clonedCanvas.getContext("2d").putImageData(data, 0, 0);
+                                clonedCanvas.className = "nf-header-canvas";
+
+                                // attach to the HEADER, not body
+                                headerSection.appendChild(clonedCanvas);
+
+                                const randomAngle = (Math.random() - 0.5) * 2 * Math.PI;
+                                const randomRotationAngle = 30 * (Math.random() - 0.5);
+
+                                gsap.to(clonedCanvas, {
+                                    rotate: randomRotationAngle,
+                                    x: 80 * Math.sin(randomAngle),
+                                    y: 80 * Math.cos(randomAngle),
+                                    opacity: 0,
+                                    delay: (i / dataList.length) * 0.6, // stagger the dust
+                                    ease: "none",
+                                    scrollTrigger: {
+                                        trigger: headerSection,
+                                        start: "top top",          // when header starts pinning
+                                        end: "+=" + pinDuration,   // same span as the pin
+                                        scrub: 1
+                                    }
+                                });
+                            });
+
+                            // NOW that the pin + canvases exist, init the rest and refresh
+                            initTextAndGalleries();
+                            ScrollTrigger.refresh();
+                        });
+                    }
+
+                    window.addEventListener("load", createHeaderCanvases);
+                })();
+        </script>
     </body>
 </html>

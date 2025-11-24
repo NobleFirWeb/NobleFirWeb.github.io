@@ -47,38 +47,12 @@ const slideObserver = new IntersectionObserver((entries) => {
         }
     });
 }, {
-    threshold: 0.2 // trigger when 20% visible
+    threshold: 0.5 // trigger when 30% visible
 });
 
 // Observe each slide element
 slideElements.forEach(el => slideObserver.observe(el));
 
-
-/* GSAP Animations */
-gsap.registerPlugin(ScrollTrigger,SplitText,TextPlugin);
-
-
-  /* Animation */
-  const aboutText = new SplitText(".about-text_home", {
-    type: "words, chars" 
-  });
-
-  gsap.fromTo(
-		aboutText.chars,
-		{ color: "#333333" },
-		{
-			color: "#ffffff",
-			stagger: 0.05,
-			scrollTrigger: {
-				trigger: ".about-text_home",
-				start: "top bottom-=20%",
-				end: "bottom top+=45%",
-				scrub: 1
-			}
-		}
-	);
-
-  
 
 
   /*** MOBILE NAVIGATION ***/
