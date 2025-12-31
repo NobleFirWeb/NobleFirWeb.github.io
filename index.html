@@ -28,7 +28,17 @@
         <link rel="manifest" href="/site.webmanifest" />
     </head>
     <body>
+
+    <div id="nf-loader" aria-hidden="true">
+        <div class="nf-loader__scene">
+            <img class="nf-loader__img" src="./img/black-red-bg.jpg" alt="" decoding="async" fetchpriority="high" />
+        </div>
+        <div class="nf-loader__counter" aria-hidden="true">
+            <span id="nf-loader-percent">0</span><span class="nf-loader__pct">%</span>
+        </div>
+    </div>
     
+    <div id="nf-page">
     <!-- Text Spinner (place near the end of <body> in about.html) -->
     <a class="text-spinner" href="contact-us.html" aria-label="Go to Contact" data-text="LET’S TALK! • " data-speed="12s">
         <svg viewBox="0 0 110 110" width="110" height="110" role="img" aria-hidden="true">
@@ -107,10 +117,10 @@
     <section class="hero" id="hero">
 
         <div class="hero-content">
-            <h1 data-rise="true">
+            <h1>
                 Where Your Vision
             </h1>
-            <h2 data-rise="true">Becomes <bold>Reality</bold></h2>
+            <h2>Becomes <bold>Reality</bold></h2>
         </div>
     </section>
 
@@ -304,49 +314,6 @@
                 </div>
             </div>
         </div>
-        <!--
-        <div class="vals">
-            <div class="val">
-                <div class="val-content">
-                    <div class="val-header" data-rise="true">
-                        <span class="val-number">01</span>
-                        <h2 class="val-title">Quality</h2>
-                    </div>
-                    <p class="val-description">
-                        Design and development should not only look good but also function well. That's why we always strive for excellence and pay attention to the smallest details. Our goal is to create designs that not only meet but exceed your expectations.
-                        </p>
-                        <p class="val-description2">At Noble Fir, quality isn't just a standard — it's a promise. By prioritizing clean code, thoughtful user experience, and responsive design, we build websites that are not only visually compelling but also reliable and scalable. This commitment translates into smoother site performance, better user engagement, and long-term value for your business. When you partner with us, you’re investing in a solution that’s crafted to last and designed to grow with you.
-                    </p>
-                </div>
-            </div>
-            <div class="val">
-                <div class="val-content">
-                    <div class="val-header" data-rise="true">
-                        <span class="val-number">02</span>
-                        <h2 class="val-title">Creativity</h2>
-                    </div>
-                    <p class="val-description">
-                        We believe that every project should be unique and reflect the client's personality and vision. Our team combines their technical skills with their imagination to create designs that are not only visually stunning but also tell a story.
-                        </p>
-                        <p class="val-description2">Creativity is more than aesthetics — it’s about crafting digital experiences that capture the essence of your brand. We blend strategy with originality to build custom solutions that resonate with your audience and leave a lasting impression. This means your website won’t just look good — it will stand out, spark interest, and inspire action.
-                    </p>
-                </div>
-            </div>
-            <div class="val">
-                <div class="val-content">
-                    <div class="val-header" data-rise="true">
-                        <span class="val-number" id="value3">03</span>
-                        <h2 class="val-title">Collaboration</h2>
-                    </div>
-                    <p class="val-description">
-                        Communication and collaboration are key to the success of any project. That's why we work closely with our clients to understand their needs and goals, and ensure that the final product meets their vision. Together, we bring your ideas to life.
-                        </p>
-                        <p class = val-description2>Our collaborative process puts you at the center of everything we build. From discovery to deployment, we maintain open lines of communication to make sure every detail aligns with your goals. This transparent approach leads to faster feedback loops, smoother development, and a final product that truly reflects your vision, not just ours. When you work with Noble Fir, you're not just a client — you're a partner.
-                    </p>
-                </div>
-            </div>
-        </div>
-        -->
 
     </section>
 
@@ -570,7 +537,7 @@
 
     <section class="testimonials" id="testimonials">
         <div class="testimonials-header">
-            <h1 class="testimonials-title1">The Proof<strong>*</strong></h1>
+            <h1 class="testimonials-title1" slide-right="true">The Proof<strong>*</strong></h1>
             <div class="header-card">
                 <h1 class="testimonials-title2" data-rise="true">
                     <sl-icon name="arrow-down-left"></sl-icon> Don't take our word...
@@ -923,5 +890,6 @@
                         });
                     })();
             </script>
+    </div>
     </body>
 </html>

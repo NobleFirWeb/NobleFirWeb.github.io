@@ -302,6 +302,7 @@ body {
     letter-spacing: -0.025em;
     white-space: nowrap;
     text-transform: uppercase;
+    padding: 0 30px;
 }
 
 .nf-scroll-gallery .demo-text .text span{
@@ -316,7 +317,7 @@ body {
 
 .nf-scroll-gallery .demo-gallery {
     padding: 2rem 0;
-    margin: 30px auto;
+    margin: 60px auto;
     max-height: 500px;
 }
 
@@ -340,10 +341,10 @@ body {
 
 /* Images */
 .nf-scroll-gallery img {
+    min-width: 100%;
     width: 100%;
+    min-height: 100%;
     height: 100%;
-    max-height: 100%;
-    display: block;
     object-fit: cover center !important;
     border-radius: 8px;
     border: 1px solid #333;
