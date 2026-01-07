@@ -10,6 +10,12 @@
         <link rel="stylesheet" href="./css/nav-styles.css">
         <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
         <!-- Favicon Links -->
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -100,20 +106,20 @@
     
         <!-- Row 1 -->
         <div class="why-row why-row-top">
-            <span class="why-left" slide-right="true">ALL</span>
-            <span class="why-right" slide-left="true">IN</span>
+            <span class="why-left" data-reveal="lines">ALL</span>
+            <span class="why-right" data-reveal="lines">IN</span>
         </div>
     
         <!-- Row 2 -->
         <div class="why-row why-row-bottom">
-            <span class="why-left" slide-right="true">EVERY</span>
-            <span class="why-right" slide-left="true">TIME</span>
+            <span class="why-left" >EVERY</span>
+            <span class="why-right" >TIME</span>
         </div>
     
         <!-- Center Circle -->
         <div class="why-center">
             <div class="why-circle">
-                <nav class="why-list" aria-label="Reasons">
+                <nav class="why-list" aria-label="Reasons" data-reveal="lines">
                     <a href="#mission"><span>[01]</span> THE MISSION</a>
                     <a href="#expertise"><span>[02]</span> THE SKILLS</a>
                     <a href="#team"><span>[03]</span> THE TEAM</a>
@@ -153,7 +159,7 @@
     </div>
 
     <section class="mission" id="mission">
-        <h1 class="mission-title" data-rise="true"><span>[01]</span>The Mission<strong>*</strong></h1>
+        <h1 class="mission-title" data-reveal="lines"><span>[01]</span>The Mission<strong>*</strong></h1>
 
         <div class="section-header">
             <p class="header-paragraph">
@@ -199,7 +205,7 @@
                     <h2 class="global-title" slide-right="true">
                         Local Feels
                     </h2>
-                    <p class="global-text" data-rise="true">
+                    <p class="global-text" data-reveal="lines">
                         Based in the Pacific Northwest, we’re proud to serve our community of local businesses, startups, and entrepreneurs. But <span>our reach is global</span> — we’ve worked with clients across the U.S. and around the world.
                     </p>
                 </div>
@@ -364,10 +370,10 @@
                 <div class="skills__hero">
                     <header class="skills__head">
                         <h2 class="skills__heading">Creative firepower & <span>technical precision</span></h2>
-                        <p class="skills__sub">
+                        <p class="skills__sub" data-reveal="lines">
                             Like you, we're here to build solutions that we can be <span>proud</span> of. That's why we design with your customers in mind and develop with your business goals at heart. 
                         </p>
-                        <p class="skills__sub">
+                        <p class="skills__sub" data-reveal="lines">
                             We’re not here to sell templates — we’re here to build partnerships. With us, you get a team that sweats the details, stands behind the work, and <span>strives for excellence</span> in everything we do. Every decision — from layout to code — is made to deliver a site that wins.
                         </p>
                     </header>
@@ -432,9 +438,9 @@
         <div class="about-cards-container">
             <div class="image-container">
                 <img src="./img/headshot.png" alt="Founder Portrait">
-                <h1 class="about-img-title" data-rise="true">Jesse Kuykendall</h1>
-                <p class="image-text" data-rise="true"><strong><span>Founder</span> / Lead Developer</strong></p>
-                <p class="image-text" data-rise="true">A full-stack developer passionate about building clean, functional, and modern websites for businesses that
+                <h1 class="about-img-title">Jesse Kuykendall</h1>
+                <p class="image-text"><strong><span>Founder</span> / Lead Developer</strong></p>
+                <p class="image-text" data-reveal="lines">A full-stack developer passionate about building clean, functional, and modern websites for businesses that
                 deserve better. From planning to deployment, I guide every step of the process—and always keep user
                 experience at the core.</p>
                 <sl-dialog label="" class="dialog-width" style="--width: 80vw;">
@@ -550,7 +556,7 @@
                     </p>
                 </div>
             </div>
-            <p class="header-paragraph">
+            <p class="header-paragraph" data-reveal="lines">
                 Experience the energy behind our work — strategic, collaborative, and unapologetically forward. We’re here to build lasting partnerships, not just checkboxes or one-off deliverables. When we collaborate, we’re creating momentum that stretches far beyond launch day. Your vision becomes our blueprint, and the results become something we’re both proud to stand behind.
             </p>
         </div>
@@ -570,14 +576,14 @@
                 <span class="vibe-num vibe-white">01</span>
             </div>
             <div class="vibe-copy">
-                <h2 class="vibe-title" data-rise="true"><span>*</span> Drive</h2>
-                <p class="vibe-text">
+                <h2 class="vibe-title" data-reveal="lines"><span>*</span> Drive</h2>
+                <p class="vibe-text" data-reveal="lines">
                     We move fast, but with <span>intention</span>. The factor that sets us apart? Our <span>relentless drive</span>. We don't cut corners, and we don't stop until every detail of a project feels right — pixel by pixel, line by line, function by function.
                 </p>
-                <p class="vibe-text">
+                <p class="vibe-text" data-reveal="lines">
                     We’ve spent years sharpening our skills across web design and development, and that <span>discipline</span> shows in <span>the work</span>. When you work with us, you’re not hiring someone to just “get it done.” You’re bringing in someone who treats your goals like they’re our own, and who pushes through challenges to make sure the end result is something we can both be proud of.
                 </p>
-                <p class="vibe-text">
+                <p class="vibe-text" data-reveal="lines">
                     Drive isn't just about grit — it's about <span>energy</span>, <span>focus</span>, and <span>determination</span>. We thrive on the process of building, solving problems, and exploring creative solutions that keep projects moving forward. This drive carries into our client relationships, too. We hold ourselves to the Noble Fir Standard — to think bigger, explore the possibilities, and smash barriers as we cross the finish line.
                 </p>
             </div>
@@ -586,14 +592,14 @@
         <!-- 02 : copy left, number right -->
         <article id="vibe-2" class="vibe-row">
             <div class="vibe-copy">
-                <h2 class="vibe-title" data-rise="true">Edge <span>*</span></h2>
-                <p class="vibe-text">
+                <h2 class="vibe-title" data-reveal="lines">Edge <span>*</span></h2>
+                <p class="vibe-text" data-reveal="lines">
                     We don't play catch-up, we set the pace. We're ahead, blending tomorrow's design trends with today's business needs. Our work doesn’t just stand out — it <span>leads</span>.
                 </p>
-                <p class="vibe-text">
+                <p class="vibe-text" data-reveal="lines">
                     Every new project is an opportunity to <span>push boundaries</span> — not just to follow trends, but to lead. We bring an edge to the work that blends a deep knowledge of design and technology while remaining willing to experiment and take the necessary risks that breed innovation. The websites and apps we build aren’t just functional — they’re forward-looking, future-ready, and <span>designed to make a statement</span>.
                 </p>
-                <p class="vibe-text">
+                <p class="vibe-text" data-reveal="lines">
                     This edge isn't arrogance — it’s <span>confidence grounded in craft</span> and years of experience building digital solutions. We know how to balance <span>bold ideas</span> with practical needs, how to <span>innovate</span> without losing sight of usability, and how to design and build experiences that are as effective as they are visually appealing.
                 </p>
             </div>
@@ -608,14 +614,14 @@
                 <span class="vibe-num vibe-gray">03</span>
             </div>
             <div class="vibe-copy">
-                <h2 class="vibe-title" data-rise="true"><span>*</span> Flow</h2>
-                <p class="vibe-text">
+                <h2 class="vibe-title" data-reveal="lines"><span>*</span> Flow</h2>
+                <p class="vibe-text" data-reveal="lines">
                     Design and development should feel <span>effortless</span> — ideas moving from sketch to screen like <span>music in rhythm</span>. That's the vibe we bring — clear communication, seamless collaboration, and a rhythm that keeps projects moving forward.
                 </p>
-                <p class="vibe-text">
+                <p class="vibe-text" data-reveal="lines">
                     When you work with Noble Fir, communication is clear and open, deadlines are respected, and the technical pieces are handled seamlessly so you never get bogged down in the details.
                 </p>
-                <p class="vibe-text">
+                <p class="vibe-text" data-reveal="lines">
                     Flow means <span>progress</span> without friction, <span>creativity</span> without chaos, and a final product that feels <span>natural</span> and <span>intuitive</span>. It’s the vibe that keeps us moving forward, keeps ideas fresh, and keeps the work feeling exciting from start to finish.
                 </p>
             </div>
@@ -624,13 +630,15 @@
         <!-- 04 : copy left, number right (color TBD) -->
         <article id="vibe-4" class="vibe-row">
             <div class="vibe-copy">
-                <h2 class="vibe-title" data-rise="true">Play <span>*</span></h2>
-                <p class="vibe-text">
-                    At <span>the heart</span> of everything we do is play. We take our work seriously, but hardly ever ourselves. Projects with us are filled with <span>laughter</span>, <span>ideas bouncing</span>, and a <span>spark</span> that makes collaboration feel less like a job and more like a <span>new friendship</span>.
-                </p>
-                <p class="vibe-text">
-                    We believe the best ideas often come out of laughter, curiosity, and the willingness to experiment without fear. That’s why working with us doesn’t just feel like a project — it feels like a collaboration where there’s room to dream, sketch, test, and discover new directions.
-                </p>
+                <h2 class="vibe-title" data-reveal="lines">Play <span>*</span></h2>
+                <div class="vibe-text" data-reveal="lines">
+                    <p>
+                        At <span>the heart</span> of everything we do is play. We take our work seriously, but hardly ever ourselves. Projects with us are filled with <span>laughter</span>, <span>ideas bouncing</span>, and a <span>spark</span> that makes collaboration feel less like a job and more like a <span>new friendship</span>.
+                    </p><br />
+                    <p>
+                        We believe the best ideas often come out of laughter, curiosity, and the willingness to experiment without fear. That’s why working with us doesn’t just feel like a project — it feels like a collaboration where there’s room to dream, sketch, test, and discover new directions.
+                    </p>
+                </div>
             </div>
             <div class="vibe-figure" slide-left="true">
                 <span class="vibe-num vibe-white">04</span>
@@ -701,8 +709,8 @@
 
     <section id="cta" class="contact-section">
         <div class="contact-header">
-            <h2 class="contact-title1" data-rise="true">Ready to Launch Your Project?</h2>
-            <h1 class="contact-title2" data-rise="true">Let’s Build <span>Something Great</span> Together</h1>
+            <h2 class="contact-title1" data-reveal="lines">Ready to Launch Your Project?</h2>
+            <h1 class="contact-title2" data-reveal="lines">Let’s Build <span>Something Great</span> Together</h1>
             <p>
                 Tell us what you're envisioning—we’ll follow 
                 up to get the conversation started within 3 business days.
@@ -721,8 +729,8 @@
 
     <footer class="nf-footer" role="contentinfo">
         <!-- giant background letters -->
-        <span class="nf-footer-bg-letter nf-left" aria-hidden="true">N</span>
-        <span class="nf-footer-bg-letter nf-right" aria-hidden="true">F</span>
+        <span class="nf-footer-bg-letter nf-left" aria-hidden="true" data-reveal="lines">N</span>
+        <span class="nf-footer-bg-letter nf-right" aria-hidden="true" data-reveal="lines">F</span>
     
         <!-- centered nav -->
         <nav class="nf-footer-nav" aria-label="Footer">

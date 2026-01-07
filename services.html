@@ -14,6 +14,10 @@
         <link rel="stylesheet" href="./css/nav-styles.css">
         <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
         <!-- Favicon Links -->
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -99,10 +103,10 @@
         </nav>
     </header>
 
-    <section class="services-hero">
+    <section class="services-hero" id="services-hero">
         <div class="services-hero-content">
             <div class="services-hero-top">
-                <h1 class="services-hero-title1">
+                <h1 class="services-hero-title1" data-reveal="lines">
                     Growth
                 </h1>
                 <div class="services-hero-spinner">
@@ -110,13 +114,13 @@
                 </div>
             </div>
             <div class="services-hero-bottom">
-                <h1 class="services-hero-title2" data-rise="true">
+                <h1 class="services-hero-title2" data-reveal="lines">
                 Starts Here
                 </h1>
             </div>
         </div>
         <div class="mini-service-list">
-            <div class="mini-service-item">
+            <div class="mini-service-item" >
                 <sl-icon name="arrow-down-left"></sl-icon>
                 <a href="#ux-ui-design">UX/UI Design</a>
 
@@ -134,7 +138,7 @@
 
     <section class="nf-reveal" aria-label="Brand analytics & content section">
         <div class="nf-reveal__col nf-reveal__left">
-            <h2 class="nf-reveal__eyebrow" data-rise="true">Unlock your brand's potential through <span>Creative Solutions</span>.</h2>
+            <h2 class="nf-reveal__eyebrow" >Unlock your brand's potential through <span>Creative Solutions</span>.</h2>
     
             <div class="nf-reveal__toggle-row">
                 <hr class="nf-reveal__rule" />
@@ -168,10 +172,10 @@
     
         <div class="nf-reveal__col nf-reveal__right">
             <h3 class="nf-reveal__card-title">Digital Products with <span>Impact</span></h3>
-            <div class="nf-reveal__media" slide-left="true">
+            <div class="nf-reveal__media">
                 <img src="./img/casa-designs-front.png" alt="Content marketing in action">
             </div>
-            <p class="nf-reveal__card-copy">
+            <p class="nf-reveal__card-copy" data-reveal="lines">
                 From design to deployment, our solutions are tailored for businesses that need a professional, modern presence. Whether it’s a new build, a redesign, or an e-commerce integration, we create experiences that are both beautiful and functional.
             </p>
         </div>
@@ -181,7 +185,7 @@
     <section id="nf-process" aria-label="Creative process">
         <div class="nf-proc__wrap">
             <!-- TL -->
-            <article class="nf-proc__card nf-proc__card--1" slide-right="true">
+            <article class="nf-proc__card nf-proc__card--1">
                 <span class="nf-proc__step">01</span>
                 <h3 class="nf-proc__title">Discovery &amp; Strategy</h3>
                 <p class="nf-proc__copy">
@@ -190,7 +194,7 @@
             </article>
     
             <!-- TR -->
-            <article class="nf-proc__card nf-proc__card--2" slide-left="true">
+            <article class="nf-proc__card nf-proc__card--2">
                 <span class="nf-proc__step">02</span>
                 <h3 class="nf-proc__title">Planning &amp; Design</h3>
                 <p class="nf-proc__copy">
@@ -199,7 +203,7 @@
             </article>
     
             <!-- BL -->
-            <article class="nf-proc__card nf-proc__card--3" slide-right="true">
+            <article class="nf-proc__card nf-proc__card--3">
                 <span class="nf-proc__step">03</span>
                 <h3 class="nf-proc__title">Agile Development</h3>
                 <p class="nf-proc__copy">
@@ -208,7 +212,7 @@
             </article>
     
             <!-- BR -->
-            <article class="nf-proc__card nf-proc__card--4" slide-left="true">
+            <article class="nf-proc__card nf-proc__card--4">
                 <span class="nf-proc__step">04</span>
                 <h3 class="nf-proc__title">Launch &amp; Support</h3>
                 <p class="nf-proc__copy">
@@ -219,7 +223,7 @@
             <!-- Centerpiece -->
             <div class="nf-proc__center">
                 <span class="nf-proc__eyebrow">From idea to <strong>identity</strong></span>
-                <h2 class="nf-proc__headline" data-rise="true">
+                <h2 class="nf-proc__headline" data-reveal="lines">
                     <span class="nf-proc__word--gray">Our</span>
                     <span class="nf-proc__word--gray">Creative</span>
                     <span class="nf-proc__word--white">Process</span>
@@ -236,7 +240,7 @@
         <div class="nf-svcs__grid">
             <!-- LEFT: Heading + Sub + Preview image (changes on hover) -->
             <div class="nf-svcs__left">
-                <h2 id="nf-svcs-title" class="nf-svcs__heading" data-rise="true">Our Services <span>*</span></h2>
+                <h2 id="nf-svcs-title" class="nf-svcs__heading">Our Services <span>*</span></h2>
                 <p class="nf-svcs__sub">We offer a range of services to design, build and scale your products.</p>
     
                 <div class="nf-svcs__preview" aria-hidden="true">
@@ -341,12 +345,12 @@
         <!-- ===== WHY PARTNER WITH US ===== -->
     <section class="nf-why">
         <div class="nf-why__grid">
-            <h2 class="nf-why__heading" slide-right="true">
+            <h2 class="nf-why__heading">
                 WHY PARTNER<br>
                 WITH US
             </h2>
     
-            <div class="nf-why__content" data-rise="true">
+            <div class="nf-why__content">
                 <span class="nf-why__eyebrow">WE'RE ALL IN</span>
                 <p class="nf-why__lede">
                     We <span>consistently</span> deliver results across a wide variety of industries.

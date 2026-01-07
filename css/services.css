@@ -16,6 +16,20 @@ body {
     background-color: #0f0e0f;
 }
 
+/*--- Text rise: */
+/* Line reveal helpers (SplitText adds the line elements) */
+.nf-line {
+    overflow: hidden;
+    display: block;
+}
+
+/* Optional: prevents little layout jitters during split/animate */
+[data-reveal="lines"] {
+    will-change: transform;
+}
+
+
+
 /* ===== Text Spinner ===== */
 .text-spinner {
     position: fixed;

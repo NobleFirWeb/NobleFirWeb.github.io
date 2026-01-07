@@ -16,6 +16,24 @@ body {
     background-color: #0f0e0f;
 }
 
+/*-- GSAP Animation Styles --*/
+
+/*--- Text rise: */
+/* Line reveal helpers (SplitText adds the line elements) */
+.nf-line {
+    overflow: hidden;
+    display: block;
+}
+
+/* Optional: prevents little layout jitters during split/animate */
+[data-reveal="lines"] {
+    will-change: transform;
+}
+
+#hero [data-reveal="lines"] {
+    opacity: 0;
+}
+
 /* ===== Text Spinner ===== */
 .text-spinner {
   position: fixed;
@@ -116,11 +134,7 @@ body {
 
 .why-row-bottom .why-left,
 .why-row-bottom .why-right {
-  background-image: linear-gradient(to bottom,
-    hsla(0, 0%, 100%, 1) 40%, hsla(0, 100%, 50%, 1) 65%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  color: #ffffff;
 }
 
 /* Center circle w/ links */
@@ -164,10 +178,6 @@ body {
   text-align:center;
   z-index: 2;
   font-family: 'Space Grotesk', sans-serif;
-  opacity: 0;
-  transform: translateY(25px);
-  animation: fadeLinks 1.2s ease forwards;
-  animation-delay: 1.25s
 }
 
 @keyframes fadeLinks {
@@ -394,7 +404,6 @@ body {
 .mission-title span {
   color: #ff0000;
   font-size: 2rem;
-  line-height: 0.5;
   display: inline-flex;
   float: left;
 }

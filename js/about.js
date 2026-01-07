@@ -1,4 +1,73 @@
-  // Initialize the spinner: repeat text to fill the circle and set speed.
+// Requires: gsap, SplitText, CustomEase
+gsap.registerPlugin(SplitText, CustomEase);
+
+// Ease from the CodePen
+CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1");
+
+function initLineReveals({
+  selector = '[data-reveal="lines"]',
+  once = true,
+  rootMargin = "0px 0px -10% 0px" // trigger a bit before fully in view
+} = {}) {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const els = Array.from(document.querySelectorAll(selector));
+  if (!els.length) return;
+
+  // If reduced motion: just show everything immediately
+  if (prefersReducedMotion) return;
+
+  // Split + prep each element
+  const items = els.map((el) => {
+    // Split into LINES only + mask lines
+    SplitText.create(el, {
+      type: "lines",
+      mask: "lines",
+      linesClass: "nf-line"
+    });
+
+    const lines = el.querySelectorAll(".nf-line");
+
+    // Start hidden (pushed down)
+    gsap.set(lines, { yPercent: 110 });
+
+    // Build the animation (paused until in view)
+    const tween = gsap.to(lines, {
+      yPercent: 0,
+      duration: 0.95,
+      stagger: 0.15,
+      ease: "osmo-ease",
+      paused: true
+    });
+
+    return { el, tween };
+  });
+
+  // Trigger on scroll (no ScrollTrigger needed)
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        const item = items.find((x) => x.el === entry.target);
+        if (!item) return;
+
+        item.tween.play(0);
+
+        if (once) io.unobserve(entry.target);
+      });
+    },
+    { root: null, rootMargin, threshold: 0.1 }
+  );
+
+  items.forEach((item) => io.observe(item.el));
+}
+
+// Wait for fonts so line breaks are correct (same idea as the CodePen)
+document.fonts.ready.then(() => {
+  initLineReveals();
+});
+
+// Initialize the spinner: repeat text to fill the circle and set speed.
 (function () {
     const spinner = document.querySelector(".text-spinner");
     if (!spinner) return;

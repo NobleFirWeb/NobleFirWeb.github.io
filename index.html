@@ -20,6 +20,7 @@
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
         <!-- Favicon Links -->
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -28,7 +29,7 @@
         <link rel="manifest" href="/site.webmanifest" />
     </head>
     <body>
-
+    
     <div id="nf-loader" aria-hidden="true">
         <div class="nf-loader__scene">
             <img class="nf-loader__img" src="./img/black-red-bg.jpg" alt="" decoding="async" fetchpriority="high" />
@@ -115,12 +116,11 @@
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
-
         <div class="hero-content">
-            <h1>
+            <h1 data-reveal="lines">
                 Where Your Vision
             </h1>
-            <h2>Becomes <bold>Reality</bold></h2>
+            <h2 data-reveal="lines">Becomes Reality</h2>
         </div>
     </section>
 
@@ -269,49 +269,41 @@
         </div>
         
         <div class="about-header">
-            <h1 class="about-subtitle1">The Values<strong>*</strong></h1>
+            <h1 class="about-subtitle1" data-reveal="lines">The Values<strong>*</strong></h1>
             <div class="header-card">
-                <h1 class="about-subtitle2" data-rise="true">Our Core Tenets</h1>
-                <p class="statement" data-rise="true">As a creative development agency, Noble Fir  is dedicated to helping businesses thrive in the digital world. With Quality, Creativity, and Collaboration in mind, we put our best foot forward and deliver for our partners.</p>
+                <h1 class="about-subtitle2" data-reveal="lines">Our Core Tenets</h1>
+                <p class="statement" data-reveal="lines">As a creative development agency, Noble Fir  is dedicated to helping businesses thrive in the digital world. With Quality, Creativity, and Collaboration in mind, we put our best foot forward and deliver for our partners.</p>
             </div>
         </div>
 
         <div class="values">
-            <div class="value-card" data-rise="true">
-                    <div class="value-content">
-                        <h1 class="value-number">01<span>.</span></h1>
-                    <h2 class="value-title">
-                        Quality
-                    </h2>
-                    <p class="value-description">
-                        Design and development should not only look good but also function well. That's why we always strive for excellence and pay attention to the smallest details. We create designs that not only meet but exceed your expectations.
+            <div class="container">
+                <div class="row">
+                    <h2 class="filled-text1">Quality</h2>
+                    <h2 class="outline-text1">Quality</h2>
+                    <img class="quality-image" src="./img/quality-img.jpg" alt="Quality">
+                    <p class="value-paragraph value-paragraph1" data-reveal="lines">
+                        Design and development should not only look good but also function well. That's why we always strive for excellence
+                        and pay attention to the smallest details. We create designs that not only meet but exceed your expectations.
                     </p>
-                    <sl-icon name="check2-all"></sl-icon>
                 </div>
-            </div>
-            <div class="value-card" data-rise="true">
-                <div class="value-content">
-                    <h1 class="value-number">02<span>.</span></h1>
-                    <h2 class="value-title">
-                        Creativity
-                    </h2>
-                    <p class="value-description">
+                <div class="row">
+                    <h2 class="filled-text2">Creativity</h2>
+                    <h2 class="outline-text2">Creativity</h2>
+                    <img class="creativity-image" src="./img/creativity-image.jpg" alt="Creativity">
+                    <p class="value-paragraph value-paragraph2" data-reveal="lines">
                         Every project is unique and reflects the personality and vision of our clients. Our team combines their technical skills with their imagination to create designs that are not only visually stunning but also tell a story.
                     </p>
-                    <sl-icon name="droplet"></sl-icon>
                 </div>
-            </div>
-            <div class="value-card" id="value-card3" data-rise="true">
-                <div class="value-content">
-                    <h1 class="value-number">03<span>.</span></h1>
-                    <h2 class="value-title">
-                        Collaboration
-                    </h2>
-                    <p class="value-description">
+                <div class="row">
+                    <h2 class="filled-text3">Collaboration</h2>
+                    <h2 class="outline-text3">Collaboration</h2>
+                    <img class="collab-image" src="./img/quality-img.jpg" alt="Quality">
+                    <p class="value-paragraph value-paragraph3" data-reveal="lines">
                         Communication and collaboration are key to the success of any project. That's why we work closely with our clients to understand their needs and goals, and ensure that the final product meets their vision. Together, we bring your ideas to life.
                     </p>
-                    <sl-icon name="suit-heart"></sl-icon>
                 </div>
+            </div>
             </div>
         </div>
 
@@ -320,12 +312,12 @@
 
     <section class="services-section" id="services-section">
         <div class="services-header">
-            <h1 class="services-title1">What We Do<strong>*</strong></h1>
+            <h1 class="services-title1" data-reveal="lines">What We Do<strong>*</strong></h1>
             <div class="header-card"> 
-                <h1 class="services-title2" data-rise="true">
+                <h1 class="services-title2" data-reveal="lines">
                     <sl-icon name="arrow-down-left"></sl-icon> Delivery Services
                 </h1>
-                <p class="services-subtitle" data-rise="true">
+                <p class="services-subtitle" data-reveal="lines">
                     Tailored project-based solutions designed to bring your digital vision to life. From concept to launch, we cover everything you need to get your website or web app online — crafted, deployed, and delivered with precision.
                 </p>
             </div>
@@ -334,7 +326,7 @@
             <div class="service service1">
                 <div class="service-number">01<strong>.</strong></div>
                 <h3 class="service-title">WEB DESIGN</h3>
-                <ul class="service-items">
+                <ul class="service-items" data-reveal="lines">
                     <li>Identify & Research</li>
                     <li>UX/UI Design & Wireframing</li>
                     <li>Responsive Design</li>
@@ -345,7 +337,7 @@
             <div class="service service2">
                 <div class="service-number">02<strong>.</strong></div>
                 <h3 class="service-title">CUSTOM WEB DEVELOPMENT</h3>
-                <ul class="service-items">
+                <ul class="service-items" data-reveal="lines">
                     <li>Landing Pages</li>
                     <li>Corporate Websites</li>
                     <li>Dashboards</li>
@@ -356,7 +348,7 @@
             <div class="service service3">
                 <div class="service-number">03<strong>.</strong></div>
                 <h3 class="service-title">E-COMMERCE DEVELOPMENT</h3>
-                <ul class="service-items">
+                <ul class="service-items" data-reveal="lines">
                     <li>Shopify</li>
                     <li>WooCommerce</li>
                     <li>Custom Solutions</li>
@@ -367,7 +359,7 @@
             <div class="service service4">
                 <div class="service-number">04<strong>.</strong></div>
                 <h3 class="service-title">Ongoing Support</h3>
-                <ul class="service-items">
+                <ul class="service-items" data-reveal="lines">
                     <li>User Acceptance Testing</li>
                     <li>Critical Care</li>
                     <li>Retainer Services</li>
@@ -378,10 +370,10 @@
 
         <div class="services-header managed">
             <div class="header-card managed"> 
-                <h1 class="services-title2" data-rise="true">
+                <h1 class="services-title2" data-reveal="lines">
                     <sl-icon name="arrow-down-left"></sl-icon> Managed Services
                 </h1>
-                <p class="services-subtitle managed" data-rise="true">
+                <p class="services-subtitle managed" data-reveal="lines">
                     Stay online, up-to-date, and ahead of the curve. Our Managed Services provide ongoing support, maintenance, and strategic enhancements for your site — so you can focus on running your business while we handle the digital upkeep.
                 </p>
             </div>
@@ -391,7 +383,7 @@
             <div class="service service1">
                 <div class="service-number">01<strong>.</strong></div>
                 <h3 class="service-title">WEBSITE MANAGEMENT</h3>
-                <ul class="service-items">
+                <ul class="service-items" data-reveal="lines">
                     <li>Ongoing Updates</li>
                     <li>Plugin/Theme Updates</li>
                     <li>CMS Maintenance</li>
@@ -402,7 +394,7 @@
             <div class="service service2">
                 <div class="service-number">02<strong>.</strong></div>
                 <h3 class="service-title">CONTENT UPDATES</h3>
-                <ul class="service-items">
+                <ul class="service-items" data-reveal="lines">
                     <li>Blog Posting</li>
                     <li>Portfolio/Project Updates</li>
                     <li>Team / Service Changes</li>
@@ -413,7 +405,7 @@
             <div class="service service3">
                 <div class="service-number">03<strong>.</strong></div>
                 <h3 class="service-title">TECHNICAL MAINTENANCE</h3>
-                <ul class="service-items">
+                <ul class="service-items" data-reveal="lines">
                     <li>Monthly Backups</li>
                     <li>Uptime Monitoring</li>
                     <li>Bug Fixes & Troubleshooting</li>
@@ -424,7 +416,7 @@
             <div class="service service4">
                 <div class="service-number">04<strong>.</strong></div>
                 <h3 class="service-title">HOSTING & INFRASTRUCTURE</h3>
-                <ul class="service-items">
+                <ul class="service-items" data-reveal="lines">
                     <li>DNS & Domain Management</li>
                     <li>Hosting Configuration / Monitoring</li>
                     <li>Email Management</li>
@@ -441,12 +433,12 @@
     <section class="portfolio" id="portfolio">
         
         <div class="portfolio-header">
-            <h1 class="portfolio-title1">The Work<strong>*</strong></h1>
+            <h1 class="portfolio-title1" data-reveal="lines">The Work<strong>*</strong></h1>
             <div class="header-card">
-                <h1 class="portfolio-title2" data-rise="true">
+                <h1 class="portfolio-title2" data-reveal="lines">
                     <sl-icon name="arrow-down-left"></sl-icon> Our Select Projects
                 </h1>
-                <p class="portfolio-subtitle" data-rise="true">
+                <p class="portfolio-subtitle" data-reveal="lines">
                     View highlights from some of our latest builds. Designed, Developed, Delivered.
                 </p>
             </div>
@@ -537,13 +529,13 @@
 
     <section class="testimonials" id="testimonials">
         <div class="testimonials-header">
-            <h1 class="testimonials-title1" slide-right="true">The Proof<strong>*</strong></h1>
+            <h1 class="testimonials-title1" data-reveal="lines">The Proof<strong>*</strong></h1>
             <div class="header-card">
-                <h1 class="testimonials-title2" data-rise="true">
+                <h1 class="testimonials-title2" data-reveal="lines">
                     <sl-icon name="arrow-down-left"></sl-icon> Don't take our word...
                 </h1>
-                <p class="testimonials-subtitle" data-rise="true">
-                    Hear from our customers on how we've helped their busienss succeed online.
+                <p class="testimonials-subtitle" data-reveal="lines">
+                    Hear from our customers on how we've helped their business succeed online.
                 </p>
             </div>
         </div>
@@ -632,12 +624,12 @@
     <section class="faq" id="faq">
     
         <div class="faq-header">
-            <h1 class="faq-title1">The Answers<strong>*</strong></h1>
+            <h1 class="faq-title1" data-reveal="lines">The Answers<strong>*</strong></h1>
             <div class="header-card">
-                <h1 class="faq-title2" data-rise="true">
+                <h1 class="faq-title2" data-reveal="lines">
                     <sl-icon name="arrow-down-left"></sl-icon> Have Questions?
                 </h1>
-                <p class="faq-description" data-rise="true">Find answers to common questions about our web development services and how we can help your business thrive online.</p>
+                <p class="faq-description" data-reveal="lines">Find answers to common questions about our web development services and how we can help your business thrive online.</p>
             </div>
         </div>
     
@@ -669,8 +661,8 @@
 
     <section id="cta" class="contact-section">
         <div class="contact-header">
-            <h2 class="contact-title1" data-rise="true">Ready to Launch Your Project?</h2>
-            <h1 class="contact-title2" data-rise="true">Let’s Build <span>Something Great</span> Together</h1>
+            <h2 class="contact-title1" data-reveal="lines">Ready to Launch Your Project?</h2>
+            <h1 class="contact-title2" data-reveal="lines">Let’s Build <span>Something Great</span> Together</h1>
             <p>
                 Tell us what you're envisioning—we’ll follow 
                 up to get the conversation started within 3 business days.
@@ -687,8 +679,8 @@
 
     <footer class="nf-footer" role="contentinfo">
         <!-- giant background letters -->
-        <span class="nf-footer-bg-letter nf-left" aria-hidden="true">N</span>
-        <span class="nf-footer-bg-letter nf-right" aria-hidden="true">F</span>
+        <span class="nf-footer-bg-letter nf-left" aria-hidden="true" data-reveal="lines">N</span>
+        <span class="nf-footer-bg-letter nf-right" aria-hidden="true" data-reveal="lines">F</span>
     
         <!-- centered nav -->
         <nav class="nf-footer-nav" aria-label="Footer">
@@ -742,7 +734,7 @@
     </script>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger, SplitText, TextPlugin);
+        gsap.registerPlugin(ScrollTrigger, SplitText);
 
 
             /* Animation */

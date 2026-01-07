@@ -1,7 +1,9 @@
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300&display=swap');
 
-
+html {
+    scrollbar-gutter: stable;
+}
 /* General Reset */
 * {
     margin: 0;
@@ -166,7 +168,23 @@ body.nf-loading {
     --nav-h: 100px;            /* JS sets this accurately on load/resize */
 }
 
+/*-- GSAP Animation Styles --*/
 
+/*--- Text rise: */
+/* Line reveal helpers (SplitText adds the line elements) */
+.nf-line {
+    overflow: hidden;
+    display: block;
+}
+
+/* Optional: prevents little layout jitters during split/animate */
+[data-reveal="lines"] {
+    will-change: transform;
+}
+
+#hero [data-reveal="lines"] {
+    opacity: 0;
+}
 
 
 /* Hero Section */
@@ -225,21 +243,21 @@ body.nf-loading {
 
 .hero-video-wrapper {
     position: relative;
-    width: 100%;
+    width: 75%;
     max-width: 75%;
-    display: flex;
     margin: 0 auto;
     justify-content: center;
     align-self: center;
     overflow: hidden;
     margin-top: -5%;
-    border: 0.5px solid #999;
     z-index: 1;
+    transform-origin: center center;
+    will-change: width, height, transform;
 }
 
 .hero-video {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     object-fit: cover;
 }
@@ -276,8 +294,10 @@ body.nf-loading {
 /* About Sections */
 #about {
     min-height: 100vh;
+    height: auto;
+    width: 100%;
     max-width: 100vw;
-    margin: 0 5%;
+    padding: 0 5%;
 }
 
 .about-container {
@@ -285,7 +305,6 @@ body.nf-loading {
     align-self: center;
     justify-content: space-evenly;
     padding-top: 12vh;
-    margin-top: 120px;
     margin-bottom: 30px;
     width: 100%;
     min-height: 60vh;
@@ -508,7 +527,9 @@ body.nf-loading {
 
 .values {
     width: 100%;
+    max-width: 100%;
     min-height: 50vh;
+    height: auto;
     margin: 5% auto;
     padding-top: 5%;
     display: flex;
@@ -517,58 +538,165 @@ body.nf-loading {
     align-items: center;
 }
 
-.value-card {
-    width: 30%;
-    height: 600px;
-    border-radius: 8px;
-    padding: 30px;
-    transition: background 0.3s ease-in-out;
+.values .container {
+    padding: 10px;
+	height: 150vh;
+	position: relative;
+	width: 100%;
+    margin-bottom: 10%;
 }
 
-.value-card:hover {
-    background: #111111;
-}
-
-.value-content {
+.values .container .row {
+    position: relative ;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    row-gap: 3rem;
+    width: 100% ;
+    height: 40% ;
+    overflow: hidden ;
 }
 
-.value-number {
-    font-size: 4rem;
-    font-family: "Space Grotesk", sans-serif;
-    font-weight: 500;
-    color: #464646;
-}
-
-.value-number span {
-    color: #ff0000;
-}
-
-.value-title {
-    font-size: 4rem;
-    color: #ffffff;
-    font-family: "Space Grotesk", sans-serif;
-    font-weight: 500;
-}
-
-.value-description {
-    font-size: 1.25rem;
+.values .container h2 {
     font-family: "Inter", sans-serif;
-    line-height: 1.25;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+    -webkit-font-smoothing: antialiased;
 }
 
-.value-card sl-icon {
-    font-size: 32px;
+.filled-text1 {
+	position: absolute;
+	top: 200px ;
+	left: 100px ;
+	z-index: 1 ;
+	font-size: 140px ;
+	font-weight: 600 ;
+	
+}
+
+.outline-text1 {
+	position: absolute;
+	top: 200px ;
+	left: 100px ;
+	z-index: 3 ;
+	font-size: 140px ;
+	font-weight: 600 ;
+	-webkit-text-stroke: 2px rgba(248,248,255,0.95);
+	-webkit-text-fill-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.quality-image {
+	position: absolute;
+	top: 50px ;
+	left: 500px ;
+	z-index: 2 ;
+	height: 450px ;
+	width: 700px ;
+}
+
+.filled-text2 {
+	position: absolute;
+	top: 200px ;
+	right: 50px ;
+	z-index: 1 ;
+	font-size: 140px ;
+	font-weight: 600 ;
+	
+}
+
+.outline-text2 {
+	position: absolute;
+	top: 200px ;
+	right: 50px ;
+	z-index: 3 ;
+	font-size: 140px ;
+	font-weight: 600 ;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: ghostwhite;
+	color: transparent;
+	
+}
+
+.creativity-image {
+	position: absolute;
+	top: 50px ;
+	right: 500px ;
+	z-index: 2 ;
+	height: 450px ;
+	width: 700px ;
+}
+
+.filled-text3 {
+	position: absolute;
+	top: 200px ;
+	z-index: 1 ;
+	font-size: 140px ;
+	font-weight: 600 ;
+	
+}
+
+.outline-text3 {
+	position: absolute;
+	top: 200px ;
+	z-index: 3 ;
+	font-size: 140px ;
+	font-weight: 600 ;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: ghostwhite;
+	color: transparent;
+	
+}
+
+.collab-image {
+	position: absolute;
+	top: 50px ;
+	left: 500px ;
+	z-index: 2 ;
+	height: 450px ;
+	width: 700px ;
+}
+
+/* paragraph starts hidden (measurable, but invisible) */
+.value-paragraph[data-reveal="lines"] {
+    opacity: 0;
+}
+
+.value-paragraph1, .value-paragraph3 {
+    position: absolute;
+    top: 150px;
+    right: 50px;
+    width: min(520px, 32vw);
+    z-index: 4;
+    margin: 0;
+    line-height: 1.6;
     color: #ffffff;
-    transition: color 0.3s ease-in-out;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;
 }
 
-.value-card:hover sl-icon {
-    color: #ff0000;
+.value-paragraph2 {
+    position: absolute;
+    top: 150px;
+    left: 100px;
+    width: min(520px, 32vw);
+    z-index: 4;
+    margin: 0;
+    line-height: 1.6;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+}
+
+/* SplitText line wrapper */
+.nf-line {
+    display: block;
+    overflow: hidden;
 }
 
 
@@ -579,6 +707,254 @@ body.nf-loading {
     .about-container {
         margin: 5% 0;
     }
+        .values .container {
+            height: auto;
+            padding: 0 20px;
+        }
+    
+        .values .container .row {
+            height: 520px;
+            /* replaces % height so it behaves predictably */
+            margin: 80px 0;
+            overflow: hidden;
+        }
+    
+        /* Typography downscale */
+        .filled-text1,
+        .outline-text1,
+        .filled-text2,
+        .outline-text2,
+        .filled-text3,
+        .outline-text3 {
+            font-size: 100px;
+            top: 40px;
+        }
+        /* Row 1 + 3 (image on right) */
+                .filled-text1,
+                .outline-text1 {
+                    left: 60px;
+                }
+        
+                .quality-image {
+                    top: 55px;
+                    left: 360px;
+                    width: 560px;
+                    height: 360px;
+                }
+        
+                .value-paragraph1 {
+                    top: 250px;
+                    right: 50%;
+                    width: min(440px, 50vw);
+                    font-size: 1.1rem;
+                }
+        
+                .filled-text3,
+                .outline-text3 {
+                    left: 0;
+                }
+        
+                .collab-image {
+                    top: 55px;
+                    left: 360px;
+                    width: 560px;
+                    height: 360px;
+                }
+        
+                .value-paragraph3 {
+                    top: 250px;
+                    right: 50%;
+                    width: min(440px, 50vw);
+                    font-size: 1.1rem;
+                }
+        
+                /* Row 2 (image on left) */
+                .filled-text2,
+                .outline-text2 {
+                    right: 45px;
+                }
+        
+                .creativity-image {
+                    top: 55px;
+                    right: 360px;
+                    width: 560px;
+                    height: 360px;
+                }
+        
+                .value-paragraph2 {
+                    top: 250px;
+                    left: 50%;
+                    width: min(440px, 50vw);
+                    font-size: 1.1rem;
+                }
+}
+
+@media only screen and (max-width: 768px) {
+    .values {
+            margin: 8% auto;
+            padding-top: 8%;
+        }
+    
+        .values .container {
+            height: auto;
+            padding: 0 18px;
+        }
+    
+        .values .container .row {
+            height: 550px;
+            margin: 50px 0;
+            overflow: visible;
+            /* allow stacked layout without clipping */
+        }
+    
+        /* Center the hero elements within the row */
+        .quality-image,
+        .creativity-image,
+        .collab-image {
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            top: 110px;
+            width: min(640px, 92vw);
+            height: 420px;
+        }
+    
+        /* Center the big text (over image) */
+        .filled-text1,
+        .outline-text1,
+        .filled-text3,
+        .outline-text3 {
+            left: -50px;
+            transform: translateX(50%);
+            font-size: 92px;
+            text-align: center;
+            width: 100%;
+            max-width: 92vw;
+        }
+
+        .filled-text2,
+        .outline-text2 {
+            left: auto;
+            right: -50%;
+            transform: translateX(50%);
+            font-size: 92px;
+            text-align: center;
+            width: 100%;
+            max-width: 92vw;
+        }
+    
+        /* Paragraph sits under image (centered) */
+        .value-paragraph1,
+        .value-paragraph2,
+        .value-paragraph3 {
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            top: 425px;
+            width: min(620px, 92vw);
+            font-size: 1.05rem;
+            text-align: center;
+        }
+}
+
+@media only screen and (max-width: 480px) {
+    .values {
+            margin: 10% auto;
+            padding-top: 10%;
+        }
+    
+        .values .container {
+            height: auto;
+            padding: 0 12px;
+        }
+    
+        .values .container .row {
+            height: 500px;
+            margin: 40px 0;
+            overflow: visible;
+        }
+    
+        /* Full-bleed-ish image (start slightly off screen via left:50% + translate) */
+        .quality-image {
+            left: auto;
+            right: -100px;
+            transform: translateX(50%);
+            top: 90px;
+            width: 105vw;
+            height: 420px;
+        }
+
+        .creativity-image {
+            left: -330px;
+            right: auto;
+            transform: translateX(50%);
+            top: 90px;
+            width: 105vw;
+            height: 420px;
+        }
+
+        .collab-image {
+            left: auto;
+            right: -100px;
+            transform: translateX(50%);
+            top: 90px;
+            width: 105vw;
+            height: 420px;
+        }
+    
+        /* Title sits toward top of the image */
+        .filled-text1,
+        .outline-text1 {
+            left: -300px;
+            right: auto;
+            transform: translateX(50%);
+            top: 70px;
+            font-size: 3.5rem;
+            width: 100%;
+            max-width: 100vw;
+            text-align: center;
+            line-height: 1.05;
+        }
+
+        .filled-text2,
+        .outline-text2 {
+            left: auto;
+            right: -80px;
+            transform: translateX(50%);
+            top: 70px;
+            font-size: 3.5rem;
+            width: 100%;
+            max-width: 100vw;
+            text-align: center;
+            line-height: 1.05;
+        }
+        .filled-text3,
+        .outline-text3 {
+            left: -200px;
+            right: auto;
+            transform: translateX(50%);
+            top: 70px;
+            font-size: 3.5rem;
+            width: 100%;
+            max-width: 100vw;
+            text-align: center;
+            line-height: 1.05;
+        }
+    
+        /* Paragraph overlays image lower area so it reads “on the image” */
+        .value-paragraph1,
+        .value-paragraph2,
+        .value-paragraph3 {
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            top: 350px;
+            /* inside the image area */
+            width: 88vw;
+            font-size: 0.98rem;
+            text-align: left;
+            padding: 14px 14px;
+        }
 }
 
 #services-section {
@@ -747,7 +1123,6 @@ body.nf-loading {
 #portfolio {
     width: 100vw;
     padding: 0 5%;
-
 }
 
 .portfolio-header {
@@ -1755,31 +2130,9 @@ sl-details::part(base) {
         .values {
             padding-top: 2.5%;
         }
-    
-        .value-card {
-            width: 90%;
-            margin: 3% 5%;
-            padding: 20px;
+        .about-text_home {
+            font-size: 1.75rem;
         }
-    
-        .value-content {
-            row-gap: 2rem;
-        }
-    
-        .value-number,
-        .value-title {
-            font-size: 2.5rem;
-        }
-    
-        .value-description {
-            font-size: 1rem;
-            line-height: 1.35;
-        }
-    
-        .value-card sl-icon {
-            font-size: 24px;
-        }
-}
 
 
 @media (max-width: 480px) {
@@ -1907,33 +2260,7 @@ sl-details::part(base) {
             margin: 5% 0;
             row-gap: 2rem;
             padding-top: 5%;
-
         }
-    
-        .value-card {
-            width: 100%;
-            margin: 4% 0;
-            padding: 12px 12px;
-        }
-    
-        .value-content {
-            row-gap: 2.5rem;
-        }
-    
-        .value-number,
-        .value-title {
-            font-size: 2.25rem;
-        }
-    
-        .value-description {
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-    
-        .value-card sl-icon {
-            font-size: 22px;
-        }
-
 
 
 
@@ -1959,6 +2286,9 @@ sl-details::part(base) {
     .service-container {
         margin-top: 60px;
         padding: 0;
+    }
+    .service-number {
+        font-size: 1.75rem;
     }
     .service-title {
         font-weight: 200;
