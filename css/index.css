@@ -1791,6 +1791,11 @@ sl-details::part(base) {
     margin-top: 20px;
 }
 
+#cta .learn-more {
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
 #cta .about-btn {
     display: block;
     margin-top: 20px;
