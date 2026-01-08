@@ -227,6 +227,16 @@ gsap.to("#heroVideoWrapper", {
 });
 */
 
+const cursor = document.querySelector('.cursor');
+
+const cursorX = gsap.quickTo(cursor, "x", {duration: 0.2, ease: "power3.out"});
+const cursorY = gsap.quickTo(cursor, "y", {duration: 0.2, ease: "power3.out"});
+
+window.addEventListener('mousemove', (e) => {
+  cursorX(e.clientX);
+  cursorY(e.clientY);
+});
+
 
 // VALUES SECTION (Rows 1–3)
 // - Text + image parallax on scroll (by class / row trigger)
@@ -372,7 +382,7 @@ gsap.to("#heroVideoWrapper", {
 
   // ---------- Row 3: Collaboration ----------
   gsap.to(".filled-text3, .outline-text3", {
-    x: 150,
+    x: 200,
     ease: "none",
     scrollTrigger: {
       trigger: ".values .row:nth-child(3)",

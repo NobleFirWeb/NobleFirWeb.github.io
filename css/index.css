@@ -17,7 +17,22 @@ body {
     padding: 0;
     background-color: #0f0e0f;
     color: white;
+    cursor: none;
     overflow-x: hidden;
+}
+
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 26px;
+    height: 26px;
+    background: #ffffff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
 }
 
 body.nf-loading {
@@ -164,8 +179,9 @@ body.nf-loading {
     --nf-fg:#fff;
     --nf-gray:#464646;
     --nf-red:#ff0000;
-    --nf-neutral:#bdbdbd;      /* temp color for 04 */
-    --nav-h: 100px;            /* JS sets this accurately on load/resize */
+    --nf-neutral:#bdbdbd;
+    --nav-h: 100px;
+    --first-word-indent: 10%; 
 }
 
 /*-- GSAP Animation Styles --*/
@@ -329,8 +345,7 @@ body.nf-loading {
     font-weight: 400;
     color: #333333;
     font-size: 3rem;
-    line-height: 1.6;
-    text-align: center;
+    line-height: 1.2;
 }
 
 .about-text_home span {
@@ -341,6 +356,46 @@ body.nf-loading {
     background-clip: text;
     transition: background-color 0.3s, color 0.3s;
 }
+
+.indent-first-word {
+    position: relative;
+}
+
+/* Create the offset space */
+.indent-first-word::before {
+    content: "";
+    display: inline-block;
+    width: var(--first-word-indent);
+}
+
+.learn-more {
+    display: flex;
+    justify-content: flex-end;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.learn-more span {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 1.25rem;
+    letter-spacing: -0.05rem;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.solar--arrow-right-down-linear {
+    display: inline-block;
+    color: #ffffff;
+    width: 2rem;
+    height: 2rem;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='m6 6l12 12m0 0V9m0 9H9'/%3E%3C/svg%3E");
+}
+
+
 
 #about .about-btn {
     margin: 0 auto;
@@ -386,12 +441,11 @@ body.nf-loading {
     padding: 60px 0;
 }
 
-.scroll {
+.scroll,
+.scroll2 {
     position: relative;
     display: flex;
     width: 100%;
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #fff 30%, #fff 70%, transparent);
 }
 
 .scroll div {
@@ -403,6 +457,19 @@ body.nf-loading {
 .scroll div:nth-child(2) {
     animation: animate2 var(--t) linear infinite;
     animation-delay: calc(var(--t)/-2);
+}
+
+.scroll2 div {
+    white-space: nowrap;
+    animation: animate var(--t) linear infinite;
+    animation-delay: calc(var(--t)/-1);
+    animation-direction: reverse;
+}
+
+.scroll2 div:nth-child(2) {
+    animation: animate2 var(--t) linear infinite;
+    animation-delay: calc(var(--t)/-2);
+    animation-direction: reverse;
 }
 
 @keyframes animate {
@@ -425,15 +492,17 @@ body.nf-loading {
     }
 }
 
-.scroll div span {
+.scroll div span,
+.scroll2 div span {
     display: inline-flex;
-    margin: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 3rem;
+    margin: 5px 5px;
+    border-radius: 1rem;
     font-size: 24px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: #fff;
+    color: #ffffff;
+    background-color: #111111;
     transition: 0.5s;
 }
 
@@ -441,8 +510,7 @@ body.nf-loading {
     position: relative;
     display: flex;
     width: 100%;
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #fff 30%, #fff 70%, transparent);
+    display: none;
 }
 
 .scroll-icons div {
@@ -460,10 +528,9 @@ body.nf-loading {
 
 .scroll-icons div span {
     display: inline-flex;
-    margin: 20px;
-    padding: 5px 10px;
+    margin: 10px;
+    padding: 3rem;
     border-radius: 5px;
-    color: #fff;
     transition: 0.5s;
 }
 
@@ -471,10 +538,7 @@ body.nf-loading {
     font-size: 3.5rem;
 }
 
-.scroll div span:hover {
-    background: #ff0000;
-    cursor: pointer;
-}
+
 .about-header {
     margin: 0;
     padding: 0;
@@ -596,6 +660,7 @@ body.nf-loading {
 	z-index: 2 ;
 	height: 450px ;
 	width: 700px ;
+    border-radius: 1rem;
 }
 
 .filled-text2 {
@@ -628,6 +693,7 @@ body.nf-loading {
 	z-index: 2 ;
 	height: 450px ;
 	width: 700px ;
+    border-radius: 12px;
 }
 
 .filled-text3 {
@@ -658,6 +724,7 @@ body.nf-loading {
 	z-index: 2 ;
 	height: 450px ;
 	width: 700px ;
+    border-radius: 12px;
 }
 
 /* paragraph starts hidden (measurable, but invisible) */
@@ -701,12 +768,29 @@ body.nf-loading {
 
 
 @media only screen and (max-width: 1024px) {
+    .cursor {
+        display: none;
+    }
+
     #about {
         margin: 5% 0;
     }
     .about-container {
         margin: 5% 0;
     }
+    .learn-more {
+    margin-top: 5px;
+}
+
+.learn-more span {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.solar--arrow-right-down-linear {
+    width: 1rem;
+    height: 1rem;
+}
         .values .container {
             height: auto;
             padding: 0 20px;
@@ -858,7 +942,7 @@ body.nf-loading {
 }
 
 @media only screen and (max-width: 480px) {
-    .values {
+        .values {
             margin: 10% auto;
             padding-top: 10%;
         }
@@ -908,7 +992,7 @@ body.nf-loading {
             left: -300px;
             right: auto;
             transform: translateX(50%);
-            top: 70px;
+            top: 55px;
             font-size: 3.5rem;
             width: 100%;
             max-width: 100vw;
@@ -921,7 +1005,7 @@ body.nf-loading {
             left: auto;
             right: -80px;
             transform: translateX(50%);
-            top: 70px;
+            top: 55px;
             font-size: 3.5rem;
             width: 100%;
             max-width: 100vw;
@@ -933,8 +1017,8 @@ body.nf-loading {
             left: -200px;
             right: auto;
             transform: translateX(50%);
-            top: 70px;
-            font-size: 3.5rem;
+            top: 55px;
+            font-size: 3rem;
             width: 100%;
             max-width: 100vw;
             text-align: center;
@@ -1421,7 +1505,7 @@ body.nf-loading {
     grid-template-columns: 40% 60%;
     align-items: center;
     gap: min(7vw, 25vw);
-    padding: min(4vw, 60px);
+    padding: min(6vw, 60px);
     box-sizing: border-box;
 }
 
@@ -1880,6 +1964,9 @@ sl-details::part(base) {
             margin-top: 60px;
             background-color: transparent;
         }
+        .about-text_home {
+            line-height: 1.2;
+        }
         .about-header {
             margin-top: 10%;
             padding: 0 5%;
@@ -1925,24 +2012,6 @@ sl-details::part(base) {
                 .value-card sl-icon {
                     font-size: 28px;
                 }
-        .slider {
-            background-color: transparent;
-            padding: 2em 2em;
-        }
-
-        .slide-track {
-            width: 100%;
-            display: flex;
-            gap: 3em;
-            overflow: hidden;
-        }
-
-        .slide {
-            width: 50px;
-            height: 50px;
-            animation: scroll 10s linear infinite;
-            border: 0.5px solid #999;
-        }
     }
 
     /*----- Services -----*/
@@ -2133,6 +2202,7 @@ sl-details::part(base) {
         .about-text_home {
             font-size: 1.75rem;
         }
+    }
 
 
 @media (max-width: 480px) {
@@ -2192,13 +2262,9 @@ sl-details::part(base) {
 
 
 
-
-
-
-
     /* About */
     #about {
-        margin-top: 80px;
+        margin-top: 10px;
         padding: 0 5%;
     }
     .about-container {
@@ -2206,10 +2272,9 @@ sl-details::part(base) {
         justify-content: center;
         gap: 30px;
         padding: 0;
-        height: 75vh;
+        margin-top: 0;
+        height: 50vh;
         max-height: 75vh;
-        margin-top: 30px;
-        padding-bottom: 30px;
         background-color: transparent;
     }
     .about-right {
@@ -2217,25 +2282,26 @@ sl-details::part(base) {
         padding: 0;
         margin: 0;
     }
-    .about-left {
-        width: 100%;
-        padding: 0;
-    }
     .about-text_home {
         font-size: 1.5rem;
+        text-align: left;
+        letter-spacing: -.04em;
+        line-height: 1.2;
     }
     .about-btn a {
         font-size: 0.75rem;
         font-weight: 500;
     }
     .scroll-container {
-    margin-top: 60px;
-    border-top: 1px solid #333;
-    border-bottom: 1px solid #333;
+    margin-top: 0;
+    padding: 0;
     }
-    .scroll,
-    .scroll-icons {
-        -webkit-mask-image: none;
+
+    .scroll div span,
+    .scroll2 div span {
+        font-size: 1.25rem;
+        letter-spacing: 0;
+        padding: 1.75rem;
     }
 
     .about-header {
