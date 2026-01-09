@@ -217,6 +217,67 @@
             </div>
         </div>
 
+        <div class="value-list" data-reveal="lines">
+            <div class="value-item"
+                data-img="./img/abstract/img4.jpg">
+                <span class="index">01</span>
+                <div class="Value-info">
+                    <h2>QUALITY</h2>
+                    <p>Every. Time.</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="value-text">
+                    <p data-reveal="lines">Design and development should not only look good but also function well. That's why we always strive for excellence and pay attention to the smallest details. We create designs that not only meet but exceed your expectations.</p>
+                </div>
+            </div>
+        
+            <div class="value-item"
+                data-img="./img/abstract/img6.jpg">
+                <span class="index">02</span>
+                <div class="Value-info">
+                    <h2>CREATIVITY</h2>
+                    <p>Every. Time.</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="value-text">
+                    <p data-reveal="lines">Every project is unique and reflects the personality and vision of our clients. Our team combines their technical skills with their imagination to create designs that are not only visually stunning but also tell a story.</p>
+                </div>
+            </div>
+        
+            <div class="value-item"
+                data-img="./img/abstract/creativity-image.jpg">
+                <span class="index">03</span>
+                <div class="Value-info">
+                    <h2>Accountability</h2>
+                    <p>Every. Time.</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="value-text">
+                    <p data-reveal="lines">Accountability means taking full ownership of our work, our decisions, and the outcomes we deliver. We set clear expectations, communicate honestly, and follow through at every stage of a project. When challenges arise, we address them head-on, ensuring our clients can trust not just the process—but the results.</p>
+                </div>
+            </div>
+        
+            <div class="value-item"
+                data-img="./img/abstract/img5.jpg">
+                <span class="index">04</span>
+                <div class="Value-info">
+                    <h2>Collaboration</h2>
+                    <p>Every. Time.</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="value-text">
+                    <p data-reveal="lines">Communication and collaboration are key to the success of any project. That's why we work closely with our clients to understand their needs and goals, and ensure that the final product meets their vision. Together, we bring your ideas to life.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hover-reveal">
+            <div class="reveal-inner">
+                <img src="" class="reveal-img" alt="Project Preview">
+            </div>
+        </div>
+
+        <!-- 
         <div class="values">
             <div class="container">
                 <div class="row">
@@ -247,6 +308,7 @@
             </div>
             </div>
         </div>
+        -->
 
     </section>
 
@@ -761,23 +823,23 @@
             <div class="custom-cursor"><span>VIEW</span></div>
             
             <script>
-                const cursor = document.querySelector('.custom-cursor');
+                const customCursor = document.querySelector('.custom-cursor');
                 const portfolioImages = document.querySelectorAll('#portfolio .grid-item img');
 
                 document.addEventListener('mousemove', (e) => {
-                    if (cursor.classList.contains('show-cursor')) {
-                        cursor.style.transform = `translate(${e.clientX - 40}px, ${e.clientY - 40}px)`;
+                    if (customCursor.classList.contains('show-cursor')) {
+                        customCursor.style.transform = `translate(${e.clientX - 40}px, ${e.clientY - 40}px)`;
                     }
                 });
 
                 portfolioImages.forEach(img => {
                         img.addEventListener('mouseenter', () => {
-                            cursor.classList.add('show-cursor');
+                            customCursor.classList.add('show-cursor');
                             document.body.style.cursor = 'none'; // hide system cursor
                         });
 
                         img.addEventListener('mouseleave', () => {
-                            cursor.classList.remove('show-cursor');
+                            customCursor.classList.remove('show-cursor');
                             document.body.style.cursor = 'auto'; // restore system cursor
                         });
                 });
