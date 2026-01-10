@@ -383,11 +383,19 @@ body.nf-loading {
     width: var(--first-word-indent);
 }
 
+.first-word {
+    display: inline-block;
+    margin-left: var(--first-word-indent);
+}
+
 .learn-more {
-    display: flex;
+    display: inline-flex;
+    align-items: center;
     justify-content: flex-end;
     text-decoration: none;
-    margin-top: 10px;
+    margin-top: 15px;
+    transition: transform 260ms ease;
+    will-change: transform;
 }
 
 .learn-more span {
@@ -396,55 +404,71 @@ body.nf-loading {
     color: #ffffff;
     font-size: 1.25rem;
     letter-spacing: -0.05rem;
-    margin-right: 10px;
+    margin: 0 5px;
     text-decoration: none;
+    transition: transform 260ms ease;
+    will-change: transform;
 }
 
 .solar--arrow-right-down-linear {
     display: inline-block;
     color: #ffffff;
-    width: 2rem;
-    height: 2rem;
+    width: 1.25rem;
+    height: 1.25rem;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='m6 6l12 12m0 0V9m0 9H9'/%3E%3C/svg%3E");
 }
 
-
-
-#about .about-btn {
-    margin: 0 auto;
-}
-
-.about-btn {
-    display: block;
-    align-self: flex-start;
-    background-color: none;
-    text-decoration: none;
-    background-color: #ff0000;
-    border: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-}
-
-.about-btn a {
-    position: relative;
+.learn-more__icon {
     display: inline-block;
-    padding: 15px 30px;
-    border: 1.25px solid #000;
-    font-family: "Inter", sans-serif;
-    text-transform: uppercase;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 1rem;
-    transition: color 0.3s ease-in-out;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+    transition: opacity 260ms ease, transform 260ms ease, width 260ms ease;
+    will-change: opacity, transform, width;
 }
 
-.about-btn a:hover {
-    background-color: #000;
-    border: 1.25px solid #fff;
-    color: #fff;
+/* left icon starts "not there" */
+.learn-more__icon--left {
+    width: 0;
+    /* makes it feel like it appears in real time */
+    opacity: 0;
+    transform: translateX(-3px);
+    overflow: hidden;
+    /* ensures the svg doesn't show while width is 0 */
 }
+
+/* right icon starts normal */
+.learn-more__icon--right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Hover behavior */
+.learn-more:hover {
+    transform: translateX(10px);
+    /* whole link nudges right */
+}
+
+.learn-more:hover .learn-more__text {
+    transform: translateX(10px);
+    /* text pushes right 10px */
+}
+
+.learn-more:hover .learn-more__icon--right {
+    opacity: 0;
+    transform: translateX(18px);
+    /* looks "pushed out" */
+}
+
+.learn-more:hover .learn-more__icon--left {
+    width: 2rem;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
 
 .scroll-container {
     display: flex;
@@ -517,7 +541,7 @@ body.nf-loading {
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: #ffffff;
-    background-color: #111111;
+    background-color: #464646;
     transition: 0.5s;
 }
 
@@ -557,54 +581,40 @@ body.nf-loading {
 .about-header {
     margin: 0;
     padding: 0;
-    max-width: 100%;
+    width: 100%;
     padding-top: 90px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
-.about-header .header-card {
-    background-color: transparent;
-    width: 600px;
-    box-sizing: border-box;
-    z-index: 0;
+.values-header {
+    font-family: "inter", sans-serif;
+    font-weight: 400;
+    max-width: 75%;
+    color: #ffffff;
+    font-size: 3rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
 }
 
-.about-subtitle1 {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 8rem;
-    font-weight: 800;
-    color: #343434;
-    text-transform: uppercase;
-    z-index: 0;
-    font-optical-sizing: auto;
+.values-header-text {
+    max-width: 40%;
+    margin: 30px 0;
 }
 
-.about-subtitle1 strong {
-    color: #ff0000;
-    font-weight: 500;
-}
 
-.about-subtitle2 {
-    font-size: 2.625rem;
-    font-family: "Space Grotesk", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    letter-spacing: 0.15rem;
-    color: #fff;
-}
-
-.statement {
-    margin-top: 25px;
-    font-family: "Inter", sans-serif;
+.values-header-text p {
+    font-family: "inter", sans-serif;
     font-weight: 300;
-    color: #fff;
+    color: #bdbdbd;
     font-size: 1.25rem;
-    max-width: 720px;
-    line-height: 1.6;
+    line-height: 1.2;
 }
+
+
 
 .value-list {
+    margin-top: 30px;
     padding: 80px 0;
     display: flex;
     flex-direction: column;
@@ -700,8 +710,8 @@ body.nf-loading {
     position: fixed;
     top: 0;
     left: 0;
-    width: 320px;
-    height: 420px;
+    width: 340px;
+    height: 440px;
     pointer-events: none;
     z-index: 1;
     opacity: 0;
@@ -718,7 +728,7 @@ body.nf-loading {
 .hover-reveal .reveal-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover center !important;
     transform: scale(1.2);
 }
 
@@ -800,9 +810,10 @@ body.nf-loading {
 @media only screen and (max-width: 480px) {
     .value-list {
         padding: 60px 0; 
+        margin-top: 0;
     }
     .value-item {
-        padding: 30px 15px;
+        padding: 20px 15px;
     }
     .value-item .value-info p {
         font-size: 1rem;
@@ -1276,7 +1287,7 @@ body.nf-loading {
     grid-template-columns: 40% 60%;
     align-items: center;
     gap: min(7vw, 25vw);
-    padding: min(6vw, 60px);
+    padding: min(8vw, 80px);
     box-sizing: border-box;
 }
 
@@ -1370,7 +1381,6 @@ body.nf-loading {
 .nf-reviews__btn:hover {
     color: #ffffff;
     border: 1px solid #fff;
-    background: #ff0000;
 }
 
 .nf-reviews__btn:focus-visible {
@@ -1709,19 +1719,7 @@ sl-details::part(base) {
             margin-top: -15%;
             border: 0.5px solid #999;
         }
-        .about-header,
-        .services-header,
-        .portfolio-header,
-        .testimonials-header,
-        .faq-header {
-        padding: 0;
-        margin-top: 60px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
+
     .services-title2 sl-icon,
     .portfolio-title2 sl-icon,
     .testimonials-title2 sl-icon,
@@ -1742,52 +1740,21 @@ sl-details::part(base) {
         }
         .about-text_home {
             line-height: 1.2;
+            font-size: 2rem;
         }
         .about-header {
             margin-top: 10%;
-            padding: 0 5%;
             padding-top: 60px;
         }
-        .about-header .header-card {
-            margin-top: 20px;
+        .values-header {
+            font-size: 2rem;
+            max-width: 100%;
         }
-        .about-subtitle1 {
-            font-size: 6rem;
-            margin-top: 0;
+        .values-header-text {
+            max-width: 70%;
+            margin: 20px 0;
         }
-                .values {
-                    flex-wrap: wrap;
-                    column-gap: 4rem;
-                    align-items: center;
-                    padding-top: 10%;
-                    margin: 5% auto;
-                }
         
-                .value-card {
-                    width: 40%;
-                    height: auto;
-                    min-height: 400px;
-                    padding: 12px;
-                }
-                #value-card3 {
-                    margin-top: 2rem;
-                }
-                .value-content {
-                    row-gap: 2.5rem;
-                }
-        
-                .value-number,
-                .value-title {
-                    font-size: 3rem;
-                }
-        
-                .value-description {
-                    font-size: 1.1rem;
-                }
-        
-                .value-card sl-icon {
-                    font-size: 28px;
-                }
     }
 
     /*----- Services -----*/
@@ -2064,10 +2031,6 @@ sl-details::part(base) {
         letter-spacing: -.04em;
         line-height: 1.2;
     }
-    .about-btn a {
-        font-size: 0.75rem;
-        font-weight: 500;
-    }
     .scroll-container {
     margin-top: 0;
     padding: 0;
@@ -2083,26 +2046,17 @@ sl-details::part(base) {
     .about-header {
         padding: 0;
         margin-top: 60px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
     }
-    .about-subtitle1 {
-        font-size: 3rem;
-        top: 45px;
+    .values-header {
+        font-size: 1.5rem;
     }
-    .about-header .header-card {
+    .values-header-text {
         max-width: 100%;
         margin-top: 20px;
-
     }
-        .values {
-            margin: 5% 0;
-            row-gap: 2rem;
-            padding-top: 5%;
-        }
+    .values-header-text p {
+        font-size: 1rem;
+    }
 
 
 
