@@ -331,6 +331,8 @@ items.forEach(item => {
       .catch(fn);
   }
 
+  
+
   // ---------- Row 1: Quality ----------
   gsap.to(".filled-text1, .outline-text1", {
     x: 450,
@@ -513,6 +515,87 @@ document.fonts.ready.then(() => {
 });
 
 // Values menu 
+gsap.registerPlugin(ScrollTrigger);
+
+(function nfConceptToDeploymentScroll() {
+  const section = document.querySelector("#nfTransition");
+  if (!section) return;
+
+  const inner = section.querySelector(".nf-transition__inner");
+  const connector = section.querySelector(".nf-transition-connector");
+  const headline = section.querySelector(".nf-transition-headline");
+  const media = section.querySelector(".nf-transition__media");
+  const frames = Array.from(section.querySelectorAll(".nf-frame"));
+
+  if (!inner || !connector || !headline || !media || frames.length === 0) return;
+
+  // Hard swap frames by index (abrupt)
+  const setFrame = (index) => {
+    frames.forEach((img, i) => img.classList.toggle("is-active", i === index));
+  };
+
+  setFrame(0);
+  let lastIndex = 0;
+
+  const START_CONNECTOR_W = 64;
+
+  const tl = gsap.timeline({
+    defaults: { ease: "none" },
+    scrollTrigger: {
+      trigger: media,
+      start: "top 85%",          // top ~15% into viewport (tweak 80-90)
+      endTrigger: section,
+      end: "top top",            // finishes when headline hits top
+      scrub: 1,
+      invalidateOnRefresh: true,
+
+      // This is the money: force START STATE every refresh so it never begins “ended”
+      onRefreshInit: () => {
+        gsap.set([media, connector], { clearProps: "transform,width" });
+        gsap.set(media, { x: 0 });
+        gsap.set(connector, { width: START_CONNECTOR_W });
+        setFrame(0);
+        lastIndex = 0;
+      },
+
+      onUpdate: (self) => {
+        const index = Math.min(4, Math.max(0, Math.round(self.progress * 4)));
+        if (index !== lastIndex) {
+          lastIndex = index;
+          setFrame(index);
+        }
+      }
+
+      // markers: true
+    }
+  });
+
+  // Grow connector width to push "TO DEPLOYMENT" to the right
+  tl.to(connector, {
+  width: () => {
+    const innerW = inner.clientWidth || window.innerWidth;
+
+    // ✅ Mobile: grow almost full row
+    if (window.matchMedia("(max-width: 480px)").matches) {
+      return Math.max(34, innerW * 0.50);
+    }
+
+    // ✅ Desktop/tablet: your current tuning
+    return Math.max(64, innerW * 0.62);
+  }
+}, 0);
+
+  // Slide the media container to the right in sync
+  tl.to(media, {
+    x: () => {
+      if (window.matchMedia("(max-width: 480px)").matches) return 0;
+      const innerW = inner.clientWidth || window.innerWidth;
+      return innerW * 0.62; // tweak this to match your perfect end position
+    }
+  }, 0);
+
+  window.addEventListener("resize", () => ScrollTrigger.refresh());
+})();
 
 
 
