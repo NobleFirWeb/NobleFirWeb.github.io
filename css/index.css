@@ -819,7 +819,7 @@ body.nf-loading {
     width: 100%;
     background: #0f0e0f;
     color: #ffffff;
-    padding-top: 10vh;
+    padding-top: 12vh;
     overflow: hidden;
 }
 
@@ -1009,6 +1009,169 @@ body.nf-loading {
     }
 }
 
+/* ===== Services Panel (CHD-inspired) ===== */
+.nf-services-panel {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    color: #ffffff;
+    overflow: hidden;
+    padding: 0 5%;
+    background: #0f0e0f;
+    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Background image + dark/faint filter */
+.nf-services-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("../img/forest-bg.jpg");
+    background-size: contain center !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(0.15) contrast(1.2) saturate(0.6);
+    z-index: 0;
+}
+
+/* vignette / fade overlay */
+.nf-services-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(ellipse at center, rgba(15, 14, 15, 0) 0%, rgba(15, 14, 15, 0.85) 90%);
+}
+
+.nf-services-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 0;
+    display: flex;
+}
+
+.nf-services-copy {
+    width: 100%;
+}
+
+.nf-services-kicker {
+    font-size: 2.6rem;
+    letter-spacing: -.04em;
+    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 1;
+    max-width: 50%;
+}
+
+
+
+.nf-services-sub {
+    margin-top: 18px;
+    max-width: 760px;
+    font-size: clamp(12px, 1.1vw, 14px);
+    line-height: 1;
+}
+
+/* Big list */
+.nf-services-list {
+    margin-top: 30px;
+    padding: 0;
+    list-style: none;
+}
+
+.nf-service {
+    border-bottom: 1px solid #ffffff;;
+}
+
+.nf-service-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    padding: clamp(22px, 3.5vh, 36px) 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.nf-service-title {
+    font-size: clamp(44px, 6.2vw, 86px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: .95;
+}
+
+/* Hidden helper paragraph (shows on hover) */
+.nf-service-desc {
+    width: min(450px, 30vw);
+    font-size: 13px;
+    line-height: 1.55;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity .25s ease, transform .25s ease;
+    color: rgba(255, 255, 255, .75);
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* Hover behavior */
+.nf-service-link:hover .nf-service-desc {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.nf-service-link:hover .nf-service-title {
+    opacity: .92;
+}
+
+.nf-services-copy .learn-more_icon {
+    margin-top: 25px;
+    position: absolute;
+    right: clamp(18px, 5vw, 60px);
+    bottom: clamp(18px, 4vh, 46px);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Responsive: collapse the right hover text under the title */
+@media (max-width: 768px) {
+    .nf-service-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nf-servicees-panel {
+        margin-top: -30px;
+    }
+    .nf-services-kicker {
+        font-size: 1.5rem;
+        max-width: 100%;
+    }
+    .nf-services-sub {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+    .nf-service-link {
+        padding: 20px 0;
+    }
+    .nf-service-desc {
+        display: none;
+    }
+    .nf-service-title {
+        font-size: 2rem;
+    }
+    
+}
+
+/*
 #services-section {
     display: flex;
     flex-wrap: wrap;
@@ -1163,7 +1326,7 @@ body.nf-loading {
     opacity: 0.8;
     border-color: #222;
 }
-
+*/
 
 
 
@@ -2295,10 +2458,11 @@ sl-details::part(base) {
 
     /* Portfolio */
     #portfolio {
-        margin: 60px 0;
+        margin: 0;
     }
     .portfolio-header {
         margin-top: 60px;
+        padding: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
