@@ -1098,7 +1098,7 @@ body.nf-loading {
 
 .nf-service-title {
     font-size: clamp(44px, 6.2vw, 86px);
-    font-weight: 800;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: -0.03em;
     line-height: .95;
