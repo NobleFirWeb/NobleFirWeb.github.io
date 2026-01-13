@@ -366,7 +366,8 @@ body.nf-loading {
     font-weight: 400;
     color: #333333;
     font-size: 3rem;
-    line-height: 1.2;
+    line-height: 1;
+    letter-spacing: -0.04em;
 }
 
 .about-text_home span {
@@ -598,9 +599,10 @@ body.nf-loading {
     font-weight: 400;
     max-width: 75%;
     color: #ffffff;
-    font-size: 3rem;
+    font-size: 2.6rem;
     line-height: 1;
     letter-spacing: -0.04em;
+    text-transform: uppercase;
 }
 
 .values-header-text {
@@ -614,7 +616,7 @@ body.nf-loading {
     font-weight: 300;
     color: var(--nf-white);
     font-size: 1.25rem;
-    line-height: 1.2;
+    line-height: 1;
 }
 
 
@@ -630,7 +632,7 @@ body.nf-loading {
     width: 100%;
     position: relative;
     padding: 20px 40px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: none;
     display: flex;
     flex-direction: row;
     gap: 30px;
@@ -639,10 +641,20 @@ body.nf-loading {
     z-index: 2;
 }
 
+.value-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #ffffff;
+    transform: scaleX(var(--nf-underline, 0));
+    transform-origin: left center;
+}
 
 
 .value-item:hover {
-    background: rgba(255, 255, 255, 0.02);
     cursor: none;
 }
 
@@ -665,9 +677,7 @@ body.nf-loading {
     letter-spacing: -2px;
 }
 
-.value-item:hover h2 {
-    padding-left: 10px;
-}
+
 
 .value-item p {
     margin: 0;
@@ -708,6 +718,7 @@ body.nf-loading {
     z-index: 1;
     opacity: 0;
     transform: scale(0.8);
+    display: none;
 }
 
 .hover-reveal .reveal-inner {
@@ -1014,6 +1025,7 @@ body.nf-loading {
     position: relative;
     width: 100%;
     height: auto;
+    min-height: 80vh;
     max-height: 80vh;
     color: #ffffff;
     overflow: hidden;
@@ -1028,7 +1040,7 @@ body.nf-loading {
     position: absolute;
     inset: 0;
     background-image: url("../img/forest-bg.jpg");
-    background-size: contain center !important;
+    background-size: cover center !important;
     background-repeat: no-repeat;
     background-position: center;
     filter: brightness(0.15) contrast(1.2) saturate(0.6);
@@ -1041,7 +1053,7 @@ body.nf-loading {
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: radial-gradient(ellipse at center, rgba(15, 14, 15, 0) 0%, rgba(15, 14, 15, 0.85) 90%);
+    background: radial-gradient(ellipse at center, rgba(15, 14, 15, 0) 0%, rgba(15, 14, 15, 0.85) 30%);
 }
 
 .nf-services-inner {
@@ -1083,7 +1095,20 @@ body.nf-loading {
 }
 
 .nf-service {
-    border-bottom: 1px solid #ffffff;;
+    border-bottom: none;
+    position: relative;
+}
+
+.nf-service::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #ffffff;
+    transform: scaleX(var(--nf-underline, 0));
+    transform-origin: left center;
 }
 
 .nf-service-link {
@@ -1097,7 +1122,7 @@ body.nf-loading {
 }
 
 .nf-service-title {
-    font-size: clamp(44px, 6.2vw, 86px);
+    font-size: 4vw;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: -0.03em;
@@ -1108,11 +1133,11 @@ body.nf-loading {
 .nf-service-desc {
     width: min(450px, 30vw);
     font-size: 13px;
-    line-height: 1.55;
+    line-height: 1;
     opacity: 0;
     transform: translateX(-10px);
     transition: opacity .25s ease, transform .25s ease;
-    color: rgba(255, 255, 255, .75);
+    color: #ffffff;
     text-transform: none;
     letter-spacing: 0;
 }
@@ -1127,11 +1152,10 @@ body.nf-loading {
     opacity: .92;
 }
 
-.nf-services-copy .learn-more_icon {
-    margin-top: 25px;
+.nf-services-panel .nf-services-cta {
     position: absolute;
-    right: clamp(18px, 5vw, 60px);
-    bottom: clamp(18px, 4vh, 46px);
+    right: 5%;
+    bottom: -50px;
     z-index: 2;
     display: inline-flex;
     align-items: center;
@@ -1171,169 +1195,132 @@ body.nf-loading {
     
 }
 
-/*
-#services-section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4rem;
-    margin: 0 5%;
-}
-
-.services-header {
+/* ===== Portfolio Grid (CHD-inspired) ===== */
+.nf-portfolio {
+    background: #0f0e0f;
+    color: #ffffff;
     width: 100%;
-    padding-top: 60px;
-    display: flex;
-    justify-content: space-between;
+    padding: 80px 0 110px;
+    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-.services-header .header-card {
-    background-color: transparent;
-    width: 600px;
-    max-width: 720px;
-    box-sizing: border-box;
-    z-index: 0;
+.nf-portfolio__inner {
+    width: min(1600px, 92vw);
+    margin: 0 auto;
 }
 
-.services-header.managed {
-    position: relative;
-    display: flex;
-    position: relative;
-    width: 100vw;
-    padding-top: 0;
-    justify-content: flex-end;
+/* 2-col rows */
+.nf-portfolio__row {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    /* left bigger than right */
+    gap: clamp(26px, 3.2vw, 48px);
+    align-items: start;
+    margin-top: clamp(34px, 4.5vw, 56px);
 }
 
-.services-header.managed .header-card {
-    margin-top: 0;
+/* flip the second row */
+.nf-portfolio__row--bottom {
+    grid-template-columns: 1fr 1.35fr;
 }
 
-.service-container.managed {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: space-between;
-    align-self: right;
-    padding: 0 10%;
-    max-width: 100%;
-    box-sizing: border-box;
-    margin: 120px auto;
-    float: right;
+/* last row: single card aligned left */
+.nf-portfolio__row--single {
+    grid-template-columns: 1.35fr 1fr;
 }
 
-
-.services-title1 {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 8rem;
-    font-weight: 800;
-    color: #343434;
-    text-transform: uppercase;
-    z-index: 0;
-    font-optical-sizing: auto;
+.nf-portfolio__row--single .nf-card {
+    grid-column: 1 / 2;
 }
 
-.services-title1 strong {
-    color: #ff0000;
-    font-weight: 500;
+/* Card base */
+.nf-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
-.services-title2 {
-    font-size: 2.625rem;
-    font-family: "Space Grotesk", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    color: #fff;
-    margin-left: 0;
+.nf-card__media {
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #eee;
 }
 
-.services-title2 sl-icon {
-    font-size: 28px;
-    color: #fff;
+/* IMPORTANT: “exact feel” sizing like your screenshots */
+.nf-card--big .nf-card__media {
+    aspect-ratio: 16 / 10;
 }
 
-.services-subtitle {
-    margin-top: 25px;
-    font-family: "Inter", sans-serif;
-    font-weight: 300;
-    color: #fff;
-    font-size: 1.25rem;
-    line-height: 1.6;
+.nf-card--small .nf-card__media {
+    aspect-ratio: 16 / 9;
 }
 
-.service-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: space-between;
-    padding: 0 10%;
-    max-width: 100%;
-    box-sizing: border-box;
-    margin: 120px auto;
+/* Image fill */
+.nf-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    will-change: transform;
+    /* future parallax */
 }
 
-.service {
-    flex: 1 1 calc(50% - 2rem);
+/* Meta below image */
+.nf-card__meta {
+    padding-top: 12px;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    min-width: 350px;
+    gap: 8px;
 }
 
-.service-number {
-    font-size: 3rem;
-    font-family: "Space Grotesk", sans-serif;
+.nf-card__title {
+    margin: 0;
     font-weight: 800;
-    color: #464646;
-}
-
-.service-number strong {
-    color: #ff0000;
-    font-weight: 500;
-}
-
-.service-title {
-    font-size: 2rem;
-    font-family: "Space Grotesk", sans-serif;
-    font-weight: 600;
     text-transform: uppercase;
-    color: #fff;
-    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    font-size: 14px;
 }
 
-.service-items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.nf-card__link {
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
 }
 
-.service-items li {
-    color: #a6a6a6;
-    font-size: 0.95rem;
-    font-family: "Inter", sans-serif;
-    margin-bottom: 0.25rem;
+/* Subtle hover */
+.nf-card:hover .nf-card__media img {
+    transform: scale(1.02);
+    transition: transform .25s ease;
 }
 
-.service-link {
-    text-decoration: none;
-    font-family: "Inter", sans-serif;
-    font-weight: 600;
-    color: #fff;
-    border-bottom: 2px solid #a6a6a6;
-    width: fit-content;
-    transition: all 0.2s ease;
+.nf-portfolio_injner .learn-more {
+    display: inline-flex;
+    align-items:flex-end;
+    justify-content: flex-end;
+    margin-top: 30px;
 }
 
-.service-link:hover {
-    opacity: 0.8;
-    border-color: #222;
+/* Responsive */
+@media (max-width: 900px) {
+
+    .nf-portfolio__row,
+    .nf-portfolio__row--bottom,
+    .nf-portfolio__row--single {
+        grid-template-columns: 1fr;
+    }
+
+    .nf-portfolio__row--single .nf-card {
+        grid-column: auto;
+    }
+
+    .nf-card__title {
+        font-size: 13px;
+    }
 }
-*/
 
-
-
-/* Portfolio Section Styles*/
-
-
-
+/*
 
 #portfolio {
     width: 100vw;
@@ -1482,7 +1469,7 @@ body.nf-loading {
     }
 }
 
-/* Responsive stack on mobile */
+
 @media (max-width: 768px) {
     .staggered-grid {
         grid-template-columns: 1fr;
@@ -1506,44 +1493,8 @@ body.nf-loading {
         gap: 5px;
     }
 }
-
-
-
-
-.projects-btn {
-    display: block;
-    text-decoration: none;
-    background-color: #ff0000;
-    width: 250px;
-    border: none;
-    margin: 30px auto;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-    border: 1.25px solid #000;
 }
-
-.projects-btn:hover {
-    border: 1.25px solid #fff;
-    background-color: #000;
-}
-
-.projects-btn a {
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
-    font-family: "Inter", sans-serif;
-    text-transform: uppercase;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 1rem;
-    transition: color 0.3s ease-in-out;
-}
-
-.projects-btn a:hover {
-    color: #fff;
-}
-
-
+*/
 
 
 /* Testimonials Section Styles */
@@ -2398,6 +2349,7 @@ sl-details::part(base) {
     }
     .values-header {
         font-size: 1.5rem;
+        max-width: 100%;
     }
     .values-header-text {
         max-width: 100%;

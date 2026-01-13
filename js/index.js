@@ -598,6 +598,53 @@ gsap.registerPlugin(ScrollTrigger);
 })();
 
 
+gsap.registerPlugin(ScrollTrigger);
+
+/**
+ * Reveals underline ::after on a set of items by animating a CSS custom property
+ * that is used in transform: scaleX(var(--nf-underline, 0))
+ */
+function nfUnderlineReveal({ listSelector, itemSelector, start = "bottom bottom" }) {
+  const list = document.querySelector(listSelector);
+  const items = gsap.utils.toArray(itemSelector);
+
+  if (!list || !items.length) return;
+
+  // Ensure hidden by default
+  gsap.set(items, { "--nf-underline": 0 });
+
+  ScrollTrigger.create({
+    trigger: list,
+    start,                   // ✅ when list bottom hits viewport bottom
+    invalidateOnRefresh: true,
+
+    onEnter: () => {
+      gsap.to(items, {
+        "--nf-underline": 1,
+        duration: 0.85,
+        stagger: 0.08,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+    },
+    // markers: true
+  });
+}
+
+/* VALUES: bottom of .value-list reaches bottom of viewport */
+nfUnderlineReveal({
+  listSelector: ".value-list",
+  itemSelector: ".value-item",
+  start: "bottom bottom"
+});
+
+/* SERVICES: bottom of .nf-services-list reaches bottom of viewport */
+nfUnderlineReveal({
+  listSelector: ".nf-services-list",
+  itemSelector: ".nf-service",
+  start: "bottom bottom"
+});
+
 
 // Wait for DOM
 window.addEventListener("DOMContentLoaded", () => {
