@@ -645,6 +645,46 @@ nfUnderlineReveal({
   start: "bottom bottom"
 });
 
+gsap.registerPlugin(ScrollTrigger);
+
+(function nfPortfolioParallax() {
+  const medias = document.querySelectorAll(".nf-card__media");
+  if (!medias.length) return;
+
+  medias.forEach((media) => {
+    const img = media.querySelector("img");
+    if (!img) return;
+
+    // kill any prior trigger if you hot-reload scripts
+    if (media._nfST) media._nfST.kill();
+
+    // amount of travel (px). adjust to taste.
+    const travel = () => Math.min(110, Math.max(35, window.innerHeight * 0.08));
+
+    const tween = gsap.fromTo(
+      img,
+      { y: -travel() * 0.4 },
+      {
+        y: travel() * 0.4,
+        ease: "none",
+        scrollTrigger: {
+          trigger: media,
+          start: "top bottom",   // begins when media enters viewport
+          end: "bottom top",     // ends when media leaves viewport
+          scrub: true,
+          invalidateOnRefresh: true
+          // markers: true
+        }
+      }
+    );
+
+    media._nfST = tween.scrollTrigger;
+  });
+
+  // keep it responsive
+  window.addEventListener("resize", () => ScrollTrigger.refresh());
+})();
+
 
 // Wait for DOM
 window.addEventListener("DOMContentLoaded", () => {
