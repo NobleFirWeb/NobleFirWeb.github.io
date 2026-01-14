@@ -215,47 +215,22 @@ const cursor = document.querySelector('.cursor');
 const cursorX = gsap.quickTo(cursor, "x", {duration: 0.2, ease: "power3.out"});
 const cursorY = gsap.quickTo(cursor, "y", {duration: 0.2, ease: "power3.out"});
 
-const revealX = gsap.quickTo(reveal, "x", {duration: 0.5, ease: "power3.out"});
-const revealY = gsap.quickTo(reveal, "y", {duration: 0.5, ease: "power3.out"});
+
 
 window.addEventListener('mousemove', (e) => {
   cursorX(e.clientX);
   cursorY(e.clientY);
-  revealX(e.clientX);
-  revealY(e.clientY);
 });
 
 items.forEach(item => {
   item.addEventListener('mouseenter', () => {
-    const imgUrl = item.getAttribute('data-img');
-    revealImg.src = imgUrl;
-    
-    gsap.to(reveal, {
-      opacity: 1,
-      scale: 1,
-      duration: 0.4,
-      ease: "power2.out"
-    });
-    
-    gsap.fromTo(revealImg,
-      { scale: 1.4 },
-      { scale: 1, duration: 0.4 }
-    );
-    
     gsap.to(cursor, {
-      scale: 4,
+      scale: 1,
       duration: 0.2
     });
   });
   
   item.addEventListener('mouseleave', () => {
-    gsap.to(reveal, {
-      opacity: 0,
-      scale: 0.8,
-      duration: 0.3,
-      ease: "power2.out"
-    });
-    
     gsap.to(cursor, {
       scale: 1,
       duration: 0.2
@@ -263,11 +238,6 @@ items.forEach(item => {
   });
 });
 
-
-// VALUES SECTION (Rows 1–3)
-// - Text + image parallax on scroll (by class / row trigger)
-// - Paragraph reveal (SplitText lines) when image bottom becomes visible
-// ============================
 
 (function initValuesSectionGSAP() {
   if (typeof gsap === "undefined") return;
@@ -330,119 +300,6 @@ items.forEach(item => {
       .then(fn)
       .catch(fn);
   }
-
-  
-
-  // ---------- Row 1: Quality ----------
-  gsap.to(".filled-text1, .outline-text1", {
-    x: 450,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".values .row:nth-child(1)",
-      start: "top bottom",
-      end: "bottom top",
-      force3D: true,
-      modifiers: {
-        x: v => Math.round(parseFloat(v)) + "px"
-      },
-      scrub: 1
-    }
-  });
-
-  gsap.to(".quality-image", {
-    x: -400,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".values .row:nth-child(1)",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 1
-      // markers: true
-    }
-  });
-
-  ScrollTrigger.create({
-    trigger: ".quality-image",
-    start: "bottom bottom",
-    once: true,
-    onEnter: () => {
-      const p = document.querySelector(".value-paragraph1");
-      if (!p) return;
-      nfAfterFontsAndPaint(() => nfRevealLinesOnce(p, { fromYPercent: 45, duration: 1.05, stagger: 0.08 }));
-    }
-  });
-
-  // ---------- Row 2: Creativity ----------
-  gsap.to(".filled-text2, .outline-text2", {
-    x: -300,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".values .row:nth-child(2)",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 1
-      // markers: true
-    }
-  });
-
-  gsap.to(".creativity-image", {
-    x: 400,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".values .row:nth-child(2)",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 1
-      // markers: true
-    }
-  });
-
-  ScrollTrigger.create({
-    trigger: ".creativity-image",
-    start: "bottom bottom",
-    once: true,
-    onEnter: () => {
-      const p = document.querySelector(".value-paragraph2");
-      if (!p) return;
-      nfAfterFontsAndPaint(() => nfRevealLinesOnce(p, { fromYPercent: 45, duration: 1.05, stagger: 0.08 }));
-    }
-  });
-
-  // ---------- Row 3: Collaboration ----------
-  gsap.to(".filled-text3, .outline-text3", {
-    x: 200,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".values .row:nth-child(3)",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 1
-      // markers: true
-    }
-  });
-
-  gsap.to(".collab-image", {
-    x: -350,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".values .row:nth-child(3)",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 1
-      // markers: true
-    }
-  });
-
-  ScrollTrigger.create({
-    trigger: ".collab-image",
-    start: "bottom bottom",
-    once: true,
-    onEnter: () => {
-      const p = document.querySelector(".value-paragraph3");
-      if (!p) return;
-      nfAfterFontsAndPaint(() => nfRevealLinesOnce(p, { fromYPercent: 45, duration: 1.05, stagger: 0.08 }));
-    }
-  });
 })();
 
 // Requires: gsap, SplitText, CustomEase
@@ -600,10 +457,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 gsap.registerPlugin(ScrollTrigger);
 
-/**
- * Reveals underline ::after on a set of items by animating a CSS custom property
- * that is used in transform: scaleX(var(--nf-underline, 0))
- */
 function nfUnderlineReveal({ listSelector, itemSelector, start = "bottom bottom" }) {
   const list = document.querySelector(listSelector);
   const items = gsap.utils.toArray(itemSelector);
@@ -663,9 +516,9 @@ gsap.registerPlugin(ScrollTrigger);
 
     const tween = gsap.fromTo(
       img,
-      { y: -travel() * 0.4 },
+      { yPercent: -8 },
       {
-        y: travel() * 0.4,
+        yPercent: 8,
         ease: "none",
         scrollTrigger: {
           trigger: media,
@@ -682,6 +535,109 @@ gsap.registerPlugin(ScrollTrigger);
   });
 
   // keep it responsive
+  window.addEventListener("resize", () => ScrollTrigger.refresh());
+})();
+
+gsap.registerPlugin(ScrollTrigger);
+
+(function nfTextWidgetScroll() {
+  const widget = document.querySelector(".nf-text-widget");
+  if (!widget) return;
+
+  const rowStatic = widget.querySelector(".nf-text-row--static");
+  const row2 = widget.querySelectorAll(".nf-text-row--slide")[0];
+  const row3 = widget.querySelectorAll(".nf-text-row--slide")[1];
+
+  if (!rowStatic || !row2 || !row3) return;
+
+  const noble = widget.querySelector(".nf-word--noble");
+  const fir = widget.querySelector(".nf-word--fir");
+  const studio = widget.querySelector(".nf-word--studio");
+
+  const track2 = row2.querySelector(".nf-text-track");
+  const track3 = row3.querySelector(".nf-text-track");
+
+  if (!noble || !fir || !studio || !track2 || !track3) return;
+
+  // Helper: get left positions in the same coordinate space (viewport)
+  const leftOf = (el) => el.getBoundingClientRect().left;
+
+  // Compute the X we need so `targetWord` lands directly under `noble`
+  const computeEndX = (targetWord, track) => {
+    const nobleLeft = leftOf(noble);
+    const targetLeft = leftOf(targetWord);
+    // translate track so targetWord.left == noble.left
+    return (nobleLeft - targetLeft) + gsap.getProperty(track, "x");
+  };
+
+  // Recompute on refresh (resize, font load, etc.)
+  let endX2 = 0, endX3 = 0, startX2 = 0, startX3 = 0;
+
+  const recalc = () => {
+    // Reset tracks to 0 first so measurements are consistent
+    gsap.set([track2, track3], { x: 0 });
+
+    // Where they should END (aligned under Noble)
+    endX2 = computeEndX(fir, track2);
+    endX3 = computeEndX(studio, track3);
+
+    // Where they should START (more to the right, so they slide right->left)
+    // tweak these multipliers if you want “more travel”
+    startX2 = endX2 + window.innerWidth * 0.35;
+    startX3 = endX3 + window.innerWidth * 0.45;
+
+    // Apply start positions immediately
+    gsap.set(track2, { x: startX2 });
+    gsap.set(track3, { x: startX3 });
+
+    // Start colors (muted)
+    gsap.set([noble, fir, studio], { color: "#999" });
+
+    // Keep slide rows clipped until we hit the end
+    row2.style.overflow = "hidden";
+    row3.style.overflow = "hidden";
+  };
+
+  // Run once now + ensure ScrollTrigger knows to call it again when needed
+  recalc();
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: rowStatic,
+      start: "top bottom",      // ✅ when top of static row hits bottom of viewport
+      end: "+=120%",            // ✅ scroll distance (adjust if you want longer/shorter)
+      scrub: 1,
+      invalidateOnRefresh: true,
+      onRefreshInit: recalc,
+      onUpdate: (self) => {
+        // At the end, reveal overflow on both sides (like your reference)
+        row2.style.overflow = "visible";
+        row3.style.overflow = "visible";
+      }
+      // markers: true
+    }
+  });
+
+  // Noble slowly brightens as the animation runs
+  tl.to(noble, { color: "#ffffff", ease: "none" }, 0);
+
+  // Row 2 slides right->left until Fir is under Noble
+  tl.to(track2, { x: endX2, ease: "none" }, 0);
+
+  // Fir brightens as it reaches its landing (feel free to start at 0 if you want)
+  tl.to(fir, { color: "#ffffff", ease: "none" }, 0.15);
+
+  // Row 3 slides right->left until Studio is under Noble + Fir
+  tl.to(track3, { x: endX3, ease: "none" }, 0);
+
+  // Studio brightens too
+  tl.to(studio, { color: "#ffffff", ease: "none" }, 0.2);
+
+  // If fonts load late, refresh once (helps Inter/CSS loading shifts)
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => ScrollTrigger.refresh());
+  }
+
   window.addEventListener("resize", () => ScrollTrigger.refresh());
 })();
 
