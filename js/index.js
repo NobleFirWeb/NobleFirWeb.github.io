@@ -500,43 +500,20 @@ nfUnderlineReveal({
 
 gsap.registerPlugin(ScrollTrigger);
 
-(function nfPortfolioParallax() {
-  const medias = document.querySelectorAll(".nf-card__media");
-  if (!medias.length) return;
-
-  medias.forEach((media) => {
-    const img = media.querySelector("img");
-    if (!img) return;
-
-    // kill any prior trigger if you hot-reload scripts
-    if (media._nfST) media._nfST.kill();
-
-    // amount of travel (px). adjust to taste.
-    const travel = () => Math.min(110, Math.max(35, window.innerHeight * 0.08));
-
-    const tween = gsap.fromTo(
-      img,
-      { yPercent: -8 },
-      {
-        yPercent: 8,
-        ease: "none",
-        scrollTrigger: {
-          trigger: media,
-          start: "top bottom",   // begins when media enters viewport
-          end: "bottom top",     // ends when media leaves viewport
-          scrub: true,
-          invalidateOnRefresh: true
-          // markers: true
-        }
-      }
-    );
-
-    media._nfST = tween.scrollTrigger;
+document.querySelectorAll(".nf-card__media img").forEach((img) => {
+  gsap.to(img, {
+    yPercent: 35,          // same feel as CodePen
+    ease: "none",
+    scrollTrigger: {
+      trigger: img.closest(".nf-card"),
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+      invalidateOnRefresh: true
+      // markers: true
+    }
   });
-
-  // keep it responsive
-  window.addEventListener("resize", () => ScrollTrigger.refresh());
-})();
+});
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -640,6 +617,8 @@ gsap.registerPlugin(ScrollTrigger);
 
   window.addEventListener("resize", () => ScrollTrigger.refresh());
 })();
+
+
 
 
 // Wait for DOM

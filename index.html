@@ -40,6 +40,7 @@
     </div>
     
     <div id="nf-page">
+
     <!-- Text Spinner (place near the end of <body> in about.html) -->
     <a class="text-spinner" href="contact-us.html" aria-label="Go to Contact" data-text="LET’S TALK! • " data-speed="12s">
         <svg viewBox="0 0 110 110" width="110" height="110" role="img" aria-hidden="true">
@@ -213,8 +214,8 @@
         <div class="about-header">
                 <p class="values-title indent-first-word" data-reveal="lines"><span class="first-word">Our</span> core tenets form the foundation of our culture and define who we are. They guide our every choice and are woven deep into everything we do. We're dedicated to helping businesses thrive in the digital world, while building lasting, meaningful connections. With Quality, Creativity, Accountability, and Collaboration in mind, we put our best foot forward and deliver for our partners - Every. Time.</p>
                 <div class="values-header-text">
-                    <p>Our purpose is to empower passionate people to thrive. This drives everything we do. We seek out passionate individuals to join our team who are truly motivated to elevate the success of our clients. We also consistently partner with companies who are passionate about the work they do.</p>
-                    <p></p>
+                <p>Our purpose is to empower passionate people to thrive. This drives everything we do. We seek out passionate individuals to join our team who are truly motivated to elevate the success of our clients. We also consistently partner with companies who are passionate about the work they do.</p>
+                <p></p>
                 </div>
         </div>
 
@@ -288,14 +289,15 @@
     </section>
 
     <section class="nf-services-panel" id="services">
-        <!-- background image lives on the section via CSS -->
+        <div class="nf-services-header">
+            <p class="nf-services-kicker indent-first-word" data-reveal="lines"><a class="first-word">NOBLE</a> FIR IS A CREATIVE DEVELOPMENT STUDIO AND TECHNICAL PARTNER FOCUSED ON DESIGNING, BUILDING, AND SCALING MODERN DIGITAL EXPERIENCES.</p>
+        
+            <p class="nf-services-sub">
+            Our work is organized across four core services that can be engaged independently or combined into a unified delivery, depending on project goals, stage of execution, and the evolving needs of each partner.
+                </p>
+        </div>
         <div class="nf-services-inner">
             <div class="nf-services-copy">
-                <p class="nf-services-kicker indent-first-word" data-reveal="lines"><a class="first-word">NOBLE</a> FIR IS A CREATIVE DEVELOPMENT STUDIO AND TECHNICAL PARTNER FOCUSED ON DESIGNING, BUILDING, AND SCALING MODERN DIGITAL EXPERIENCES.</p>
-        
-                <p class="nf-services-sub">
-                Our work is organized across four core services that can be engaged independently or combined into a unified delivery, depending on project goals, stage of execution, and the evolving needs of each partner.
-                </p>
     
                 <ul class="nf-services-list" aria-label="Services">
                     <li class="nf-service">
@@ -462,105 +464,6 @@
         </div>
     </section>
 
-    <!--
-    <section class="portfolio" id="portfolio">
-        
-        <div class="portfolio-header">
-            <h1 class="portfolio-title1" data-reveal="lines">The Work<strong>*</strong></h1>
-            <div class="header-card">
-                <h1 class="portfolio-title2" data-reveal="lines">
-                    <sl-icon name="arrow-down-left"></sl-icon> Our Select Projects
-                </h1>
-                <p class="portfolio-subtitle" data-reveal="lines">
-                    View highlights from some of our latest builds. Designed, Developed, Delivered.
-                </p>
-            </div>
-        </div>
-
-        <div class="staggered-grid">
-            <div class="grid-item left" data-rise="true">
-                <img src="./img/casa-designs-front.png" alt="Project 1">
-                <div class="caption">
-                    <h3>Casa Designs</h3>
-                    <div class="pill-container">
-                        <p>Design</p>
-                        <p>|</p>
-                        <p>Development</p>
-                        <p>|</p>
-                        <p>SEO</p>
-                        <p>|</p>
-                        <p>Ongoing Support</p>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="grid-item right" id="gracefully-captured" data-rise="true">
-                <img src="./img/gracefully-captured-front.png" alt="Project 2">
-                <div class="caption">
-                    <h3>Gracefully Captured</h3>
-                    <div class="pill-container">
-                        <p>Branding</p>
-                        <p>|</p>
-                        <p>Development</p>
-                        <p>|</p>
-                        <p>Ongoing Support</p>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item left" data-rise="true">
-                <img src="./img/spaceman3-front.png" alt="Project 3">
-                <div class="caption">
-                    <h3>CosmiQ</h3>
-                    <div class="pill-container">
-                        <p>Branding</p>
-                        <p>|</p>
-                        <p>Design</p>
-                        <p>|</p>
-                        <p>Development</p>
-                        <p>|</p>
-                        <p>Ongoing Support</p>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item right" data-rise="true">
-                <img src="./img/crown-clothing-front.png" alt="Project 4">
-                <div class="caption">
-                    <h3>Crown Clothing</h3>
-                    <div class="pill-container">
-                        <p>Branding</p>
-                        <p>|</p>
-                        <p>Development</p>
-                        <p>|</p>
-                        <p>Ongoing Support</p>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item left" data-rise="true">
-                <img src="./img/js-painting-front.png" alt="Project 5">
-                <div class="caption">
-                    <h3>J's Quality Custom Painting</h3>
-                    <div class="pill-container">
-                        <p>Branding</p>
-                        <p>|</p>
-                        <p>Design</p>
-                        <p>|</p>
-                        <p>Development</p>
-                        <p>|</p>
-                        <p>Ongoing Support</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <a class="learn-more" href="about.html">
-            <span class="learn-more__icon learn-more__icon--left solar--arrow-right-down-linear" aria-hidden="true"></span>
-            <span>SEE ALL PROJECTS</span>
-            <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
-        </a>
-
-    </section>
-    -->
 
     <section class="testimonials" id="testimonials">
         <!-- ===== Review Slider (Index page) ===== -->
@@ -643,47 +546,6 @@
 
     </section>
 
-
-
-    <section class="faq" id="faq">
-        <!--
-        <div class="faq-header">
-            <h1 class="faq-title1" data-reveal="lines">The Answers<strong>*</strong></h1>
-            <div class="header-card">
-                <h1 class="faq-title2" data-reveal="lines">
-                    <sl-icon name="arrow-down-left"></sl-icon> Have Questions?
-                </h1>
-                <p class="faq-description" data-reveal="lines">Find answers to common questions about our web development services and how we can help your business thrive online.</p>
-            </div>
-        </div>
-        -->
-    
-        <div class="details-group-example">
-            <sl-details summary="What services do you offer?" data-rise="true">
-                <p>We provide web design, website redesigns, custom web development, Search Engine Optimization, hosting, and email services tailored for your business.</p>
-            </sl-details>
-    
-            <sl-details summary="How long does a web project take?" data-rise="true">
-                <p>Project timelines vary based on complexity, but we strive to deliver within 4-8 weeks for most projects.
-                </p>
-            </sl-details>
-            <sl-details summary="I already have a website but it is quite outdated. Can you assist?" data-rise="true">
-                <p>Redesigns are our specialty! Aside from building custom websites from scratch, we offer development services to update and improve your existing site.</p>
-            </sl-details>
-            <sl-details summary="Can you help with SEO?" data-rise="true">
-                <p>Absolutely! Our Search Engine Optimization services are designed to enhance your website’s visibility and attract more visitors.</p>
-            </sl-details>
-            <sl-details summary="I already have a design. Can you develop it?" data-rise="true">
-                <p>Of Course! We're happy to provide additional feedback on your current design and can develop any designs you provide us with.</p>
-            </sl-details>
-            <sl-details summary="What if I'm not happy with the results?" data-rise="true">
-                <p>While we cannot offer refunds due to time and efforts spent on projects, we are committed to working
-                with our customers on revisions to ensure you are 100% satisfied with your product prior to launch!
-                </p>
-            </sl-details>
-        </div>
-    </section>
-
     <section id="cta" class="contact-section">
         <div class="contact-header">
             <h2 class="contact-title1" data-reveal="lines">Ready to Launch Your Project?</h2>
@@ -704,7 +566,7 @@
         </div>
     </section>
 
-    <footer class="nf-footer" role="contentinfo">
+    <footer class="nf-footer" id="nf-footer" role="contentinfo">
         <!-- giant background letters -->
         <span class="nf-footer-bg-letter nf-left" aria-hidden="true" data-reveal="lines">N</span>
         <span class="nf-footer-bg-letter nf-right" aria-hidden="true" data-reveal="lines">F</span>
@@ -883,6 +745,6 @@
                         });
                     })();
             </script>
-    </div>
+    </div> <!-- End of nf-page -->
     </body>
 </html>
