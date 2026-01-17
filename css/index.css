@@ -11,8 +11,14 @@
     --first-word-indent: 10%; 
 }
 
-
-
+html,
+body {
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+}
 html {
     scrollbar-gutter: stable;
 }
@@ -29,7 +35,6 @@ body {
     padding: 0;
     background-color: #0f0e0f;
     color: white;
-    overflow-x: hidden;
 }
 
 /* Scrollbar styling for webkit browsers */
@@ -759,7 +764,7 @@ body.nf-loading {
         margin-top: 0;
     }
     .value-item {
-        padding: 20px 15px;
+        padding: 20px 0;
     }
     .index {
         font-size: 0.875rem;
@@ -771,9 +776,6 @@ body.nf-loading {
     .value-item h2 {
         font-size: 6vw;
         line-height: 1;
-    }
-    .value-item:hover h2 {
-        padding-left: 5px;
     }
 }
 
@@ -1133,7 +1135,7 @@ body.nf-loading {
 @media (max-width: 480px) {
     .nf-services-panel {
         margin-top: -30px;
-        min-height: 80vh;
+        min-height: 85vh;
     }
     .nf-services-header {
         padding-top: 30px;
@@ -1302,8 +1304,8 @@ body.nf-loading {
 
 @media (max-width: 480px) {
     .nf-portfolio {
-        padding: 60px 0 60px;
-        /* tighter than desktop */
+        padding: 30px 0 60px;
+        margin-top: 20px
     }
 
     .nf-portfolio__inner {

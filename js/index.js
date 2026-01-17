@@ -739,17 +739,7 @@ slideElements.forEach(el => slideObserver.observe(el));
 
 
 
-  /*** Shoelace FAQs - one open at a time ***/
-  const faqContainer = document.querySelector(".details-group-example");
-  if (faqContainer) {
-    faqContainer.addEventListener("sl-show", event => {
-      if (event.target.localName === "sl-details") {
-        faqContainer.querySelectorAll("sl-details").forEach(el => {
-          if (el !== event.target) el.open = false;
-        });
-      }
-    });
-  }
+
 
   /*** Reviews Carousel (Shoelace) ***/
   const slCarousel = document.querySelector("sl-carousel.aspect-ratio");
