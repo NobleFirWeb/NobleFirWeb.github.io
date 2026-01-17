@@ -369,21 +369,11 @@ body.nf-loading {
     font-family: "inter", sans-serif;
     font-weight: 400;
     color: #333333;
-    font-size: 3rem;
-    line-height: 1;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    line-height: 0.9;
     letter-spacing: -0.04em;
 }
-
-.about-text_home span {
-    display: inline-block;
-    background-color: #ffffff;
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-
 
 .indent-first-word {
     position: relative;
@@ -393,7 +383,6 @@ body.nf-loading {
 .indent-first-word::before {
     content: "";
     display: inline-block;
-    width: var(--first-word-indent);
 }
 
 .first-word {
@@ -605,14 +594,14 @@ body.nf-loading {
     font-weight: 400;
     max-width: 75%;
     color: #ffffff;
-    font-size: 2.6rem;
+    font-size: 2.05rem;
     line-height: 1;
     letter-spacing: -0.04em;
     text-transform: uppercase;
 }
 
 .values-header-text {
-    max-width: 40%;
+    max-width: 50%;
     margin: 30px 0;
 }
 
@@ -627,7 +616,7 @@ body.nf-loading {
 
 .value-list {
     margin: 0 auto;
-    padding-top: 60px;
+    padding-top: 20px;
     padding-bottom: 80px;
     max-width: 2000px;
     display: flex;
@@ -990,7 +979,7 @@ body.nf-loading {
     position: relative;
     width: 100%;
     height: auto;
-    min-height: 80vh;
+    min-height: 90vh;
     color: #ffffff;
     overflow: hidden;
     padding: 0 5%;
@@ -1042,12 +1031,12 @@ body.nf-loading {
 }
 
 .nf-services-kicker {
-    font-size: 2.6rem;
+    font-size: 2.05rem;
     letter-spacing: -.04em;
     text-transform: uppercase;
     font-weight: 400;
     line-height: 1;
-    max-width: 50%;
+    max-width: 75%;
     color: #ffffff;
 }
 
@@ -1145,8 +1134,9 @@ body.nf-loading {
 }
 
 @media (max-width: 480px) {
-    .nf-servicees-panel {
+    .nf-services-panel {
         margin-top: -30px;
+        min-height: 80vh;
     }
     .nf-services-header {
         padding-top: 30px;
@@ -1199,9 +1189,10 @@ body.nf-loading {
 }
 
 .nf-portfolio__inner {
-    width: 100%;
+    min-width: 100%;
+    max-width: 2000px;
     margin: 0 auto;
-    padding: 0 5%;
+    padding: 0 2.5vw;
     padding-top: 30px;
 }
 
@@ -1236,12 +1227,12 @@ body.nf-loading {
 
 /* IMPORTANT: “exact feel” sizing like your screenshots */
 .nf-card--big .nf-card__media {
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 16 / 12;
     min-height: 340px;
 }
 
 .nf-card--small .nf-card__media {
-    aspect-ratio: 16 / 8;
+    aspect-ratio: 16 / 9;
     min-height: 260px;
 }
 
@@ -1314,7 +1305,7 @@ body.nf-loading {
 
 @media (max-width: 480px) {
     .nf-portfolio {
-        padding: 40px 0 60px;
+        padding: 60px 0 60px;
         /* tighter than desktop */
     }
 
@@ -1325,7 +1316,7 @@ body.nf-loading {
     /* single column, consistent spacing */
     .nf-portfolio__row {
         grid-template-columns: 1fr;
-        gap: 18px;
+        gap: 22px;
         margin-top: 22px;
     }
 
@@ -1661,38 +1652,42 @@ body.nf-loading {
     justify-content: center;
     padding: 0 5%;
     padding-bottom: 10%;
-    margin: 5% 0;
+    margin: 10% 0 5%;
 }
 
 #cta .contact-title1 {
     font-family: "Inter", sans-serif;
     font-weight: 500;
-    color: #343434;
+    color: #ffffff;
+    font-size: 1.25rem;
+    text-transform: uppercase;
 }
 
 #cta .contact-title2 {
     font-size: 5rem;
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 200;
-    color: #fff;
+    font-weight: 400;
+    color: #ffffff;
     margin-top: 20px;
+    letter-spacing: -3px;
+    text-transform: uppercase;
 }
 
 #cta .contact-title2 span {
     font-size: 5rem;
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 200;
+    font-weight: 400;
     color: #ff0000;
-    margin-top: 20px;
+    letter-spacing: -3px;
+    text-transform: uppercase;
 }
 
 #cta p {
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    font-size: 1.25rem;
-    color: #a6a6a6;
+    color: #ffffff;
     margin-top: 20px;
 }
 
@@ -1707,9 +1702,9 @@ body.nf-loading {
     margin-top: 20px;
 }
 
-#cta .about-btn {
+#cta .learn-more {
     display: block;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 @media (max-width: 1024px) {
@@ -1737,9 +1732,18 @@ body.nf-loading {
         margin: 120px auto;
     }
 
+    #cta .contact-title1 {
+        font-size: 1rem;
+    }
+
     #cta .contact-title2,
     #cta .contact-title2 span {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
+        line-height: 0.9;
+        letter-spacing: -1.5px;
+    }
+    #cta p {
+        line-height: 1;
     }
 }
 
@@ -1869,7 +1873,7 @@ body.nf-loading {
             background-color: transparent;
         }
         .about-text_home {
-            line-height: 1.2;
+            line-height: 1;
             font-size: 2rem;
         }
         .about-header {
@@ -2074,7 +2078,7 @@ body.nf-loading {
         font-size: 1.5rem;
         text-align: left;
         letter-spacing: -.04em;
-        line-height: 1.2;
+        line-height: 0.9;
     }
     .scroll-container {
     margin-top: 0;
