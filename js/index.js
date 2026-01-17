@@ -302,6 +302,25 @@ items.forEach(item => {
   }
 })();
 
+function handleScroll(event) {
+  event.preventDefault();
+
+  const deltaY = event.deltaY;
+
+  if (deltaY !== 0) {
+    const scrollAmount = deltaY * 5;
+
+    gsap.to(window, {
+      scrollTo: {
+        y: '+=' + scrollAmount,
+        autoKill: false
+      },
+      duration: 1,
+      ease: 'power2.out'
+    });
+  }
+}
+
 // Requires: gsap, SplitText, CustomEase
 gsap.registerPlugin(SplitText, CustomEase);
 

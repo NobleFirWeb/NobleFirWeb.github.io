@@ -11,10 +11,7 @@
     --first-word-indent: 10%; 
 }
 
-html,
-body {
-    height: 100%;
-}
+
 
 html {
     scrollbar-gutter: stable;
