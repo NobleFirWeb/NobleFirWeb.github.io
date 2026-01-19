@@ -41,64 +41,32 @@
 
         
     <!-- Navbar -->
-    <header class="navbar sticky">
-        <!-- Left: Navigation Links -->
-        <div class="nav-left">
-            <ul class="nav-links">
-                <li><a href="about.html">About Us</a></li>
-                <li class="dropdown">
-                    <a href="services.html" class="dropdown-toggle">Services</a>
-                </li>
-                <li><a href="portfolio.html">Our Work</a></li>
+    <header class="navbar">
+        <a href="index.html" class="logo-name" aria-label="Noble Fir Studio Home">
+            <h3>NF <span>Studio</span></h3>
+        </a>
+        
+        <nav class="navigation">
+            <button type="button" id="btn-nav-toggle" aria-expanded="false" aria-controls="nav-menu"
+                aria-label="Toggle navigation menu">
+                <!--Menu-->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 6l16 0" />
+                        <path d="M4 12l16 0" />
+                        <path d="M4 12l16 0" />
+                        <path d="M4 18l16 0" />
+                    </g>
+                </svg>
+            </button>
+        
+            <ul id="nav-menu" role='list' aria-labelledby="btn-nav-toggle" aria-hidden="true" inert>
+                <li style="--i: 1;"><a href="index.html"><span>Home</span></a></li>
+                <li style="--i: 2;"><a href="about.html"><span>About Us</span></a></li>
+                <li style="--i: 3;"><a href="services.html"><span>Services</span></a></li>
+                <li style="--i: 4;"><a href="portfolio.html"><span>Projects</span></a></li>
+                <li style="--i: 5;"><a href="contact-us.html"><span>Contact Us</span></a></li>
             </ul>
-        </div>
-        
-        <!-- Center: Logo -->
-        <div class="nav-center">
-            <a href="index.html" class="logo">
-                <img src="./img/Noblefir_nav_logo.png" alt="Logo" />
-            </a>
-        </div>
-        
-        <!-- Right: Email + Button -->
-        <div class="nav-right">
-            <a href="mailto:info@noblefirstudio.com" class="nav-email">info@noblefirstudio.com</a>
-            <a href="contact-us.html" class="nav-contact">Let's Talk</a>
-        </div>
-
-        <!-- Mobile Navbar -->
-        <div id="menuToggle" class="menu-toggle">
-            <span id="openIcon"></span>
-            <span></span>
-            <span id="closeIcon" style="display: none;"></span>
-        </div>
-        
-        <nav id="mobileMenu" class="mobile-menu">
-            <div class="menu-header">
-            <p>Noble Fir Studio</p>
-                <hr />
-            </div>
-            <ul class="menu-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="portfolio.html">Projects</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
-            </ul>
-            <hr />
-            <div class="menu-footer">
-                <p>SOCIALS</p>
-                <div class="social-links">
-                    <a href="#">Instagram</a>
-                    <span> | </span>
-                    <a href="#">Twitter</a>
-                    <span> | </span>
-                    <a href="#">LinkedIn</a>
-                </div>
-            </div>
-            <div class="menu-logo">
-                <img src="./img/footer-logo.png" alt="Logo">
-            </div>
         </nav>
     </header>
 
