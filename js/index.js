@@ -196,7 +196,7 @@ function armHeroTitleRevealOnScroll() {
 
   ScrollTrigger.create({
     trigger: hero,
-    start: "top 85%",
+    start: "top 95%",
     once: true,
     onEnter: () => {
       const heroLines = hero.querySelectorAll(".nf-hero-line");

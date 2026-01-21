@@ -170,10 +170,10 @@ body.nf-loading {
   width: 100%;
   text-align: center;
   font-family: "Space Grotesk", sans-serif;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.04em;
   text-transform: uppercase;
-  font-size: clamp(2.5rem, 10vw, 12vw);
+  font-size: clamp(2.5rem, 12vw, 12vw);
 }
 
 .nf-intro__title--blend{
@@ -184,7 +184,7 @@ body.nf-loading {
 /* Scroll cue stays normal */
 .nf-intro__scrollcue {
   position: absolute;
-  bottom: clamp(2.5rem, 8vh, 5rem);
+  bottom: clamp(2.5rem, 10vh, 7rem);
   left: 50%;
   transform: translateX(-50%);
   z-index: 4;
@@ -859,16 +859,16 @@ body.nf-loading {
     width: 100%;
     background: #0f0e0f;
     color: #ffffff;
-    padding-top: 12vh;
-    padding: 0 5%;
+    padding: 12vh 0 0;
     overflow: hidden;
+    margin-bottom: 160px;
 }
 
 .nf-transition__inner {
     position: relative;
-    width: 100vw;
-    max-width: 100%;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 5%;
     height: 72vh;
     min-height: 560px;
     display: flex;
@@ -881,6 +881,7 @@ body.nf-loading {
     position: absolute;
     top: 10%;
     left: 0;
+    right: 0;
     width: 100%;
     display: flex;
     align-items: center;
@@ -931,6 +932,7 @@ body.nf-loading {
     position: absolute;
     top: 28%;
     left: 0;
+    transform: translateX(0);
     width: 745px;
     height: 480px;
     transform: none;
@@ -980,6 +982,7 @@ body.nf-loading {
 @media (max-width: 480px) {
     .nf-transition {
         padding-top: 5vh;
+        margin-bottom: 5vh;
     }
     .nf-transition__inner {
         max-height: 50vh;
