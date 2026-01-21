@@ -21,12 +21,13 @@
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
-        <!-- Favicon Links -->
+        <!-- Favicon Links
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        -->
     </head>
     <body>
     
@@ -85,75 +86,30 @@
     </header>
 
 
-    <!-- Navbar 
-    <header class="navbar">
-        <div class="nav-left">
-            <ul class="nav-links">
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="portfolio.html">Our Work</a></li>
-            </ul>
-        </div>
-        
-        
-        <div class="nav-center">
-            <a href="index.html" class="logo">
-                <img src="./img/Noblefir_nav_logo.png" alt="Logo" />
-            </a>
-        </div>
-        
-        
-        <div class="nav-right">
-            <a href="mailto:info@noblefirstudio.com" class="nav-email">info@noblefirstudio.com</a>
-            <a href="contact-us.html" class="nav-contact">Let's Talk</a>
-        </div>
-
-        
-        <div id="menuToggle" class="menu-toggle">
-            <span id="openIcon"></span>
-            <span></span>
-            <span id="closeIcon" style="display: none;"></span>
-        </div>
-        
-        <nav id="mobileMenu" class="mobile-menu">
-            <div class="menu-header">
-            <p>Noble Fir Studio</p>
-                <hr />
-            </div>
-            <ul class="menu-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="portfolio.html">Projects</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
-            </ul>
-            <hr />
-            <div class="menu-footer">
-                <p>SOCIALS</p>
-                <div class="social-links">
-                    <a href="#">Instagram</a>
-                    <span> | </span>
-                    <a href="#">Twitter</a>
-                    <span> | </span>
-                    <a href="#">LinkedIn</a>
-                </div>
-            </div>
-            <div class="menu-logo">
-                <img src="./img/footer-logo.png" alt="Logo">
-            </div>
-        </nav>
-    </header>
-    -->
-
     <div class="cursor"></div>
+    
+    <section class="nf-intro" id="nf-intro">
+        <!-- Title must NOT live inside the white panel -->
+        <h1 class="nf-intro__title nf-intro__title--blend">NOBLE FIR STUDIO</h1>
+    
+        <div class="nf-intro__scrollcue" aria-hidden="true">
+            <span>SCROLL</span>
+            <span class="arrow">↓</span>
+        </div>
+    
+        <div class="nf-intro__panel nf-intro__panel--white"></div>
+        <div class="nf-intro__panel nf-intro__panel--black"></div>
+    </section>
+
+
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
-        <div class="hero-content">
-            <h1 data-reveal="lines">
+        <div class="hero-content" data-reveal="lines">
+            <h1>
                 Where Your Vision
             </h1>
-            <h2 data-reveal="lines">Becomes Reality</h2>
+            <h2>Becomes Reality</h2>
         </div>
     </section>
 
@@ -633,148 +589,124 @@
         </div>
     </footer>
 
-    <script>
-        (function () {
-            const spinner = document.querySelector(".text-spinner");
-            if (!spinner) return;
 
-            const textEl = spinner.querySelector("#spinnerText");
-            const base = (spinner.getAttribute("data-text") || "LET’S GO! • ").trim();
-            const speed = spinner.getAttribute("data-speed") || "12s";
+<script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
 
-            // Repeat the text enough times so the ring looks continuous
-            let repeated = "";
-            while (repeated.length < 80) repeated += base;
-            textEl.textContent = repeated;
+<script defer>
+    (function () {
+        const spinner = document.querySelector(".text-spinner");
+        if (!spinner) return;
 
-            // Set animation speed via CSS variable
-            spinner.style.setProperty("--spin-duration", speed);
-        })();
-    </script>
+        const textEl = spinner.querySelector("#spinnerText");
+        if (!textEl) return;
 
-    <script>
-        gsap.registerPlugin(ScrollTrigger, SplitText);
+        const base = (spinner.getAttribute("data-text") || "LET’S GO! • ").trim();
+        const speed = spinner.getAttribute("data-speed") || "12s";
 
+        let repeated = "";
+        while (repeated.length < 80) repeated += base;
+        textEl.textContent = repeated;
 
-            /* Animation */
-            const aboutText = new SplitText(".about-text_home", {
-                type: "words, chars"
-            });
+        spinner.style.setProperty("--spin-duration", speed);
+    })();
+</script>
 
-            gsap.fromTo(
-                aboutText.chars,
-                { color: "#333333" },
-                {
-                    color: "#ffffff",
-                    stagger: 0.05,
-                    scrollTrigger: {
-                        trigger: ".about-text_home",
-                        start: "top bottom-=20%",
-                        end: "bottom top+=45%",
-                        scrub: 1
-                    }
-                }
-            );
-    </script>
+<script defer>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contact-form");
+        const overlay = document.getElementById("form-success-overlay");
+        const closeBtn = document.getElementById("close-alert");
+        if (!form || !overlay || !closeBtn) return;
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const form = document.getElementById("contact-form");
-                const overlay = document.getElementById("form-success-overlay");
-                const closeBtn = document.getElementById("close-alert");
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
 
-                form.addEventListener("submit", function (e) {
-                    e.preventDefault();
-
-                    const formData = new FormData(form);
-
-                    fetch(form.action, {
-                        method: "POST",
-                        body: formData,
-                        headers: {
-                            Accept: "application/json"
-                        }
-                    })
-                        .then(response => {
-                            if (response.ok) {
-                                overlay.style.display = "flex";
-                                form.reset();
-                            } else {
-                                alert("Something went wrong. Please try again.");
-                            }
-                        })
-                        .catch(error => {
-                            console.error("Error:", error);
-                            alert("Something went wrong. Please try again.");
-                        });
-                });
-
-                closeBtn.addEventListener("click", function () {
-                    overlay.style.display = "none";
-                });
-            });
-        </script>
-
-
-        <script>
-            const serviceSelect = document.getElementById('service-select');
-                const subjectInput = document.getElementById('form-subject');
-
-                serviceSelect.addEventListener('change', function () {
-                    const selectedService = this.value;
-                    subjectInput.value = `General Inquiry: ${selectedService}`;
-                });
-        </script>
-            
-        <script src="./js/index.js"></script>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
-        <script type="module"
-            src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
-
-
-
-            <!--Video play/pause overlay-->
-            <script>
-                const video = document.getElementById('heroVideo');
-                const overlay = document.getElementById('videoOverlay');
-                const icon = overlay.querySelector('i');
-
-                overlay.addEventListener('click', () => {
-                    if (video.paused) {
-                        video.play();
-                        icon.classList.remove('fa-play');
-                        icon.classList.add('fa-pause');
+            fetch(form.action, {
+                method: "POST",
+                body: formData,
+                headers: { Accept: "application/json" }
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        overlay.style.display = "flex";
+                        form.reset();
                     } else {
-                        video.pause();
-                        icon.classList.remove('fa-pause');
-                        icon.classList.add('fa-play');
+                        alert("Something went wrong. Please try again.");
                     }
-                });
-            </script>
-            <script>
-                (() => {
-                        const track = document.querySelector('.nf-reviews__track');
-                        const slides = Array.from(document.querySelectorAll('.nf-review'));
-                        const prev = document.getElementById('nfPrev');
-                        const next = document.getElementById('nfNext');
-                        let index = 0;
+                })
+                .catch(() => alert("Something went wrong. Please try again."));
+        });
 
-                        function go(i) {
-                            index = (i + slides.length) % slides.length;          // wrap around
-                            const offset = -100 * index;                           // percent
-                            track.style.transform = `translateX(${offset}vw)`;     // slide by viewport widths
-                        }
+        closeBtn.addEventListener("click", function () {
+            overlay.style.display = "none";
+        });
+    });
+</script>
 
-                        prev.addEventListener('click', () => go(index - 1));
-                        next.addEventListener('click', () => go(index + 1));
+<script defer>
+    (function () {
+        const serviceSelect = document.getElementById("service-select");
+        const subjectInput = document.getElementById("form-subject");
+        if (!serviceSelect || !subjectInput) return;
 
-                        // keyboard support when section is focused
-                        document.getElementById('nf-reviews').addEventListener('keydown', (e) => {
-                            if (e.key === 'ArrowLeft') go(index - 1);
-                            if (e.key === 'ArrowRight') go(index + 1);
-                        });
-                    })();
-            </script>
+        serviceSelect.addEventListener("change", function () {
+            subjectInput.value = `General Inquiry: ${this.value}`;
+        });
+    })();
+</script>
+
+<script defer>
+    (function () {
+        const video = document.getElementById("heroVideo");
+        const overlay = document.getElementById("videoOverlay");
+        const icon = overlay ? overlay.querySelector("i") : null;
+        if (!video || !overlay || !icon) return;
+
+        overlay.addEventListener("click", () => {
+            if (video.paused) {
+                video.play();
+                icon.classList.replace("fa-play", "fa-pause");
+            } else {
+                video.pause();
+                icon.classList.replace("fa-pause", "fa-play");
+            }
+        });
+    })();
+</script>
+
+<script defer>
+    (function () {
+        const track = document.querySelector(".nf-reviews__track");
+        const slides = Array.from(document.querySelectorAll(".nf-review"));
+        const prev = document.getElementById("nfPrev");
+        const next = document.getElementById("nfNext");
+        const wrapper = document.getElementById("nf-reviews");
+        if (!track || !slides.length || !prev || !next || !wrapper) return;
+
+        let index = 0;
+        function go(i) {
+            index = (i + slides.length) % slides.length;
+            track.style.transform = `translateX(${-100 * index}vw)`;
+        }
+
+        prev.addEventListener("click", () => go(index - 1));
+        next.addEventListener("click", () => go(index + 1));
+
+        wrapper.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") go(index - 1);
+            if (e.key === "ArrowRight") go(index + 1);
+        });
+    })();
+</script>
+
+
+<!-- MAIN SITE SCRIPT (LAST) -->
+<script src="./js/index.js" defer></script>
+
+
+
     </div> <!-- End of nf-page -->
     </body>
 </html>

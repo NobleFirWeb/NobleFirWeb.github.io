@@ -775,11 +775,11 @@ Slide-out nav panel
 @media (max-width: 480px) {
     .navigation:has([aria-expanded="true"]) {
   --_nav-bg-w: calc(100vw + var(--_nav-panel-border-radius));
-  --_nav-bg-w_after: calc(85vw + var(--_nav-panel-border-radius));
+  --_nav-bg-w_after: calc(80vw + var(--_nav-panel-border-radius));
 }
 .navigation > ul {
     right: 0;
-    width: calc(85vw + var(--_nav-panel-border-radius));
+    width: calc(80vw + var(--_nav-panel-border-radius));
     box-sizing: border-box;
 
     /* "move menu left" inside the panel */

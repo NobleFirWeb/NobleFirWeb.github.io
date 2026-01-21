@@ -1,29 +1,69 @@
 // site-scripts.js | Shared JavaScript for index.html and about.html
+// STABLE BUILD: guarded modules + single init pipeline + intro gate integrated
 
-// ============================
-// GSAP + SplitText Line Reveal + Index Loader 
-// ============================
+/* --------------------------------
+   GSAP + Plugins (already loaded in <head>)
+--------------------------------- */
+(() => {
+if (window.__NF_SITE_INIT__) return;
+window.__NF_SITE_INIT__ = true;
+if (typeof gsap !== "undefined") {
+  // Register only what exists to avoid hard crashes
+  try {
+    if (typeof ScrollTrigger !== "undefined") gsap.registerPlugin(ScrollTrigger);
+    if (typeof SplitText !== "undefined") gsap.registerPlugin(SplitText);
+    if (typeof CustomEase !== "undefined") gsap.registerPlugin(CustomEase);
 
-gsap.registerPlugin(SplitText, CustomEase);
-CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1");
+    if (typeof CustomEase !== "undefined") {
+      CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1");
+    }
+  } catch (e) {
+    console.error("[NF] GSAP plugin registration failed:", e);
+  }
+}
 
+const NF = {
+  afterPaint() {
+    return new Promise((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(resolve))
+    );
+  },
+  afterFonts() {
+    return document.fonts?.ready || Promise.resolve();
+  },
+  isIndex() {
+    const p = window.location.pathname;
+    return p.endsWith("/") || p.endsWith("/index.html") || p.endsWith("index.html");
+  }
+};
+
+/* --------------------------------
+   Global error visibility (temporary but useful)
+   Leave this until things are stable.
+--------------------------------- */
+window.addEventListener("error", (e) => {
+  console.error("[NF ERROR]", e.message, e.filename, e.lineno, e.colno);
+});
+window.addEventListener("unhandledrejection", (e) => {
+  console.error("[NF PROMISE ERROR]", e.reason);
+});
+
+/* --------------------------------
+   Loader (INDEX ONLY) – your original logic preserved
+--------------------------------- */
 (function nfIndexLoader() {
-  // Only run on index.html (or site root)
-  const path = window.location.pathname;
-  const isIndex =
-    path.endsWith("/") ||
-    path.endsWith("/index.html") ||
-    path.endsWith("index.html");
-
-  if (!isIndex) return;
+  if (!NF.isIndex()) return;
 
   const loader = document.getElementById("nf-loader");
   const img = loader?.querySelector(".nf-loader__img");
   const page = document.getElementById("nf-page");
 
-  if (!loader || !img || !page || typeof gsap === "undefined") return;
+  // If loader markup missing, just signal ready
+  if (!loader || !img || !page || typeof gsap === "undefined") {
+    document.dispatchEvent(new Event("nf:loaderComplete"));
+    return;
+  }
 
-  // Lock scroll + hide page
   document.body.classList.add("nf-loading");
 
   const run = () => {
@@ -31,11 +71,8 @@ CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1");
     const counterEl = document.querySelector(".nf-loader__counter");
     const prog = { v: 0 };
 
-    const tl = gsap.timeline({
-      defaults: { ease: "power3.inOut" }
-    });
+    const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
 
-    // Initial states
     gsap.set(page, { autoAlpha: 0 });
     gsap.set(loader, { autoAlpha: 1 });
     gsap.set(img, { scale: 1, filter: "blur(0px)", autoAlpha: 1 });
@@ -43,26 +80,11 @@ CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1");
     if (counterEl) gsap.set(counterEl, { autoAlpha: 1 });
     if (percentEl) percentEl.textContent = "0";
 
-    // --------------------------------
-    // 1) Hold hallway still frame
-    // --------------------------------
     tl.to({}, { duration: 1 });
 
-    // --------------------------------
-    // 2) Walk + counter
-    // --------------------------------
     tl.addLabel("walk");
 
-    tl.to(
-      img,
-      {
-        duration: 3,
-        scale: 10,
-        z: 500,
-        ease: "power4.in"
-      },
-      "walk"
-    );
+    tl.to(img, { duration: 3, scale: 10, z: 500, ease: "power4.in" }, "walk");
 
     if (percentEl) {
       tl.to(
@@ -79,119 +101,23 @@ CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1");
       );
     }
 
-    // --------------------------------
-    // 3) Fade to black
-    // --------------------------------
-    tl.to(
-      img,
-      {
-        duration: 0.5,
-        autoAlpha: 0,
-        filter: "blur(0px)",
-        ease: "power2.out"
-      },
-      "walk+=3"
-    );
+    tl.to(img, { duration: 0.5, autoAlpha: 0, filter: "blur(0px)", ease: "power2.out" }, "walk+=3");
 
-    // --------------------------------
-    // 4) Hold on black
-    // --------------------------------
     tl.to({}, { duration: 1 });
 
-    // --------------------------------
-    // 5) Fade loader out, page in
-    // --------------------------------
-    if (counterEl) {
-      tl.to(counterEl, { autoAlpha: 0, duration: 0.5 }, ">");
-    }
-
+    if (counterEl) tl.to(counterEl, { autoAlpha: 0, duration: 0.5 }, ">");
     tl.to(loader, { autoAlpha: 0, duration: 0.35 }, "<");
     tl.to(page, { autoAlpha: 1, duration: 1.25 }, "<+0.1");
 
-    // --------------------------------
-    // 6) HERO TITLE: split + animate
-    // --------------------------------
-    tl.call(
-      () => {
-        const runHeroReveal = () => {
-          if (typeof SplitText === "undefined") {
-            console.warn("[NF] SplitText missing.");
-            return;
-          }
-
-          const heroEls = document.querySelectorAll("#hero [data-reveal='lines']");
-          if (!heroEls.length) {
-            console.warn("[NF] No hero elements found.");
-            return;
-          }
-
-          // Split ONLY now (no flash)
-          heroEls.forEach((el) => {
-            if (el.dataset.nfSplit === "1") return;
-
-            SplitText.create(el, {
-              type: "lines",
-              mask: "lines",
-              linesClass: "nf-line"
-            });
-
-            el.dataset.nfSplit = "1";
-          });
-
-          const heroLines = document.querySelectorAll("#hero .nf-line");
-          if (!heroLines.length) return;
-
-          // Put lines in start position (still invisible)
-          gsap.set(heroLines, { yPercent: 45, opacity: 0 });
-
-          // Reveal headings AFTER split
-          gsap.set(heroEls, { opacity: 1 });
-
-          // Animate lines
-          gsap.to(heroLines, {
-            yPercent: 0,
-            opacity: 1,
-            duration: 1.05,
-            stagger: 0.12,
-            ease: "osmo-ease",
-            delay: 0.15,
-            overwrite: true,
-            onComplete: () => {
-              // Arm the video expand scroll effect once the title reveal is done
-              
-              ScrollTrigger.refresh(); // important after pin setup
-            },
-          });
-        };
-
-        // Fonts + layout must be ready
-        (document.fonts?.ready || Promise.resolve())
-          .then(
-            () =>
-              new Promise((resolve) =>
-                requestAnimationFrame(() =>
-                  requestAnimationFrame(resolve)
-                )
-              )
-          )
-          .then(runHeroReveal);
-      },
-      null,
-      ">+=0.05"
-    );
-
-    // --------------------------------
-    // Cleanup
-    // --------------------------------
     tl.add(() => {
       loader.style.display = "none";
       document.body.classList.remove("nf-loading");
+      document.dispatchEvent(new Event("nf:loaderComplete"));
     });
   };
 
-  if (img.complete) {
-    run();
-  } else {
+  if (img.complete) run();
+  else {
     img.addEventListener("load", run, { once: true });
     img.addEventListener(
       "error",
@@ -199,161 +125,148 @@ CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1");
         loader.style.display = "none";
         gsap.set(page, { autoAlpha: 1 });
         document.body.classList.remove("nf-loading");
+        document.dispatchEvent(new Event("nf:loaderComplete"));
       },
       { once: true }
     );
   }
 })();
 
-
-
-const items = document.querySelectorAll('.value-item');
-const reveal = document.querySelector('.hover-reveal');
-const revealImg = document.querySelector('.reveal-img');
-const cursor = document.querySelector('.cursor');
-
-const cursorX = gsap.quickTo(cursor, "x", {duration: 0.2, ease: "power3.out"});
-const cursorY = gsap.quickTo(cursor, "y", {duration: 0.2, ease: "power3.out"});
-
-
-
-window.addEventListener('mousemove', (e) => {
-  cursorX(e.clientX);
-  cursorY(e.clientY);
-});
-
-items.forEach(item => {
-  item.addEventListener('mouseenter', () => {
-    gsap.to(cursor, {
-      scale: 1,
-      duration: 0.2
-    });
-  });
-  
-  item.addEventListener('mouseleave', () => {
-    gsap.to(cursor, {
-      scale: 1,
-      duration: 0.2
-    });
-  });
-});
-
-
-(function initValuesSectionGSAP() {
+/* --------------------------------
+   Cursor
+--------------------------------- */
+function initCursor() {
   if (typeof gsap === "undefined") return;
+  const cursor = document.querySelector(".cursor");
+  if (!cursor) return;
 
-  // Ensure ScrollTrigger + SplitText + CustomEase are available
-  if (typeof ScrollTrigger === "undefined") {
-    console.warn("[NF] ScrollTrigger missing. Values animations not initialized.");
-    return;
-  }
-  if (typeof SplitText === "undefined") {
-    console.warn("[NF] SplitText missing. Paragraph line reveals will not run.");
-  }
+  const cursorX = gsap.quickTo(cursor, "x", { duration: 0.2, ease: "power3.out" });
+  const cursorY = gsap.quickTo(cursor, "y", { duration: 0.2, ease: "power3.out" });
 
-  gsap.registerPlugin(ScrollTrigger);
-  if (typeof SplitText !== "undefined") gsap.registerPlugin(SplitText);
-  if (typeof CustomEase !== "undefined") gsap.registerPlugin(CustomEase);
+  window.addEventListener("mousemove", (e) => {
+    cursorX(e.clientX);
+    cursorY(e.clientY);
+  });
+}
 
-  if (typeof CustomEase !== "undefined") {
-    // Safe to call multiple times; GSAP will reuse the name
-    CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1");
-  }
+// ----------------------------
+// HERO TITLE (rise on scroll)
+// ----------------------------
+function initHeroTitleReveal() {
+  if (typeof gsap === "undefined" || typeof SplitText === "undefined") return;
 
-  // ---------- Helper: SplitText line reveal ONCE ----------
-  function nfRevealLinesOnce(el, { fromYPercent = 45, duration = 1.05, stagger = 0.08 } = {}) {
-    if (!el) return;
-    if (el.dataset.nfSplit === "1") return;
-    if (typeof SplitText === "undefined") return;
+  const hero = document.querySelector("#hero");
+  if (!hero) return;
+
+  const heroEls = hero.querySelectorAll("[data-reveal='lines']");
+  if (!heroEls.length) return;
+
+  // Split ONLY once (no duplicates)
+  heroEls.forEach((el) => {
+    if (el.dataset.nfHeroSplit === "1") return;
 
     SplitText.create(el, {
       type: "lines",
       mask: "lines",
-      linesClass: "nf-line"
+      linesClass: "nf-hero-line"
     });
 
-    el.dataset.nfSplit = "1";
+    el.dataset.nfHeroSplit = "1";
+  });
 
-    const lines = el.querySelectorAll(".nf-line");
-    if (!lines.length) return;
+  const heroLines = hero.querySelectorAll(".nf-hero-line");
+  if (!heroLines.length) return;
 
-    // Put lines in start position while paragraph is still hidden
-    gsap.set(lines, { yPercent: fromYPercent, opacity: 0 });
+  // Ensure headings are not stuck invisible
+  gsap.set(heroEls, { opacity: 1 });
 
-    // Reveal the paragraph element after splitting (prevents flash)
-    gsap.set(el, { opacity: 1 });
-
-    gsap.to(lines, {
-      yPercent: 0,
-      opacity: 1,
-      duration,
-      stagger,
-      ease: typeof CustomEase !== "undefined" ? "osmo-ease" : "power3.out",
-      overwrite: true
-    });
-  }
-
-  // ---------- Helper: wait for fonts + 2 paint frames ----------
-  function nfAfterFontsAndPaint(fn) {
-    (document.fonts?.ready || Promise.resolve())
-      .then(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))))
-      .then(fn)
-      .catch(fn);
-  }
-})();
-
-function handleScroll(event) {
-  event.preventDefault();
-
-  const deltaY = event.deltaY;
-
-  if (deltaY !== 0) {
-    const scrollAmount = deltaY * 5;
-
-    gsap.to(window, {
-      scrollTo: {
-        y: '+=' + scrollAmount,
-        autoKill: false
-      },
-      duration: 1,
-      ease: 'power2.out'
-    });
-  }
+  // Start state for rise
+  gsap.set(heroLines, { yPercent: 45, opacity: 0 });
 }
 
-// Requires: gsap, SplitText, CustomEase
-gsap.registerPlugin(SplitText, CustomEase);
+// Creates a ScrollTrigger that plays the rise when hero enters
+function armHeroTitleRevealOnScroll() {
+  if (typeof ScrollTrigger === "undefined") return;
 
-// Ease from the CodePen
-CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1");
+  const hero = document.querySelector("#hero");
+  if (!hero) return;
 
+  // Prepare split/initial state once (so no flash)
+  initHeroTitleReveal();
+
+  ScrollTrigger.create({
+    trigger: hero,
+    start: "top 85%",
+    once: true,
+    onEnter: () => {
+      const heroLines = hero.querySelectorAll(".nf-hero-line");
+      if (!heroLines.length) return;
+
+      gsap.to(heroLines, {
+        yPercent: 0,
+        opacity: 1,
+        duration: 1.05,
+        stagger: 0.12,
+        ease: "osmo-ease",
+        overwrite: true
+      });
+    }
+  });
+}
+
+
+/* --------------------------------
+   About text fill (moved from inline HTML)
+--------------------------------- */
+function initAboutTextFill() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || typeof SplitText === "undefined") return;
+  const el = document.querySelector(".about-text_home");
+  if (!el) return;
+
+  const aboutText = new SplitText(el, { type: "words, chars" });
+
+  gsap.fromTo(
+    aboutText.chars,
+    { color: "#333333" },
+    {
+      color: "#ffffff",
+      stagger: 0.05,
+      scrollTrigger: {
+        trigger: el,
+        start: "top bottom-=20%",
+        end: "bottom top+=45%",
+        scrub: 1,
+        invalidateOnRefresh: true
+      }
+    }
+  );
+}
+
+/* --------------------------------
+   data-reveal="lines" (IntersectionObserver version you had)
+--------------------------------- */
 function initLineReveals({
   selector = '[data-reveal="lines"]',
   once = true,
-  rootMargin = "0px 0px -10% 0px" // trigger a bit before fully in view
+  rootMargin = "0px 0px -10% 0px"
 } = {}) {
+  if (typeof gsap === "undefined" || typeof SplitText === "undefined") return;
+
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReducedMotion) return;
+
   const els = Array.from(document.querySelectorAll(selector));
   if (!els.length) return;
 
-  // If reduced motion: just show everything immediately
-  if (prefersReducedMotion) return;
-
-  // Split + prep each element
   const items = els.map((el) => {
-    // Split into LINES only + mask lines
-    SplitText.create(el, {
-      type: "lines",
-      mask: "lines",
-      linesClass: "nf-line"
-    });
+    if (el.dataset.nfSplit !== "1") {
+      SplitText.create(el, { type: "lines", mask: "lines", linesClass: "nf-line" });
+      el.dataset.nfSplit = "1";
+    }
 
     const lines = el.querySelectorAll(".nf-line");
-
-    // Start hidden (pushed down)
     gsap.set(lines, { yPercent: 110 });
 
-    // Build the animation (paused until in view)
     const tween = gsap.to(lines, {
       yPercent: 0,
       duration: 0.95,
@@ -365,17 +278,13 @@ function initLineReveals({
     return { el, tween };
   });
 
-  // Trigger on scroll (no ScrollTrigger needed)
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-
         const item = items.find((x) => x.el === entry.target);
         if (!item) return;
-
         item.tween.play(0);
-
         if (once) io.unobserve(entry.target);
       });
     },
@@ -385,31 +294,22 @@ function initLineReveals({
   items.forEach((item) => io.observe(item.el));
 }
 
-// Wait for fonts so line breaks are correct (same idea as the CodePen)
-document.fonts.ready.then(() => {
-  initLineReveals();
-});
+/* --------------------------------
+   nfTransition (Concept → Deployment)
+--------------------------------- */
+function initNFTransition() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
-// Values menu 
-gsap.registerPlugin(ScrollTrigger);
-
-(function nfConceptToDeploymentScroll() {
   const section = document.querySelector("#nfTransition");
   if (!section) return;
 
   const inner = section.querySelector(".nf-transition__inner");
   const connector = section.querySelector(".nf-transition-connector");
-  const headline = section.querySelector(".nf-transition-headline");
   const media = section.querySelector(".nf-transition__media");
   const frames = Array.from(section.querySelectorAll(".nf-frame"));
+  if (!inner || !connector || !media || frames.length === 0) return;
 
-  if (!inner || !connector || !headline || !media || frames.length === 0) return;
-
-  // Hard swap frames by index (abrupt)
-  const setFrame = (index) => {
-    frames.forEach((img, i) => img.classList.toggle("is-active", i === index));
-  };
-
+  const setFrame = (index) => frames.forEach((img, i) => img.classList.toggle("is-active", i === index));
   setFrame(0);
   let lastIndex = 0;
 
@@ -419,13 +319,11 @@ gsap.registerPlugin(ScrollTrigger);
     defaults: { ease: "none" },
     scrollTrigger: {
       trigger: media,
-      start: "top 85%",          // top ~15% into viewport (tweak 80-90)
+      start: "top 85%",
       endTrigger: section,
-      end: "top top",            // finishes when headline hits top
+      end: "top top",
       scrub: 1,
       invalidateOnRefresh: true,
-
-      // This is the money: force START STATE every refresh so it never begins “ended”
       onRefreshInit: () => {
         gsap.set([media, connector], { clearProps: "transform,width" });
         gsap.set(media, { x: 0 });
@@ -433,7 +331,6 @@ gsap.registerPlugin(ScrollTrigger);
         setFrame(0);
         lastIndex = 0;
       },
-
       onUpdate: (self) => {
         const index = Math.min(4, Math.max(0, Math.round(self.progress * 4)));
         if (index !== lastIndex) {
@@ -441,102 +338,91 @@ gsap.registerPlugin(ScrollTrigger);
           setFrame(index);
         }
       }
-
-      // markers: true
     }
   });
 
-  // Grow connector width to push "TO DEPLOYMENT" to the right
   tl.to(connector, {
-  width: () => {
-    const innerW = inner.clientWidth || window.innerWidth;
-
-    // ✅ Mobile: grow almost full row
-    if (window.matchMedia("(max-width: 480px)").matches) {
-      return Math.max(34, innerW * 0.50);
+    width: () => {
+      const innerW = inner.clientWidth || window.innerWidth;
+      if (window.matchMedia("(max-width: 480px)").matches) return Math.max(34, innerW * 0.50);
+      return Math.max(64, innerW * 0.62);
     }
+  }, 0);
 
-    // ✅ Desktop/tablet: your current tuning
-    return Math.max(64, innerW * 0.62);
-  }
-}, 0);
-
-  // Slide the media container to the right in sync
   tl.to(media, {
     x: () => {
       if (window.matchMedia("(max-width: 480px)").matches) return 0;
       const innerW = inner.clientWidth || window.innerWidth;
-      return innerW * 0.62; // tweak this to match your perfect end position
+      return innerW * 0.62;
     }
   }, 0);
 
   window.addEventListener("resize", () => ScrollTrigger.refresh());
-})();
+}
 
+/* --------------------------------
+   Underline reveal (values + services)
+--------------------------------- */
+function initUnderlineReveals() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
-gsap.registerPlugin(ScrollTrigger);
+  function nfUnderlineReveal({ listSelector, itemSelector, start = "bottom bottom" }) {
+    const list = document.querySelector(listSelector);
+    const items = gsap.utils.toArray(itemSelector);
+    if (!list || !items.length) return;
 
-function nfUnderlineReveal({ listSelector, itemSelector, start = "bottom bottom" }) {
-  const list = document.querySelector(listSelector);
-  const items = gsap.utils.toArray(itemSelector);
+    gsap.set(items, { "--nf-underline": 0 });
 
-  if (!list || !items.length) return;
+    ScrollTrigger.create({
+      trigger: list,
+      start,
+      invalidateOnRefresh: true,
+      onEnter: () => {
+        gsap.to(items, {
+          "--nf-underline": 1,
+          duration: 0.85,
+          stagger: 0.08,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+      }
+    });
+  }
 
-  // Ensure hidden by default
-  gsap.set(items, { "--nf-underline": 0 });
+  nfUnderlineReveal({ listSelector: ".value-list", itemSelector: ".value-item", start: "bottom bottom" });
+  nfUnderlineReveal({ listSelector: ".nf-services-list", itemSelector: ".nf-service", start: "bottom bottom" });
+}
 
-  ScrollTrigger.create({
-    trigger: list,
-    start,                   // ✅ when list bottom hits viewport bottom
-    invalidateOnRefresh: true,
+/* --------------------------------
+   Parallax images
+--------------------------------- */
+function initParallaxCards() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
-    onEnter: () => {
-      gsap.to(items, {
-        "--nf-underline": 1,
-        duration: 0.85,
-        stagger: 0.08,
-        ease: "power2.out",
-        overwrite: "auto"
-      });
-    },
-    // markers: true
+  document.querySelectorAll(".nf-card__media img").forEach((img) => {
+    const card = img.closest(".nf-card");
+    if (!card) return;
+
+    gsap.to(img, {
+      yPercent: 35,
+      ease: "none",
+      scrollTrigger: {
+        trigger: card,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+        invalidateOnRefresh: true
+      }
+    });
   });
 }
 
-/* VALUES: bottom of .value-list reaches bottom of viewport */
-nfUnderlineReveal({
-  listSelector: ".value-list",
-  itemSelector: ".value-item",
-  start: "bottom bottom"
-});
+/* --------------------------------
+   Text widget scroll (your original)
+--------------------------------- */
+function initTextWidgetScroll() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
-/* SERVICES: bottom of .nf-services-list reaches bottom of viewport */
-nfUnderlineReveal({
-  listSelector: ".nf-services-list",
-  itemSelector: ".nf-service",
-  start: "bottom bottom"
-});
-
-gsap.registerPlugin(ScrollTrigger);
-
-document.querySelectorAll(".nf-card__media img").forEach((img) => {
-  gsap.to(img, {
-    yPercent: 35,          // same feel as CodePen
-    ease: "none",
-    scrollTrigger: {
-      trigger: img.closest(".nf-card"),
-      start: "top bottom",
-      end: "bottom top",
-      scrub: true,
-      invalidateOnRefresh: true
-      // markers: true
-    }
-  });
-});
-
-gsap.registerPlugin(ScrollTrigger);
-
-(function nfTextWidgetScroll() {
   const widget = document.querySelector(".nf-text-widget");
   if (!widget) return;
 
@@ -552,133 +438,147 @@ gsap.registerPlugin(ScrollTrigger);
 
   const track2 = row2.querySelector(".nf-text-track");
   const track3 = row3.querySelector(".nf-text-track");
-
   if (!noble || !fir || !studio || !track2 || !track3) return;
 
-  // Helper: get left positions in the same coordinate space (viewport)
   const leftOf = (el) => el.getBoundingClientRect().left;
 
-  // Compute the X we need so `targetWord` lands directly under `noble`
   const computeEndX = (targetWord, track) => {
     const nobleLeft = leftOf(noble);
     const targetLeft = leftOf(targetWord);
-    // translate track so targetWord.left == noble.left
     return (nobleLeft - targetLeft) + gsap.getProperty(track, "x");
   };
 
-  // Recompute on refresh (resize, font load, etc.)
   let endX2 = 0, endX3 = 0, startX2 = 0, startX3 = 0;
 
   const recalc = () => {
-    // Reset tracks to 0 first so measurements are consistent
     gsap.set([track2, track3], { x: 0 });
 
-    // Where they should END (aligned under Noble)
     endX2 = computeEndX(fir, track2);
     endX3 = computeEndX(studio, track3);
 
-    // Where they should START (more to the right, so they slide right->left)
-    // tweak these multipliers if you want “more travel”
     startX2 = endX2 + window.innerWidth * 0.35;
     startX3 = endX3 + window.innerWidth * 0.45;
 
-    // Apply start positions immediately
     gsap.set(track2, { x: startX2 });
     gsap.set(track3, { x: startX3 });
 
-    // Start colors (muted)
     gsap.set([noble, fir, studio], { color: "#999" });
 
-    // Keep slide rows clipped until we hit the end
     row2.style.overflow = "hidden";
     row3.style.overflow = "hidden";
   };
 
-  // Run once now + ensure ScrollTrigger knows to call it again when needed
   recalc();
 
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: rowStatic,
-      start: "top bottom",      // ✅ when top of static row hits bottom of viewport
-      end: "+=120%",            // ✅ scroll distance (adjust if you want longer/shorter)
+      start: "top bottom",
+      end: "+=120%",
       scrub: 1,
       invalidateOnRefresh: true,
       onRefreshInit: recalc,
-      onUpdate: (self) => {
-        // At the end, reveal overflow on both sides (like your reference)
+      onUpdate: () => {
         row2.style.overflow = "visible";
         row3.style.overflow = "visible";
       }
-      // markers: true
     }
   });
 
-  // Noble slowly brightens as the animation runs
   tl.to(noble, { color: "#ffffff", ease: "none" }, 0);
-
-  // Row 2 slides right->left until Fir is under Noble
   tl.to(track2, { x: endX2, ease: "none" }, 0);
-
-  // Fir brightens as it reaches its landing (feel free to start at 0 if you want)
   tl.to(fir, { color: "#ffffff", ease: "none" }, 0.15);
-
-  // Row 3 slides right->left until Studio is under Noble + Fir
   tl.to(track3, { x: endX3, ease: "none" }, 0);
-
-  // Studio brightens too
   tl.to(studio, { color: "#ffffff", ease: "none" }, 0.2);
 
-  // If fonts load late, refresh once (helps Inter/CSS loading shifts)
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => ScrollTrigger.refresh());
+  if (document.fonts?.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
+  window.addEventListener("resize", () => ScrollTrigger.refresh());
+}
+
+/* --------------------------------
+   INTRO GATE (pinned overlay)
+   IMPORTANT: init AFTER other triggers are created, then refresh.
+--------------------------------- */
+function initIntroGate() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+  const intro = document.querySelector("#nf-intro");
+  if (!intro) return;
+
+  const blackPanel = intro.querySelector(".nf-intro__panel--black");
+  const scrollCue = intro.querySelector(".nf-intro__scrollcue");
+  if (!blackPanel || !scrollCue) return;
+
+  // Kill any previous intro triggers
+  ScrollTrigger.getAll().forEach(st => {
+    if (st.trigger === intro) st.kill();
+  });
+
+  gsap.killTweensOf(scrollCue);
+  gsap.set(scrollCue, { autoAlpha: 1, y: 0 });
+
+  gsap.to(scrollCue, {
+    y: 10,
+    duration: 0.9,
+    repeat: -1,
+    yoyo: true,
+    ease: "power1.inOut"
+  });
+
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: intro,
+      start: "top top",
+      end: "+=180%",
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true
+    }
+  })
+    .to(blackPanel, { yPercent: -100, ease: "none" }, 0)
+    .to(scrollCue, { autoAlpha: 0, ease: "none" }, 0.35);
+}
+
+/* --------------------------------
+   New Nav functionality (guarded)
+--------------------------------- */
+function initNavToggle() {
+  const navToggleBtn = document.getElementById("btn-nav-toggle");
+  const navMenu = document.getElementById("nav-menu");
+  if (!navToggleBtn || !navMenu) return;
+
+  function toggleNav(expand) {
+    navToggleBtn.setAttribute("aria-expanded", String(expand));
+    navMenu.setAttribute("aria-hidden", String(!expand));
+    navMenu.toggleAttribute("inert", !expand);
+
+    if (expand) document.addEventListener("click", handleOutsideClick);
+    else document.removeEventListener("click", handleOutsideClick);
   }
 
-  window.addEventListener("resize", () => ScrollTrigger.refresh());
-})();
+  function handleOutsideClick(event) {
+    if (!navMenu.contains(event.target) && !navToggleBtn.contains(event.target)) {
+      toggleNav(false);
+    }
+  }
 
+  navToggleBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const isExpanded = navToggleBtn.getAttribute("aria-expanded") === "true";
+    toggleNav(!isExpanded);
+  });
 
-// New Nav functionality
-console.clear();
-const navToggleBtn = document.getElementById("btn-nav-toggle");
-const navMenu = document.getElementById("nav-menu");
-
-// toggle nav button
-navToggleBtn.addEventListener("click", (event) => {
-	event.stopPropagation(); // Prevent immediate closing when clicking the button
-	const isExpanded = navToggleBtn.getAttribute("aria-expanded") === "true";
-	toggleNav(!isExpanded);
-});
-
-// toggle nav panel
-function toggleNav(expand) {
-	navToggleBtn.setAttribute("aria-expanded", String(expand));
-	navMenu.setAttribute("aria-hidden", String(!expand));
-	navMenu.toggleAttribute("inert", !expand);
-
-	// add/remove event handler on dom to close nav panel
-	expand && document.addEventListener("click", handleOutsideClick);
-	!expand && document.removeEventListener("click", handleOutsideClick);
-}
-function handleOutsideClick(event) {
-	if (!navMenu.contains(event.target) && !navToggleBtn.contains(event.target)) {
-		toggleNav(false);
-	}
+  navMenu.querySelectorAll("a[href^='#']").forEach((link) => {
+    link.addEventListener("click", () => toggleNav(false));
+  });
 }
 
-// select all internal links inside the nav menu
-navMenu.querySelectorAll("a[href^='#']").forEach((link) => {
-	link.addEventListener("click", () => {
-		toggleNav(false); // close the nav panel
-	});
-});
-
-
-
-// Wait for DOM
-window.addEventListener("DOMContentLoaded", () => {
-
-  /*** STICKY NAVBAR ***/
+/* --------------------------------
+   DOMContentLoaded observers (rise/slide/sticky) – your original
+--------------------------------- */
+function initObserversAndUI() {
+  // Sticky navbar
   const navbar = document.querySelector(".navbar");
   const aboutSection = document.getElementById("about");
   if (navbar && aboutSection) {
@@ -688,116 +588,114 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
-
-  /*** RISE ANIMATION ***/
+  // Rise
   const riseElements = document.querySelectorAll("[data-rise='true']");
-  const riseObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        riseObserver.unobserve(entry.target);
-      }
-    });
-  }, { 
-    threshold: 0.5 
-  });
-
-  //Observe the Rise Elements
-  riseElements.forEach(el => riseObserver.observe(el));
-
-  /*** SLIDE ANIMATION ***/
-const slideElements = document.querySelectorAll('[slide-right="true"], [slide-left="true"]');
-
-// Create observer
-const slideObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            slideObserver.unobserve(entry.target); // stop observing once revealed
-        }
-    });
-}, {
-    threshold: 0.5 // trigger when 30% visible
-});
-
-// Observe each slide element
-slideElements.forEach(el => slideObserver.observe(el));
-
-
-
-  /*** MOBILE NAVIGATION ***/
-  const menuToggle = document.getElementById("menuToggle");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const openIcon = document.getElementById("openIcon");
-  const closeIcon = document.getElementById("closeIcon");
-
-  if (menuToggle && mobileMenu && openIcon && closeIcon) {
-    menuToggle.addEventListener("click", () => {
-      const isOpen = mobileMenu.style.right === "0px";
-      mobileMenu.style.right = isOpen ? "-100%" : "0px";
-      openIcon.style.display = isOpen ? "block" : "none";
-      closeIcon.style.display = isOpen ? "none" : "block";
-      document.body.classList.toggle("no-scroll", !isOpen);
-    });
-
-    // Dropdown toggle
-    mobileMenu.querySelectorAll(".dropdown-toggle").forEach(toggle => {
-      toggle.addEventListener("click", e => {
-        e.preventDefault();
-        toggle.parentElement.classList.toggle("open");
-      });
-    });
-
-    // Close menu on link click
-    mobileMenu.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", e => {
-        if (!link.classList.contains("dropdown-toggle")) {
-          mobileMenu.style.right = "-100%";
-          openIcon.style.display = "block";
-          closeIcon.style.display = "none";
-        }
-      });
-    });
+  if (riseElements.length) {
+    const riseObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            riseObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    riseElements.forEach((el) => riseObserver.observe(el));
   }
 
-  /*** SMOOTH SCROLLING FOR ANCHORS ***/
-  document.querySelectorAll("a[href^='#']").forEach(anchor => {
-    anchor.addEventListener("click", e => {
-      const target = document.querySelector(anchor.getAttribute("href"));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth" });
-      }
+  // Slide
+  const slideElements = document.querySelectorAll('[slide-right="true"], [slide-left="true"]');
+  if (slideElements.length) {
+    const slideObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            slideObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    slideElements.forEach((el) => slideObserver.observe(el));
+  }
+
+  // Modal (guarded)
+  const dialog = document.querySelector(".dialog-width");
+  if (dialog) {
+    const openButton = dialog.nextElementSibling;
+    const closeButton = dialog.querySelector('sl-button[slot="footer"]');
+    if (openButton && closeButton) {
+      openButton.addEventListener("click", () => dialog.show());
+      closeButton.addEventListener("click", () => dialog.hide());
+    }
+  }
+}
+
+/* --------------------------------
+   MASTER INIT (THIS is the “don’t break the site” part)
+--------------------------------- */
+function initEverything() {
+  try {
+    initCursor();
+    initNavToggle();
+    initObserversAndUI();
+
+    // GSAP/ScrollTrigger pieces
+    initAboutTextFill();
+    initNFTransition();
+    initUnderlineReveals();
+    initParallaxCards();
+    initTextWidgetScroll();
+
+    // Line reveals after fonts (to get correct wraps)
+    NF.afterFonts()
+      .then(NF.afterPaint)
+      .then(() => initLineReveals())
+      .catch(() => initLineReveals());
+
+    // IMPORTANT: Intro pin LAST, then refresh once
+    initIntroGate();
+
+    armHeroTitleRevealOnScroll();
+
+    if (typeof ScrollTrigger !== "undefined") {
+      NF.afterFonts().then(NF.afterPaint).then(() => ScrollTrigger.refresh(true));
+    }
+  } catch (e) {
+    console.error("[NF] initEverything crashed:", e);
+  }
+  ScrollTrigger.sort();              // ensures pinned triggers are ordered correctly
+ScrollTrigger.clearScrollMemory(); // prevents weird scroll restoration states
+
+// refresh after fonts + 2 paints (layout stable)
+(document.fonts?.ready || Promise.resolve()).then(() => {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh(true);
     });
   });
-
-
-
-
-
-  /*** Reviews Carousel (Shoelace) ***/
-  const slCarousel = document.querySelector("sl-carousel.aspect-ratio");
-  const aspectControl = document.querySelector("sl-select[name='aspect']");
-  if (slCarousel && aspectControl) {
-    aspectControl.addEventListener("sl-change", () => {
-      slCarousel.style.setProperty("--aspect-ratio", aspectControl.value);
-    });
-  }
 });
 
+// also refresh after ALL assets (images/video) settle
+window.addEventListener("load", () => {
+  ScrollTrigger.refresh(true);
+}, { once: true });
+}
 
-// About us popup modal
-const dialog = document.querySelector('.dialog-width');
-const openButton = dialog.nextElementSibling;
-const closeButton = dialog.querySelector('sl-button[slot="footer"]');
+// DOM ready
+window.addEventListener("DOMContentLoaded", () => {
+  // Index: wait for loader completion if loader exists
+  if (NF.isIndex() && document.getElementById("nf-loader")) {
+    document.addEventListener("nf:loaderComplete", initEverything, { once: true });
+  } else {
+    initEverything();
+  }
+});
+})();
 
-openButton.addEventListener('click', () => dialog.show());
-closeButton.addEventListener('click', () => dialog.hide());
-
-
-
-
-
-
-
+/* --------------------------------
+   END OF FILE
+--------------------------------- */
