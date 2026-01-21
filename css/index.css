@@ -184,7 +184,7 @@ body.nf-loading {
 /* Scroll cue stays normal */
 .nf-intro__scrollcue {
   position: absolute;
-  bottom: clamp(1.5rem, 5vh, 3rem);
+  bottom: clamp(2.5rem, 8vh, 5rem);
   left: 50%;
   transform: translateX(-50%);
   z-index: 4;
