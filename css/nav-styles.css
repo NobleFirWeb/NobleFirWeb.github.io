@@ -433,59 +433,59 @@ Base + Theme Variables
 (Replaces light-dark() with explicit light defaults + dark overrides)
 ------------------------------ */
 :root {
-  --_nav-f-family: "Space Grotesk", sans-serif;
-  --_nav-btn-transition-duration: 150ms;
-  --_nav-btn-clr: #000000;
-  --_nav-btn-clr-hover: #464646;
-  --_nav-btn-clr-expanded: var(--txt-light);
+    --_nav-f-family: "Space Grotesk", sans-serif;
+    --_nav-btn-transition-duration: 150ms;
+    --_nav-btn-clr: #000000;
+    --_nav-btn-clr-hover: #464646;
+    --_nav-btn-clr-expanded: var(--txt-light);
 
-  --_nav-bg-open: #ff0000;
-  --_nav-bg-open_half: #0f0e0f;
+    --_nav-bg-open: #ff0000;
+    --_nav-bg-open_half: #0f0e0f;
 
-  --_nav-panel-border-radius: 30px;
-  --_nav-panel-transition-duration: 1000ms;
-  --_nav-panel-transition-timing-function: cubic-bezier(0.86, 0, 0.672, 1.003);
-  --_nav-link-clr: var(--txt-light);
-  --_nav-link-clr-hover: var(--txt-light);
-  --_nav-link-bg-clr-hover: #343434;
-  --nav-btn-label: "Menu";
+    --_nav-panel-border-radius: 30px;
+    --_nav-panel-transition-duration: 1000ms;
+    --_nav-panel-transition-timing-function: cubic-bezier(0.86, 0, 0.672, 1.003);
+    --_nav-link-clr: var(--txt-light);
+    --_nav-link-clr-hover: var(--txt-light);
+    --_nav-link-bg-clr-hover: #343434;
+    --nav-btn-label: "Menu";
 }
 
 /* dark overrides (replaces light-dark(...)) */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --_nav-btn-clr: #fff;
-    --_nav-btn-clr-expanded: var(--txt-dark);
-    --_nav-link-clr: var(--txt-dark);
-  }
+    :root {
+        --_nav-btn-clr: #fff;
+        --_nav-btn-clr-expanded: var(--txt-dark);
+        --_nav-link-clr: var(--txt-dark);
+    }
 }
 
 /* -----------------------------
-   Document behavior
+Document behavior
 ------------------------------ */
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
 }
 
 /* body > * and body::after transitions (unnested) */
-body > *,
+body>*,
 body::after {
-  transition: filter var(--_nav-panel-transition-duration) ease-in-out;
+    transition: filter var(--_nav-panel-transition-duration) ease-in-out;
 }
 
 /* Navbar */
 .navbar {
-  position: fixed;
-  display: flex;
-  justify-content: space-between;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 0 1rem;
-  padding-top: 1.5rem;
-  z-index: 1100;
-  background-color: transparent;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 1rem;
+    padding-top: 1.5rem;
+    z-index: 1100;
+    background-color: transparent;
 }
 
 .navbar .logo-name {
@@ -517,296 +517,301 @@ body::after {
 Nav container + expanding backgrounds
 ------------------------------ */
 .navigation {
-  container: nav inline-size;
-  position: fixed;
-  top: 0;
-  right: 0;
-  padding: 1rem;
+    container: nav inline-size;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 1rem;
     z-index: 1000;
 }
 
 /* nav pseudo panels */
 .navigation::before,
 .navigation::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  transition: width 600ms var(--_nav-panel-transition-timing-function);
-  border-radius: var(--_nav-panel-border-radius) 0 0 var(--_nav-panel-border-radius);
-  height: 100vh;
-  z-index: -1;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: width 600ms var(--_nav-panel-transition-timing-function);
+    border-radius: var(--_nav-panel-border-radius) 0 0 var(--_nav-panel-border-radius);
+    height: 100vh;
+    z-index: -1;
 }
 
 .navigation::before {
-  width: var(--_nav-bg-w, 0);
-  background-color: var(--_nav-bg-open);
+    width: var(--_nav-bg-w, 0);
+    background-color: var(--_nav-bg-open);
 }
 
 .navigation::after {
-  width: var(--_nav-bg-w_after, 0);
-  background-color: var(--_nav-bg-open_half);
+    width: var(--_nav-bg-w_after, 0);
+    background-color: var(--_nav-bg-open_half);
 }
 
 /* expand backgrounds when any descendant is aria-expanded="true" */
 .navigation:has([aria-expanded="true"]) {
-  --_nav-bg-w: calc(100vw + var(--_nav-panel-border-radius));
-  --_nav-bg-w_after: calc(33vw + var(--_nav-panel-border-radius));
+    --_nav-bg-w: calc(100vw + var(--_nav-panel-border-radius));
+    --_nav-bg-w_after: calc(33vw + var(--_nav-panel-border-radius));
 }
 
 /* -----------------------------
 Toggle button
 ------------------------------ */
-.navigation > button {
-  appearance: none;
-  border: none;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  background-color: transparent;
-  border-radius: 3px;
-  color: #ffffff;
-  mix-blend-mode: difference;
-  transition: none;
-  position: relative;
-  z-index: 2;
+.navigation>button {
+    appearance: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background-color: transparent;
+    border-radius: 3px;
+    color: #ffffff;
+    mix-blend-mode: difference;
+    transition: none;
+    position: relative;
+    z-index: 2;
 }
 
 /* svg path transitions inside button */
-.navigation > button > svg path {
-  transition-property: color, scale, rotate;
-  transition-duration: var(--_nav-btn-transition-duration);
-  transition-timing-function: ease-in-out;
-  transition-delay: 0m;
-  transform-origin: center center;
+.navigation>button>svg path {
+    transition-property: color, scale, rotate;
+    transition-duration: var(--_nav-btn-transition-duration);
+    transition-timing-function: ease-in-out;
+    transition-delay: 0m;
+    transform-origin: center center;
 }
 
-.navigation > button:focus-visible {
+.navigation>button:focus-visible {
     outline: 1ppx dashed var(--_nav-btn-clr);
     outline-offset: 4px;
 }
 
 /* label text via pseudo element */
-.navigation > button::before {
-  content: var(--nav-btn-label, "Menu");
-  transition: color var(--_nav-btn-transition-duration) ease-in-out;
+.navigation>button::before {
+    content: var(--nav-btn-label, "Menu");
+    transition: color var(--_nav-btn-transition-duration) ease-in-out;
 }
 
 /* expanded state */
-.navigation > button[aria-expanded="true"] {
-  --nav-btn-label: "Close";
-  --_nav-btn-clr: var(--_nav-btn-clr-expanded);
+.navigation>button[aria-expanded="true"] {
+    --nav-btn-label: "Close";
+    --_nav-btn-clr: var(--_nav-btn-clr-expanded);
 }
 
 /* hamburger-to-X animation */
-.navigation > button[aria-expanded="true"] > svg path:nth-of-type(1),
-.navigation > button[aria-expanded="true"] > svg path:nth-of-type(4) {
-  scale: 0 1;
+.navigation>button[aria-expanded="true"]>svg path:nth-of-type(1),
+.navigation>button[aria-expanded="true"]>svg path:nth-of-type(4) {
+    scale: 0 1;
 }
 
-.navigation > button[aria-expanded="true"] > svg path:nth-of-type(2) {
-  rotate: -45deg;
+.navigation>button[aria-expanded="true"]>svg path:nth-of-type(2) {
+    rotate: -45deg;
 }
 
-.navigation > button[aria-expanded="true"] > svg path:nth-of-type(3) {
-  rotate: 45deg;
+.navigation>button[aria-expanded="true"]>svg path:nth-of-type(3) {
+    rotate: 45deg;
 }
 
 /* -----------------------------
 Slide-out nav panel
 ------------------------------ */
-.navigation > ul {
-  position: absolute;
-  background-color: var(--bg-light);
-  border-radius: var(--_nav-panel-border-radius) 0 0 var(--_nav-panel-border-radius);
-  overflow: hidden;
-  top: 0;
-  right: 50%;
-  margin: 0;
-  padding: 0;
-  width: calc(33vw + var(--_nav-panel-border-radius));
-  height: 100svh;
-  list-style: none;
-  padding-inline: clamp(2.5rem, 5vw, 5rem);
-  transform: translateX(var(--_nav-panel-translate-x, 100%));
-  transition: transform var(--_nav-panel-transition-duration)
-    var(--_nav-panel-transition-timing-function);
+.navigation>ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    background-color: var(--bg-light);
+    border-radius: var(--_nav-panel-border-radius) 0 0 var(--_nav-panel-border-radius);
+    overflow: hidden;
+    top: 0;
+    right: 50%;
+    margin: 0;
+    padding: 1.25rem 1.75rem;
+    width: calc(33vw + var(--_nav-panel-border-radius));
+    height: 100svh;
+    list-style: none;
+    padding-inline: clamp(2.5rem, 5vw, 5rem);
+    transform: translateX(var(--_nav-panel-translate-x, 100%));
+    transition: transform var(--_nav-panel-transition-duration) var(--_nav-panel-transition-timing-function);
 }
 
 /* dark mode panel background */
 @media (prefers-color-scheme: dark) {
-  .navigation > ul {
-    background-color: var(--bg-dark);
-  }
+    .navigation>ul {
+        background-color: var(--bg-dark);
+    }
 }
 
 /* reveal nav panel */
-.navigation > ul[aria-hidden="false"] {
-  --_nav-panel-translate-x: 0;
-  --_nav-link-txt-rotate: 0deg;
-  --_nav-link-txt-translate: 0;
+.navigation>ul[aria-hidden="false"] {
+    --_nav-panel-translate-x: 0;
+    --_nav-link-txt-rotate: 0deg;
+    --_nav-link-txt-translate: 0;
 }
 
-.navigation > ul[aria-hidden="true"] {
-  transition-duration: 350ms; /* tweak: 250–450ms */
-  transition-timing-function: ease-in;
+.navigation>ul[aria-hidden="true"] {
+    transition-duration: 350ms;
+    /* tweak: 250–450ms */
+    transition-timing-function: ease-in;
 }
 
 /* -----------------------------
-   Panel items + animated links
+Panel items + animated links
 ------------------------------ */
-.navigation > ul > li {
-  --_nav-link-transition-duration: 350ms;
-  --_nav-link-transition-timing-function: ease-in-out;
-  padding: 0;
-  margin: 0;
-  overflow-y: clip;
+.navigation>ul>li {
+    --_nav-link-transition-duration: 350ms;
+    --_nav-link-transition-timing-function: ease-in-out;
+    padding: 0;
+    margin: 0;
+    overflow-y: clip;
 }
 
-.navigation > ul[aria-hidden="true"] > li {
-  --_nav-link-transition-duration: 200ms;
-}
-.navigation > ul[aria-hidden="true"] > li > a {
-  --_nav-txt-intro-duration: 200ms;
+.navigation>ul[aria-hidden="true"]>li {
+    --_nav-link-transition-duration: 200ms;
 }
 
-.navigation > ul > li:nth-child(1) {
-  --i: 1;
-  margin-block-start: 10svh; /* push below nav toggle button */
+.navigation>ul[aria-hidden="true"]>li>a {
+    --_nav-txt-intro-duration: 200ms;
 }
 
-.navigation > ul > li > a {
-  --_nav-txt-intro-duration: 300ms;
-  --_nav-txt-intro-delay: calc(
-    var(--i) * 50ms + var(--_nav-panel-transition-duration) * 1
-  );
-  --_nav-txt-intro-timing-function: ease-in-out;
+.navigation>ul>li:nth-child(1) {
+    --i: 1;
+    margin-block-start: 10svh;
+    /* push below nav toggle button */
+}
 
-  font-family: var(--_nav-f-family);
-  letter-spacing: 0;
-  position: relative;
-  display: flex;
-  font-size: clamp(2rem, 2.5vw + 0.5rem, 3rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  line-height: 1;
-  padding: 0.5rem 0 0.5rem 0;
-  text-decoration: none;
-  color: var(--_nav-link-clr, #ffffff);
-  isolation: isolate;
-  transform-origin: left;
-  transform: translateY(var(--_nav-link-txt-translate, 100%));
-  transition-property: transform;
-  transition-duration: var(--_nav-txt-intro-duration);
-  transition-delay: var(--_nav-txt-intro-delay, 0ms);
-  transition-timing-function: var(--_nav-txt-intro-timing-function);
+.navigation>ul>li>a {
+    --_nav-txt-intro-duration: 300ms;
+    --_nav-txt-intro-delay: calc(var(--i) * 50ms + var(--_nav-panel-transition-duration) * 1);
+    --_nav-txt-intro-timing-function: ease-in-out;
+
+    font-family: var(--_nav-f-family);
+    letter-spacing: 0;
+    position: relative;
+    display: flex;
+    font-size: clamp(2rem, 2.5vw + 0.5rem, 3rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+    padding: 0.5rem 0 0.5rem 0;
+    text-decoration: none;
+    color: var(--_nav-link-clr, #ffffff);
+    isolation: isolate;
+    transform-origin: left;
+    transform: translateY(var(--_nav-link-txt-translate, 100%));
+    transition-property: transform;
+    transition-duration: var(--_nav-txt-intro-duration);
+    transition-delay: var(--_nav-txt-intro-delay, 0ms);
+    transition-timing-function: var(--_nav-txt-intro-timing-function);
 }
 
 /* the anchor text is contained in a span to allow separate animation */
-.navigation > ul > li > a > span {
-  display: block;
-  transition:
-    transform var(--_nav-link-transition-duration) var(--_nav-link-transition-timing-function),
-    translate 0ms calc(var(--_nav-link-transition-duration) / 2),
-    color 0ms calc(var(--_nav-link-transition-duration) / 2);
+.navigation>ul>li>a>span {
+    display: block;
+    transition:
+        transform var(--_nav-link-transition-duration) var(--_nav-link-transition-timing-function),
+        translate 0ms calc(var(--_nav-link-transition-duration) / 2),
+        color 0ms calc(var(--_nav-link-transition-duration) / 2);
 }
 
-.navigation > ul > li > a::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: var(--_nav-link-bg-clr-hover, black);
-  translate: 0 2lh;
-  z-index: -1;
-  transition: all calc(var(--_nav-link-transition-duration) * 1) ease-in-out;
+.navigation>ul>li>a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--_nav-link-bg-clr-hover, black);
+    translate: 0 2lh;
+    z-index: -1;
+    transition: all calc(var(--_nav-link-transition-duration) * 1) ease-in-out;
 }
 
 /* link hover or focus */
-.navigation > ul > li > a:hover > span,
-.navigation > ul > li > a:focus-visible > span {
-  transform: translateY(-2lh);
-  translate: 0 2lh;
-  color: var(--_nav-link-clr-hover);
+.navigation>ul>li>a:hover>span,
+.navigation>ul>li>a:focus-visible>span {
+    transform: translateY(-2lh);
+    translate: 0 2lh;
+    color: var(--_nav-link-clr-hover);
 }
 
-.navigation > ul > li > a:hover::before,
-.navigation > ul > li > a:focus-visible::before {
-  translate: 0 0;
-  transition-duration: calc(var(--_nav-link-transition-duration) * 0.75);
+.navigation>ul>li>a:hover::before,
+.navigation>ul>li>a:focus-visible::before {
+    translate: 0 0;
+    transition-duration: calc(var(--_nav-link-transition-duration) * 0.75);
 }
 
 @media (max-width: 768px) {
     .navigation:has([aria-expanded="true"]) {
-  --_nav-bg-w: calc(100vw + var(--_nav-panel-border-radius));
-  --_nav-bg-w_after: calc(70vw + var(--_nav-panel-border-radius));
-}
-.navigation > ul {
-    right: 0;
-    width: calc(70vw + var(--_nav-panel-border-radius));
-    box-sizing: border-box;
+        --_nav-bg-w: calc(100vw + var(--_nav-panel-border-radius));
+        --_nav-bg-w_after: calc(70vw + var(--_nav-panel-border-radius));
+    }
 
-    /* "move menu left" inside the panel */
-    padding-top: 10svh;
-    padding-inline: clamp(1.5rem, 6vw, 2.25rem);
+    .navigation>ul {
+        right: 0;
+        width: calc(70vw + var(--_nav-panel-border-radius));
+        box-sizing: border-box;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+        /* "move menu left" inside the panel */
+        padding-top: 10svh;
+        padding-inline: clamp(1.5rem, 6vw, 2.25rem);
 
-  /* Let UL padding handle the top spacing */
-  .navigation > ul > li:nth-child(1) {
-    margin-block-start: 0;
-  }
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-  /* Make each item fill panel width so hover bg/underline align cleanly */
-  .navigation > ul > li,
-  .navigation > ul > li > a {
-    width: 100%;
-  }
+    /* Let UL padding handle the top spacing */
+    .navigation>ul>li:nth-child(1) {
+        margin-block-start: 0;
+    }
 
-  /* Optional: reduce type a bit so it breathes on 480 */
-  .navigation > ul > li > a {
-    font-size: clamp(1.6rem, 7vw, 2.25rem);
-    padding: 0.55rem 0;
-  }
+    /* Make each item fill panel width so hover bg/underline align cleanly */
+    .navigation>ul>li,
+    .navigation>ul>li>a {
+        width: 100%;
+    }
+
+    /* Optional: reduce type a bit so it breathes on 480 */
+    .navigation>ul>li>a {
+        font-size: clamp(1.6rem, 7vw, 2.25rem);
+        padding: 0.55rem 0;
+    }
 }
 
 @media (max-width: 480px) {
     .navigation:has([aria-expanded="true"]) {
-  --_nav-bg-w: calc(100vw + var(--_nav-panel-border-radius));
-  --_nav-bg-w_after: calc(80vw + var(--_nav-panel-border-radius));
-}
-.navigation > ul {
-    right: 0;
-    width: calc(80vw + var(--_nav-panel-border-radius));
-    box-sizing: border-box;
+        --_nav-bg-w: calc(100vw + var(--_nav-panel-border-radius));
+        --_nav-bg-w_after: calc(80vw + var(--_nav-panel-border-radius));
+    }
 
-    /* "move menu left" inside the panel */
-    padding-top: 10svh;
-    padding-inline: clamp(1.5rem, 6vw, 2.25rem);
+    .navigation>ul {
+        right: 0;
+        width: calc(80vw + var(--_nav-panel-border-radius));
+        box-sizing: border-box;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+        /* "move menu left" inside the panel */
+        padding-top: 10svh;
+        padding-inline: clamp(1.5rem, 6vw, 2.25rem);
 
-  /* Let UL padding handle the top spacing */
-  .navigation > ul > li:nth-child(1) {
-    margin-block-start: 0;
-  }
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-  /* Make each item fill panel width so hover bg/underline align cleanly */
-  .navigation > ul > li,
-  .navigation > ul > li > a {
-    width: 100%;
-  }
+    /* Let UL padding handle the top spacing */
+    .navigation>ul>li:nth-child(1) {
+        margin-block-start: 0;
+    }
 
-  /* Optional: reduce type a bit so it breathes on 480 */
-  .navigation > ul > li > a {
-    font-size: clamp(1.6rem, 7vw, 2.25rem);
-    padding: 0.55rem 0;
-  }
+    /* Make each item fill panel width so hover bg/underline align cleanly */
+    .navigation>ul>li,
+    .navigation>ul>li>a {
+        width: 100%;
+    }
+
+    /* Optional: reduce type a bit so it breathes on 480 */
+    .navigation>ul>li>a {
+        font-size: clamp(1.6rem, 7vw, 2.25rem);
+        padding: 0.55rem 0;
+    }
 }
 
 

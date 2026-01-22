@@ -2,7 +2,7 @@
 // STABLE BUILD: guarded modules + single init pipeline + intro gate integrated
 
 /* --------------------------------
-   GSAP + Plugins (already loaded in <head>)
+//   GSAP + Plugins (already loaded in <head>)
 --------------------------------- */
 (() => {
 if (window.__NF_SITE_INIT__) return;
@@ -38,8 +38,8 @@ const NF = {
 };
 
 /* --------------------------------
-   Global error visibility (temporary but useful)
-   Leave this until things are stable.
+//   Global error visibility (temporary but useful)
+//   Leave this until things are stable.
 --------------------------------- */
 window.addEventListener("error", (e) => {
   console.error("[NF ERROR]", e.message, e.filename, e.lineno, e.colno);
@@ -49,7 +49,7 @@ window.addEventListener("unhandledrejection", (e) => {
 });
 
 /* --------------------------------
-   Loader (INDEX ONLY) – your original logic preserved
+//   Loader (INDEX ONLY) – your original logic preserved
 --------------------------------- */
 (function nfIndexLoader() {
   if (!NF.isIndex()) return;
@@ -112,6 +112,7 @@ window.addEventListener("unhandledrejection", (e) => {
     tl.add(() => {
       loader.style.display = "none";
       document.body.classList.remove("nf-loading");
+      revealIntroTitleLines();
       document.dispatchEvent(new Event("nf:loaderComplete"));
     });
   };
@@ -132,8 +133,10 @@ window.addEventListener("unhandledrejection", (e) => {
   }
 })();
 
+
+
 /* --------------------------------
-   Cursor
+//   Cursor
 --------------------------------- */
 function initCursor() {
   if (typeof gsap === "undefined") return;
@@ -196,7 +199,7 @@ function armHeroTitleRevealOnScroll() {
 
   ScrollTrigger.create({
     trigger: hero,
-    start: "top 95%",
+    start: "top top+=15%",
     once: true,
     onEnter: () => {
       const heroLines = hero.querySelectorAll(".nf-hero-line");
@@ -216,7 +219,7 @@ function armHeroTitleRevealOnScroll() {
 
 
 /* --------------------------------
-   About text fill (moved from inline HTML)
+//   About text fill (moved from inline HTML)
 --------------------------------- */
 function initAboutTextFill() {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || typeof SplitText === "undefined") return;
@@ -243,7 +246,7 @@ function initAboutTextFill() {
 }
 
 /* --------------------------------
-   data-reveal="lines" (IntersectionObserver version you had)
+//   data-reveal="lines" (IntersectionObserver version you had)
 --------------------------------- */
 function initLineReveals({
   selector = '[data-reveal="lines"]',
@@ -295,7 +298,7 @@ function initLineReveals({
 }
 
 /* --------------------------------
-   nfTransition (Concept → Deployment)
+//   nfTransition (Concept → Deployment)
 --------------------------------- */
 function initNFTransition() {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
@@ -361,7 +364,7 @@ function initNFTransition() {
 }
 
 /* --------------------------------
-   Underline reveal (values + services)
+//   Underline reveal (values + services)
 --------------------------------- */
 function initUnderlineReveals() {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
@@ -394,7 +397,7 @@ function initUnderlineReveals() {
 }
 
 /* --------------------------------
-   Parallax images
+//   Parallax images
 --------------------------------- */
 function initParallaxCards() {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
@@ -418,7 +421,7 @@ function initParallaxCards() {
 }
 
 /* --------------------------------
-   Text widget scroll (your original)
+//   Text widget scroll (your original)
 --------------------------------- */
 function initTextWidgetScroll() {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
@@ -634,6 +637,41 @@ function initObserversAndUI() {
   }
 }
 
+
+// ============================
+// INTRO TITLE LINE REVEAL
+// ============================
+function revealIntroTitleLines() {
+  if (typeof gsap === "undefined" || typeof SplitText === "undefined") return;
+
+  const title = document.querySelector(".nf-intro__title[data-reveal='lines']");
+  if (!title) return;
+
+  if (title.dataset.nfIntroSplit !== "1") {
+    SplitText.create(title, {
+      type: "lines",
+      mask: "lines",
+      linesClass: "nf-line"
+    });
+    title.dataset.nfIntroSplit = "1";
+  }
+
+  const lines = title.querySelectorAll(".nf-line");
+  if (!lines.length) return;
+
+  gsap.set(lines, { yPercent: 110, opacity: 0 });
+  gsap.set(title, { opacity: 1 });
+
+  gsap.to(lines, {
+    yPercent: 0,
+    opacity: 1,
+    duration: 0.95,
+    stagger: 0.12,
+    ease: "osmo-ease",
+    overwrite: true
+  });
+}
+
 /* --------------------------------
    MASTER INIT (THIS is the “don’t break the site” part)
 --------------------------------- */
@@ -697,5 +735,5 @@ window.addEventListener("DOMContentLoaded", () => {
 })();
 
 /* --------------------------------
-   END OF FILE
+//   END OF FILE
 --------------------------------- */
