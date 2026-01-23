@@ -753,17 +753,17 @@ body.nf-loading {
 }
 
 .value-text {
-    width: min(600px, 32vw);
     transform: translateX(-10px);
     transition: opacity .25s ease, transform .25s ease;
     opacity: 0;
     justify-self: flex-end;
+    text-transform: uppercase;
 }
 
 .value-text p {
-    font-size: 1rem;
+    font-size: 1.25vw;
     font-family: 'Inter', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1;
     color: #ffffff;
     letter-spacing: -0.2px;
@@ -1202,7 +1202,7 @@ body.nf-loading {
 
 /* Hidden helper paragraph (shows on hover) */
 .nf-service-desc {
-    width: min(450px, 30vw);
+    width: min(500px, 33vw);
     font-size: 1rem;
     line-height: 1;
     opacity: 0;
@@ -1579,7 +1579,8 @@ body.nf-loading {
     padding-bottom: 5px;
 }
 
-.wrapper-titles h1 {
+.wrapper-titles h1,
+.wrapper-titles h1 span {
     font-size: var(--nf-row-size);
     text-transform: uppercase;
     font-family: 'Inter', sans-serif;
@@ -1591,7 +1592,7 @@ body.nf-loading {
     width: 100vw;
     height: auto;
     overflow: hidden;
-    margin-top: 120px;
+    margin-top: 10%;
     display: grid;
     place-items: center;
 }
@@ -1600,7 +1601,7 @@ body.nf-loading {
     display: flex;
     position: relative;
     width: 80%;
-    height: 120px;
+    height: 150px;
     margin: auto;
     z-index: 1;
 }
@@ -1633,7 +1634,8 @@ body.nf-loading {
 }
 
 .m-scroll-title-span {
-    color: #343434;
+    color: #ff0000;
+    font-weight: 600;
 }
 
 
@@ -1654,6 +1656,10 @@ body.nf-loading {
     }
     .wrapper-titles {
         margin-top: 60px;
+    }
+    .wrapper-titles h1,
+    .wrapper-titles h1 span {
+        font-size: 14vw;
     }
 }
 
@@ -1846,7 +1852,7 @@ body.nf-loading {
     justify-content: center;
     padding: 0 5%;
     padding-bottom: 10%;
-    margin: 10% 0 5%;
+    margin: 5% 0 5%;
 }
 
 #cta .contact-title1 {
@@ -1923,7 +1929,7 @@ body.nf-loading {
 
 @media (max-width: 480px) {
     #cta {
-        margin: 120px auto;
+        margin: 30px auto;
     }
 
     #cta .contact-title1 {
