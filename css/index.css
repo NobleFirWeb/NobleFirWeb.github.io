@@ -824,7 +824,7 @@ body.nf-loading {
     justify-content: center;
     /* animation starting point */
     opacity: 0;
-    transform: translateX(80px);
+    transform: translateX(120px);
     background-color: #464646;
     border-radius: 12px;
     text-align: center;

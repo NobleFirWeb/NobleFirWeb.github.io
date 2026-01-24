@@ -352,7 +352,7 @@ function initValuesPinnedScroll() {
     gsap.to(item, {
       opacity: 1,
       x: 0,
-      duration: 0.55,          // swift
+      duration: 0.8,          // swift
       ease: "power2.out",       // smooth
       overwrite: "auto",
       scrollTrigger: {
