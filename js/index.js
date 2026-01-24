@@ -272,7 +272,7 @@ function initLineReveals({
 
     const tween = gsap.to(lines, {
       yPercent: 0,
-      duration: 0.95,
+      duration: 0.8,
       stagger: 0.15,
       ease: "osmo-ease",
       paused: true
@@ -295,6 +295,78 @@ function initLineReveals({
   );
 
   items.forEach((item) => io.observe(item.el));
+}
+
+/* --------------------------------
+   VALUES (Pinned left + scrolling right list)
+--------------------------------- */
+function initValuesPinnedScroll() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+  const section = document.querySelector(".values-content");
+  if (!section) return;
+
+  const weBelieve = section.querySelector(".we-believe");
+  const list = section.querySelector(".values-list") || section.querySelector("ul");
+  if (!weBelieve || !list) return;
+
+  const items = gsap.utils.toArray(list.querySelectorAll("li"));
+  if (!items.length) return;
+
+  const lastItem = items[items.length - 1];
+
+  // Kill old triggers for this section if you hot-reload / re-init
+  ScrollTrigger.getAll().forEach((st) => {
+    if (st?.vars?.trigger === section || st?.vars?.trigger === weBelieve) st.kill();
+  });
+
+  // Force a reliable start state (in case CSS didn’t apply or got overwritten)
+  gsap.set(items, { opacity: 0, x: 80, willChange: "transform, opacity" });
+
+  // Where is the "center line" of the pinned weBelieve element in the viewport?
+  // Pinned at "top center" => its TOP sits at 50vh, so its CENTER is 50vh + half its height.
+  const believeCenterY = () => {
+    const h = weBelieve.offsetHeight || weBelieve.getBoundingClientRect().height || 0;
+    return Math.round(window.innerHeight * 0.5 + h * 0.5);
+  };
+
+  // PIN weBelieve
+  ScrollTrigger.create({
+    trigger: weBelieve,
+    start: "top center",
+
+    // END when the center of the last <li> reaches the center of the pinned weBelieve
+    endTrigger: lastItem,
+    end: () => `center ${believeCenterY()}px`,
+
+    pin: weBelieve,
+    pinSpacing: false,
+    anticipatePin: 1,
+    invalidateOnRefresh: true,
+
+    // markers: true,
+  });
+
+  // REVEAL each item when its center reaches the weBelieve center line
+  items.forEach((item) => {
+    gsap.to(item, {
+      opacity: 1,
+      x: 0,
+      duration: 0.55,          // swift
+      ease: "power2.out",       // smooth
+      overwrite: "auto",
+      scrollTrigger: {
+        trigger: item,
+        start: () => `top ${believeCenterY()}px`,
+        toggleActions: "play none none none",
+        invalidateOnRefresh: true,
+        // markers: true,
+      }
+    });
+  });
+
+  // Extra refresh hooks (your file already refreshes a lot, but this makes this section bulletproof)
+  NF.afterFonts().then(NF.afterPaint).then(() => ScrollTrigger.refresh(true));
 }
 
 /* --------------------------------
@@ -392,7 +464,6 @@ function initUnderlineReveals() {
     });
   }
 
-  nfUnderlineReveal({ listSelector: ".value-list", itemSelector: ".value-item", start: "bottom bottom" });
   nfUnderlineReveal({ listSelector: ".nf-services-list", itemSelector: ".nf-service", start: "bottom bottom" });
 }
 
@@ -683,6 +754,7 @@ function initEverything() {
 
     // GSAP/ScrollTrigger pieces
     initAboutTextFill();
+    initValuesPinnedScroll();
     initNFTransition();
     initUnderlineReveals();
     initParallaxCards();
