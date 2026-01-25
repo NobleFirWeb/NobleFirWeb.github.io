@@ -258,7 +258,7 @@ body.nf-loading {
 
 @media (max-width: 768px) {
     .nf-intro__scrollcue {
-        bottom: 12vh;
+        bottom: 15vh;
     }
 }
 
@@ -825,7 +825,8 @@ body.nf-loading {
     /* animation starting point */
     opacity: 0;
     transform: translateX(120px);
-    background-color: #464646;
+    background-color: #111111;
+    border: 1px solid #3a3a3a;
     border-radius: 12px;
     text-align: center;
 }
@@ -833,6 +834,10 @@ body.nf-loading {
 .values-content .value-item h2 {
     font-size: clamp(2rem, 6vw, 3rem);
     margin: 0 0 12px 0;
+    text-transform: uppercase;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.04em;
 }
 
 .values-content .value-item p {
