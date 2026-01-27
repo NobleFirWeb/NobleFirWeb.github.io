@@ -298,7 +298,7 @@ function initLineReveals({
 }
 
 /* --------------------------------
-   VALUES (Pinned left + scrolling right list)
+VALUES (Pinned left + scrolling right list)
 --------------------------------- */
 function initValuesPinnedScroll() {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
@@ -368,6 +368,136 @@ function initValuesPinnedScroll() {
   // Extra refresh hooks (your file already refreshes a lot, but this makes this section bulletproof)
   NF.afterFonts().then(NF.afterPaint).then(() => ScrollTrigger.refresh(true));
 }
+
+function initValuesStackedCards() {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    const section = document.querySelector("#valuesPin") || document.querySelector(".values-content");
+    if (!section) return;
+
+    const weBelieve = section.querySelector(".we-believe");
+    const list = section.querySelector(".values-list");
+    const cards = list ? gsap.utils.toArray(list.querySelectorAll(".value-item")) : [];
+    if (!weBelieve || !list || !cards.length) return;
+
+    const mm = window.matchMedia("(max-width: 768px)");
+    const isMobile = mm.matches;
+
+    // Kill ONLY triggers tied to this widget
+    ScrollTrigger.getAll().forEach((st) => {
+      const t = st.vars?.trigger;
+      if (t === section || t === weBelieve || t === list || cards.includes(t)) st.kill();
+    });
+
+    // Ensure list is a stage
+    gsap.set(list, { position: "relative", height: "100vh", overflow: "visible" });
+
+    const cardH = () => (cards[0]?.getBoundingClientRect().height || 415);
+
+    // top-peek ratio (each stacked card shows ~25% of its height)
+    const peekRatio = 0.25;
+    const stackDistance = () => Math.round(cardH() * peekRatio);
+
+    // tighter scroll on mobile to avoid massive pin-spacer
+    const stepScroll = () => {
+      const h = cardH();
+      return isMobile
+        ? Math.max(window.innerHeight * 0.38, h * 0.55)
+        : Math.max(window.innerHeight * 0.65, h * 0.95);
+    };
+
+    // cap end whitespace on mobile (≈ 30vh max)
+    const holdScroll = () => {
+      return isMobile
+        ? Math.round(window.innerHeight * 0.30)
+        : Math.max(window.innerHeight * 0.85, 650);
+    };
+
+    const totalScroll = () => stepScroll() * cards.length + holdScroll();
+
+    // 10vh breathing room under pinned header on mobile
+    const mobileGapPx = () => Math.round(window.innerHeight * 0.10);
+
+    // deck placement:
+    // - desktop: your tuned placement (negative top)
+    // - mobile: place deck BELOW pinned header + gap
+    const deckTop = () => {
+      if (!isMobile) return Math.round(window.innerHeight * -0.4);
+      const headerH = weBelieve.getBoundingClientRect().height || 0;
+      return Math.round(headerH + mobileGapPx());
+    };
+
+    // Layer + baseline placement
+    cards.forEach((card, i) => {
+      gsap.set(card, {
+        position: "absolute",
+        top: deckTop(),
+        left: 0,
+        right: 0,
+        margin: "0 auto",
+        zIndex: i + 1,
+        yPercent: 0
+      });
+    });
+
+    // Start all cards below the stage
+    gsap.set(cards, { autoAlpha: 1, y: window.innerHeight });
+
+    // Main pinned deck timeline (reversible because scrubbed)
+    const deckTL = gsap.timeline({
+      defaults: { ease: "none" },
+      scrollTrigger: {
+        trigger: section,
+        start: isMobile ? "top top+=10%" : "top center", // mobile starts a bit later
+        end: () => `+=${totalScroll()}`,
+        pin: list,
+        pinSpacing: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onRefreshInit: () => {
+          // recalc header height + gap and re-place the deck
+          cards.forEach((card) => gsap.set(card, { top: deckTop() }));
+        }
+        // markers: true,
+      }
+    });
+
+    cards.forEach((card, i) => {
+      const pos = stepScroll() * i;
+      deckTL.to(
+        card,
+        {
+          y: () => i * stackDistance(),
+          duration: stepScroll() * 0.9,
+          ease: "power2.out"
+        },
+        pos
+      );
+    });
+
+    // Pin header:
+    // - Desktop: keep your centered pin by pinning from top center
+    // - Mobile: pin it to the TOP (stays in the “red box” at top)
+    ScrollTrigger.create({
+      trigger: section,
+      start: isMobile ? "top top+=10%" : "top center",
+      end: () => `+=${totalScroll()}`,
+      pin: weBelieve,
+      pinSpacing: false,
+      anticipatePin: 1,
+      invalidateOnRefresh: true
+      // markers: true,
+    });
+
+    // Refresh when layout is stable
+    (document.fonts?.ready || Promise.resolve()).then(() => {
+      requestAnimationFrame(() => requestAnimationFrame(() => ScrollTrigger.refresh(true)));
+    });
+    window.addEventListener("resize", () => ScrollTrigger.refresh(true));
+  }
+
+
 
 /* --------------------------------
 //   nfTransition (Concept → Deployment)
@@ -754,7 +884,7 @@ function initEverything() {
 
     // GSAP/ScrollTrigger pieces
     initAboutTextFill();
-    initValuesPinnedScroll();
+    initValuesStackedCards();
     initNFTransition();
     initUnderlineReveals();
     initParallaxCards();
