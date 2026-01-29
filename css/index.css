@@ -161,7 +161,7 @@ body.nf-loading {
 /* Title is now ABOVE both panels, and will blend with whatever is behind it */
 .nf-intro__title {
     position: absolute;
-    top: clamp(5rem, 4vh, 8vw);
+    top: clamp(7rem, 4vh, 8vw);
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
@@ -395,7 +395,7 @@ body.nf-loading {
     justify-content: center;
     align-self: center;
     overflow: hidden;
-    margin-top: 10%;
+    margin-top: 0;
     z-index: 1;
     will-change: width, height, transform;
 }
@@ -637,17 +637,29 @@ body.nf-loading {
     }
 }
 
-.scroll div span,
-.scroll2 div span {
+.scroll div span {
     display: inline-flex;
-    padding: 3rem;
+    padding: 2rem;
     margin: 5px 5px;
     border-radius: 1rem;
-    font-size: 24px;
-    letter-spacing: 0.3em;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
     text-transform: uppercase;
     color: #ffffff;
-    background-color: #464646;
+    border: .5px solid #343434;
+    transition: 0.5s;
+}
+
+.scroll2 div span {
+    display: inline-flex;
+    padding: 2rem 3rem;
+    margin: 5px 5px;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    border: .5px solid #343434;
     transition: 0.5s;
 }
 
@@ -694,7 +706,7 @@ body.nf-loading {
 }
 
 .values-title {
-    font-family: "inter", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 400;
     max-width: 75%;
     color: #ffffff;
@@ -775,10 +787,10 @@ body.nf-loading {
     left: 0;
     right: 0;
     transform: none;
-    background-color: #111111;
-    border: 1px solid #3a3a3a;
+    background-color: #0f0e0f;
+    border-top: 0.5px solid #3a3a3a;
+    border-right: 0.5px solid #3a3a3a;
     border-radius: 18px;
-    backdrop-filter: blur(12px);
     will-change: transform, opacity;
 }
 
@@ -1631,6 +1643,33 @@ body.nf-loading {
     }
 }
 
+.concept-deploy {
+    margin: 30px 5%;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.concept-deploy .text-left p,
+.concept-deploy .text-right p {
+    font-size: 1.75rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
+
+
+@media (max-width: 480px) {
+    .concept-deploy .text-left p,
+    .concept-deploy .text-right p {
+    font-size: 1.25rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
+}
+
+
 #scroll-container2 {
     margin-bottom: 0;
     padding-bottom: 5px;
@@ -1709,7 +1748,7 @@ body.nf-loading {
 @media (max-width: 480px) {
 
     #scroll-container2 {
-        margin-top: 30px;
+        margin-top: 60px;
     }
     .wrapper-titles {
         margin-top: 60px;

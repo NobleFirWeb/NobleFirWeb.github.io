@@ -661,7 +661,7 @@ function initHeroVideoExpand() {
         trigger: media,
         start: "top 85%",
         endTrigger: section,
-        end: "top top",
+        end: "top 15%",
         scrub: 1,
         invalidateOnRefresh: true,
         onRefreshInit: () => {
