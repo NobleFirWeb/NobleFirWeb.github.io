@@ -496,17 +496,18 @@ body::after {
 .navbar .logo-name h3 {
     font-family: "Inter", sans-serif;
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     line-height: 1;
     color: #ffffff;
     mix-blend-mode: difference;
 }
 
 .navbar .logo-name h3 span {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
     font-size: 1.5rem;
-    line-height: 0.5;
+    letter-spacing: -0.05em;
+    line-height: 0.25;
     color: #ffffff;
     mix-blend-mode: difference;
 }
