@@ -156,32 +156,53 @@
   // ----------------------------
   // NEW HERO (N | VIDEO | F)
   // ----------------------------
-  function initHeroNFVideo() {
+function initHeroNFVideo() {
   if (typeof gsap === "undefined") return;
 
   const hero = document.querySelector("#hero");
   if (!hero) return;
 
   const container = hero.querySelector(".hero-container");
+  const row = hero.querySelector(".hero-row");
   const wrap = hero.querySelector(".video-wrap");
   const left = hero.querySelector(".left-char");
   const right = hero.querySelector(".right-char");
-  if (!container || !wrap || !left || !right) return;
+  const subline = hero.querySelector(".hero-subline[data-reveal='lines']");
+
+  if (!container || !row || !wrap || !left || !right) return;
 
   // Clean up old hero triggers/tweens (safe for re-init)
   if (typeof ScrollTrigger !== "undefined") {
     ScrollTrigger.getAll().forEach((st) => {
       const t = st.vars?.trigger;
-      if (t === hero || t === container || t === wrap) st.kill();
+      if (t === hero || t === container || t === wrap || t === row) st.kill();
     });
   }
-  gsap.killTweensOf([wrap, left, right, "body"]);
+  gsap.killTweensOf([wrap, left, right, row, "body"]);
 
   const targetW = () => Math.round(Math.min(900, window.innerWidth * 0.9));
 
-  // Start states: NF hidden, video hidden/collapsed
+  // Start states
   gsap.set([left, right], { autoAlpha: 0, willChange: "transform, opacity" });
   gsap.set(wrap, { autoAlpha: 0, width: 0, willChange: "width, opacity" });
+  gsap.set(row, { yPercent: 0, willChange: "transform" });
+
+  // Prepare subline to be hidden until we reveal it
+  if (subline) {
+    gsap.set(subline, { opacity: 1 }); // keep element available for SplitText
+    // If SplitText is available, pre-split and set hidden line state now (prevents flash)
+    if (typeof SplitText !== "undefined") {
+      if (subline.dataset.nfHeroSubSplit !== "1") {
+        SplitText.create(subline, { type: "lines", mask: "lines", linesClass: "nf-hero-subline" });
+        subline.dataset.nfHeroSubSplit = "1";
+      }
+      const lines = subline.querySelectorAll(".nf-hero-subline");
+      if (lines.length) gsap.set(lines, { yPercent: 110, opacity: 0 });
+    } else {
+      // fallback: just hide the whole line until we show it
+      gsap.set(subline, { autoAlpha: 0 });
+    }
+  }
 
   // Timeline that will play WHEN you scroll into hero
   const tl = gsap.timeline({ paused: true });
@@ -216,7 +237,7 @@
       ease: "expo.out"
     }, ">-0.25")
 
-    // Optional: push letters outward during expansion (keep/remove as you want)
+    // Push letters outward
     .to(left, {
       xPercent: -20,
       duration: 0.8,
@@ -226,20 +247,52 @@
       xPercent: 20,
       duration: 0.8,
       ease: "back.out(1.4)"
-    }, "<");
+    }, "<")
+
+    // NEW: Once fully expanded, lift the whole row 5%
+    .to(row, {
+      yPercent: -10,
+      duration: 0.55,
+      ease: "power2.out"
+    }, ">")
+
+    // NEW: after 0.5s, reveal the subline using data-reveal=lines style
+    .add(() => {
+      if (!subline) return;
+
+      // SplitText line reveal if available
+      if (typeof gsap !== "undefined" && typeof SplitText !== "undefined") {
+        const lines = subline.querySelectorAll(".nf-hero-subline");
+        if (!lines.length) {
+          // If for some reason it didn't split earlier, do it now
+          SplitText.create(subline, { type: "lines", mask: "lines", linesClass: "nf-hero-subline" });
+        }
+        const finalLines = subline.querySelectorAll(".nf-hero-subline");
+        gsap.to(finalLines, {
+          yPercent: 0,
+          opacity: 1,
+          duration: 0.75,
+          stagger: 0.12,
+          ease: "osmo-ease",
+          overwrite: true
+        });
+      } else {
+        // fallback reveal
+        gsap.to(subline, { autoAlpha: 1, duration: 0.4, ease: "power1.out" });
+      }
+    }, ">+0.5");
 
   // Play timeline when hero scrolls into view
   if (typeof ScrollTrigger !== "undefined") {
     ScrollTrigger.create({
       trigger: hero,
-      start: "top top",  // hero enters viewport
+      start: "top top",
       once: true,
-      delay: 1.1,
       onEnter: () => tl.play(0),
       invalidateOnRefresh: true
     });
 
-    // Pin hero + scrub background while hero is active (your original intent)
+    // Your pinned hero behavior
     gsap.to("body", {
       backgroundColor: "#0f0e0f",
       ease: "none",
@@ -257,6 +310,44 @@
   // Keep responsive
   window.addEventListener("resize", () => {
     if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh(true);
+  });
+}
+
+  /* --------------------------------
+  //   Hero Video Scroll Grow
+  --------------------------------- */
+function initHeroVideoExpand() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+  const wrapper = document.querySelector("#heroVideoWrapper");
+  if (!wrapper) return;
+
+  // Kill previous triggers if re-init
+  ScrollTrigger.getAll().forEach(st => {
+    if (st.trigger === wrapper) st.kill();
+  });
+
+  // Initial state: tiny + slightly lower
+  gsap.set(wrapper, {
+    scale: 0.02,
+    y: 80,
+    transformOrigin: "center center",
+    willChange: "transform"
+  });
+
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: wrapper,
+      start: "top bottom",
+      end: "top +=75%",
+      scrub: 1,
+      // markers: true,
+    }
+  })
+  .to(wrapper, {
+    scale: 1,
+    y: 0,
+    ease: "none"
   });
 }
 
@@ -928,6 +1019,7 @@
 
       // ✅ NEW HERO (replaces old hero title reveal functionality)
       initHeroNFVideo();
+      initHeroVideoExpand();
 
       // GSAP/ScrollTrigger pieces
       initAboutTextFill();
