@@ -386,10 +386,11 @@ body.nf-loading {
 
 .hero-video-wrapper {
     position: relative;
-    width: 75%;
-    min-width: 75%;
-    max-width: 75%;
+    width: 90%;
+    min-width: 90%;
+    max-width: 90%;
     height: auto;
+    max-height: 85vh;
     aspect-ratio: 16 / 9;
     margin: 0 auto;
     justify-content: center;
@@ -771,27 +772,105 @@ body.nf-loading {
 
 .values-content .value-item {
     list-style: none;
-    width: 100%;
-    max-width: 50vw;
-    min-height: 40vh;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 24px;
-    padding: 20px 60px;
-    opacity: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    transform: none;
-    background-color: #0f0e0f;
-    border-top: 0.5px solid #3a3a3a;
-    border-right: 0.5px solid #3a3a3a;
-    border-radius: 18px;
-    will-change: transform, opacity;
+  width: 100%;
+  max-width: 50vw;
+  min-height: 40vh;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+
+  padding: 20px 60px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  border-radius: 24px;
+
+  /* KEY: base fill blocks cards behind it */
+  background: rgba(10, 10, 10, 0.88);
+
+  /* nice “glass” separation (optional but looks sick) */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  /* stacking sanity */
+  isolation: isolate;
+  overflow: hidden;
+
+  will-change: transform;
+    --bg-x: 30%;
+    --bg-y: 30%;
+}
+
+.values-content .value-item::after {
+    content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+
+background: radial-gradient(
+  circle at var(--bg-x) var(--bg-y),
+  rgba(255, 255, 255, 0.55),
+  transparent 55%
+);
+
+
+  opacity: 0.9;
+  mix-blend-mode: screen;
+  will-change: opacity;
+}
+
+.values-content .value-item::before {
+    content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  pointer-events: none;
+
+  z-index: 1; /* ABOVE glow */
+
+  background: radial-gradient(
+    transparent,
+    transparent,
+    rgba(255, 255, 255, 0.7),
+    transparent,
+    transparent
+  );
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: pulse 14s linear infinite;
+  will-change: background-position;
+}
+
+.values-content .value-item > * {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes pulse {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
 }
 
 .values-content .value-item:last-child {
@@ -912,7 +991,7 @@ body.nf-loading {
     min-height: 25vh;
     height: auto;
     padding: 10px 30px;
-}
+    }
 }
 
 /* =========================

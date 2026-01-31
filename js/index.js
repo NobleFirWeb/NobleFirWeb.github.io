@@ -450,6 +450,11 @@ function initHeroVideoExpand() {
 
     const lastItem = items[items.length - 1];
 
+    const cards = list ? gsap.utils.toArray(list.querySelectorAll(".value-item")) : [];
+
+
+
+
     // Kill old triggers for this section if you hot-reload / re-init
     ScrollTrigger.getAll().forEach((st) => {
       if (st?.vars?.trigger === section || st?.vars?.trigger === weBelieve) st.kill();
@@ -484,21 +489,25 @@ function initHeroVideoExpand() {
 
     // REVEAL each item when its center reaches the weBelieve center line
     items.forEach((item) => {
-      gsap.to(item, {
-        opacity: 1,
-        x: 0,
-        duration: 0.8,          // swift
-        ease: "power2.out",       // smooth
-        overwrite: "auto",
-        scrollTrigger: {
-          trigger: item,
-          start: () => `top ${believeCenterY()}px`,
-          toggleActions: "play none none none",
-          invalidateOnRefresh: true,
-          // markers: true,
-        }
-      });
-    });
+  // reveal on scroll
+  gsap.to(item, {
+    opacity: 1,
+    x: 0,
+    duration: 0.8,
+    ease: "power2.out",
+    overwrite: "auto",
+    scrollTrigger: {
+      trigger: item,
+      start: () => `top ${believeCenterY()}px`,
+      toggleActions: "play none none none",
+      invalidateOnRefresh: true
+    }
+  });
+});
+
+
+
+  
 
     // Extra refresh hooks (your file already refreshes a lot, but this makes this section bulletproof)
     NF.afterFonts().then(NF.afterPaint).then(() => ScrollTrigger.refresh(true));
@@ -574,6 +583,19 @@ function initHeroVideoExpand() {
         yPercent: 0
       });
     });
+
+    // --- Glow animation (continuous, per-card) ---
+    cards.forEach((card, i) => {
+      gsap.to(card, {
+        "--bg-x": i % 2 ? "80%" : "20%",
+        "--bg-y": i % 2 ? "25%" : "85%",
+        duration: 7 + i * 0.6,
+        repeat: -1,
+        yoyo: true,
+        ease: "none",
+      });
+    });
+
 
     // Start all cards below the stage
     gsap.set(cards, { autoAlpha: 1, y: window.innerHeight });

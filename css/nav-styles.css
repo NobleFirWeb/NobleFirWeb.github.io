@@ -580,6 +580,10 @@ Toggle button
     height: 40px;
 }
 
+.navigation>button:hover {
+    cursor: pointer;
+}
+
 
 
 /* svg path transitions inside button */
