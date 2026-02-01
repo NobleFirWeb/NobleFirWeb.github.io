@@ -376,7 +376,7 @@ body.nf-loading {
     font-size: clamp(2rem, 2.2vw, 10vw);
     line-height: 1;
     text-align: center;
-    max-width: min(900px, 100vw);
+    max-width: min(90vw, 100vw);
     opacity: 1;
     text-transform: uppercase;
     will-change: opacity, transform;
@@ -2418,7 +2418,10 @@ background: radial-gradient(
 }
 
 .hero-container { gap: 12px; }
-  .hero-subline { font-size: 4.2vw; }
+  .hero-subline { 
+    font-size: 4.2vw;
+    margin-top: 40px;
+ }
 
 
 
@@ -2475,6 +2478,9 @@ background: radial-gradient(
     .values-header-text p,
     .values-header-text2 p {
         font-size: 1rem;
+    }
+    .values-content .value-item p {
+        text-align: center;
     }
 
 
