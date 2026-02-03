@@ -723,7 +723,7 @@ function initHeroVideoExpand() {
   }
 
   /* --------------------------------
-  //   Underline reveal (values + services)
+  //   Underline reveal (Services)
   --------------------------------- */
   function initUnderlineReveals() {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
@@ -753,6 +753,153 @@ function initHeroVideoExpand() {
 
     nfUnderlineReveal({ listSelector: ".nf-services-list", itemSelector: ".nf-service", start: "bottom bottom" });
   }
+
+
+  /* --------------------------------
+   Services hover (desktop only)
+--------------------------------- */
+function initServicesHover() {
+  const panel = document.querySelector(".nf-services-panel");
+  const list = document.querySelector(".nf-services-list");
+  const links = panel ? Array.from(panel.querySelectorAll(".nf-service-link")) : [];
+  if (!panel || !list || !links.length) return;
+
+  // Desktop-only gating
+  const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+  if (!mq.matches) return;
+
+  // Respect reduced motion (optional, but good practice)
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (reduce.matches) return;
+
+  // Inject background container if not present
+  let bg = panel.querySelector(".nf-services-bg");
+  if (!bg) {
+    bg = document.createElement("div");
+    bg.className = "nf-services-bg";
+    bg.setAttribute("aria-hidden", "true");
+    // Insert as first child so it sits behind content
+    panel.insertBefore(bg, panel.firstChild);
+  }
+
+  // Map each service to a placeholder image
+  // (Swap these paths later with your real assets)
+  const serviceBgMap = {
+    "web-design": "./img/web-design.jpg",
+    "custom-development": "./img/web-dev.jpg",
+    "ecommerce": "./img/ecommerce2.jpg",
+    "managed-services": "./img/managed-services.jpg"
+  };
+
+  // Helper to get key from href="#something"
+  const getKeyFromLink = (a) => {
+    const href = a.getAttribute("href") || "";
+    const hash = href.startsWith("#") ? href.slice(1) : "";
+    return hash || null;
+  };
+
+  // Build layers once
+  const layersByKey = new Map();
+
+  // Only create layers for keys that exist in markup (so it stays robust)
+  links.forEach((a) => {
+    const key = getKeyFromLink(a);
+    if (!key || layersByKey.has(key)) return;
+
+    const layer = document.createElement("div");
+    layer.className = "nf-services-bg__layer";
+    layer.dataset.key = key;
+
+    const img = serviceBgMap[key] || "../img/placeholder-services-generic.jpg";
+    layer.style.backgroundImage = `url("${img}")`;
+
+    bg.appendChild(layer);
+    layersByKey.set(key, layer);
+  });
+
+  // Title flip: wrap each .nf-service-title into 2 stacked identical lines
+  links.forEach((a) => {
+    const title = a.querySelector(".nf-service-title");
+    if (!title) return;
+
+    // prevent double-wrapping
+    if (title.querySelector(".nf-title-flip")) return;
+
+    const text = title.textContent.trim();
+    title.textContent = "";
+
+    const flip = document.createElement("span");
+    flip.className = "nf-title-flip";
+
+    const line1 = document.createElement("span");
+    line1.className = "nf-title-flip__line";
+    line1.textContent = text;
+
+    const line2 = document.createElement("span");
+    line2.className = "nf-title-flip__line";
+    line2.textContent = text;
+
+    flip.appendChild(line1);
+    flip.appendChild(line2);
+    title.appendChild(flip);
+  });
+
+  let activeKey = null;
+  let activeLI = null;
+
+  const setActive = (key, li) => {
+    if (!key) return;
+
+    // panel hover mode on
+    panel.classList.add("is-hovering");
+
+    // set active LI
+    if (activeLI && activeLI !== li) activeLI.classList.remove("is-active");
+    activeLI = li;
+    if (activeLI) activeLI.classList.add("is-active");
+
+    // swap background layer
+    if (activeKey && activeKey !== key) {
+      const prev = layersByKey.get(activeKey);
+      if (prev) prev.classList.remove("is-active");
+    }
+    activeKey = key;
+
+    const next = layersByKey.get(key);
+    if (next) next.classList.add("is-active");
+  };
+
+  const clearActive = () => {
+    panel.classList.remove("is-hovering");
+
+    if (activeLI) activeLI.classList.remove("is-active");
+    activeLI = null;
+
+    if (activeKey) {
+      const layer = layersByKey.get(activeKey);
+      if (layer) layer.classList.remove("is-active");
+    }
+    activeKey = null;
+  };
+
+  // Hover handlers
+  links.forEach((a) => {
+    const li = a.closest(".nf-service");
+    const key = getKeyFromLink(a);
+
+    a.addEventListener("mouseenter", () => setActive(key, li));
+    a.addEventListener("focusin", () => setActive(key, li)); // keyboard-friendly
+  });
+
+  // When cursor leaves the list/panel area, reverse everything
+  list.addEventListener("mouseleave", clearActive);
+
+  // If focus leaves the whole panel, clear state (keyboard)
+  panel.addEventListener("focusout", (e) => {
+    if (!panel.contains(e.relatedTarget)) clearActive();
+  });
+}
+
 
   /* --------------------------------
   //   Parallax images
@@ -1048,6 +1195,7 @@ function initHeroVideoExpand() {
       initValuesStackedCards();
       initNFTransition();
       initUnderlineReveals();
+      initServicesHover();
       initParallaxCards();
       initTextWidgetScroll();
 
