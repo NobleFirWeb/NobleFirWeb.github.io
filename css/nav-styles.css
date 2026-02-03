@@ -569,10 +569,12 @@ Toggle button
     mix-blend-mode: difference;
     transition: none;
     position: absolute;
-    top: 15px;
-    right: 1.5rem;
+    top: 0;
+    right: 0;
     z-index: 2;
     margin-top: 15px;
+    padding: 10px;
+    transform: border .2s ease;
 }
 
 .navigation>button>svg {
@@ -582,6 +584,8 @@ Toggle button
 
 .navigation>button:hover {
     cursor: pointer;
+    border: 1px solid #fff;
+    border-radius: 50%;
 }
 
 
@@ -598,19 +602,6 @@ Toggle button
 .navigation>button:focus-visible {
     outline: 1ppx dashed var(--_nav-btn-clr);
     outline-offset: 4px;
-}
-
-/* label text via pseudo element */
-.navigation>button::before {
-    content: var(--nav-btn-label, "Menu");
-    transition: color var(--_nav-btn-transition-duration) ease-in-out;
-    font-size: 1rem;
-}
-
-/* expanded state */
-.navigation>button[aria-expanded="true"] {
-    --nav-btn-label: "Close";
-    --_nav-btn-clr: var(--_nav-btn-clr-expanded);
 }
 
 /* hamburger-to-X animation */
@@ -798,10 +789,14 @@ Panel items + animated links
     right: 1rem;
     z-index: 2;
     margin-top: 10px;
+    padding: 0;
 }
 .navigation>button>svg {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
+}
+.navigation>button:hover {
+    border: none;
 }
     .navigation:has([aria-expanded="true"]) {
         --_nav-bg-w: calc(100vw + var(--_nav-panel-border-radius));

@@ -539,7 +539,7 @@ function initHeroVideoExpand() {
     const cardH = () => (cards[0]?.getBoundingClientRect().height || 415);
 
     // top-peek ratio (each stacked card shows ~25% of its height)
-    const peekRatio = 0.25;
+    const peekRatio = 0.27;
     const stackDistance = () => Math.round(cardH() * peekRatio);
 
     // tighter scroll on mobile to avoid massive pin-spacer
@@ -560,7 +560,7 @@ function initHeroVideoExpand() {
     const totalScroll = () => stepScroll() * cards.length + holdScroll();
 
     // 10vh breathing room under pinned header on mobile
-    const mobileGapPx = () => Math.round(window.innerHeight * 0.10);
+    const mobileGapPx = () => Math.round(window.innerHeight * 0.05);
 
     // deck placement:
     // - desktop: your tuned placement (negative top)
