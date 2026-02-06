@@ -728,10 +728,20 @@ body.nf-loading {
 .values-header-text p,
 .values-header-text2 p {
     font-family: "inter", sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--nf-white);
     font-size: 1.25rem;
     line-height: 1;
+}
+
+#text-middle {
+    margin-top: 0;
+}
+
+.values-header-text2 {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
 }
 
 
@@ -774,91 +784,86 @@ body.nf-loading {
 
 .values-content .value-item {
     list-style: none;
-  width: 100%;
-  max-width: 50vw;
-  min-height: 40vh;
-  height: auto;
+    width: 100%;
+    max-width: 40vw;
+    min-height: 40vh;
+    height: auto;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
 
-  padding: 20px 60px;
+    padding: 20px 60px;
 
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 
-  border-radius: 24px;
+    border-radius: 24px;
 
-  /* KEY: base fill blocks cards behind it */
-  background: rgba(10, 10, 10, 0.88);
+    /* KEY: base fill blocks cards behind it */
+    background: rgba(10, 10, 10, 0.88);
 
-  /* nice “glass” separation (optional but looks sick) */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+    /* nice “glass” separation (optional but looks sick) */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 
-  /* stacking sanity */
-  isolation: isolate;
-  overflow: hidden;
+    /* stacking sanity */
+    isolation: isolate;
+    overflow: hidden;
 
-  will-change: transform;
+    will-change: transform;
     --bg-x: 30%;
     --bg-y: 30%;
 }
 
 .values-content .value-item::after {
     content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 0;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 0;
 
-background: radial-gradient(
-  circle at var(--bg-x) var(--bg-y),
-  rgba(255, 255, 255, 0.55),
-  transparent 55%
-);
+    background: radial-gradient(circle at var(--bg-x) var(--bg-y),
+            rgba(255, 255, 255, 0.55),
+            transparent 55%);
 
 
-  opacity: 0.9;
-  mix-blend-mode: screen;
-  will-change: opacity;
+    opacity: 0.9;
+    mix-blend-mode: screen;
+    will-change: opacity;
 }
 
 .values-content .value-item::before {
     content: "";
-  position: absolute;
-  inset: 0;
-  padding: 1.5px;
-  border-radius: inherit;
-  pointer-events: none;
-
-  z-index: 1; /* ABOVE glow */
-
-  background: radial-gradient(
-    transparent,
-    transparent,
-    rgba(255, 255, 255, 0.7),
-    transparent,
-    transparent
-  );
-  background-size: 300% 300%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: pulse 14s linear infinite;
-  will-change: background-position;
+    position: absolute;
+    inset: 0;
+    padding: 1.5px;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    /* ABOVE glow */
+    background: radial-gradient(transparent,
+            transparent,
+            rgba(255, 255, 255, 0.7),
+            transparent,
+            transparent);
+    background-size: 300% 300%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: pulse 14s linear infinite;
+    will-change: background-position;
 }
 
-.values-content .value-item > * {
-  position: relative;
-  z-index: 2;
+.values-content .value-item>* {
+    position: relative;
+    z-index: 2;
 }
 
 @keyframes pulse {
@@ -880,7 +885,7 @@ background: radial-gradient(
 }
 
 .values-content .value-item h2 {
-    font-size: clamp(2rem, 4vw, 4vw);
+    font-size: clamp(2rem, 3vw, 3vw);
     margin: 0 0 12px 0;
     text-transform: uppercase;
     font-family: "Inter", sans-serif;
@@ -891,7 +896,7 @@ background: radial-gradient(
 .values-content .value-item p {
     max-width: 42ch;
     margin: 0 0 16px 0;
-    opacity: 0.85;
+    opacity: 1;
     font-family: "Inter", sans-serif;
     font-weight: 400;
     font-size: 1.125rem;
@@ -902,7 +907,7 @@ background: radial-gradient(
     opacity: 0.95;
     font-family: "Inter", sans-serif;
     font-weight: 600;
-    font-size: 4vw;
+    font-size: 3vw;
     text-transform: uppercase;
     letter-spacing: -0.04em;
 }
@@ -1302,6 +1307,8 @@ background: radial-gradient(
     max-width: 760px;
     line-height: 1;
     color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 400;
 }
 
 /* Big list */
@@ -1365,14 +1372,15 @@ background: radial-gradient(
 }
 
 .nf-service-desc {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;                 /* spacing between the 3 lines */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    /* spacing between the 3 lines */
 }
 
 .nf-desc-item {
-  display: block;
-  line-height: 1.1;
+    display: block;
+    line-height: 1.1;
 }
 
 /* Hover behavior */
