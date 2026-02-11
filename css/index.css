@@ -1006,12 +1006,14 @@ body.nf-loading {
    ========================= */
 .nf-transition {
     position: relative;
-    width: 100vw;
+    width: 100%;
+    height: auto;
+    min-height: 50vh;
     background: #0f0e0f;
     color: #ffffff;
     padding: 0;
     overflow: hidden;
-    margin-bottom: 160px;
+    padding-bottom: 240px;
 }
 
 .nf-transition__inner {
@@ -1028,22 +1030,17 @@ body.nf-loading {
 
 /* Headline */
 .nf-transition__headline {
-    position: absolute;
-    top: 10%;
-    left: 0;
-    right: 0;
-    width: 100%;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 15px 25px;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: -0.02em;
     font-family: "Inter", sans-serif;
     line-height: 1;
     font-size: 3rem;
-    white-space: nowrap;
-    justify-content: flex-start;
+    width: 100%;
+    z-index: 10;
 }
 
 /* Keep FROM as the anchor */
@@ -1052,34 +1049,30 @@ body.nf-loading {
 /* TO starts “normal”, then gets pushed by GSAP */
 .nf-to { flex: 0 0 auto; }
 
-.nf-transition-connector {
-    display: inline-flex;
+.nf-connector-wrapper {
+    display: flex;
     align-items: center;
-    gap: 0;
-    flex: 0 0 auto;
-    color: rgba(255, 255, 255, 0.9);
+    flex-grow: 0;
 }
 
-.nf-transition-line {
-    height: 2px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.85);
-    transform: none;
-    opacity: 0.95;
+.nf-connector-line {
+    height: 4px; /* Matches the bold feel of the new arrow */
+    width: 40px;  /* Starting width */
+    background-color: #fff;
+    border-radius: 2px;
 }
 
-.nf-transition-arrow {
-    display: block;
-    width: 44px;
-    height: 12px;
-    flex: 0 0 auto;
-    margin-left: -10px;
+.nf-arrow-head {
+    width: 2rem;  /* Adjust size as needed */
+    height: 2rem;
+    margin-left: -10px; /* Overlap the line slightly for a seamless joint */
+    flex-shrink: 0;
 }
 
 /* Media container (745x480) */
 .nf-transition__media {
     position: absolute;
-    top: 28%;
+    top: 60%;
     left: 0;
     transform: translateX(0);
     width: 745px;
@@ -1099,6 +1092,7 @@ body.nf-loading {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     opacity: 0;
 }
 
@@ -1148,7 +1142,7 @@ body.nf-loading {
 
 @media (max-width: 480px) {
     .nf-transition {
-        padding-top: 10vh;
+        padding-top: 2.5vh;
         margin-bottom: 5vh;
     }
     .nf-transition__inner {
@@ -1160,7 +1154,7 @@ body.nf-loading {
         align-items: center;
         /* ✅ centers connector + text vertically */
         gap: 10px 12px;
-        font-size: clamp(1.55rem, 6.8vw, 2.1rem);
+        font-size: clamp(1.55rem, 4vw, 2.1rem);
         line-height: 1.05;
     }
 
@@ -1169,37 +1163,19 @@ body.nf-loading {
         display: block;
     }
 
-    .nf-transition-connector {
+    .nf-connector-line {
         flex: 1 1 auto;
         /* ✅ can grow/shrink */
         min-width: 5px;
         /* ✅ smaller starting length */
-        max-width: 25vw;
-        width: 5px;
+        max-width: 32.5svw;
+        height: 4px;
         /* ✅ initial width (JS will animate width) */
         display: inline-flex;
         align-items: center;
         /* ✅ arrow centered to line/text */
         gap: 0;
     }
-
-    .nf-transition-line {
-        width: 100%;
-        height: 2px;
-        transform: none;
-    }
-
-    /* Make arrow smaller on mobile so it never eats the row */
-    .nf-transition-arrow {
-        width: 28px;
-        height: 12px;
-        flex: 0 0 auto;
-        display: block;
-    }
-
-    .nf-transition-arrow path {
-    vector-effect: non-scaling-stroke;
-}
 
     /* Keep TO on the same second line */
     .nf-to {
@@ -1209,8 +1185,8 @@ body.nf-loading {
 
 
     .nf-transition__media {
-        top: 30%;
-        margin: 0 auto;
+        top: 60%;
+        margin: 40px auto 0;
         width: 90vw;
         height: calc(90vw * 0.64);
     }
@@ -1228,6 +1204,7 @@ body.nf-loading {
     background: #0f0e0f;
     font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     isolation: isolate;
+    margin-top: 5%;
 }
 
 /* Background image + dark/faint filter */
@@ -1279,6 +1256,7 @@ body.nf-loading {
     width: 100%;
     padding: 30px 0;
     display: flex;
+    margin: auto auto;
 }
 
 .nf-services-header,

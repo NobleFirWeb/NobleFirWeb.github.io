@@ -4,6 +4,7 @@
 /* --------------------------------
 //   GSAP + Plugins (already loaded in <head>)
 --------------------------------- */
+
 (() => {
   if (window.__NF_SITE_INIT__) return;
   window.__NF_SITE_INIT__ = true;
@@ -509,7 +510,6 @@ function initHeroVideoExpand() {
 
   
 
-    // Extra refresh hooks (your file already refreshes a lot, but this makes this section bulletproof)
     NF.afterFonts().then(NF.afterPaint).then(() => ScrollTrigger.refresh(true));
   }
 
@@ -557,7 +557,7 @@ function initHeroVideoExpand() {
         : Math.max(window.innerHeight * 0.85, 650);
     };
 
-    const totalScroll = () => stepScroll() * cards.length + holdScroll();
+    const totalScroll = () => stepScroll() * (cards.length - 1) + holdScroll();
 
     // 10vh breathing room under pinned header on mobile
     const mobileGapPx = () => Math.round(window.innerHeight * 0.05);
@@ -660,67 +660,43 @@ function initHeroVideoExpand() {
   //   nfTransition (Concept → Deployment)
   --------------------------------- */
   function initNFTransition() {
-    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
-
     const section = document.querySelector("#nfTransition");
-    if (!section) return;
+    const line = document.querySelector(".nf-connector-line");
+    const media = document.querySelector(".nf-transition__media");
+    const frames = gsap.utils.toArray(".nf-frame");
 
-    const inner = section.querySelector(".nf-transition__inner");
-    const connector = section.querySelector(".nf-transition-connector");
-    const media = section.querySelector(".nf-transition__media");
-    const frames = Array.from(section.querySelectorAll(".nf-frame"));
-    if (!inner || !connector || !media || frames.length === 0) return;
+    if (!section || !line || !media) return;
 
-    const setFrame = (index) => frames.forEach((img, i) => img.classList.toggle("is-active", i === index));
-    setFrame(0);
-    let lastIndex = 0;
 
-    const START_CONNECTOR_W = 64;
+    
+
 
     const tl = gsap.timeline({
-      defaults: { ease: "none" },
-      scrollTrigger: {
-        trigger: media,
-        start: "top 85%",
-        endTrigger: section,
-        end: "top 15%",
-        scrub: 1,
-        invalidateOnRefresh: true,
-        onRefreshInit: () => {
-          gsap.set([media, connector], { clearProps: "transform,width" });
-          gsap.set(media, { x: 0 });
-          gsap.set(connector, { width: START_CONNECTOR_W });
-          setFrame(0);
-          lastIndex = 0;
-        },
-        onUpdate: (self) => {
-          const index = Math.min(4, Math.max(0, Math.round(self.progress * 4)));
-          if (index !== lastIndex) {
-            lastIndex = index;
-            setFrame(index);
-          }
+        scrollTrigger: {
+            trigger: media,
+            start: "top 85%",
+            end: "top 30%",
+            scrub: 1,
+            onUpdate: (self) => {
+                // Smoothly swap images based on scroll progress
+                const index = Math.round(self.progress * (frames.length - 1));
+                frames.forEach((img, i) => img.classList.toggle("is-active", i === index));
+            }
         }
-      }
     });
 
-    tl.to(connector, {
-      width: () => {
-        const innerW = inner.clientWidth || window.innerWidth;
-        if (window.matchMedia("(max-width: 480px)").matches) return Math.max(34, innerW * 0.50);
-        return Math.max(64, innerW * 0.62);
-      }
+    // Animate the line width
+    tl.to(line, {
+        width: "50vw", // Grows to 60% of the viewport width
+        ease: "none"
     }, 0);
 
+    // Animate the media card X position to match the "push"
     tl.to(media, {
-      x: () => {
-        if (window.matchMedia("(max-width: 480px)").matches) return 0;
-        const innerW = inner.clientWidth || window.innerWidth;
-        return innerW * 0.62;
-      }
+        x: "55vw", // Keep this slightly less than the line width for better framing
+        ease: "none"
     }, 0);
-
-    window.addEventListener("resize", () => ScrollTrigger.refresh());
-  }
+}
 
   /* --------------------------------
   //   Underline reveal (Services)
@@ -1082,6 +1058,44 @@ function initServicesHover() {
     });
   }
 
+  (function initLogoVisibility() {
+  if (typeof ScrollTrigger === "undefined") return;
+
+  const intro = document.querySelector("#nf-intro");
+  const hero = document.querySelector("#hero");
+  const navBtn = document.getElementById("btn-nav-toggle");
+  if (!intro || !hero) return;
+
+
+  const blackPanel = document.querySelector(".nf-intro__panel--black");
+  if (blackPanel) {
+  ScrollTrigger.create({
+    trigger: blackPanel,
+    start: "top top+=1",
+    onEnter: () => document.body.classList.add("nf-logo-visible"),
+    onLeaveBack: () => document.body.classList.remove("nf-logo-visible")
+  });
+}
+
+  // Hide logo whenever menu opens, regardless of scroll position
+  const setNavOpenClass = () => {
+    const isOpen = navBtn?.getAttribute("aria-expanded") === "true";
+    document.body.classList.toggle("nf-nav-open", !!isOpen);
+  };
+
+  // Run once, and whenever the button is clicked
+  setNavOpenClass();
+  navBtn?.addEventListener("click", () => {
+    // Wait a tick so aria-expanded updates first
+    requestAnimationFrame(setNavOpenClass);
+  });
+
+  // Also update if you toggle nav in other ways
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") requestAnimationFrame(setNavOpenClass);
+  });
+})();
+
   /* --------------------------------
      DOMContentLoaded observers (rise/slide/sticky) – your original
   --------------------------------- */
@@ -1186,7 +1200,7 @@ function initServicesHover() {
       initNavToggle();
       initObserversAndUI();
 
-      // ✅ NEW HERO (replaces old hero title reveal functionality)
+      // HERO 
       initHeroNFVideo();
       initHeroVideoExpand();
 

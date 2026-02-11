@@ -489,27 +489,23 @@ body::after {
 }
 
 .navbar .logo-name {
-    text-decoration: none;
     align-self: start;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 220ms ease, transform 220ms ease;
 }
 
-.navbar .logo-name h3 {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-size: 1.75rem;
-    line-height: 1;
-    color: #ffffff;
-    mix-blend-mode: difference;
+body.nf-logo-visible .navbar .logo-name {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
-.navbar .logo-name h3 span {
-    font-family: "Space Grotesk", sans-serif;
-    font-weight: 500;
-    font-size: 1.5rem;
-    letter-spacing: -0.05em;
-    line-height: 0.25;
-    color: #ffffff;
-    mix-blend-mode: difference;
+body.nf-nav-open .navbar .logo-name {
+    opacity: 0 !important;
+    transform: translateY(-8px) !important;
+    pointer-events: none !important;
 }
 
 
