@@ -14,6 +14,7 @@
     try {
       if (typeof ScrollTrigger !== "undefined") gsap.registerPlugin(ScrollTrigger);
       if (typeof SplitText !== "undefined") gsap.registerPlugin(SplitText);
+      if (typeof Flip !== "undefined") gsap.registerPlugin(Flip);
       if (typeof CustomEase !== "undefined") gsap.registerPlugin(CustomEase);
 
       if (typeof CustomEase !== "undefined") {
@@ -434,225 +435,150 @@ function initHeroVideoExpand() {
   }
 
   /* --------------------------------
-  VALUES (Pinned left + scrolling right list)
+  VALUES (Pinned left + Value Tabs)
   --------------------------------- */
-  function initValuesPinnedScroll() {
-    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+function initHeaderPin() {
+    const weBelieve = document.querySelector('.we-believe');
+    const tabContainerTop = document.querySelector('.tab-container-top');
+    
+    if (!weBelieve || !tabContainerTop) return;
 
-    const section = document.querySelector(".values-content");
-    if (!section) return;
-
-    const weBelieve = section.querySelector(".we-believe");
-    const list = section.querySelector(".values-list") || section.querySelector("ul");
-    if (!weBelieve || !list) return;
-
-    const items = gsap.utils.toArray(list.querySelectorAll("li"));
-    if (!items.length) return;
-
-    const lastItem = items[items.length - 1];
-
-    const cards = list ? gsap.utils.toArray(list.querySelectorAll(".value-item")) : [];
-
-
-
-
-    // Kill old triggers for this section if you hot-reload / re-init
-    ScrollTrigger.getAll().forEach((st) => {
-      if (st?.vars?.trigger === section || st?.vars?.trigger === weBelieve) st.kill();
-    });
-
-    // Force a reliable start state (in case CSS didn’t apply or got overwritten)
-    gsap.set(items, { opacity: 0, x: 80, willChange: "transform, opacity" });
-
-    // Where is the "center line" of the pinned weBelieve element in the viewport?
-    // Pinned at "top center" => its TOP sits at 50vh, so its CENTER is 50vh + half its height.
-    const believeCenterY = () => {
-      const h = weBelieve.offsetHeight || weBelieve.getBoundingClientRect().height || 0;
-      return Math.round(window.innerHeight * 0.5 + h * 0.5);
-    };
-
-    // PIN weBelieve
     ScrollTrigger.create({
-      trigger: weBelieve,
-      start: "top center",
-
-      // END when the center of the last <li> reaches the center of the pinned weBelieve
-      endTrigger: lastItem,
-      end: () => `center ${believeCenterY()}px`,
-
-      pin: weBelieve,
-      pinSpacing: false,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-
-      // markers: true,
+        trigger: ".values-content", // Use the parent section as the trigger area
+        start: "top 50%", // Pin when the top of the section hits 50% of the viewport
+        endTrigger: ".tab-container-top", // Use the navigation as the ending anchor
+        
+        // The "end" logic: Unpin when the bottom of '.we-believe' 
+        // reaches 20px above the top of '.tab-container-top'
+        end: () => `top+=${weBelieve.offsetHeight + 200}px`,
+        
+        pin: weBelieve,
+        pinSpacing: false, // Prevents GSAP from pushing the content down
+        // markers: true, // Uncomment this line to see the start/end points while testing
+        invalidateOnRefresh: true // Recalculates positions if the window is resized
     });
-
-    // REVEAL each item when its center reaches the weBelieve center line
-    items.forEach((item) => {
-  // reveal on scroll
-  gsap.to(item, {
-    opacity: 1,
-    x: 0,
-    duration: 0.8,
-    ease: "power2.out",
-    overwrite: "auto",
-    scrollTrigger: {
-      trigger: item,
-      start: () => `top ${believeCenterY()}px`,
-      toggleActions: "play none none none",
-      invalidateOnRefresh: true
-    }
-  });
-});
+}
 
 
-
+function initFlipButtons() {
+  let wrappers = document.querySelectorAll('[data-flip-button="wrap"]');
   
+  wrappers.forEach((wrapper) => {
+    let buttons = wrapper.querySelectorAll('[data-flip-button="button"]');
+    let bg = wrapper.querySelector('[data-flip-button="bg"]');
+    
+    buttons.forEach(function (button) {
+      // Handle mouse enter
+      button.addEventListener("mouseenter", function () {
+        const state = Flip.getState(bg);
+        this.appendChild(bg);
+        Flip.from(state, {
+          duration: 0.4,
+        });
+      });
 
-    NF.afterFonts().then(NF.afterPaint).then(() => ScrollTrigger.refresh(true));
-  }
+      // Handle focus for keyboard navigation
+      button.addEventListener("focus", function () {
+        const state = Flip.getState(bg);
+        this.appendChild(bg);
+        Flip.from(state, {
+          duration: 0.4,
+        });
+      });
 
-  function initValuesStackedCards() {
-    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+      // Handle mouse leave
+      button.addEventListener("mouseleave", function () {
+        const state = Flip.getState(bg);
+        const activeLink = wrapper.querySelector(".active");
+        activeLink.appendChild(bg);
+        Flip.from(state, {
+          duration: 0.4,
+        });
+      });
 
-    const section = document.querySelector("#valuesPin") || document.querySelector(".values-content");
-    if (!section) return;
-
-    const weBelieve = section.querySelector(".we-believe");
-    const list = section.querySelector(".values-list");
-    const cards = list ? gsap.utils.toArray(list.querySelectorAll(".value-item")) : [];
-    if (!weBelieve || !list || !cards.length) return;
-
-    const mm = window.matchMedia("(max-width: 768px)");
-    const isMobile = mm.matches;
-
-    // Kill ONLY triggers tied to this widget
-    ScrollTrigger.getAll().forEach((st) => {
-      const t = st.vars?.trigger;
-      if (t === section || t === weBelieve || t === list || cards.includes(t)) st.kill();
-    });
-
-    // Ensure list is a stage
-    gsap.set(list, { position: "relative", height: "100vh", overflow: "visible" });
-
-    const cardH = () => (cards[0]?.getBoundingClientRect().height || 415);
-
-    // top-peek ratio (each stacked card shows ~25% of its height)
-    const peekRatio = 0.27;
-    const stackDistance = () => Math.round(cardH() * peekRatio);
-
-    // tighter scroll on mobile to avoid massive pin-spacer
-    const stepScroll = () => {
-      const h = cardH();
-      return isMobile
-        ? Math.max(window.innerHeight * 0.38, h * 0.55)
-        : Math.max(window.innerHeight * 0.65, h * 0.95);
-    };
-
-    // cap end whitespace on mobile (≈ 30vh max)
-    const holdScroll = () => {
-      return isMobile
-        ? Math.round(window.innerHeight * 0.30)
-        : Math.max(window.innerHeight * 0.85, 650);
-    };
-
-    const totalScroll = () => stepScroll() * (cards.length - 1) + holdScroll();
-
-    // 10vh breathing room under pinned header on mobile
-    const mobileGapPx = () => Math.round(window.innerHeight * 0.05);
-
-    // deck placement:
-    // - desktop: your tuned placement (negative top)
-    // - mobile: place deck BELOW pinned header + gap
-    const deckTop = () => {
-      if (!isMobile) return Math.round(window.innerHeight * -0.4);
-      const headerH = weBelieve.getBoundingClientRect().height || 0;
-      return Math.round(headerH + mobileGapPx());
-    };
-
-    // Layer + baseline placement
-    cards.forEach((card, i) => {
-      gsap.set(card, {
-        position: "absolute",
-        top: deckTop(),
-        left: 0,
-        right: 0,
-        margin: "0 auto",
-        zIndex: i + 1,
-        yPercent: 0
+      // Handle blur to reset background for keyboard navigation
+      button.addEventListener("blur", function () {
+        const state = Flip.getState(bg);
+        const activeLink = wrapper.querySelector(".active");
+        activeLink.appendChild(bg);
+        Flip.from(state, {
+          duration: 0.4,
+        });
       });
     });
+  });
+}
 
-    // --- Glow animation (continuous, per-card) ---
-    cards.forEach((card, i) => {
-      gsap.to(card, {
-        "--bg-x": i % 2 ? "80%" : "20%",
-        "--bg-y": i % 2 ? "25%" : "85%",
-        duration: 7 + i * 0.6,
-        repeat: -1,
-        yoyo: true,
-        ease: "none",
-      });
-    });
+function initTabSystem(){
+  let wrappers = document.querySelectorAll('[data-tabs="wrapper"]')
+  
+  wrappers.forEach((wrapper) => {
+    let nav = wrapper.querySelector('[data-tabs="nav"]')
+    let buttons = nav.querySelectorAll('[data-tabs="button"]')
+    let contentWrap = wrapper.querySelector('[data-tabs="content-wrap"]')
+    let contentItems = contentWrap.querySelectorAll('[data-tabs="content-item"]')
+    let visualWrap = wrapper.querySelector('[data-tabs="visual-wrap"]')
+    let visualItems = visualWrap.querySelectorAll('[data-tabs="visual-item"]')
 
+    let activeButton = buttons[0];
+    let activeContent = contentItems[0];
+    let activeVisual = visualItems[0];
+    let isAnimating = false;
 
-    // Start all cards below the stage
-    gsap.set(cards, { autoAlpha: 1, y: window.innerHeight });
+    function switchTab(index, initial = false) {
+      if (!initial && (isAnimating || buttons[index] === activeButton)) return; // ignore click if the clicked button is already active 
+      isAnimating = true; // keep track of whether or not one is moving, to prevent overlap
 
-    // Main pinned deck timeline (reversible because scrubbed)
-    const deckTL = gsap.timeline({
-      defaults: { ease: "none" },
-      scrollTrigger: {
-        trigger: section,
-        start: isMobile ? "top top+=10%" : "top center", // mobile starts a bit later
-        end: () => `+=${totalScroll()}`,
-        pin: list,
-        pinSpacing: true,
-        scrub: 1,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onRefreshInit: () => {
-          // recalc header height + gap and re-place the deck
-          cards.forEach((card) => gsap.set(card, { top: deckTop() }));
-        }
-        // markers: true,
-      }
-    });
+      const outgoingContent = activeContent;
+      const incomingContent = contentItems[index];
+      const outgoingVisual = activeVisual;
+      const incomingVisual = visualItems[index];
 
-    cards.forEach((card, i) => {
-      const pos = stepScroll() * i;
-      deckTL.to(
-        card,
-        {
-          y: () => i * stackDistance(),
-          duration: stepScroll() * 0.9,
-          ease: "power2.out"
+      let outgoingLines = outgoingContent.querySelectorAll("[data-tabs-fade]") || [];
+      let incomingLines = incomingContent.querySelectorAll("[data-tabs-fade]");
+
+      const timeline = gsap.timeline({
+        defaults:{
+          ease:"power3.inOut"
         },
-        pos
-      );
+        onComplete: () => {
+          if(!initial){
+            outgoingContent && outgoingContent.classList.remove("active");
+            outgoingVisual && outgoingVisual.classList.remove("active");            
+          }
+          activeContent = incomingContent;
+          activeVisual = incomingVisual;
+          isAnimating = false;
+        },
+      });
+
+      incomingContent.classList.add("active");
+      incomingVisual.classList.add("active");
+
+      timeline
+        .to(outgoingLines, { y: "-2em", autoAlpha:0 }, 0)
+        .to(outgoingVisual, { autoAlpha: 0, xPercent: 3 }, 0)
+        .fromTo(incomingLines, { y: "2em", autoAlpha:0 }, { y: "0em", autoAlpha:1, stagger: 0.075 }, 0.4)
+        .fromTo(incomingVisual, { autoAlpha: 0, xPercent: 3 }, { autoAlpha: 1, xPercent: 0 }, "<");
+
+      activeButton && activeButton.classList.remove("active");
+      buttons[index].classList.add("active");
+      activeButton = buttons[index];
+    }
+
+    switchTab(0, true); // on page load
+
+    buttons.forEach((button, i) => {
+      button.addEventListener("click", () => switchTab(i)); 
     });
 
-    // Pin header:
-    // - Desktop: keep your centered pin by pinning from top center
-    // - Mobile: pin it to the TOP (stays in the “red box” at top)
-    ScrollTrigger.create({
-      trigger: section,
-      start: isMobile ? "top top+=10%" : "top center",
-      end: () => `+=${totalScroll()}`,
-      pin: weBelieve,
-      pinSpacing: false,
-      anticipatePin: 1,
-      invalidateOnRefresh: true
-      // markers: true,
-    });
-
-    // Refresh when layout is stable
-    (document.fonts?.ready || Promise.resolve()).then(() => {
-      requestAnimationFrame(() => requestAnimationFrame(() => ScrollTrigger.refresh(true)));
-    });
-    window.addEventListener("resize", () => ScrollTrigger.refresh(true));
-  }
+    contentItems[0].classList.add("active");
+    visualItems[0].classList.add("active");
+    buttons[0].classList.add("active");    
+    
+  })
+  
+}
 
 
 
@@ -1206,7 +1132,9 @@ function initServicesHover() {
 
       // GSAP/ScrollTrigger pieces
       initAboutTextFill();
-      initValuesStackedCards();
+      initHeaderPin();
+      initFlipButtons();
+      initTabSystem();
       initNFTransition();
       initUnderlineReveals();
       initServicesHover();
