@@ -450,7 +450,7 @@ function initHeaderPin() {
         
         // The "end" logic: Unpin when the bottom of '.we-believe' 
         // reaches 20px above the top of '.tab-container-top'
-        end: () => `top+=${weBelieve.offsetHeight + 200}px`,
+        end: () => `top+=${tabContainerTop.offsetHeight + -650}px`,
         
         pin: weBelieve,
         pinSpacing: false, // Prevents GSAP from pushing the content down
@@ -575,7 +575,6 @@ function initTabSystem(){
     contentItems[0].classList.add("active");
     visualItems[0].classList.add("active");
     buttons[0].classList.add("active");    
-    
   })
   
 }
