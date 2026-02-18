@@ -10,7 +10,7 @@
 }
 
 body {
-    width: 100vw;
+    width: 100%;
     height: 100%;
     overflow-x: hidden;
     background-color: #0f0e0f;
@@ -77,7 +77,7 @@ body {
 
   .why-hero{
   position:relative;
-  width:100vw;
+  width:100%;
   height:100vh;
   background:#0f0e0f;
   color:#fff;
@@ -91,7 +91,7 @@ body {
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 3vw; 
+  padding:0 3svw; 
   line-height:1;
   pointer-events:none;
 }
@@ -379,7 +379,7 @@ body {
 }
 
 #mission {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   padding-top: 10%;
 }
@@ -712,7 +712,7 @@ body {
 }
 
 #expertise {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   padding-top: 10%;
 }
@@ -932,7 +932,7 @@ body {
 
 .nf-stats{
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: auto;
   min-height: 60vh;
   background: var(--nf-bg);
@@ -1171,7 +1171,7 @@ body {
 }
 
 #team {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   padding-top: 10%;
 }
@@ -1203,7 +1203,7 @@ body {
 
 /* ===== Review Slider styles ===== */
 .nf-reviews {
-    width: 100vw;
+    width: 100%;
     height: 50vh;
     background: #0f0e0f;
     color: #fff;
@@ -1227,7 +1227,7 @@ body {
 }
 
 .nf-review {
-    width: 100vw;
+    width: 100%;
     height: 50vh;
     display: grid;
     grid-template-columns: 40% 60%;
@@ -1425,7 +1425,7 @@ body {
 
 #vibes {
 
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   padding-top: 10%;
 }
@@ -1466,7 +1466,7 @@ body {
 }
 
 #vibes.vibes{
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     position: relative;
     color: var(--nf-fg);
@@ -2007,153 +2007,6 @@ sl-button::part(label):hover {
   }
 }
 
-
-/*
-#our-process {
-    min-height: 50vh;
-    margin-top: 60px;
-}
-
-.process-header {
-  position: relative;
-  width: 100vw;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 60px 0 60px 0;
-  padding: 0;
-}
-
-.process-header .header-card {
-  background-color: #EDEDED;
-  width: 720px;
-  max-width: 720px;
-  padding: 15px 5%;
-  box-sizing: border-box;
-  margin-top: 0;
-  z-index: 0;
-  position: relative;
-}
-
-.process-title1 {
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  color: #999;
-  margin-top: 60px;
-  margin-left: 5%;
-}
-
-.process-title2 {
-  font-size: 2.625rem;
-  font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 200;
-  color: #000;
-}
-
-#our-process .process-description {
-  font-family: "Inter", sans-serif;
-  font-weight: 300;
-  color: #000;
-  margin-top: 25px;
-  margin-bottom: 5%;
-  max-width: 720px;
-}
-
-.process-container {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding-top: 30px;
-}
-
-.image-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 30px;
-}
-
-.image-container,
-.text-card-wrapper {
-  flex: 1 1 calc(50% - 20px);
-  max-width: calc(50% - 30px);
-}
-
-.image-container img {
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  margin-top: 20px; 
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-}
-
-
-#our-process .image-container h1 {
-  font-size: 2.625rem;
-  font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing: auto;
-  margin-bottom: 15px;
-  color: #000;
-  font-weight: 200;
-}
-
-.text-card-wrapper {
-  display: flex;
-}
-
-.text-card {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-  width: 100%;
-  height: auto;
-  max-height: 100%;
-  padding: 15px;
-  overflow: hidden;
-}
-
-.process-step {
-  margin-bottom: 40px;
-  position: relative;
-  padding-left: 40px;
-}
-
-.step-number {
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 9rem;
-  font-weight: 500;
-  color: #EDEDED;
-  line-height: 1;
-  z-index: 0;
-  transform: translateX(-65px) translateY(-35px);
-}
-
-.step-title {
-  font-size: 24px;
-  font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  color: #000;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.step-text {
-  font-family: "Inter", sans-serif;
-  font-size: 16px;
-  font-weight: 300;
-  color: #000;
-  line-height: 1.4;
-  position: relative;
-  z-index: 1;
-  margin: 0 20px;
-}
-*/
 
 
 #cta {

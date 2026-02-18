@@ -490,9 +490,7 @@ body::after {
 
 .navbar .logo-name {
     align-self: start;
-    opacity: 0;
     transform: translateY(-8px);
-    pointer-events: none;
     transition: opacity 220ms ease, transform 220ms ease;
 }
 
