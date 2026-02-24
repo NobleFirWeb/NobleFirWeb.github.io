@@ -23,6 +23,60 @@ body {
     --nf-red: #ff0000;
 }
 
+/* ==== Intro video ==== */
+.intro-video{
+    min-height: 100vh;
+    height: 140vh;
+    width: 100%;
+    padding-top: 20vh;
+}
+
+
+
+.video-container {
+  max-width: 98%;
+  margin: 0 auto;
+}
+.video-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+}
+
+.video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .intro-video {
+            min-height: 100vh;
+            height: 150vh;
+            width: 100%;
+            padding-top: 5vh;
+        }
+    
+        .video-container {
+            max-width: 98%;
+            margin: 0 auto;
+        }
+    
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .work-grid {
+            padding-top: 70vh;
+        }
+}
+
 /* ===== HERO ===== */
 .work-hero {
     position: relative;
@@ -57,11 +111,7 @@ body {
     display: block;
     width: 100%;
     font-size: clamp(8rem, 46vw, 50vw);
-    background-image: linear-gradient(to bottom,
-        hsla(0, 0%, 100%, 1) 40%, hsla(0, 100%, 50%, 1) 70%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
 }
 
 /* Hero Responsive styles */
@@ -103,6 +153,7 @@ body {
 .work-grid {
     background: var(--nf-bg);
     padding: 50px 0;
+    padding-top: 65vh;
     margin: 0 50px;
 }
 
