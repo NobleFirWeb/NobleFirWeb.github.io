@@ -16,6 +16,20 @@ body {
     background-color: #0f0e0f;
 }
 
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--nf-neutral);
+    border-radius: 4px;
+}
+
 /*-- GSAP Animation Styles --*/
 
 /*--- Text rise: */

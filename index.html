@@ -33,9 +33,26 @@
     <body>
     
     <div id="nf-loader" aria-hidden="true">
-        <div class="nf-loader__scene">
-            <img class="nf-loader__img" src="./img/black-red-bg.jpg" alt="" decoding="async" fetchpriority="high" />
+        <!-- split-exit curtains (fill the screen; slide away on complete) -->
+        <div class="nf-loader__curtain nf-loader__curtain--top"></div>
+        <div class="nf-loader__curtain nf-loader__curtain--bot"></div>
+
+        <!-- centered brand block -->
+        <div class="nf-loader__brand">
+            <p class="nf-loader__initials">
+                <span class="nf-loader__initial-wrap"><span class="nf-loader__initial">N</span></span>
+                <span class="nf-loader__initial-wrap"><span class="nf-loader__initial">F</span></span>
+            </p>
+            <p class="nf-loader__name">Noble Fir Studio</p>
+            <p class="nf-loader__city">Portland, OR</p>
         </div>
+
+        <!-- red progress bar -->
+        <div class="nf-loader__bar">
+            <div class="nf-loader__bar-fill"></div>
+        </div>
+
+        <!-- percent counter -->
         <div class="nf-loader__counter" aria-hidden="true">
             <span id="nf-loader-percent">0</span><span class="nf-loader__pct">%</span>
         </div>
@@ -123,10 +140,7 @@
                 <p class="right-char char">F</p>
             </div>
     
-            <p class="hero-subline" data-reveal="lines">
-                Engineered Digital Experiences.
-                <br/>Built to Scale.
-            </p>
+            <p class="hero-subline" data-reveal="lines">We build digital engines that power growth.<br>Custom design & development &middot; AI integrations &middot; Technical strategy</p>
         </div>
     </section>
     
@@ -156,62 +170,69 @@
             </div>
         </div>
 
+        <!-- Marquee 1 — What we build · How we work -->
         <div class="scroll-container">
-            <div class="scroll" style="--t:60s">
+
+            <!-- Row 1 → left-to-right: services & deliverables -->
+            <div class="scroll" style="--t:52s">
                 <div>
-                    <span>WEB DESIGN</span>
-                    <span>CUSTOM DEVELOPMENT</span>
-                    <span>MEGA MENUS</span>
-                    <span>BRANDING</span>
-                    <span>E-COMMERCE</span>
+                    <span>CUSTOM WEB DESIGN</span>
+                    <span class="nf-tag--accent">CONVERSION-FOCUSED BUILDS</span>
+                    <span>BRAND IDENTITY SYSTEMS</span>
+                    <span>E-COMMERCE SOLUTIONS</span>
+                    <span>WEB APPLICATIONS</span>
+                    <span class="nf-tag--accent">AI INTEGRATIONS</span>
+                    <span>UX / UI DESIGN</span>
+                    <span>HEADLESS CMS</span>
+                    <span>DIGITAL STRATEGY</span>
                     <span>LANDING PAGES</span>
-                    <span>DASHBOARDS</span>
-                    <span>CORPORATE WEBSITES</span>
-                    <span>WEB APPS</span>
-                    <span>INTEGRATIONS</span>
-                    <span>EMAIL SERVICES</span>
-                    <span>HOSTING</span>
-                    <span>FULLY RESPONSIVE</span>
-                    <span>UX/UI</span>
+                    <span>PERFORMANCE OPTIMIZATION</span>
+                    <span>ONGOING SUPPORT</span>
                 </div>
-                <div>
-                    <span>WEB DESIGN</span>
-                    <span>CUSTOM DEVELOPMENT</span>
-                    <span>MEGA MENUS</span>
-                    <span>BRANDING</span>
-                    <span>E-COMMERCE</span>
+                <div aria-hidden="true">
+                    <span>CUSTOM WEB DESIGN</span>
+                    <span class="nf-tag--accent">CONVERSION-FOCUSED BUILDS</span>
+                    <span>BRAND IDENTITY SYSTEMS</span>
+                    <span>E-COMMERCE SOLUTIONS</span>
+                    <span>WEB APPLICATIONS</span>
+                    <span class="nf-tag--accent">AI INTEGRATIONS</span>
+                    <span>UX / UI DESIGN</span>
+                    <span>HEADLESS CMS</span>
+                    <span>DIGITAL STRATEGY</span>
                     <span>LANDING PAGES</span>
-                    <span>DASHBOARDS</span>
-                    <span>CORPORATE WEBSITES</span>
-                    <span>WEB APPS</span>
-                    <span>INTEGRATIONS</span>
-                    <span>EMAIL SERVICES</span>
-                    <span>HOSTING</span>
-                    <span>FULLY RESPONSIVE</span>
-                    <span>UX/UI</span>
+                    <span>PERFORMANCE OPTIMIZATION</span>
+                    <span>ONGOING SUPPORT</span>
                 </div>
             </div>
-            
-            <div class="scroll2" style="--t:38S">
+
+            <!-- Row 2 ← right-to-left: how we work -->
+            <div class="scroll2" style="--t:38s">
                 <div>
-                    <span>Rest API</span>
-                    <span>Docker</span>
-                    <span>Linux</span>
-                    <span>SEO</span>
-                    <span>Agile</span>
-                    <span>Jira</span>
-                    <span>SDLC</span>
+                    <span class="nf-tag--accent">PIXEL-PERFECT EXECUTION</span>
+                    <span>MOBILE-FIRST BUILDS</span>
+                    <span>SEO-STRUCTURED CODE</span>
+                    <span>TRANSPARENT PROCESS</span>
+                    <span>HUMAN-CENTERED DESIGN</span>
+                    <span>SCALABLE ARCHITECTURE</span>
+                    <span>FAST DELIVERY</span>
+                    <span>POST-LAUNCH SUPPORT</span>
+                    <span>STRATEGY-LED DEVELOPMENT</span>
+                    <span>CLEAN CODE STANDARDS</span>
                 </div>
-                <div>
-                    <span>Rest API</span>
-                    <span>Docker</span>
-                    <span>Linux</span>
-                    <span>SEO</span>
-                    <span>Agile</span>
-                    <span>Jira</span>
-                    <span>SDLC</span>
+                <div aria-hidden="true">
+                    <span class="nf-tag--accent">PIXEL-PERFECT EXECUTION</span>
+                    <span>MOBILE-FIRST BUILDS</span>
+                    <span>SEO-STRUCTURED CODE</span>
+                    <span>TRANSPARENT PROCESS</span>
+                    <span>HUMAN-CENTERED DESIGN</span>
+                    <span>SCALABLE ARCHITECTURE</span>
+                    <span>FAST DELIVERY</span>
+                    <span>POST-LAUNCH SUPPORT</span>
+                    <span>STRATEGY-LED DEVELOPMENT</span>
+                    <span>CLEAN CODE STANDARDS</span>
                 </div>
             </div>
+
         </div>
         
         <div class="about-header">
@@ -257,24 +278,24 @@
                                     <div class="tab-container-bottom">
                                         <div data-tabs="content-wrap" class="tab-content-wrap">
                                             <div data-tabs="content-item" class="tab-content-item active">
-                                                <h2 data-tabs-fade="" class="tab-content__heading">Refined Precision</h2>
-                                                <p data-tabs-fade="" class="content-p opacity--80">Not just a metric, but the heartbeat of our process. We approch every line of code and every pixel with intent, ensuring final products are both robust and beautiful.</p>
+                                                <h2 data-tabs-fade="" class="tab-content__heading">Measurable Results</h2>
+                                                <p data-tabs-fade="" class="content-p opacity--100">When quality is non-negotiable, your site doesn't just look polished — it performs. Clients who work with us see faster load times, stronger SEO rankings, and higher conversion rates because every build is engineered to work as beautifully as it looks.</p>
                                             </div>
                                             <div data-tabs="content-item" class="tab-content-item">
-                                                <h2 data-tabs-fade="" class="tab-content__heading">Uncharted Symmetry</h2>
-                                                <p data-tabs-fade="" class="content-p opacity--80">True innovation happens at the intersection of logic and imagination. Our creative approach focuses on breaking traditional design patterns to build unique, memorable experiences. By prioritizing aesthetic quality alongside functional depth, we ensure your brand doesn't just exist in the digital space—it leads it with distinction.</p>
+                                                <h2 data-tabs-fade="" class="tab-content__heading">A Brand That Leads</h2>
+                                                <p data-tabs-fade="" class="content-p opacity--100">In a space flooded with template sites and look-alike brands, a distinct creative identity is a real competitive edge. Our clients don't just look professional — they look like the obvious choice, attracting better leads and commanding stronger positioning in their market.</p>
                                             </div>
                                             <div data-tabs="content-item" class="tab-content-item">
-                                                <h2 data-tabs-fade="" class="tab-content__heading">Anchored Integrity</h2>
-                                                <p data-tabs-fade="" class="content-p opacity--80">Trust is built through consistent, high-quality execution. We take full ownership of our results, standing behind every solution we implement. Our commitment to accountability means we are dedicated to transparency and excellence at every stage, ensuring our clients feel supported and confident that their vision is in the most capable hands.</p>
+                                                <h2 data-tabs-fade="" class="tab-content__heading">No Surprises, Ever</h2>
+                                                <p data-tabs-fade="" class="content-p opacity--100">Clear timelines, honest communication, and work that ships when we say it will. Our clients consistently tell us the difference wasn't just the final product — it was how seamless the process felt compared to every agency they'd worked with before.</p>
                                             </div>
                                             <div data-tabs="content-item" class="tab-content-item">
-                                                <h2 data-tabs-fade="" class="tab-content__heading">Shared Resonance</h2>
-                                                <p data-tabs-fade="" class="content-p opacity--80">Great work is never a solo endeavor. We align our expertise with your ambition to create a powerful synergy that drives growth. By fostering an environment of open communication and mutual respect, we ensure that every project benefits from a diverse range of perspectives, resulting in a superior product that reflects our collective pursuit of perfection.</p>
+                                                <h2 data-tabs-fade="" class="tab-content__heading">Your Vision, Amplified</h2>
+                                                <p data-tabs-fade="" class="content-p opacity--100">You know your business. We know the web. When we build together, your domain expertise meets our technical precision — producing a product that genuinely reflects how your customers think, what they need, and what drives them to act.</p>
                                             </div>
                                             <div data-tabs="content-item" class="tab-content-item">
-                                                <h2 data-tabs-fade="" class="tab-content__heading">Human Centricity</h2>
-                                                <p data-tabs-fade="" class="content-p opacity--80">At the core of every digital experience is a human connection. We design with your specific goals and your audience's needs at the forefront. Our ultimate measure of quality is your satisfaction and the success of your users. We are here to empower your mission, providing the tools and craftsmanship necessary to help you win in an ever-evolving digital landscape.</p>
+                                                <h2 data-tabs-fade="" class="tab-content__heading">Built to Scale With You</h2>
+                                                <p data-tabs-fade="" class="content-p opacity--100">We don't build sites for where you are today — we build for where you're going. Every decision, from architecture to content strategy, is made with your growth in mind so your digital platform becomes a long-term asset, not something you'll need to rebuild in 18 months.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -283,20 +304,25 @@
                         </div>
                         <div class="tab-layout-col">
                             <div data-tabs="visual-wrap" class="tab-visual-wrap">
+                                <!-- Quality → clean conversion / analytics feel -->
                                 <div data-tabs="visual-item" class="tab-visual-item active">
-                                    <img src="https://cdn.prod.website-files.com/67726722d415dc401ae23cf6/677289e14dd4dbca1d8e5930_philip-oroni-IANBrm46bF0-unsplash%20(2).avif" loading="lazy" class="tab-image">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80&auto=format&fit=crop" loading="lazy" class="tab-image" alt="Clean analytics dashboard">
                                 </div>
+                                <!-- Creativity → bold design / branding work -->
                                 <div data-tabs="visual-item" class="tab-visual-item">
-                                    <img src="https://cdn.prod.website-files.com/67726722d415dc401ae23cf6/677289e19e4d013c6a4c5a1b_philip-oroni-Zx_G3LpNnV4-unsplash%20(1).avif" loading="lazy" class="tab-image">
+                                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=80&auto=format&fit=crop" loading="lazy" class="tab-image" alt="Creative design workspace">
                                 </div>
+                                <!-- Accountability → organised planning / no surprises -->
                                 <div data-tabs="visual-item" class="tab-visual-item">
-                                    <img src="https://cdn.prod.website-files.com/67726722d415dc401ae23cf6/677289e1c88b5b4c14d1e6fd_philip-oroni-h9N7bm-HRCo-unsplash.avif" loading="lazy" class="tab-image">
+                                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80&auto=format&fit=crop" loading="lazy" class="tab-image" alt="Professional planning and strategy session">
                                 </div>
+                                <!-- Collaboration → people building together -->
                                 <div data-tabs="visual-item" class="tab-visual-item">
-                                    <img src="https://cdn.prod.website-files.com/67726722d415dc401ae23cf6/677289e19e4d013c6a4c5a1b_philip-oroni-Zx_G3LpNnV4-unsplash%20(1).avif" loading="lazy" class="tab-image">
+                                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80&auto=format&fit=crop" loading="lazy" class="tab-image" alt="Team collaborating around a laptop">
                                 </div>
+                                <!-- You → person with their own device / personalised -->
                                 <div data-tabs="visual-item" class="tab-visual-item">
-                                    <img src="https://cdn.prod.website-files.com/67726722d415dc401ae23cf6/677289e1c88b5b4c14d1e6fd_philip-oroni-h9N7bm-HRCo-unsplash.avif" loading="lazy" class="tab-image">
+                                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=900&q=80&auto=format&fit=crop" loading="lazy" class="tab-image" alt="Person working with a laptop and notebook">
                                 </div>
                             </div>
                         </div>
@@ -337,7 +363,7 @@
             <p class="nf-services-kicker indent-first-word" data-reveal="lines"><a class="first-word">NOBLE</a> FIR IS A CREATIVE DEVELOPMENT STUDIO AND TECHNICAL PARTNER FOCUSED ON DESIGNING, BUILDING, AND SCALING MODERN DIGITAL EXPERIENCES.</p>
         
             <p class="nf-services-sub">
-            Our work is organized across four core services that can be engaged independently or combined into a unified delivery, depending on project goals, stage of execution, and the evolving needs of each partner.
+            Our work is organized across five core services that can be engaged independently or combined into a unified delivery, depending on project goals, stage of execution, and the evolving needs of each partner.
             </p>
         </div>
         <div class="nf-services-inner">
@@ -384,7 +410,17 @@
                                 <span class="nf-desc-item">Ongoing updates</span>
                                 <span class="nf-desc-item">Performance & security</span>
                                 <span class="nf-desc-item">Content support</span>
+                            </span>
+                        </a>
+                    </li>
 
+                    <li class="nf-service">
+                        <a class="nf-service-link" href="#ai-integrations">
+                            <span class="nf-service-title" aria-label="AI Integrations">AI INTEGRATIONS</span>
+                            <span class="nf-service-desc">
+                                <span class="nf-desc-item">Intelligent automation</span>
+                                <span class="nf-desc-item">LLM &amp; API connectivity</span>
+                                <span class="nf-desc-item">Workflow optimization</span>
                             </span>
                         </a>
                     </li>
@@ -525,58 +561,58 @@
     
 
     <div class="scroll-container" id="scroll-container2">
-            <div class="scroll2" style="--t:60s">
+            <!-- Row 1 ← right-to-left: client outcomes -->
+            <div class="scroll2" style="--t:55s">
                 <div>
-                    <span>WEB DESIGN</span>
-                    <span>CUSTOM DEVELOPMENT</span>
-                    <span>MEGA MENUS</span>
-                    <span>BRANDING</span>
-                    <span>E-COMMERCE</span>
-                    <span>LANDING PAGES</span>
-                    <span>DASHBOARDS</span>
-                    <span>CORPORATE WEBSITES</span>
-                    <span>WEB APPS</span>
-                    <span>INTEGRATIONS</span>
-                    <span>EMAIL SERVICES</span>
-                    <span>HOSTING</span>
-                    <span>FULLY RESPONSIVE</span>
-                    <span>UX/UI</span>
+                    <span>FASTER PAGE SPEEDS</span>
+                    <span class="nf-tag--accent">HIGHER CONVERSIONS</span>
+                    <span>MORE QUALIFIED LEADS</span>
+                    <span>STRONGER BRAND PRESENCE</span>
+                    <span>BETTER SEO RANKINGS</span>
+                    <span>REDUCED BOUNCE RATES</span>
+                    <span class="nf-tag--accent">INCREASED REVENUE</span>
+                    <span>SEAMLESS USER EXPERIENCE</span>
+                    <span>LOWER COST-PER-LEAD</span>
+                    <span>SCALABLE GROWTH</span>
                 </div>
-                <div>
-                    <span>WEB DESIGN</span>
-                    <span>CUSTOM DEVELOPMENT</span>
-                    <span>MEGA MENUS</span>
-                    <span>BRANDING</span>
-                    <span>E-COMMERCE</span>
-                    <span>LANDING PAGES</span>
-                    <span>DASHBOARDS</span>
-                    <span>CORPORATE WEBSITES</span>
-                    <span>WEB APPS</span>
-                    <span>INTEGRATIONS</span>
-                    <span>EMAIL SERVICES</span>
-                    <span>HOSTING</span>
-                    <span>FULLY RESPONSIVE</span>
-                    <span>UX/UI</span>
+                <div aria-hidden="true">
+                    <span>FASTER PAGE SPEEDS</span>
+                    <span class="nf-tag--accent">HIGHER CONVERSIONS</span>
+                    <span>MORE QUALIFIED LEADS</span>
+                    <span>STRONGER BRAND PRESENCE</span>
+                    <span>BETTER SEO RANKINGS</span>
+                    <span>REDUCED BOUNCE RATES</span>
+                    <span class="nf-tag--accent">INCREASED REVENUE</span>
+                    <span>SEAMLESS USER EXPERIENCE</span>
+                    <span>LOWER COST-PER-LEAD</span>
+                    <span>SCALABLE GROWTH</span>
                 </div>
             </div>
-            <div class="scroll" style="--t:38S">
+            <!-- Row 2 → left-to-right: expertise domains -->
+            <div class="scroll" style="--t:42s">
                 <div>
-                    <span>Rest API</span>
-                    <span>Docker</span>
-                    <span>Linux</span>
-                    <span>SEO</span>
-                    <span>Agile</span>
-                    <span>Jira</span>
-                    <span>SDLC</span>
+                    <span>CREATIVE DIRECTION</span>
+                    <span class="nf-tag--accent">FRONT-END ENGINEERING</span>
+                    <span>CMS ARCHITECTURE</span>
+                    <span>API INTEGRATIONS</span>
+                    <span>ANALYTICS &amp; TRACKING</span>
+                    <span>INTERACTION DESIGN</span>
+                    <span>ACCESSIBILITY</span>
+                    <span>SECURITY BEST PRACTICES</span>
+                    <span>PERFORMANCE TESTING</span>
+                    <span>GROWTH-READY SYSTEMS</span>
                 </div>
-                <div>
-                    <span>Rest API</span>
-                    <span>Docker</span>
-                    <span>Linux</span>
-                    <span>SEO</span>
-                    <span>Agile</span>
-                    <span>Jira</span>
-                    <span>SDLC</span>
+                <div aria-hidden="true">
+                    <span>CREATIVE DIRECTION</span>
+                    <span class="nf-tag--accent">FRONT-END ENGINEERING</span>
+                    <span>CMS ARCHITECTURE</span>
+                    <span>API INTEGRATIONS</span>
+                    <span>ANALYTICS &amp; TRACKING</span>
+                    <span>INTERACTION DESIGN</span>
+                    <span>ACCESSIBILITY</span>
+                    <span>SECURITY BEST PRACTICES</span>
+                    <span>PERFORMANCE TESTING</span>
+                    <span>GROWTH-READY SYSTEMS</span>
                 </div>
             </div>
         </div>

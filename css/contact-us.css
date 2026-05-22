@@ -21,6 +21,20 @@ body {
     overflow-x: hidden;
 }
 
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--nf-neutral);
+    border-radius: 4px;
+}
+
 /* ===== Text Spinner ===== */
 .text-spinner {
     position: fixed;

@@ -1,4 +1,4 @@
-// site-scripts.js | Shared JavaScript for index.html and about.html
+﻿// site-scripts.js | Shared JavaScript for index.html and about.html
 // STABLE BUILD: guarded modules + single init pipeline + intro gate integrated
 
 /* --------------------------------
@@ -52,17 +52,15 @@
   });
 
   /* --------------------------------
-  //   Loader (INDEX ONLY) – your original logic preserved
+  //   Loader (INDEX ONLY) â€“ progressive curtain-split loader
   --------------------------------- */
   (function nfIndexLoader() {
     if (!NF.isIndex()) return;
 
     const loader = document.getElementById("nf-loader");
-    const img = loader?.querySelector(".nf-loader__img");
-    const page = document.getElementById("nf-page");
+    const page   = document.getElementById("nf-page");
 
-    // If loader markup missing, just signal ready
-    if (!loader || !img || !page || typeof gsap === "undefined") {
+    if (!loader || !page || typeof gsap === "undefined") {
       document.dispatchEvent(new Event("nf:loaderComplete"));
       return;
     }
@@ -70,48 +68,103 @@
     document.body.classList.add("nf-loading");
 
     const run = () => {
-      const percentEl = document.getElementById("nf-loader-percent");
-      const counterEl = document.querySelector(".nf-loader__counter");
+      const percentEl  = document.getElementById("nf-loader-percent");
+      const counterEl  = loader.querySelector(".nf-loader__counter");
+      const barWrap    = loader.querySelector(".nf-loader__bar");
+      const barFill    = loader.querySelector(".nf-loader__bar-fill");
+      const initials   = loader.querySelectorAll(".nf-loader__initial");
+      const nameEl     = loader.querySelector(".nf-loader__name");
+      const cityEl     = loader.querySelector(".nf-loader__city");
+      const curtainTop = loader.querySelector(".nf-loader__curtain--top");
+      const curtainBot = loader.querySelector(".nf-loader__curtain--bot");
       const prog = { v: 0 };
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
-
-      gsap.set(page, { autoAlpha: 0 });
-      gsap.set(loader, { autoAlpha: 1 });
-      gsap.set(img, { scale: 1, filter: "blur(0px)", autoAlpha: 1 });
-
-      if (counterEl) gsap.set(counterEl, { autoAlpha: 1 });
+      // â”€â”€ Initial states â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      gsap.set(page,     { autoAlpha: 0 });
+      gsap.set(loader,   { autoAlpha: 1 });
+      gsap.set(initials, { y: "101%" });
+      gsap.set([nameEl, cityEl], { autoAlpha: 0, y: 10 });
+      if (counterEl) gsap.set(counterEl, { autoAlpha: 0 });
+      if (barWrap)   gsap.set(barWrap,   { autoAlpha: 0 });
+      if (barFill)   gsap.set(barFill,   { width: "0%" });
       if (percentEl) percentEl.textContent = "0";
 
-      tl.to({}, { duration: 1 });
+      const tl = gsap.timeline();
 
-      tl.addLabel("walk");
+      // â”€â”€ Phase 1: Brand slide-up reveal (0 â†’ ~0.9s) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // Letters masked inside overflow:hidden wrappers â€” slide up into view
+      tl.to(initials, {
+        y: "0%",
+        duration: 0.7,
+        ease: "power4.out",
+        stagger: 0.08
+      }, 0);
 
-      tl.to(img, { duration: 3, scale: 10, z: 500, ease: "power4.in" }, "walk");
+      tl.to(nameEl, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power3.out"
+      }, 0.42);
 
-      if (percentEl) {
-        tl.to(
-          prog,
-          {
-            duration: 3.35,
-            v: 100,
-            ease: "none",
-            onUpdate: () => {
-              percentEl.textContent = Math.round(prog.v);
-            }
-          },
-          "walk"
-        );
+      tl.to(cityEl, {
+        autoAlpha: 1,
+        duration: 0.45,
+        ease: "power2.out"
+      }, 0.62);
+
+      if (barWrap)   tl.to(barWrap,   { autoAlpha: 1, duration: 0.3, ease: "power2.out" }, 0.7);
+      if (counterEl) tl.to(counterEl, { autoAlpha: 1, duration: 0.3, ease: "power2.out" }, 0.7);
+
+      // â”€â”€ Phase 2: Red bar fills + counter counts (0.8s â†’ 3.3s) â”€â”€
+      const LOAD_START = 0.8;
+      const LOAD_DUR   = 2.5;
+
+      if (barFill) {
+        tl.to(barFill, {
+          width: "100%",
+          duration: LOAD_DUR,
+          ease: "power1.inOut"
+        }, LOAD_START);
       }
 
-      tl.to(img, { duration: 0.5, autoAlpha: 0, filter: "blur(0px)", ease: "power2.out" }, "walk+=3");
+      if (percentEl) {
+        tl.to(prog, {
+          v: 100,
+          duration: LOAD_DUR,
+          ease: "power1.inOut",
+          onUpdate: () => { percentEl.textContent = Math.round(prog.v); }
+        }, LOAD_START);
+      }
 
-      tl.to({}, { duration: 1 });
+      // â”€â”€ Phase 3: Brand exits upward (3.1s â†’ 3.55s) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      const EXIT_START = LOAD_START + LOAD_DUR - 0.2; // 3.1
 
-      if (counterEl) tl.to(counterEl, { autoAlpha: 0, duration: 0.5 }, ">");
-      tl.to(loader, { autoAlpha: 0, duration: 0.35 }, "<");
-      tl.to(page, { autoAlpha: 1, duration: 1.25 }, "<+0.1");
+      tl.to(nameEl, { autoAlpha: 0, y: -8,  duration: 0.32, ease: "power2.in" }, EXIT_START);
+      tl.to(cityEl, { autoAlpha: 0,          duration: 0.28, ease: "power2.in" }, EXIT_START);
+      // Letters slide back up through the overflow mask (reversed stagger)
+      tl.to(initials, {
+        y: "-101%",
+        duration: 0.42,
+        ease: "power3.in",
+        stagger: { each: 0.06, from: "end" }
+      }, EXIT_START + 0.06);
+      if (counterEl) tl.to(counterEl, { autoAlpha: 0, duration: 0.28, ease: "power2.in" }, EXIT_START);
+      if (barWrap)   tl.to(barWrap,   { autoAlpha: 0, duration: 0.28, ease: "power2.in" }, EXIT_START + 0.1);
 
+      // â”€â”€ Phase 4: Curtain split reveals page (3.55s â†’ 4.2s) â”€â”€â”€â”€â”€
+      const CURTAIN_START = EXIT_START + 0.45; // 3.55
+
+      if (curtainTop && curtainBot) {
+        tl.to(curtainTop, { y: "-100%", duration: 0.62, ease: "power3.inOut" }, CURTAIN_START);
+        tl.to(curtainBot, { y: "100%",  duration: 0.62, ease: "power3.inOut" }, CURTAIN_START);
+      } else {
+        tl.to(loader, { autoAlpha: 0, duration: 0.5 }, CURTAIN_START);
+      }
+
+      tl.to(page, { autoAlpha: 1, duration: 0.5, ease: "power2.out" }, CURTAIN_START + 0.18);
+
+      // â”€â”€ Cleanup â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       tl.add(() => {
         loader.style.display = "none";
         document.body.classList.remove("nf-loading");
@@ -120,20 +173,7 @@
       });
     };
 
-    if (img.complete) run();
-    else {
-      img.addEventListener("load", run, { once: true });
-      img.addEventListener(
-        "error",
-        () => {
-          loader.style.display = "none";
-          gsap.set(page, { autoAlpha: 1 });
-          document.body.classList.remove("nf-loading");
-          document.dispatchEvent(new Event("nf:loaderComplete"));
-        },
-        { once: true }
-      );
-    }
+    run();
   })();
 
 
@@ -440,22 +480,37 @@ function initHeroVideoExpand() {
 function initHeaderPin() {
     const weBelieve = document.querySelector('.we-believe');
     const tabContainerTop = document.querySelector('.tab-container-top');
-    
-    if (!weBelieve || !tabContainerTop) return;
 
-    ScrollTrigger.create({
-        trigger: ".values-content", // Use the parent section as the trigger area
-        start: "top 50%", // Pin when the top of the section hits 50% of the viewport
-        endTrigger: ".tab-container-top", // Use the navigation as the ending anchor
-        
-        // The "end" logic: Unpin when the bottom of '.we-believe' 
-        // reaches 20px above the top of '.tab-container-top'
-        end: () => `top+=${tabContainerTop.offsetHeight + -650}px`,
-        
-        pin: weBelieve,
-        pinSpacing: false, // Prevents GSAP from pushing the content down
-        // markers: true, // Uncomment this line to see the start/end points while testing
-        invalidateOnRefresh: true // Recalculates positions if the window is resized
+    if (!weBelieve || !tabContainerTop) return;
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    // Pin only on viewports wide enough to use the two-column desktop layout.
+    // On tablet/mobile (â‰¤768px) the layout stacks vertically and the pin is
+    // not needed â€” the tab-layout margin-top is also reduced via CSS there.
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 769px)", () => {
+        const st = ScrollTrigger.create({
+            trigger: ".values-content",
+            start: "top 50%",
+            endTrigger: ".tab-container-top",
+            // Dynamic end: release the pin when .tab-container-top's top edge
+            // reaches the bottom of the pinned .we-believe + a gap.
+            // .we-believe is frozen at ~50 % of the viewport height (matching
+            // the "top 50%" start), so we use that as the reference rather than
+            // a hard-coded pixel offset that breaks on tall / short viewports.
+            end: () => {
+                const pinnedTop = window.innerHeight * 0.5;
+                const gap = 28;
+                return `top ${pinnedTop + weBelieve.offsetHeight + gap}px`;
+            },
+            pin: weBelieve,
+            pinSpacing: false,
+            invalidateOnRefresh: true
+        });
+
+        // Clean up when matchMedia exits this breakpoint (e.g. window resize)
+        return () => { st.kill(); };
     });
 }
 
@@ -582,7 +637,7 @@ function initTabSystem(){
 
 
   /* --------------------------------
-  //   nfTransition (Concept → Deployment)
+  //   nfTransition (Concept â†’ Deployment)
   --------------------------------- */
   function initNFTransition() {
     const section = document.querySelector("#nfTransition");
@@ -591,37 +646,54 @@ function initTabSystem(){
     const frames = gsap.utils.toArray(".nf-frame");
 
     if (!section || !line || !media) return;
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
+    // Shared image-cycling callback â€” runs on all viewport sizes
+    const cycleFrames = (self) => {
+        const index = Math.round(self.progress * (frames.length - 1));
+        frames.forEach((img, i) => img.classList.toggle("is-active", i === index));
+    };
 
-    
+    const mm = gsap.matchMedia();
 
-
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: media,
-            start: "top 85%",
-            end: "top 30%",
-            scrub: 1,
-            onUpdate: (self) => {
-                // Smoothly swap images based on scroll progress
-                const index = Math.round(self.progress * (frames.length - 1));
-                frames.forEach((img, i) => img.classList.toggle("is-active", i === index));
+    // â”€â”€ Desktop (â‰¥769px): slide line + media card together â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    mm.add("(min-width: 769px)", () => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: media,
+                start: "top 85%",
+                end: "top 30%",
+                scrub: 1,
+                onUpdate: cycleFrames
             }
-        }
+        });
+        tl.to(line, { width: "50vw", ease: "none" }, 0);
+        tl.to(media, { x: "55vw", ease: "none" }, 0);
+        return () => { tl.kill(); };
     });
 
-    // Animate the line width
-    tl.to(line, {
-        width: "50vw", // Grows to 60% of the viewport width
-        ease: "none"
-    }, 0);
+    // â”€â”€ Mobile (â‰¤768px): slide line + text only â€” media stays fixed â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    mm.add("(max-width: 768px)", () => {
+        // Ensure no residual x offset from a previous desktop context
+        gsap.set(media, { x: 0 });
 
-    // Animate the media card X position to match the "push"
-    tl.to(media, {
-        x: "55vw", // Keep this slightly less than the line width for better framing
-        ease: "none"
-    }, 0);
-}
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: media,
+                start: "top 85%",
+                end: "top 30%",
+                scrub: 1,
+                onUpdate: cycleFrames
+            }
+        });
+        tl.to(line, { width: "50vw", ease: "none" }, 0);
+        // media.x intentionally omitted â€” images still cycle via onUpdate above
+        return () => {
+            tl.kill();
+            gsap.set(media, { clearProps: "x" });
+        };
+    });
+  }
 
   /* --------------------------------
   //   Underline reveal (Services)
@@ -689,7 +761,8 @@ function initServicesHover() {
     "web-design": "./img/web-design.jpg",
     "custom-development": "./img/web-dev.jpg",
     "ecommerce": "./img/ecommerce2.jpg",
-    "managed-services": "./img/managed-services.jpg"
+    "managed-services": "./img/managed-services.jpg",
+    "ai-integrations": "./img/ai-integrations.jpg"
   };
 
   // Helper to get key from href="#something"
@@ -1022,7 +1095,7 @@ function initServicesHover() {
 })();
 
   /* --------------------------------
-     DOMContentLoaded observers (rise/slide/sticky) – your original
+     DOMContentLoaded observers (rise/slide/sticky) â€“ your original
   --------------------------------- */
   function initObserversAndUI() {
     // Sticky navbar
@@ -1117,7 +1190,7 @@ function initServicesHover() {
   }
 
   /* --------------------------------
-     MASTER INIT (THIS is the “don’t break the site” part)
+     MASTER INIT (THIS is the â€œdonâ€™t break the siteâ€ part)
   --------------------------------- */
   function initEverything() {
     try {

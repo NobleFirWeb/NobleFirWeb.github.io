@@ -75,6 +75,20 @@ body {
     }
 }
 
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--nf-neutral);
+    border-radius: 4px;
+}
+
 
 /* ===== Services Hero Section ===== */
 .services-hero {
