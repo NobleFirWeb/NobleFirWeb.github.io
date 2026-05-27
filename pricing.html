@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pricing - Noble Fir Studio</title>
+        <meta name="description" content="Transparent, straightforward pricing from Noble Fir Studio. No hidden fees, no surprises — just honest rates for custom web design and development in Portland, OR.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./css/nav-styles.css">
+        <link rel="stylesheet" href="./css/pricing.css">
+        <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+        <!-- Favicon Links -->
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+    </head>
+    <body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="index.html" class="logo-name" aria-label="Noble Fir Studio Home">
+            <img src="./img/Noblefir_nav_logo.png" alt="Navbar logo">
+        </a>
+        
+        <nav class="navigation">
+            <button type="button" id="btn-nav-toggle" aria-expanded="false" aria-controls="nav-menu"
+                aria-label="Toggle navigation menu">
+                <!--Menu-->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 6l16 0" />
+                        <path d="M4 12l16 0" />
+                        <path d="M4 12l16 0" />
+                        <path d="M4 18l16 0" />
+                    </g>
+                </svg>
+            </button>
+        
+            <ul id="nav-menu" role='list' aria-labelledby="btn-nav-toggle" aria-hidden="true" inert>
+                <li style="--i: 1;"><a href="index.html"><span>Home</span></a></li>
+                <li style="--i: 2;"><a href="about.html"><span>About Us</span></a></li>
+                <li style="--i: 3;"><a href="services.html"><span>Services</span></a></li>
+                <li style="--i: 4;"><a href="pricing.html"><span>Pricing</span></a></li>
+                <li style="--i: 5;"><a href="portfolio.html"><span>Projects</span></a></li>
+                <li style="--i: 6;"><a href="contact-us.html"><span>Contact Us</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ── Hero ──────────────────────────────────────────────────────────── -->
+    <section class="pricing-hero">
+        <p class="pricing-hero__eyebrow">Transparent Pricing</p>
+        <h1 class="pricing-hero__title">
+            No Surprises.<br>
+            <span>Just Results.</span>
+        </h1>
+        <p class="pricing-hero__sub">
+            Flat project rates. No hourly billing surprises, no bloated agency markups.
+            You know exactly what you're getting before we start.
+        </p>
+        <p class="pricing-hero__note">All prices in USD &nbsp;·&nbsp; Custom scopes always available</p>
+    </section>
+
+    <!-- ── Pricing Cards ─────────────────────────────────────────────────── -->
+    <section class="pricing-section">
+        <div class="pricing-grid">
+
+            <!-- ── Tier 1: Starter ──────────────────────────────────────── -->
+            <div class="pricing-card">
+                <p class="pricing-card__tier">Starter</p>
+                <p class="pricing-card__desc">
+                    Landing pages and single-page sites for small businesses and
+                    solo operators who need a clean, professional presence — fast.
+                </p>
+                <div class="pricing-card__price-wrap">
+                    <p class="pricing-card__price">$1,200 – $2,500</p>
+                    <p class="pricing-card__price-note">One-time project rate &nbsp;·&nbsp; Ongoing support available</p>
+                </div>
+                <ul class="pricing-card__features">
+                    <li>Landing page or single-page website</li>
+                    <li>Mobile-responsive layout</li>
+                    <li>Contact form integration</li>
+                    <li>Basic SEO setup (meta tags, sitemap)</li>
+                    <li>Google Analytics integration</li>
+                    <li>2 rounds of revisions</li>
+                    <li>Typical delivery: 2 – 3 weeks</li>
+                </ul>
+                <a href="contact-us.html" class="pricing-card__cta">
+                    Start a Conversation →
+                </a>
+            </div>
+
+            <!-- ── Tier 2: Growth (Featured) ────────────────────────────── -->
+            <div class="pricing-card pricing-card--featured">
+                <p class="pricing-card__badge">Most Popular</p>
+                <p class="pricing-card__tier">Growth</p>
+                <p class="pricing-card__desc">
+                    Full multi-page sites and redesigns for growing businesses that
+                    need custom development, integrations, and conversion-focused design.
+                </p>
+                <div class="pricing-card__price-wrap">
+                    <p class="pricing-card__price">$2,000 – $5,500</p>
+                    <p class="pricing-card__price-note">One-time project rate &nbsp;·&nbsp; Managed care plans available</p>
+                </div>
+                <ul class="pricing-card__features">
+                    <li>Up to 5 custom-designed pages</li>
+                    <li>Conversion-focused design &amp; layout strategy</li>
+                    <li>CMS integration (content you can edit)</li>
+                    <li>Advanced SEO — schema, speed, structured data</li>
+                    <li>3rd-party integrations (CRM, booking, etc.)</li>
+                    <li>Performance optimization &amp; Core Web Vitals</li>
+                    <li>3 rounds of revisions</li>
+                    <li>30-day post-launch support</li>
+                </ul>
+                <a href="contact-us.html" class="pricing-card__cta">
+                    Start a Conversation →
+                </a>
+            </div>
+
+            <!-- ── Tier 3: Custom ────────────────────────────────────────── -->
+            <div class="pricing-card">
+                <p class="pricing-card__tier">Custom</p>
+                <p class="pricing-card__desc">
+                    E-commerce builds, AI integrations, web apps, project takeovers,
+                    and anything else that doesn't fit a standard scope.
+                </p>
+                <div class="pricing-card__price-wrap">
+                    <p class="pricing-card__price" style="font-size: clamp(1.8rem, 3.5vw, 2.6rem);">Let's Talk</p>
+                    <p class="pricing-card__price-note">Scoped &amp; quoted per project &nbsp;·&nbsp; No surprises</p>
+                </div>
+                <ul class="pricing-card__features">
+                    <li>E-commerce (Shopify, WooCommerce, headless)</li>
+                    <li>E-commerce integration add-on: $1,500 – $3,000</li>
+                    <li>AI integrations &amp; workflow automation</li>
+                    <li>API development &amp; system integrations</li>
+                    <li>Project takeovers &amp; rescues</li>
+                    <li>Ongoing maintenance: $100 – $250/mo</li>
+                    <li>Architecture consulting &amp; retainers</li>
+                </ul>
+                <a href="contact-us.html" class="pricing-card__cta">
+                    Request a Custom Quote →
+                </a>
+            </div>
+
+        </div>
+
+        <!-- ── Disclaimer note ──────────────────────────────────────────── -->
+        <div class="pricing-note" style="margin-top: 48px;">
+            <span class="pricing-note__icon">*</span>
+            <p class="pricing-note__text">
+                <strong>Every project starts with a free discovery call.</strong>
+                Final pricing is scoped after I understand your goals, timeline, and complexity.
+                The tiers above are starting points — not ceilings. If your project is simpler,
+                the price goes down. If it's more complex, I'll tell you upfront before any
+                commitment is made.
+            </p>
+        </div>
+    </section>
+
+    <!-- ── Service Rates ────────────────────────────────────────────────── -->
+    <section class="rate-section">
+        <h2 class="rate-section__heading">Service Rates</h2>
+        <p class="rate-section__sub">All prices in USD &nbsp;·&nbsp; Exact scope confirmed during your free discovery call</p>
+        <div class="rate-table">
+            <div class="rate-row rate-row--header">
+                <span class="rate-col">Service</span>
+                <span class="rate-col">Rate</span>
+                <span class="rate-col">Notes</span>
+            </div>
+            <div class="rate-row">
+                <span class="rate-col rate-col--service">Landing Page</span>
+                <span class="rate-col rate-col--price">$1,200 – $2,000</span>
+                <span class="rate-col rate-col--note">Single-purpose pages built to convert</span>
+            </div>
+            <div class="rate-row">
+                <span class="rate-col rate-col--service">Single-Page Website</span>
+                <span class="rate-col rate-col--price">$1,500 – $2,500</span>
+                <span class="rate-col rate-col--note">Full brand presence in one scrolling experience</span>
+            </div>
+            <div class="rate-row">
+                <span class="rate-col rate-col--service">
+                    Multi-Page Website (up to 5)
+                    <span class="rate-badge">Most Popular</span>
+                </span>
+                <span class="rate-col rate-col--price">$3,000 – $5,500</span>
+                <span class="rate-col rate-col--note">Complete site with CMS, SEO &amp; integrations</span>
+            </div>
+            <div class="rate-row">
+                <span class="rate-col rate-col--service">Website Redesign</span>
+                <span class="rate-col rate-col--price">$2,000 – $4,500</span>
+                <span class="rate-col rate-col--note">Full visual &amp; structural overhaul of an existing site</span>
+            </div>
+            <div class="rate-row">
+                <span class="rate-col rate-col--service">E-Commerce Integration</span>
+                <span class="rate-col rate-col--price">$1,500 – $3,000</span>
+                <span class="rate-col rate-col--note">Shopify, WooCommerce, or headless storefronts</span>
+            </div>
+            <div class="rate-row rate-row--maintenance">
+                <span class="rate-col rate-col--service">Monthly Maintenance</span>
+                <span class="rate-col rate-col--price">$100 – $250/mo</span>
+                <span class="rate-col rate-col--note">Updates, backups, monitoring &amp; ongoing support</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Payment Structure ─────────────────────────────────────────────── -->
+    <section class="milestone-section">
+        <h2 class="milestone-section__heading">How Payment Works</h2>
+        <p class="milestone-section__sub">Four milestones. You only ever pay for work that's already been done.</p>
+        <div class="milestone-track">
+            <div class="milestone-step">
+                <div class="milestone-step__dot">
+                    <span class="milestone-step__pct">25%</span>
+                </div>
+                <p class="milestone-step__label">Deposit</p>
+                <p class="milestone-step__desc">Secures your project start date and kicks off discovery &amp; strategy.</p>
+            </div>
+            <div class="milestone-step">
+                <div class="milestone-step__dot">
+                    <span class="milestone-step__pct">25%</span>
+                </div>
+                <p class="milestone-step__label">Design Approved</p>
+                <p class="milestone-step__desc">Paid once you've reviewed and signed off on the visual direction.</p>
+            </div>
+            <div class="milestone-step">
+                <div class="milestone-step__dot">
+                    <span class="milestone-step__pct">25%</span>
+                </div>
+                <p class="milestone-step__label">Dev Complete</p>
+                <p class="milestone-step__desc">Paid once the full build is staged and ready for your final review.</p>
+            </div>
+            <div class="milestone-step">
+                <div class="milestone-step__dot">
+                    <span class="milestone-step__pct">25%</span>
+                </div>
+                <p class="milestone-step__label">Before Launch</p>
+                <p class="milestone-step__desc">Final payment before the site goes live. You've seen every step — no surprises.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FAQ ───────────────────────────────────────────────────────────── -->
+    <section class="pricing-faq">
+        <h2 class="pricing-faq__heading">Common Questions</h2>
+
+        <div class="faq-item">
+            <p class="faq-item__q">Do you charge hourly or by project?</p>
+            <p class="faq-item__a">
+                Almost always by project. You get a flat quote upfront so there are no billing surprises.
+                For ongoing work (retainers, managed services), we agree on a fixed monthly rate.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-item__q">What's included in the discovery call?</p>
+            <p class="faq-item__a">
+                A free 30-minute conversation where I learn about your business, what you're building,
+                your timeline, and what success looks like. From there I'll put together a clear scope
+                and a flat project quote — no pressure, no obligation.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-item__q">Who am I actually working with?</p>
+            <p class="faq-item__a">
+                Me, directly — Jesse Kuykendall. No account managers, no junior handoffs,
+                no outsourced work. You communicate with the person writing the code and
+                designing the screens from day one to launch.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-item__q">What does the payment structure look like?</p>
+            <p class="faq-item__a">
+                All projects follow a four-milestone structure: 25% deposit to kick off, 25% when design
+                is approved, 25% when development is complete, and 25% final payment before launch.
+                You only pay for work that's already been done — no paying for a finished site you
+                haven't seen. All terms are outlined in a plain-English agreement before anything starts.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-item__q">Do you offer ongoing support after launch?</p>
+            <p class="faq-item__a">
+                Yes — every project includes a post-launch window for bug fixes and tweaks.
+                For ongoing updates, content changes, and proactive maintenance, I offer
+                Managed Services plans billed monthly. Ask me about rates during your discovery call.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-item__q">Can you work within my budget?</p>
+            <p class="faq-item__a">
+                Tell me what you're working with. I'd rather scope a project that fits your budget
+                well than oversell you on features you don't need. If your budget doesn't match
+                the scope, I'll tell you honestly — and often we can phase the work to get you
+                something great now with room to grow later.
+            </p>
+        </div>
+    </section>
+
+    <!-- ── CTA ───────────────────────────────────────────────────────────── -->
+    <section class="pricing-cta">
+        <h2 class="pricing-cta__title">Ready to get <span>started?</span></h2>
+        <p class="pricing-cta__sub">
+            Tell me what you're building — I'll follow up within 24 hours with a clear scope
+            and a flat rate. No fluff, no pressure.
+        </p>
+        <a href="contact-us.html" class="pricing-cta__btn">
+            Book a Free Discovery Call →
+        </a>
+    </section>
+
+    <!-- ── Footer ────────────────────────────────────────────────────────── -->
+    <footer class="nf-footer" role="contentinfo">
+        <span class="nf-footer-bg-letter nf-left"  aria-hidden="true">N</span>
+        <span class="nf-footer-bg-letter nf-right" aria-hidden="true">F</span>
+
+        <nav class="nf-footer-nav" aria-label="Footer">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="portfolio.html">Projects</a></li>
+                <li class="nf-contact-btn"><a href="contact-us.html">Let's Talk</a></li>
+            </ul>
+        </nav>
+
+        <div class="nf-footer-bottom">
+            <p class="nf-copy">@ 2025 NOBLE FIR STUDIO, LLC. ALL RIGHTS RESERVED.</p>
+
+            <div class="nf-social">
+                <a href="#" aria-label="Instagram" class="nf-social-icon">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="#" aria-label="LinkedIn" class="nf-social-icon">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div>
+
+            <div class="nf-legal">
+                <a href="privacy.html">Privacy Policy</a>
+                <span class="nf-sep" aria-hidden="true">•</span>
+                <a href="terms.html">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/index.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+    </body>
+</html>

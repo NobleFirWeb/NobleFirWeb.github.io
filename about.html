@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>About Us - Noble Fir Studio</title>
-        <meta name="description" content="">
+        <meta name="description" content="Meet Jesse Kuykendall — founder of Noble Fir Studio, a boutique web design and development studio based in Portland, OR. Direct access, boutique quality, real results.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./css/about.css">
         <link rel="stylesheet" href="./css/nav-styles.css">
@@ -22,6 +22,268 @@
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <!-- About Hero Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+        <style>
+        /* ── NOBLE FIR ABOUT HERO ─────────────────────────── */
+
+        .ab-hero {
+          min-height: 100vh;
+          width: 100%;
+          max-width: 100%;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          position: relative;
+          overflow: hidden;
+          background: #0A0A0A;
+        }
+
+        /* Subtle glow */
+        .ab-hero::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background:
+            radial-gradient(ellipse 60% 80% at 72% 42%, rgba(232,0,30,0.05) 0%, transparent 65%),
+            radial-gradient(ellipse 40% 50% at 20% 80%, rgba(20,20,20,0.7) 0%, transparent 60%);
+          pointer-events: none;
+        }
+
+        /* Vertical centre rule */
+        .ab-hero::after {
+          content: '';
+          position: absolute;
+          top: 15%; bottom: 15%;
+          left: 50%;
+          width: 1px;
+          background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(232,0,30,0.18) 30%,
+            rgba(232,0,30,0.18) 70%,
+            transparent
+          );
+        }
+
+        /* ── LEFT PANEL ─────────────────────────────── */
+        .ab-hero-left {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 8rem 4rem 6rem 3rem;
+          position: relative;
+          z-index: 2;
+        }
+
+        .ab-hero-headline {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(3rem, 5.5vw, 5.5rem);
+          font-weight: 900;
+          color: #FFFFFF;
+          line-height: 1.05;
+          margin-bottom: 1.75rem;
+          opacity: 0;
+          animation: abFadeUp 0.8s 0.1s ease forwards;
+        }
+
+        .ab-hero-headline em {
+          font-style: italic;
+          color: #C4C4C4;
+        }
+
+        .ab-accent { color: #E8001E; }
+
+        .ab-hero-sub {
+          font-family: 'Instrument Sans', sans-serif;
+          font-size: 1.05rem;
+          color: #C4C4C4;
+          line-height: 1.7;
+          max-width: 460px;
+          opacity: 0;
+          animation: abFadeUp 0.8s 0.25s ease forwards;
+        }
+
+        /* ── RIGHT PANEL ────────────────────────────── */
+        .ab-hero-right {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 8rem 3rem 6rem 4rem;
+          position: relative;
+          z-index: 2;
+          opacity: 0;
+          animation: abFadeUp 0.8s 0.4s ease forwards;
+        }
+
+        /* ── VISUAL WIDGET ──────────────────────────── */
+        .ab-hero-visual {
+          position: relative;
+          width: 500px;
+          height: 500px;
+        }
+
+        /* Rotating rings */
+        .ab-ring {
+          position: absolute;
+          border-radius: 50%;
+          border: 1px solid;
+        }
+
+        .ab-ring-1 {
+          inset: 0;
+          border-color: rgba(232,0,30,0.14);
+          animation: abSpin 30s linear infinite;
+        }
+
+        .ab-ring-2 {
+          inset: 30px;
+          border-color: rgba(120,120,120,0.12);
+          animation: abSpin 20s linear infinite reverse;
+        }
+
+        .ab-ring-3 {
+          inset: 70px;
+          border-color: rgba(232,0,30,0.1);
+          animation: abSpin 15s linear infinite;
+        }
+
+        /* Ring tick marks */
+        .ab-ring-1::before {
+          content: '';
+          position: absolute;
+          top: -3px; left: 50%;
+          transform: translateX(-50%);
+          width: 6px; height: 6px;
+          border-radius: 50%;
+          background: #555555;
+        }
+
+        .ab-ring-3::before {
+          content: '';
+          position: absolute;
+          top: -3px; left: 50%;
+          transform: translateX(-50%);
+          width: 5px; height: 5px;
+          border-radius: 50%;
+          background: #E8001E;
+        }
+
+        @keyframes abSpin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+
+        /* Centre circle */
+        .ab-visual-center {
+          position: absolute;
+          inset: 100px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #141414 0%, #0A0A0A 100%);
+          border: 1px solid rgba(232,0,30,0.18);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 1.5rem;
+        }
+
+        .ab-visual-icon { margin-bottom: 0.75rem; opacity: 0.8; }
+
+        .ab-visual-text {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.58rem;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: #555555;
+          line-height: 1.9;
+        }
+
+        /* Floating code card */
+        .ab-code-float {
+          position: absolute;
+          bottom: -20px; right: -30px;
+          background: rgba(18,18,18,0.95);
+          border: 1px solid rgba(232,0,30,0.18);
+          border-radius: 6px;
+          padding: 1rem 1.25rem;
+          backdrop-filter: blur(8px);
+          animation: abFloat 4s ease-in-out infinite;
+        }
+
+        .ab-code-float pre {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.65rem;
+          line-height: 1.8;
+          color: #C4C4C4;
+        }
+
+        .ab-code-float .c-dim   { color: rgba(196,196,196,0.35); }
+        .ab-code-float .c-red   { color: #E8001E; }
+        .ab-code-float .c-white { color: #FFFFFF; }
+        .ab-code-float .c-grey  { color: #888888; }
+
+        /* Location badge */
+        .ab-location-badge {
+          position: absolute;
+          top: 30px; left: -20px;
+          background: rgba(10,10,10,0.92);
+          border: 1px solid rgba(232,0,30,0.25);
+          border-radius: 30px;
+          padding: 0.5rem 1rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          backdrop-filter: blur(8px);
+          animation: abFloat 5s 1s ease-in-out infinite;
+        }
+
+        .ab-location-badge span {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.65rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #C4C4C4;
+        }
+
+        .ab-location-dot {
+          width: 6px; height: 6px;
+          border-radius: 50%;
+          background: #E8001E;
+          flex-shrink: 0;
+        }
+
+        /* ── ANIMATIONS ─────────────────────────────── */
+        @keyframes abFadeUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes abFloat {
+          0%, 100% { transform: translateY(0); }
+          50%      { transform: translateY(-8px); }
+        }
+
+        /* ── RESPONSIVE ─────────────────────────────── */
+        @media (max-width: 900px) {
+          .ab-hero {
+            grid-template-columns: 1fr;
+            min-height: auto;
+            padding-bottom: 4rem;
+          }
+          .ab-hero::after { display: none; }
+          .ab-hero-right  { padding: 2rem 2rem 3rem;
+        max-width: 100%; }
+          .ab-hero-left   { 
+            padding: 7rem 2rem 3rem;
+            max-width: 100%;
+        }
+          .ab-hero-headline { font-size: clamp(2.5rem, 12vw, 4rem); }
+        }
+        </style>
     </head>
     <body>
 
@@ -63,90 +325,98 @@
                 <li style="--i: 1;"><a href="index.html"><span>Home</span></a></li>
                 <li style="--i: 2;"><a href="about.html"><span>About Us</span></a></li>
                 <li style="--i: 3;"><a href="services.html"><span>Services</span></a></li>
-                <li style="--i: 4;"><a href="portfolio.html"><span>Projects</span></a></li>
-                <li style="--i: 5;"><a href="contact-us.html"><span>Contact Us</span></a></li>
+                <li style="--i: 4;"><a href="pricing.html"><span>Pricing</span></a></li>
+                <li style="--i: 5;"><a href="portfolio.html"><span>Projects</span></a></li>
+                <li style="--i: 6;"><a href="contact-us.html"><span>Contact Us</span></a></li>
             </ul>
         </nav>
     </header>
 
     <div class="cursor"></div>
 
-    <section class="why-hero" aria-labelledby="why-title">
-        <h1 id="why-title" class="sr-only">All In. Every Time.</h1>
-    
-        <!-- Row 1 -->
-        <div class="why-row why-row-top">
-            <span class="why-left" data-reveal="lines">ALL</span>
-            <span class="why-right" data-reveal="lines">IN</span>
-        </div>
-    
-        <!-- Row 2 -->
-        <div class="why-row why-row-bottom">
-            <span class="why-left" >EVERY</span>
-            <span class="why-right" >TIME</span>
-        </div>
-    
-        <!-- Center Circle -->
-        <div class="why-center">
-            <div class="why-circle">
-                <nav class="why-list" aria-label="Reasons" data-reveal="lines">
-                    <a href="#mission"><span>[01]</span> THE MISSION</a>
-                    <a href="#expertise"><span>[02]</span> THE SKILLS</a>
-                    <a href="#team"><span>[03]</span> THE TEAM</a>
-                    <a href="#vibes"><span>[04]</span> THE VIBES</a>
-                </nav>
-            </div>
-        </div>
-    </section>
+    <section class="ab-hero" aria-label="About Noble Fir Studio">
 
-    <div class="appendix">
-        <div class="appendix-container">
-            <div class="appendix-card" id="card1">
-                <a href="#mission" class="row-text">
-                    <div class="card-number">[01]</div>
-                    <p class="card-text">The Mission</p>
-                </a>
+      <!-- Left: headline + sub -->
+      <div class="ab-hero-left">
+        <h1 class="ab-hero-headline">
+          All in,<br>
+          every <em>single</em><br>
+          <span class="ab-accent">time.</span>
+        </h1>
+
+        <p class="ab-hero-sub">
+          I'm Jesse Kuykendall — the developer behind Noble Fir Studio. Based in Tualatin, Oregon, I build custom websites for local businesses that deserve more than a template. Direct access, no middlemen, and an obsessive focus on getting it right.
+        </p>
+      </div>
+
+      <!-- Right: animated widget -->
+      <div class="ab-hero-right">
+        <div class="ab-hero-visual">
+
+          <!-- Rotating rings -->
+          <div class="ab-ring ab-ring-1"></div>
+          <div class="ab-ring ab-ring-2"></div>
+          <div class="ab-ring ab-ring-3"></div>
+
+          <!-- Centre circle -->
+          <div class="ab-visual-center">
+            <div class="ab-visual-icon">
+              <!-- Noble Fir tree mark -->
+              <svg width="38" height="38" viewBox="0 0 32 32" fill="none">
+                <path d="M16 3 L22 11 L19 11 L24 18 L20 18 L25 26 L7 26 L12 18 L8 18 L13 11 L10 11 Z"
+                  stroke="#E8001E" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+                <rect x="14.5" y="26" width="3" height="3" rx="0.5" fill="#E8001E"/>
+              </svg>
             </div>
-            <div class="appendix-card" id="card2">
-                <a href="#expertise" class="row-text">
-                    <div class="card-number">[02]</div>
-                    <p class="card-text">The Skills</p>
-                </a>
+            <div class="ab-visual-text">
+              Noble Fir<br>
+              Studio<br>
+              ———<br>
+              Jesse K.<br>
+              Founder
             </div>
-            <div class="appendix-card" id="card3">
-                <a href="#team" class="row-text">
-                    <div class="card-number">[03]</div>
-                    <p class="card-text">The Team</p>
-                </a>
-            </div>
-            <div class="appendix-card">
-                <a href="#vibes" class="row-text">
-                    <div class="card-number">[04]</div>
-                    <p class="card-text">The Vibes</p>
-                </a>
-            </div>
+          </div>
+
+          <!-- Floating code card -->
+          <div class="ab-code-float">
+            <pre><span class="c-dim">// Noble Fir Studio</span>
+<span class="c-grey">const</span> <span class="c-white">founder</span> = {
+  <span class="c-grey">name</span>:     <span class="c-red">'Jesse K.'</span>,
+  <span class="c-grey">based</span>:    <span class="c-red">'Portland, OR'</span>,
+  <span class="c-grey">approach</span>: <span class="c-red">'all-in'</span>
+}</pre>
+          </div>
+
+          <!-- Location badge -->
+          <div class="ab-location-badge">
+            <div class="ab-location-dot"></div>
+            <span>Portland, Oregon</span>
+          </div>
+
         </div>
-    </div>
+      </div>
+
+    </section>
 
     <section class="mission" id="mission">
         <h1 class="mission-title" data-reveal="lines"><span>[01]</span>The Mission<strong>*</strong></h1>
 
         <div class="section-header">
             <p class="header-paragraph">
-                We’re Noble Fir — small, intentional, and <strong>built for impact</strong>.
+                I’m Jesse Kuykendall — founder of Noble Fir Studio. Small, intentional, and <strong>built for impact</strong>.
             </p>
             <p class="header-paragraph">
-                Our process is personal, our standards are high, and our mission is your success. We help businesses cut through <span>the noise</span> and make their mark online — with sharp design, clean code, and relentless focus.
+                My process is personal, my standards are high, and my mission is your success. I help businesses cut through <span>the noise</span> and make their mark online — with sharp design, clean code, and relentless focus.
             </p>
         </div>
 
         <div class="mission-content">
             <div class="mission-text">
                 <p>
-                    Our mission is to empower businesses with innovative digital tools and custom web solutions that inspire growth and visibility. We are committed to delivering strategic design and development services that help our clients stand out, connect with their audience, and thrive in an ever-evolving online world.
+                    My mission is to empower businesses with innovative digital tools and custom web solutions that inspire growth and visibility. I’m committed to delivering strategic design and development services that help clients stand out, connect with their audience, and thrive in an ever-evolving online world.
                 </p>
                 <p>
-                    We don’t just build websites — we build opportunities. Every project begins with a conversation, where we listen to your goals, understand your brand, and craft tailored digital experiences that work for you. Our approach blends design, functionality, and strategy, ensuring each solution not only looks great but also performs seamlessly across all platforms. From local entrepreneurs to growing enterprises, we provide the framework and support businesses need to compete and grow online with confidence.
+                    Noble Fir doesn’t just build websites — I build opportunities. Every project begins with a conversation, where I listen to your goals, understand your brand, and craft tailored digital experiences that work for you. My approach blends design, functionality, and strategy, ensuring each solution not only looks great but also performs seamlessly across all platforms. From local entrepreneurs to growing enterprises, I provide the framework and support businesses need to compete and grow online with confidence.
                 </p>
             </div>
             <div class="mission-image" slide-left="true">
@@ -159,13 +429,13 @@
             </div>
             <div class="mission-text text2">
                 <p>
-                    We envision a digital landscape where every business—regardless of size—has access to high-quality, customized web experiences that reflect their unique identity and goals. As we grow, we remain committed to building lasting partnerships rooted in transparency, creativity, and performance.
+                    I envision a digital landscape where every business — regardless of size — has access to high-quality, customized web experiences that reflect their unique identity and goals. As Noble Fir grows, I remain committed to building lasting partnerships rooted in transparency, creativity, and performance.
                 </p>
                 <p>
-                    Whether launching a new venture or evolving an existing brand, our goal is to be the go-to ally businesses turn to when they’re ready to scale, stand out, and succeed online with confidence.
+                    Whether launching a new venture or evolving an existing brand, my goal is to be the go-to ally businesses turn to when they’re ready to scale, stand out, and succeed online with confidence.
                 </p>
                 <button class="about-btn">
-                    <a href="portfolio.html">View Our Work</a>
+                    <a href="portfolio.html">View My Work</a>
                 </button>
             </div>
         </div>
@@ -176,7 +446,7 @@
                         Local Feels
                     </h2>
                     <p class="global-text" data-reveal="lines">
-                        Based in the Pacific Northwest, we’re proud to serve our community of local businesses, startups, and entrepreneurs. But <span>our reach is global</span> — we’ve worked with clients across the U.S. and around the world.
+                        Based in the Pacific Northwest, I’m proud to serve the local community of businesses, startups, and entrepreneurs. But <span>the reach is global</span> — I’ve worked with clients across the U.S. and around the world.
                     </p>
                 </div>
                 <div class="global2">
@@ -341,10 +611,10 @@
                     <header class="skills__head">
                         <h2 class="skills__heading" data-reveal="lines">Creative firepower & <span>technical precision</span></h2>
                         <p class="skills__sub" data-reveal="lines">
-                            Like you, we're here to build solutions that we can be <span>proud</span> of. That's why we design with your customers in mind and develop with your business goals at heart. 
+                            Like you, I’m here to build solutions worth being <span>proud</span> of. That’s why I design with your customers in mind and develop with your business goals at heart.
                         </p>
                         <p class="skills__sub" data-reveal="lines">
-                            We’re not here to sell templates — we’re here to build partnerships. With us, you get a team that sweats the details, stands behind the work, and <span>strives for excellence</span> in everything we do. Every decision — from layout to code — is made to deliver a site that wins.
+                            I’m not here to sell templates — I’m here to build partnerships. With me, you get someone who sweats the details, stands behind the work, and <span>strives for excellence</span> in everything I do. Every decision — from layout to code — is made to deliver a site that wins.
                         </p>
                     </header>
             
@@ -418,9 +688,9 @@
                         <img src="./img/jesse2.JPG" alt="Founder Portrait" class="dialog-img">
                         <div class="dialog-card-text">
                             <h1>Jesse Kuykendall</h1>
-                            <h3>Founder, Lead Deveoloper</h3>
+                            <h3>Founder, Lead Developer</h3>
                             <p class="dialog-subtext">
-                                Jesse is the founder of Noble Fir and a full-stack developer with a passion for building clean, functional, and modern websites. As a creative developer, Jesse specializes in merging design and devleopment to oversee projects from their inception to the final stages of publication. His passion lies in crafting unique layouts, engaging interactions, and exceptional typography that elevate the digital presence of websites. With a focus on user experience and a commitment to quality, Jesse guides every step of the process—from planning to deployment—to ensure that each project is a success.
+                                Jesse is the founder of Noble Fir and a full-stack developer with a passion for building clean, functional, and modern websites. As a creative developer, Jesse specializes in merging design and development to oversee projects from their inception to the final stages of publication. His passion lies in crafting unique layouts, engaging interactions, and exceptional typography that elevate the digital presence of websites. With a focus on user experience and a commitment to quality, Jesse guides every step of the process—from planning to deployment—to ensure that each project is a success.
                             </p>
                             <p class="dialog-quote">"The nitrogen in our DNA, the calcium in our teeth, the iron in our blood, the carbon in our apple pies were made in the interiors of collapsing stars. We are made of star stuff."</p>
                         </div>
@@ -527,7 +797,7 @@
                 </div>
             </div>
             <p class="header-paragraph" data-reveal="lines">
-                Experience the energy behind our work — strategic, collaborative, and unapologetically forward. We’re here to build lasting partnerships, not just checkboxes or one-off deliverables. When we collaborate, we’re creating momentum that stretches far beyond launch day. Your vision becomes our blueprint, and the results become something we’re both proud to stand behind.
+                Experience the energy behind the work — strategic, collaborative, and unapologetically forward. I’m here to build lasting partnerships, not just checkboxes or one-off deliverables. When we collaborate, we’re creating momentum that stretches far beyond launch day. Your vision becomes my blueprint, and the results become something we’re both proud to stand behind.
             </p>
         </div>
 
@@ -548,13 +818,13 @@
             <div class="vibe-copy">
                 <h2 class="vibe-title" data-reveal="lines"><span>*</span> Drive</h2>
                 <p class="vibe-text" data-reveal="lines">
-                    We move fast, but with <span>intention</span>. The factor that sets us apart? Our <span>relentless drive</span>. We don't cut corners, and we don't stop until every detail of a project feels right — pixel by pixel, line by line, function by function.
+                    I move fast, but with <span>intention</span>. The factor that sets this studio apart? <span>Relentless drive</span>. I don’t cut corners, and I don’t stop until every detail of a project feels right — pixel by pixel, line by line, function by function.
                 </p>
-                <p class="vibe-text" data-reveal="lines">
-                    We’ve spent years sharpening our skills across web design and development, and that <span>discipline</span> shows in <span>the work</span>. When you work with us, you’re not hiring someone to just “get it done.” You’re bringing in someone who treats your goals like they’re our own, and who pushes through challenges to make sure the end result is something we can both be proud of.
+                <p class=”vibe-text” data-reveal=”lines”>
+                    I’ve spent years sharpening my skills across web design and development, and that <span>discipline</span> shows in <span>the work</span>. When you work with me, you’re not hiring someone to just “get it done.” You’re bringing in someone who treats your goals like they’re my own, and who pushes through challenges to make sure the end result is something we can both be proud of.
                 </p>
-                <p class="vibe-text" data-reveal="lines">
-                    Drive isn't just about grit — it's about <span>energy</span>, <span>focus</span>, and <span>determination</span>. We thrive on the process of building, solving problems, and exploring creative solutions that keep projects moving forward. This drive carries into our client relationships, too. We hold ourselves to the Noble Fir Standard — to think bigger, explore the possibilities, and smash barriers as we cross the finish line.
+                <p class=”vibe-text” data-reveal=”lines”>
+                    Drive isn’t just about grit — it’s about <span>energy</span>, <span>focus</span>, and <span>determination</span>. I thrive on the process of building, solving problems, and exploring creative solutions that keep projects moving forward. This drive carries into every client relationship. I hold myself to the Noble Fir Standard — to think bigger, explore the possibilities, and smash barriers as we cross the finish line.
                 </p>
             </div>
         </article>
@@ -564,13 +834,13 @@
             <div class="vibe-copy">
                 <h2 class="vibe-title" data-reveal="lines">Edge <span>*</span></h2>
                 <p class="vibe-text" data-reveal="lines">
-                    We don't play catch-up, we set the pace. We're ahead, blending tomorrow's design trends with today's business needs. Our work doesn’t just stand out — it <span>leads</span>.
+                    I don’t play catch-up — I set the pace. Always ahead, blending tomorrow’s design trends with today’s business needs. The work doesn’t just stand out — it <span>leads</span>.
                 </p>
                 <p class="vibe-text" data-reveal="lines">
-                    Every new project is an opportunity to <span>push boundaries</span> — not just to follow trends, but to lead. We bring an edge to the work that blends a deep knowledge of design and technology while remaining willing to experiment and take the necessary risks that breed innovation. The websites and apps we build aren’t just functional — they’re forward-looking, future-ready, and <span>designed to make a statement</span>.
+                    Every new project is an opportunity to <span>push boundaries</span> — not just to follow trends, but to lead. I bring an edge to the work that blends a deep knowledge of design and technology with a willingness to experiment and take the necessary risks that breed innovation. The websites and apps I build aren’t just functional — they’re forward-looking, future-ready, and <span>designed to make a statement</span>.
                 </p>
                 <p class="vibe-text" data-reveal="lines">
-                    This edge isn't arrogance — it’s <span>confidence grounded in craft</span> and years of experience building digital solutions. We know how to balance <span>bold ideas</span> with practical needs, how to <span>innovate</span> without losing sight of usability, and how to design and build experiences that are as effective as they are visually appealing.
+                    This edge isn’t arrogance — it’s <span>confidence grounded in craft</span> and years of experience building digital solutions. I know how to balance <span>bold ideas</span> with practical needs, how to <span>innovate</span> without losing sight of usability, and how to design and build experiences that are as effective as they are visually appealing.
                 </p>
             </div>
             <div class="vibe-figure" slide-left="true">
@@ -586,13 +856,13 @@
             <div class="vibe-copy">
                 <h2 class="vibe-title" data-reveal="lines"><span>*</span> Flow</h2>
                 <p class="vibe-text" data-reveal="lines">
-                    Design and development should feel <span>effortless</span> — ideas moving from sketch to screen like <span>music in rhythm</span>. That's the vibe we bring — clear communication, seamless collaboration, and a rhythm that keeps projects moving forward.
+                    Design and development should feel <span>effortless</span> — ideas moving from sketch to screen like <span>music in rhythm</span>. That's the vibe I bring — clear communication, seamless collaboration, and a rhythm that keeps projects moving forward.
                 </p>
                 <p class="vibe-text" data-reveal="lines">
                     When you work with Noble Fir, communication is clear and open, deadlines are respected, and the technical pieces are handled seamlessly so you never get bogged down in the details.
                 </p>
                 <p class="vibe-text" data-reveal="lines">
-                    Flow means <span>progress</span> without friction, <span>creativity</span> without chaos, and a final product that feels <span>natural</span> and <span>intuitive</span>. It’s the vibe that keeps us moving forward, keeps ideas fresh, and keeps the work feeling exciting from start to finish.
+                    Flow means <span>progress</span> without friction, <span>creativity</span> without chaos, and a final product that feels <span>natural</span> and <span>intuitive</span>. It’s the vibe that keeps ideas fresh and keeps the work feeling exciting from start to finish.
                 </p>
             </div>
         </article>
@@ -603,10 +873,10 @@
                 <h2 class="vibe-title" data-reveal="lines">Play <span>*</span></h2>
                 <div class="vibe-text" data-reveal="lines">
                     <p>
-                        At <span>the heart</span> of everything we do is play. We take our work seriously, but hardly ever ourselves. Projects with us are filled with <span>laughter</span>, <span>ideas bouncing</span>, and a <span>spark</span> that makes collaboration feel less like a job and more like a <span>new friendship</span>.
+                        At <span>the heart</span> of everything I do is play. I take the work seriously, but hardly ever myself. Projects with me are filled with <span>laughter</span>, <span>ideas bouncing</span>, and a <span>spark</span> that makes collaboration feel less like a job and more like a <span>new friendship</span>.
                     </p><br />
                     <p>
-                        We believe the best ideas often come out of laughter, curiosity, and the willingness to experiment without fear. That’s why working with us doesn’t just feel like a project — it feels like a collaboration where there’s room to dream, sketch, test, and discover new directions.
+                        I believe the best ideas often come out of laughter, curiosity, and the willingness to experiment without fear. That’s why working with me doesn’t just feel like a project — it feels like a collaboration where there’s room to dream, sketch, test, and discover new directions.
                     </p>
                 </div>
             </div>
@@ -682,8 +952,7 @@
             <h2 class="contact-title1" data-reveal="lines">Ready to Launch Your Project?</h2>
             <h1 class="contact-title2" data-reveal="lines">Let’s Build <span>Something Great</span> Together</h1>
             <p>
-                Tell us what you're envisioning—we’ll follow 
-                up to get the conversation started within 3 business days.
+                Tell me what you’re envisioning — I’ll follow up within 24 hours.
             </p>
             <p class="contact-subtitle">
                 Whether you're starting fresh or leveling up your online presence, Noble Fir is here to bring your vision to
@@ -708,6 +977,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="portfolio.html">Projects</a></li>
                 <li class="nf-contact-btn"><a href="contact-us.html">Let's Talk</a></li>
             </ul>

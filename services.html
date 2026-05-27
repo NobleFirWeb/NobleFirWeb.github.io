@@ -8,7 +8,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Services - Noble Fir Studio</title>
-        <meta name="description" content="">
+        <meta name="description" content="Noble Fir Studio offers custom web design, development, e-commerce, AI integrations, and managed services. Boutique quality, direct access — Portland, OR and nationwide.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./css/services.css">
         <link rel="stylesheet" href="./css/nav-styles.css">
@@ -24,21 +24,14 @@
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <!-- Noble Fir Hero Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
     </head>
     <body>
 
-    <!-- Text Spinner (place near the end of <body> in about.html) -->
-    <a class="text-spinner" href="contact-us.html" aria-label="Go to Contact" data-text="LET’S TALK! • " data-speed="12s">
-        <svg viewBox="0 0 110 110" width="110" height="110" role="img" aria-hidden="true">
-            <defs>
-                <!-- Circle path the text follows -->
-                <path id="spinnerCircle" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"></path>
-            </defs>
-            <text dy="4">
-                <textPath id="spinnerText" href="#spinnerCircle" startOffset="0%"></textPath>
-            </text>
-        </svg>
-    </a>
+
 
         
     <!-- Navbar -->
@@ -65,43 +58,123 @@
                 <li style="--i: 1;"><a href="index.html"><span>Home</span></a></li>
                 <li style="--i: 2;"><a href="about.html"><span>About Us</span></a></li>
                 <li style="--i: 3;"><a href="services.html"><span>Services</span></a></li>
-                <li style="--i: 4;"><a href="portfolio.html"><span>Projects</span></a></li>
-                <li style="--i: 5;"><a href="contact-us.html"><span>Contact Us</span></a></li>
+                <li style="--i: 4;"><a href="pricing.html"><span>Pricing</span></a></li>
+                <li style="--i: 5;"><a href="portfolio.html"><span>Projects</span></a></li>
+                <li style="--i: 6;"><a href="contact-us.html"><span>Contact Us</span></a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="services-hero" id="services-hero">
-        <div class="services-hero-content">
-            <div class="services-hero-top">
-                <h1 class="services-hero-title1" data-reveal="lines">
-                    Growth
-                </h1>
-                <div class="services-hero-spinner">
-                    <span class="simple-icons--apacheairflow"></span>
-                </div>
-            </div>
-            <div class="services-hero-bottom">
-                <h1 class="services-hero-title2" data-reveal="lines">
-                Starts Here
-                </h1>
-            </div>
-        </div>
-        <div class="mini-service-list">
-            <div class="mini-service-item" >
-                <sl-icon name="arrow-down-left"></sl-icon>
-                <a href="#ux-ui-design">UX/UI Design</a>
+    <section class="nf-hero" id="services-hero">
+      <div class="hero-grid"></div>
+      <div class="hero-slash"></div>
 
-            </div>
-            <div class="mini-service-item">
-                <sl-icon name="arrow-down-left"></sl-icon>
-                <a href="#web-development">Web Development</a>
-            </div>
-            <div class="mini-service-item">
-                <sl-icon name="arrow-down-left"></sl-icon>
-                <a href="#managed-services">Managed Services</a>
-            </div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <span>Web Design, Development &amp; More</span>
+          <div class="hero-eyebrow-dot"></div>
+          <span>Portland, OR</span>
         </div>
+
+        <h1 class="hero-headline">
+          <span class="hero-headline-row">
+            <span class="hero-headline-inner">I BUILD</span>
+          </span>
+          <span class="hero-headline-row">
+            <span class="hero-headline-inner hero-outline">POWERFUL</span>
+          </span>
+          <span class="hero-headline-row">
+            <span class="hero-headline-inner"><span class="hero-red">DIGITAL ENGINES.</span></span>
+          </span>
+        </h1>
+
+        <p class="hero-sub">
+          <strong>No templates. No shortcuts.</strong>
+          Every site is hand-coded from scratch — built to load fast, rank high, and make your brand the obvious choice.
+        </p>
+
+        <div class="hero-actions">
+          <a href="contact-us.html" class="hero-btn-primary">
+            Start a Project
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M2 7h10M8 3l4 4-4 4"/>
+            </svg>
+          </a>
+          <a href="portfolio.html" class="hero-btn-secondary">
+            View My Work
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats + scroll hint -->
+      <div class="hero-bottom">
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-val">5<span> +</span></div>
+            <div class="hero-stat-label">Projects Shipped</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-val">100<span> %</span></div>
+            <div class="hero-stat-label">Custom Code</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-val">1<span> – 1</span></div>
+            <div class="hero-stat-label">Focused Attention</div>
+          </div>
+        </div>
+
+        <div class="hero-scroll-hint">
+          <div class="hero-scroll-line"></div>
+          Scroll
+        </div>
+      </div>
+
+      <!-- Right panel -->
+      <aside class="hero-right-panel">
+        <span class="hero-vertical-text">Noble Fir Studio — Tualatin, OR</span>
+
+        <ul class="hero-service-list">
+          <li>Web Design</li>
+          <li>Custom Development</li>
+          <li>E-Commerce</li>
+          <li>UI / UX</li>
+          <li>SEO</li>
+          <li>AI Integrations</li>
+          <li>Technical Strategy</li>
+        </ul>
+
+        <div class="hero-location-tag">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="5" cy="4" r="2"/>
+            <path d="M5 9C5 9 1.5 6 1.5 4a3.5 3.5 0 017 0C8.5 6 5 9 5 9z"/>
+          </svg>
+          Tualatin, Oregon
+        </div>
+      </aside>
+
+      <!-- Marquee -->
+      <div class="hero-marquee">
+        <div class="hero-marquee-track">
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Custom Web Design</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Hand-Coded Builds</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Managed Services</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>E-Commerce</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>UI / UX Design</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>SEO Optimization</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Web Applications</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>AI Integrations</span></div>
+          <!-- Duplicate for seamless loop -->
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Custom Web Design</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Hand-Coded Builds</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Managed Services</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>E-Commerce</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>UI / UX Design</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>SEO Optimization</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Web Applications</span></div>
+          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>AI Integrations</span></div>
+        </div>
+      </div>
     </section>
 
     <section class="nf-reveal" aria-label="Brand analytics & content section">
@@ -119,10 +192,10 @@
     
             <div class="nf-reveal__body" id="nfRevealBody" hidden>
                 <p>
-                    At Noble Fir, every line of code and every design decision is made with intention. We believe that websites aren’t just digital storefronts — they’re living extensions of your brand.
+                    At Noble Fir, every line of code and every design decision is made with intention. I believe that websites aren’t just digital storefronts — they’re living extensions of your brand.
                 </p>
                 <p>
-                    By combining timeless design, modern development practices, and a customer-first approach, we craft digital experiences that help businesses grow, connect, and stand out in a crowded market.
+                    By combining timeless design, modern development practices, and a customer-first approach, I craft digital experiences that help businesses grow, connect, and stand out in a crowded market.
                 </p>
                 <h2 class="reveal-list-title">Wave goodbye <span class="noto--waving-hand-medium-light-skin-tone"></span> to:</h2>
                 <ul class="reveal-list">
@@ -144,7 +217,7 @@
                 <img src="./img/casa-designs-front.png" alt="Content marketing in action">
             </div>
             <p class="nf-reveal__card-copy" data-reveal="lines">
-                From design to deployment, our solutions are tailored for businesses that need a professional, modern presence. Whether it’s a new build, a redesign, or an e-commerce integration, we create experiences that are both beautiful and functional.
+                From design to deployment, Noble Fir’s solutions are tailored for businesses that need a professional, modern presence. Whether it’s a new build, a redesign, or an e-commerce integration, I create experiences that are both beautiful and functional.
             </p>
         </div>
     </section>
@@ -157,34 +230,34 @@
                 <span class="nf-proc__step">01</span>
                 <h3 class="nf-proc__title">Discovery &amp; Strategy</h3>
                 <p class="nf-proc__copy">
-                    We kick things off by learning about your business, goals, and target audience to create a tailored digital strategy.
+                    I start by learning about your business, goals, and target audience to create a tailored digital strategy.
                 </p>
             </article>
-    
+
             <!-- TR -->
             <article class="nf-proc__card nf-proc__card--2">
                 <span class="nf-proc__step">02</span>
                 <h3 class="nf-proc__title">Planning &amp; Design</h3>
                 <p class="nf-proc__copy">
-                    From structure to style, we design visually compelling mockups that align with your brand—and only move forward when you approve.
+                    From structure to style, I design visually compelling mockups that align with your brand — and only move forward when you approve.
                 </p>
             </article>
-    
+
             <!-- BL -->
             <article class="nf-proc__card nf-proc__card--3">
                 <span class="nf-proc__step">03</span>
                 <h3 class="nf-proc__title">Agile Development</h3>
                 <p class="nf-proc__copy">
-                    Using modern frameworks, we build responsive, fast-loading websites through clean, modular code and an iterative approach.
+                    Using modern frameworks, I build responsive, fast-loading websites through clean, modular code and an iterative approach.
                 </p>
             </article>
-    
+
             <!-- BR -->
             <article class="nf-proc__card nf-proc__card--4">
                 <span class="nf-proc__step">04</span>
                 <h3 class="nf-proc__title">Launch &amp; Support</h3>
                 <p class="nf-proc__copy">
-                    Once launched, we offer post-launch support and updates to ensure long-term success. We’re in it for the long haul.
+                    Once launched, I offer post-launch support and updates to ensure long-term success. I’m in it for the long haul.
                 </p>
             </article>
     
@@ -208,8 +281,8 @@
         <div class="nf-svcs__grid">
             <!-- LEFT: Heading + Sub + Preview image (changes on hover) -->
             <div class="nf-svcs__left">
-                <h2 id="nf-svcs-title" class="nf-svcs__heading">Our Services <span>*</span></h2>
-                <p class="nf-svcs__sub">We offer a range of services to design, build and scale your products.</p>
+                <h2 id="nf-svcs-title" class="nf-svcs__heading">Services <span>*</span></h2>
+                <p class="nf-svcs__sub">Noble Fir offers a focused range of services to design, build, and scale your products.</p>
     
                 <div class="nf-svcs__preview" aria-hidden="true">
                     <img class="nf-svcs__img nf-svcs__img--current" src="./img/services/preview-default.jpg" alt="">
@@ -281,7 +354,7 @@
                             <span class="nf-svcs__num">06</span>
                             <span class="nf-svcs__title">Project Takeovers</span>
                             <span class="nf-svcs__desc">
-                                Has you Project gone off the rails? We can help get it back on track.
+                                Has your project gone off the rails? Noble Fir can help get it back on track.
                             </span>
                         </a>
                     </li>
@@ -319,12 +392,12 @@
             </h2>
     
             <div class="nf-why__content">
-                <span class="nf-why__eyebrow">WE'RE ALL IN</span>
+                <span class="nf-why__eyebrow">ALL IN</span>
                 <p class="nf-why__lede">
-                    We <span>consistently</span> deliver results across a wide variety of industries.
+                    Noble Fir <span>consistently</span> delivers results across a wide variety of industries.
                 </p>
                 <p class="nf-why__sublede">
-                    Here’s why our partners choose to work with us.
+                    Here’s why partners choose to work with me.
                 </p>
             </div>
         </div>
@@ -426,10 +499,10 @@
             <div class="svc__inner">
                 <h1 class="svc__title" data-rise="true">UX/UI Design<span> *</span></h1>
                 <p class="svc__lead">
-                    Every site we design is tailored for performance, mobile responsiveness, and future growth. Let’s build something bold that works as hard as you do.
+                    Every site I design is tailored for performance, mobile responsiveness, and future growth. Let’s build something bold that works as hard as you do.
                 </p>
                 <p class="svc__lead">
-                    By blending custom design with professional-grade development, we create websites that are fast, secure, scalable, and easy to manage. This means your visitors experience a site that’s visually stunning and technically seamless — elevating your brand's reputation, improving engagement, and building long-term trust with your audience.
+                    By blending custom design with professional-grade development, I create websites that are fast, secure, scalable, and easy to manage. This means your visitors experience a site that’s visually stunning and technically seamless — elevating your brand’s reputation, improving engagement, and building long-term trust with your audience.
                 </p>
         
                 <div class="svc__grid">
@@ -438,8 +511,8 @@
                     </figure>
         
                     <div class="svc__listwrap">
-                        <h4 class="svc__eyebrow">What we do</h4>
-                        <p class="svc-list__header">We take a strategic and comprehensive approach to web design — ensuring that every detail, from research to responsive layouts, is built with purpose, quality, and your users in mind.</p>
+                        <h4 class="svc__eyebrow">What I do</h4>
+                        <p class="svc-list__header">I take a strategic and comprehensive approach to web design — ensuring that every detail, from research to responsive layouts, is built with purpose, quality, and your users in mind.</p>
                         <ul class="svc__list">
                             <li>Identify &amp; Research</li>
                             <li>UX/UI Design</li>
@@ -459,10 +532,10 @@
             <div class="svc__inner">
                 <h1 class="svc__title" data-rise="true">Custom Web Development<span> *</span></h1>
                 <p class="svc__lead">
-                    From custom web applications to dynamic websites, Noble Fir's web development is tailored to your exact business needs. With performance, security, and scalability at the forefront, we transform concepts into clean, reliable code — ensuring your online presence is as strong behind the scenes as it looks upfront.
+                    From custom web applications to dynamic websites, Noble Fir’s web development is tailored to your exact business needs. With performance, security, and scalability at the forefront, I transform concepts into clean, reliable code — ensuring your online presence is as strong behind the scenes as it looks upfront.
                 </p>
                 <p class="svc__lead">
-                    We know how overwhelming it can be for business owners trying to navigate the digital space. That’s why we prioritize clarity, communication, and transparency from day one. Our process is built for people who don’t have a dev team or a massive budget — just a vision and the need for a site that actually works. With Noble Fir, you get enterprise-level development packaged for real-world business owners who deserve a real shot online.
+                    I know how overwhelming it can be for business owners trying to navigate the digital space. That’s why I prioritize clarity, communication, and transparency from day one. My process is built for people who don’t have a dev team or a massive budget — just a vision and the need for a site that actually works. With Noble Fir, you get enterprise-level development delivered personally by someone who genuinely cares about your outcome.
                 </p>
         
                 <div class="svc__grid">
@@ -471,8 +544,8 @@
                     </figure>
         
                     <div class="svc__listwrap">
-                        <h4 class="svc__eyebrow">What we do</h4>
-                        <p class="svc-list__header">Our development process is more than just writing code — it's about building scalable, secure, and high-performing solutions tailored to your business needs.</p>
+                        <h4 class="svc__eyebrow">What I do</h4>
+                        <p class="svc-list__header">My development process is more than just writing code — it's about building scalable, secure, and high-performing solutions tailored to your business needs.</p>
                         <ul class="svc__list">
                             <li>Custom websites &amp; CMS</li>
                             <li>Front End Architecture</li>
@@ -491,10 +564,10 @@
             <div class="svc__inner">
                 <h1 class="svc__title" data-rise="true">E-Commerce Development<span> *</span></h1>
                 <p class="svc__lead">
-                    Ready to turn clicks into customers? We build online stores that do more than just sell — they engage, convert, and scale. From beautifully designed storefronts to seamless checkout experiences, we help brands create digital shops that feel as refined as they function.
+                    Ready to turn clicks into customers? I build online stores that do more than just sell — they engage, convert, and scale. From beautifully designed storefronts to seamless checkout experiences, I help brands create digital shops that feel as refined as they function.
                 </p>
                 <p class="svc__lead">
-                    Your poducts deserve a platform that performs. Whether you’re launching your first shop or rebuilding an existing one, we specialize in crafting e-commerce solutions that are secure, optimized, and built to grow with your business.
+                    Your products deserve a platform that performs. Whether you’re launching your first shop or rebuilding an existing one, I specialize in crafting e-commerce solutions that are secure, optimized, and built to grow with your business.
                 </p>
         
                 <div class="svc__grid">
@@ -503,8 +576,8 @@
                     </figure>
         
                     <div class="svc__listwrap">
-                        <h4 class="svc__eyebrow">What we do</h4>
-                        <p class="svc-list__header">We develop powerful e-commerce experiences that merge design, technology, and strategy. From backend functionality to front-end polish, our goal is always to create a storefront that looks incredible — and works even better.</p>
+                        <h4 class="svc__eyebrow">What I do</h4>
+                        <p class="svc-list__header">I develop powerful e-commerce experiences that merge design, technology, and strategy. From backend functionality to front-end polish, the goal is always to create a storefront that looks incredible — and works even better.</p>
                         <ul class="svc__list">
                             <li>Custom Storefront Design</li>
                             <li>Customer Accounts &amp; Checkout Flows</li>
@@ -524,10 +597,10 @@
             <div class="svc__inner">
                 <h1 class="svc__title" data-rise="true">Web App Development<span> *</span></h1>
                 <p class="svc__lead">
-                    Have an idea that needs more than just a website? We design and build custom web applications that power real business results — from internal dashboards to client portals and fully interactive digital products. Our approach blends clean design, intuitive UX, and scalable architecture to deliver apps that perform and grow with you.
+                    Have an idea that needs more than just a website? I design and build custom web applications that power real business results — from internal dashboards to client portals and fully interactive digital products. My approach blends clean design, intuitive UX, and scalable architecture to deliver apps that perform and grow with you.
                 </p>
                 <p class="svc__lead">
-                    We don't just build features - we build digital experiences. Whether you need a data-driven platform, membership system, or process automation tool, our apps are crafted for usability, security, and seamless integration into your existing workflows.
+                    I don't just build features — I build digital experiences. Whether you need a data-driven platform, membership system, or process automation tool, every app is crafted for usability, security, and seamless integration into your existing workflows.
                 </p>
         
                 <div class="svc__grid">
@@ -536,8 +609,8 @@
                     </figure>
         
                     <div class="svc__listwrap">
-                        <h4 class="svc__eyebrow">What we do</h4>
-                        <p class="svc-list__header">We bring ideas to life through thoughtful architecture, purposeful design, and modern frameworks. From concept to deployment, every project is engineered to deliver efficiency, performance, and lasting value.</p>
+                        <h4 class="svc__eyebrow">What I do</h4>
+                        <p class="svc-list__header">I bring ideas to life through thoughtful architecture, purposeful design, and modern frameworks. From concept to deployment, every project is engineered to deliver efficiency, performance, and lasting value.</p>
                         <ul class="svc__list">
                             <li>Custom Web App Design &amp; Development</li>
                             <li>Frontend Engineering</li>
@@ -556,10 +629,10 @@
             <div class="svc__inner">
                 <h1 class="svc__title" data-rise="true">Integrations &amp; API<strong>s</strong><span> *</span></h1>
                 <p class="svc__lead">
-                    We help unify your digital ecosystem by connecting the tools and platforms your business depends on. From CRMs and payment gateways to analytics dashboards and third-party services, we make your systems talk — seamlessly and securely.
+                    I help unify your digital ecosystem by connecting the tools and platforms your business depends on. From CRMs and payment gateways to analytics dashboards and third-party services, I make your systems talk — seamlessly and securely.
                 </p>
                 <p class="svc__lead">
-                    Our team designs and implements integrations that eliminate manual work, reduce errors, and create smoother user experiences. Whether we’re working with REST, GraphQL, or custom endpoints, we make complex data exchange effortless.
+                    I design and implement integrations that eliminate manual work, reduce errors, and create smoother user experiences. Whether working with REST, GraphQL, or custom endpoints, I make complex data exchange effortless.
                 </p>
         
                 <div class="svc__grid">
@@ -568,8 +641,8 @@
                     </figure>
         
                     <div class="svc__listwrap">
-                        <h4 class="svc__eyebrow">What we do</h4>
-                        <p class="svc-list__header">We bridge the gap between your applications, services, and data. Our approach focuses on reliability, scalability, and long-term maintainability — ensuring your systems run smarter together, not harder apart.</p>
+                        <h4 class="svc__eyebrow">What I do</h4>
+                        <p class="svc-list__header">I bridge the gap between your applications, services, and data. My approach focuses on reliability, scalability, and long-term maintainability — ensuring your systems run smarter together, not harder apart.</p>
                         <ul class="svc__list">
                             <li>Custom API Development</li>
                             <li>3rd-party APIs</li>
@@ -588,10 +661,10 @@
             <div class="svc__inner">
                 <h1 class="svc__title" data-rise="true">Project Takeovers<span> *</span></h1>
                 <p class="svc__lead">
-                    Has you project gone off the rails? Consistently missing dealines or watching progress stall? We step in when things stop moving forward. Whether you're facing communication breakdowns, design inconsistencies, or missed milestones, we specialize in turning stalled projects into successful launches.
+                    Has your project gone off the rails? Consistently missing deadlines or watching progress stall? I step in when things stop moving forward. Whether you're facing communication breakdowns, design inconsistencies, or missed milestones, I specialize in turning stalled projects into successful launches.
                 </p>
                 <p class="svc__lead">
-                    We'll bring clarity, structure, and execution back to your vision. Our team quickly assesses where things went wrong, rebuilds momentum, and applies proven workflows to get your site or app back on track — without starting over from scratch. 
+                    I'll bring clarity, structure, and execution back to your vision. I quickly assess where things went wrong, rebuild momentum, and apply proven workflows to get your site or app back on track — without starting over from scratch. 
                 </p>
         
                 <div class="svc__grid">
@@ -600,8 +673,8 @@
                     </figure>
         
                     <div class="svc__listwrap">
-                        <h4 class="svc__eyebrow">What we do</h4>
-                        <p class="svc-list__header">We evaluate your existing assets, diagnose the challenges, and create a recovery plan that prioritizes stability, transparency, and forward motion. Our process restores trust, simplifies delivery, and ensures your digital project launches stronger than ever.</p>
+                        <h4 class="svc__eyebrow">What I do</h4>
+                        <p class="svc-list__header">I evaluate your existing assets, diagnose the challenges, and create a recovery plan that prioritizes stability, transparency, and forward motion. My process restores trust, simplifies delivery, and ensures your digital project launches stronger than ever.</p>
                         <ul class="svc__list">
                             <li>Project Audit &amp; Recovery</li>
                             <li>Timeline Realignments</li>
@@ -620,10 +693,10 @@
             <div class="svc__inner">
                 <h1 class="svc__title" data-rise="true">Managed Services<span> *</span></h1>
                 <p class="svc__lead">
-                    We keep your digital presence running at full strength so you can stay online, up-to-date, and ahead of the curve.
+                    I keep your digital presence running at full strength so you can stay online, up-to-date, and ahead of the curve.
                 </p>
                 <p class="svc__lead">
-                    From technical upkeep to continuous content improvements, our Managed Services ensure your website and online products stay secure, optimized, and up-to-date—so you can focus on growth, not maintenance.
+                    From technical upkeep to continuous content improvements, Noble Fir's Managed Services ensure your website and online products stay secure, optimized, and up-to-date — so you can focus on growth, not maintenance.
                 </p>
         
                 <div class="svc__grid">
@@ -632,8 +705,8 @@
                     </figure>
         
                     <div class="svc__listwrap">
-                        <h4 class="svc__eyebrow">What we do</h4>
-                        <p class="svc-list__header">We provide proactive management across every layer of your website’s ecosystem. From backend stability to content updates and ongoing improvements, we make sure your platform evolves with your business and performs flawlessly at every touchpoint.</p>
+                        <h4 class="svc__eyebrow">What I do</h4>
+                        <p class="svc-list__header">I provide proactive management across every layer of your website’s ecosystem. From backend stability to content updates and ongoing improvements, I make sure your platform evolves with your business and performs flawlessly at every touchpoint.</p>
                         <ul class="svc__list">
                             <li>Website Management</li>
                             <li>Content &amp; site updates</li>
@@ -652,8 +725,7 @@
             <h2 class="contact-title1" data-rise="true">Ready to Launch Your Project?</h2>
             <h1 class="contact-title2" data-rise="true">Let’s Build <span>Something Great</span> Together</h1>
             <p>
-                Tell us what you're envisioning—we’ll follow 
-                up to get the conversation started within 3 business days.
+                Tell me what you’re envisioning — I’ll follow up within 24 hours.
             </p>
             <p class="contact-subtitle">
                 Whether you're starting fresh or leveling up your online presence, Noble Fir is here to bring your vision to
@@ -676,6 +748,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="portfolio.html">Projects</a></li>
                 <li class="nf-contact-btn"><a href="contact-us.html">Let's Talk</a></li>
             </ul>
@@ -740,5 +813,22 @@
         <script src="./js/about.js" async defer></script>
         <script src="./js/services.js" async defer></script>
         <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+
+        <!-- Noble Fir Hero — Custom Cursor -->
+        <div class="nf-cursor-dot" id="nf-cursor"></div>
+        <script>
+          (function () {
+            var cursor = document.getElementById('nf-cursor');
+            if (!cursor) return;
+            document.addEventListener('mousemove', function (e) {
+              cursor.style.left = (e.clientX - 4) + 'px';
+              cursor.style.top  = (e.clientY - 4) + 'px';
+            });
+            document.querySelectorAll('.nf-hero a, .nf-hero button, .nf-hero li').forEach(function (el) {
+              el.addEventListener('mouseenter', function () { cursor.style.transform = 'scale(3)'; });
+              el.addEventListener('mouseleave', function () { cursor.style.transform = 'scale(1)'; });
+            });
+          })();
+        </script>
     </body>
 </html>
