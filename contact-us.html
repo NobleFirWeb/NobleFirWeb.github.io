@@ -73,20 +73,105 @@
 
 
 
-    <section class="hero" id="hero">
-        <div class="hero-contact-content">
-            <h3 data-rise="true">Let's Talk</h3>
-            <h1 data-rise="true">Book a Free <span>Consultation</span></h1>
-            <button class="hero-btn" id="book-call-btn">
-                <span>Book a Call</span>
-            </button>
+    <section class="ct-hero" id="contact-hero">
+
+      <!-- Grain texture -->
+      <div class="ct-grain"></div>
+      <!-- Diagonal red slash -->
+      <div class="ct-slash"></div>
+
+      <!-- ── LEFT: Headline + CTAs ── -->
+      <div class="ct-hero-content">
+
+        <div class="ct-eyebrow">
+          <div class="ct-eyebrow-pip"></div>
+          <span>Tualatin, OR</span>
+          <span class="ct-eyebrow-sep">—</span>
+          <span>24hr Response</span>
+          <span class="ct-eyebrow-sep">—</span>
+          <span>Direct Access</span>
         </div>
 
-        <div class="hero-carousel">
-            <div class="hero-carousel-inner">
-                <img src="./img/js-painting-front.png" alt="Teamworking Illustration" slide-left="true">
-            </div>
+        <h1 class="ct-headline">
+          <span class="ct-hl-row">LET'S</span>
+          <span class="ct-hl-row ct-hl-outline">START</span>
+          <span class="ct-hl-row ct-hl-red">SOMETHING.</span>
+        </h1>
+
+        <p class="ct-sub">
+          No agencies. No middlemen. Just me, your goals, and a plan that ships —
+          hand-coded from scratch, on time, every time. Drop a line or book a call.
+        </p>
+
+        <div class="ct-actions">
+          <button class="ct-btn-primary" id="book-call-btn">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4"/>
+            </svg>
+            Book a 30-min Call
+          </button>
+          <a href="#contact-form-section" class="ct-btn-ghost">
+            Send a Message ↓
+          </a>
         </div>
+
+      </div>
+
+      <!-- ── RIGHT: Terminal widget ── -->
+      <div class="ct-hero-right" aria-hidden="true">
+
+        <div class="ct-terminal">
+          <!-- Mac-style window chrome -->
+          <div class="ct-terminal-header">
+            <span class="ct-wdot ct-wdot-r"></span>
+            <span class="ct-wdot ct-wdot-y"></span>
+            <span class="ct-wdot ct-wdot-g"></span>
+            <span class="ct-terminal-title">noblefir — inquiry.js</span>
+          </div>
+          <!-- Code body -->
+          <div class="ct-terminal-body">
+            <pre class="ct-code"><span class="cc-dim">// Kick off your project with Noble Fir</span>
+
+<span class="cc-kw">const</span> <span class="cc-var">project</span> = {
+  <span class="cc-key">client</span>:    <span class="cc-str">'Your Business'</span>,
+  <span class="cc-key">goal</span>:      <span class="cc-str">'Something great'</span>,
+  <span class="cc-key">timeline</span>: <span class="cc-str">'Let\'s discuss'</span>,
+  <span class="cc-key">budget</span>:   <span class="cc-str">'TBD'</span>,
+}
+
+<span class="cc-dim">// Jesse replies in &lt;24 hours</span>
+<span class="cc-kw">await</span> <span class="cc-var">noble</span>.<span class="cc-fn">contact</span>(<span class="cc-var">project</span>)</pre>
+            <!-- Blinking cursor -->
+            <div class="ct-cursor-row">
+              <span class="ct-prompt">›</span>
+              <span class="ct-blinker"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Response time badge -->
+        <div class="ct-response-badge">
+          <div class="ct-response-dot"></div>
+          <div>
+            <div class="ct-response-label">Avg. response time</div>
+            <div class="ct-response-val">&lt; 24 hours</div>
+          </div>
+        </div>
+
+        <!-- Location badge -->
+        <div class="ct-loc-badge">
+          <div class="ct-loc-dot"></div>
+          <span>Tualatin, Oregon</span>
+        </div>
+
+      </div>
+
+      <!-- ── Bottom: scroll hint ── -->
+      <div class="ct-scroll-hint">
+        <div class="ct-scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+
     </section>
 
     <div class="appendix">
