@@ -7,20 +7,12 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Portfolio - Noble Fir Studio</title>
-        <meta name="description" content="Selected work from Noble Fir Studio — custom-built websites, web apps, and digital experiences designed and developed for real businesses.">
+        <title>Projects — Noble Fir Studio | Custom Web Design &amp; Development</title>
+        <meta name="description" content="Selected work from Noble Fir Studio — custom-built websites, web apps, and digital experiences for real businesses. See what we've shipped.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./css/portfolio.css">
         <link rel="stylesheet" href="./css/nav-styles.css">
         <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
-        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-        
-        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-        <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
         <!-- Favicon Links -->
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -30,16 +22,14 @@
     </head>
     <body>
 
-        <!-- Navbar -->
-        <header class="navbar">
+    <!-- ── Navbar ── -->
+    <header class="navbar">
         <a href="index.html" class="logo-name" aria-label="Noble Fir Studio Home">
             <img src="./img/Noblefir_nav_logo.png" alt="Navbar logo">
         </a>
-        
         <nav class="navigation">
             <button type="button" id="btn-nav-toggle" aria-expanded="false" aria-controls="nav-menu"
                 aria-label="Toggle navigation menu">
-                <!--Menu-->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <g fill="none" stroke="currentColor" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 6l16 0" />
@@ -49,7 +39,6 @@
                     </g>
                 </svg>
             </button>
-        
             <ul id="nav-menu" role='list' aria-labelledby="btn-nav-toggle" aria-hidden="true" inert>
                 <li style="--i: 1;"><a href="index.html"><span>Home</span></a></li>
                 <li style="--i: 2;"><a href="about.html"><span>About Us</span></a></li>
@@ -60,399 +49,402 @@
             </ul>
         </nav>
     </header>
-        
-        <section class="work-hero" id="work-hero">
-            <div class="work-hero__inner">
-                <h1 class="work-hero__title" aria-label="WORK" data-reveal="lines"><span>WORK</span></h1>
-            </div>
-        </section>
 
-        <section class="intro-video">
-            <div class="video-container">
-                <div class="video-wrapper">
-                    <video src="https://www.pexels.com/download/video/1858244/" muted autoplay loop></video>
+    <!-- ══════════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════════ -->
+    <section class="pf-hero" id="pf-hero">
+
+        <!-- Centred, full-width oversized type -->
+        <h1 class="pf-hero__title" aria-label="WORK"><span>WORK</span></h1>
+
+        <!-- Bottom bar: kicker + sub -->
+        <div class="pf-hero__foot">
+            <p class="pf-hero__kicker">Noble Fir Studio &mdash; Selected Work</p>
+            <p class="pf-hero__sub">Custom-built websites and digital experiences &mdash; designed, developed, and shipped for businesses ready to grow.</p>
+        </div>
+
+        <!-- Scroll cue -->
+        <div class="pf-hero__scroll" aria-hidden="true">
+            <div class="pf-hero__scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         FEATURED PROJECT — Rise With Us Gaming
+    ══════════════════════════════════════════════ -->
+    <section class="pf-featured" id="pf-featured">
+        <div class="pf-featured__label">
+            <span class="pf-featured__dot"></span>
+            <span>Latest Project</span>
+        </div>
+
+        <a class="pf-featured__card" href="#">
+            <!-- Left: image -->
+            <div class="pf-featured__media">
+                <img src="./img/black-red-bg.jpg"
+                     alt="Rise With Us Gaming — Madden gaming and streaming platform">
+                <div class="pf-featured__overlay" aria-hidden="true">
+                    <span class="pf-featured__view">View Project &rarr;</span>
                 </div>
             </div>
-        </section>
 
-        <section class="work-grid" id="work-grid">
-            <div class="work-grid__inner">
-                <!-- Card 1 -->
-                <article class="work-card visible">
-                    <figure class="work-card__media">
+            <!-- Right: info -->
+            <div class="pf-featured__info">
+                <div class="pf-featured__tags">
+                    <span class="pf-tag">Web Design</span>
+                    <span class="pf-tag">Development</span>
+                    <span class="pf-tag">E-Commerce</span>
+                    <span class="pf-tag pf-tag--live">In Development &mdash; 2026</span>
+                </div>
+
+                <h2 class="pf-featured__title">Rise With Us Gaming</h2>
+
+                <p class="pf-featured__desc">
+                    A full-stack Madden gaming and streaming platform for a competitive gaming community. Custom tournament management, live roster updates, community features, and a merchandise storefront &mdash; built from scratch, zero templates.
+                </p>
+
+                <span class="pf-featured__cta">
+                    Explore Project
+                    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" aria-hidden="true" width="13" height="13">
+                        <path d="M2 7h10M8 3l4 4-4 4"/>
+                    </svg>
+                </span>
+            </div>
+        </a>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         FILTER + PROJECT GRID
+    ══════════════════════════════════════════════ -->
+    <section class="pf-work" id="pf-work">
+
+        <!-- Filter bar -->
+        <div class="pf-filters" id="pf-filters" role="group" aria-label="Filter projects by category">
+            <button class="pf-filter is-active" data-cat="all">All Projects</button>
+            <button class="pf-filter" data-cat="design">Web Design</button>
+            <button class="pf-filter" data-cat="dev">Development</button>
+            <button class="pf-filter" data-cat="brand">Brand</button>
+            <button class="pf-filter" data-cat="ux">UX / UI</button>
+        </div>
+
+        <!-- Grid -->
+        <div class="pf-grid" id="pf-grid">
+
+            <!-- Card 1: J's Quality Painting -->
+            <article class="pf-card" data-cat="design dev">
+                <a href="#" class="pf-card__link">
+                    <figure class="pf-card__media">
                         <img src="./img/js-painting-card.jpg"
-                            alt="Js Painting project preview">
+                             alt="J's Quality Painting — service website" loading="lazy">
+                        <figcaption class="pf-card__hover" aria-hidden="true">
+                            <p>A mobile-first service website built to rank locally and convert estimate requests. Custom forms, SEO-optimized structure, and a fast, hand-coded build.</p>
+                            <span class="pf-card__cta-text">View Case Study &rarr;</span>
+                        </figcaption>
                     </figure>
-                    <figcaption class="work-card__caption">
-                        <a href="#" class="work-card__title">J's Painting</a>
-                        <span class="work-card__meta">Design, Development | <span>2024</span></span>
-                    </figcaption>
-                </article>
-        
-                <!-- Card 2 -->
-                <article class="work-card visible">
-                    <figure class="work-card__media">
+                    <div class="pf-card__foot">
+                        <div class="pf-card__tags">
+                            <span class="pf-tag">Web Design</span>
+                            <span class="pf-tag">Development</span>
+                        </div>
+                        <h3 class="pf-card__name">J&apos;s Quality Painting</h3>
+                        <span class="pf-card__year">Redding, CA &mdash; 2024</span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Card 2: Casa Designs -->
+            <article class="pf-card" data-cat="design dev brand">
+                <a href="#" class="pf-card__link">
+                    <figure class="pf-card__media">
                         <img src="./img/casa-designs-card.jpg"
-                            alt="Casa Designs project preview">
+                             alt="Casa Designs — brand &amp; website" loading="lazy">
+                        <figcaption class="pf-card__hover" aria-hidden="true">
+                            <p>Brand identity and full website for a residential design studio. Curated portfolio presentation and a client inquiry funnel built for conversion.</p>
+                            <span class="pf-card__cta-text">View Case Study &rarr;</span>
+                        </figcaption>
                     </figure>
-                    <figcaption class="work-card__caption">
-                        <a href="#" class="work-card__title">Casa Designs</a>
-                        <span class="work-card__meta">Web Design, Development | <span>2025</span></span>
-                    </figcaption>
-                </article>
-        
-                <!-- Card 3 -->
-                <article class="work-card">
-                    <figure class="work-card__media">
-                        <img src="./img/spaceman3.png"
-                            alt="CosmiQ project preview">
-                    </figure>
-                    <figcaption class="work-card__caption">
-                        <a href="#" class="work-card__title">CosmiQ</a>
-                        <span class="work-card__meta">UX, Design, Website | <span>2024</span></span>
-                    </figcaption>
-                </article>
-        
-                <!-- Card 4 -->
-                <article class="work-card">
-                    <figure class="work-card__media">
+                    <div class="pf-card__foot">
+                        <div class="pf-card__tags">
+                            <span class="pf-tag">Web Design</span>
+                            <span class="pf-tag">Brand</span>
+                        </div>
+                        <h3 class="pf-card__name">Casa Designs</h3>
+                        <span class="pf-card__year">Tualatin, OR &mdash; 2025</span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Card 3: Gracefully Captured -->
+            <article class="pf-card" data-cat="design ux">
+                <a href="#" class="pf-card__link">
+                    <figure class="pf-card__media">
                         <img src="./img/gracefully-captured-card.jpg"
-                            alt="Gracefully Captured project preview">
+                             alt="Gracefully Captured — photography &amp; booking" loading="lazy">
+                        <figcaption class="pf-card__hover" aria-hidden="true">
+                            <p>A photography portfolio and booking platform optimized for visual storytelling and session inquiries. Gallery-forward design with a seamless booking flow.</p>
+                            <span class="pf-card__cta-text">View Case Study &rarr;</span>
+                        </figcaption>
                     </figure>
-                    <figcaption class="work-card__caption">
-                        <a href="#" class="work-card__title">Gracefully Captured</a>
-                        <span class="work-card__meta">Design, Website | <span>2023</span></span>
-                    </figcaption>
-                </article>
+                    <div class="pf-card__foot">
+                        <div class="pf-card__tags">
+                            <span class="pf-tag">Web Design</span>
+                            <span class="pf-tag">UX / UI</span>
+                        </div>
+                        <h3 class="pf-card__name">Gracefully Captured</h3>
+                        <span class="pf-card__year">Redding, CA &mdash; 2024</span>
+                    </div>
+                </a>
+            </article>
 
-                <!-- Card 5 -->
-                <article class="work-card">
-                    <figure class="work-card__media">
+            <!-- Card 4: Crown Clothing -->
+            <article class="pf-card" data-cat="brand design ux">
+                <a href="#" class="pf-card__link">
+                    <figure class="pf-card__media">
                         <img src="./img/crown-clothing-card.jpg"
-                            alt="Crown Clothing project preview">
+                             alt="Crown Clothing — streetwear brand &amp; e-commerce" loading="lazy">
+                        <figcaption class="pf-card__hover" aria-hidden="true">
+                            <p>Full brand identity and e-commerce storefront for a streetwear label. Designed around bold aesthetic and a strong mobile shopping experience.</p>
+                            <span class="pf-card__cta-text">View Case Study &rarr;</span>
+                        </figcaption>
                     </figure>
-                    <figcaption class="work-card__caption">
-                        <a href="#" class="work-card__title">Crown Clothing</a>
-                        <span class="work-card__meta">Brand, Design, Website | <span>2023</span></span>
-                    </figcaption>
-                </article>
-            </div>
-        </section>
+                    <div class="pf-card__foot">
+                        <div class="pf-card__tags">
+                            <span class="pf-tag">Brand</span>
+                            <span class="pf-tag">Web Design</span>
+                        </div>
+                        <h3 class="pf-card__name">Crown Clothing</h3>
+                        <span class="pf-card__year">Portland, OR &mdash; 2024</span>
+                    </div>
+                </a>
+            </article>
 
-        <section class="nf-scroll-gallery">
-        
-            <div class="demo-wrapper">
-        
-                <header class="df aic jcc nf-dust-header">
-                    <div id ="nf-header-capture">
-                        <h1>WE BUILD <span>POWERFUL</span> DIGITAL SOLUTIONS</h1>
-                        <h2>Scroll to see more of our select work</h2>
+            <!-- Card 5: CosmiQ -->
+            <article class="pf-card" data-cat="ux design">
+                <a href="#" class="pf-card__link">
+                    <figure class="pf-card__media">
+                        <img src="./img/spaceman3.png"
+                             alt="CosmiQ — immersive web experience" loading="lazy">
+                        <figcaption class="pf-card__hover" aria-hidden="true">
+                            <p>UX design and website for a next-gen space exploration startup. Immersive visuals, complex animation sequences, and performance-first delivery.</p>
+                            <span class="pf-card__cta-text">View Case Study &rarr;</span>
+                        </figcaption>
+                    </figure>
+                    <div class="pf-card__foot">
+                        <div class="pf-card__tags">
+                            <span class="pf-tag">UX / UI</span>
+                            <span class="pf-tag">Web Design</span>
+                        </div>
+                        <h3 class="pf-card__name">CosmiQ</h3>
+                        <span class="pf-card__year">New York City &mdash; 2025</span>
                     </div>
-                </header>
-        
-                <!-- TEXT WRAPPER #1 -->
-                <section class="demo-text">
-                    <div class="wrapper text">
-                    Speed. <span> Structure.</span>  <strong> Scale.</strong>
-                    </div>
-                </section>
-        
-                <!-- GALLERY ROW 1 -->
-                <section class="demo-gallery">
-                    <ul class="wrapper">
-                        <li><img src="" alt=""></li>
-                        <li><img src="" alt=""></li>
-                        <li><img src="" alt=""></li>
-                    </ul>
-                </section>
-        
-                <!-- GALLERY ROW 2 -->
-                <section class="demo-gallery">
-                    <ul class="wrapper">
-                        <li><img src=""" alt=""></li>
-                        <li><img src="" alt=""></li>
-                        <li><img src="" alt=""></li>
-                    </ul>
-                </section>
-        
-                <!-- GALLERY ROW 3 -->
-                <section class="demo-gallery">
-                    <ul class="wrapper">
-                        <li><img src="" alt=""></li>
-                        <li><img src="" alt=""></li>
-                        <li><img src="" alt=""></li>
-                    </ul>
-                </section>
-        
-                <!-- GALLERY ROW 4 -->
-                <section class="demo-gallery">
-                    <ul class="wrapper">
-                        <li><img src="" alt=""></li>
-                        <li><img src="" alt=""></li>
-                        <li><img src="" alt=""></li>
-                    </ul>
-                </section>
-        
-                <!-- TEXT WRAPPER #2 -->
-                <section class="demo-text">
-                    <div class="wrapper text">
-                        <span>Real Results.</span>  Bold Vision.
-                    </div>
-                </section>
-        
-            </div>
-        
-        </section>
-        
+                </a>
+            </article>
 
-        <section class="appendix">
-            <div class="container">
-                    <div class="box box-1" style="--img: url(https://i.postimg.cc/sgBkfbtx/img-1.jpg);" data-text="Casa Designs"></div>
-                    <div class="box box-2" style="--img: url(https://i.postimg.cc/3RZ6bhDS/img-2.jpg);" data-text="J's Painting"></div>
-                    <div class="box box-3" style="--img: url(https://i.postimg.cc/DZhHg0m4/img-3.jpg);" data-text="CosmiQ"></div>
-                    <div class="box box-4" style="--img: url(https://i.postimg.cc/KjqWx5ft/img-4.jpg);" data-text="Gracefully Captured"></div>
-                    <div class="box box-5" style="--img: url(https://i.postimg.cc/nrcWyW4H/img-5.jpg);" data-text="Crown Clothing"></div>
+        </div><!-- /.pf-grid -->
+    </section><!-- /.pf-work -->
+
+    <!-- ══════════════════════════════════════════════
+         STATS STRIP
+    ══════════════════════════════════════════════ -->
+    <div class="pf-stats" aria-label="At a glance">
+        <div class="pf-stat">
+            <div class="pf-stat__num">5<span>+</span></div>
+            <div class="pf-stat__label">Projects Shipped</div>
+        </div>
+        <div class="pf-stat">
+            <div class="pf-stat__num">100<span>%</span></div>
+            <div class="pf-stat__label">Custom Code</div>
+        </div>
+        <div class="pf-stat">
+            <div class="pf-stat__num">&lt;3<span>s</span></div>
+            <div class="pf-stat__label">Avg. Load Time</div>
+        </div>
+        <div class="pf-stat">
+            <div class="pf-stat__num">1<span>:1</span></div>
+            <div class="pf-stat__label">Direct Access</div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         PROCESS INTERLUDE
+    ══════════════════════════════════════════════ -->
+    <section class="pf-process" id="pf-process">
+        <div class="pf-process__inner">
+            <p class="pf-process__kicker">How it works</p>
+            <h2 class="pf-process__headline">Three steps from idea<br>to shipped product.</h2>
+            <div class="pf-process__steps">
+                <div class="pf-step">
+                    <span class="pf-step__num">01</span>
+                    <h3 class="pf-step__title">Discovery Call</h3>
+                    <p class="pf-step__desc">We talk through your goals, your audience, and what success actually looks like for your business. No templates, no guesswork.</p>
                 </div>
-        </section>
-
-        <section id="cta" class="contact-section">
-            <div class="contact-header">
-                <h2 class="contact-title1">Ready to Launch Your Project?</h2>
-                <h1 class="contact-title2">Let’s Build <span>Something Great</span> Together</h1>
-                <p>
-                    Tell me what you’re envisioning — I’ll follow up within 24 hours.
-                </p>
-                <p class="contact-subtitle">
-                    Whether you're starting fresh or leveling up your online presence, Noble Fir is here to bring your vision to
-                    life.
-                </p>
-                <button class="about-btn">
-                    <a href="contact-us.html">Get In Touch</a>
-                </button>
-            </div>
-        </section>
-
-        <footer class="nf-footer" role="contentinfo">
-            <!-- giant background letters -->
-            <span class="nf-footer-bg-letter nf-left" aria-hidden="true" data-reveal="lines">N</span>
-            <span class="nf-footer-bg-letter nf-right" aria-hidden="true" data-reveal="lines">F</span>
-        
-            <!-- centered nav -->
-            <nav class="nf-footer-nav" aria-label="Footer">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="portfolio.html">Projects</a></li>
-                    <li class="nf-contact-btn"><a href="contact-us.html">Let's Talk</a></li>
-                </ul>
-            </nav>
-        
-            <!-- bottom row -->
-            <div class="nf-footer-bottom">
-                <p class="nf-copy">@ 2025 NOBLE FIR STUDIO, LLC. ALL RIGHTS RESERVED.</p>
-        
-                <div class="nf-social">
-                    <a href="#" aria-label="Instagram" class="nf-social-icon">
-                        <i class="fa fa-instagram"></i>
-                    </a>
-                    <a href="#" aria-label="LinkedIn" class="nf-social-icon">
-                        <i class="fa fa-linkedin"></i>
-                    </a>
+                <div class="pf-step">
+                    <span class="pf-step__num">02</span>
+                    <h3 class="pf-step__title">Design &amp; Build</h3>
+                    <p class="pf-step__desc">I design in Figma, then hand-code every line &mdash; no page builders, no drag-and-drop. Performance, SEO, and accessibility baked in from day one.</p>
                 </div>
-        
-                <div class="nf-legal">
-                    <a href="privacy.html">Privacy Policy</a>
-                    <span class="nf-sep" aria-hidden="true">•</span>
-                    <a href="terms.html">Terms &amp; Conditions</a>
+                <div class="pf-step">
+                    <span class="pf-step__num">03</span>
+                    <h3 class="pf-step__title">Launch &amp; Support</h3>
+                    <p class="pf-step__desc">We launch on your timeline, I train you on managing your site, and I stay available for updates and ongoing support.</p>
                 </div>
             </div>
-        </footer>
-        
-        <script src="./js/index.js"></script>
-        <script src="./js/portfolio.js"></script>
-        <script>
-            
-            gsap.registerPlugin(ScrollTrigger);
+            <a href="services.html" class="pf-process__link">
+                See all services
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" aria-hidden="true" width="12" height="12">
+                    <path d="M2 7h10M8 3l4 4-4 4"/>
+                </svg>
+            </a>
+        </div>
+    </section>
 
-                // ============================
-                // TEXT SWEEP + GALLERY SCROLL
-                // (now in a function so we can control when it runs)
-                // ============================
-                function initTextAndGalleries() {
-                    const root = document.querySelector(".nf-scroll-gallery");
-                    if (!root) return;
+    <!-- ══════════════════════════════════════════════
+         TESTIMONIALS
+    ══════════════════════════════════════════════ -->
+    <section class="pf-reviews" id="pf-reviews">
+        <h2 class="pf-reviews__title">What Clients Say</h2>
+        <div class="pf-reviews__grid">
 
-                    // ---- TEXT SECTIONS ("Speed..." + "Real Results/Bold Vision...")
-                    const textSections = Array.prototype.slice.call(
-                        root.querySelectorAll(".demo-text")
-                    );
+            <article class="pf-review">
+                <div class="pf-review__quote" aria-hidden="true">&ldquo;</div>
+                <blockquote class="pf-review__text">
+                    From logo to launch, Noble Fir took time to understand our goals and turned our vision into a cohesive, modern web presence. We&rsquo;ve never looked more professional online.
+                </blockquote>
+                <cite class="pf-review__cite">
+                    <strong>J. Labue</strong>
+                    <span>CEO &middot; Casa Designs</span>
+                </cite>
+            </article>
 
-                    textSections.forEach(function (section, index) {
-                        const textEl = section.querySelector(".text");
-                        if (!textEl) return;
+            <article class="pf-review">
+                <div class="pf-review__quote" aria-hidden="true">&ldquo;</div>
+                <blockquote class="pf-review__text">
+                    Clean design, fast performance, and a painless build &mdash; Noble Fir delivered exactly what our team needed to grow. Communication was on point and timelines were clear.
+                </blockquote>
+                <cite class="pf-review__cite">
+                    <strong>J. Kuykendall</strong>
+                    <span>Owner &middot; J&rsquo;s Quality Custom Painting</span>
+                </cite>
+            </article>
 
-                        let fromXPercent, toXPercent;
+            <article class="pf-review">
+                <div class="pf-review__quote" aria-hidden="true">&ldquo;</div>
+                <blockquote class="pf-review__text">
+                    They treated our project like a partnership &mdash; thoughtful strategy, meticulous execution, and a site our customers love. Our inquiries increased immediately after launch.
+                </blockquote>
+                <cite class="pf-review__cite">
+                    <strong>A. Taylor</strong>
+                    <span>Project Manager &middot; Crown Clothing</span>
+                </cite>
+            </article>
 
-                        // index 0: right -> left ("Speed. Structure. Scale.")
-                        // index 1: left -> right ("Real Results. Bold Vision.")
-                        if (index % 2 === 0) {
-                            fromXPercent = 100;
-                            toXPercent = -100;
-                        } else {
-                            fromXPercent = -100;
-                            toXPercent = 100;
-                        }
+        </div>
+    </section>
 
-                        gsap.fromTo(
-                            textEl,
-                            { xPercent: fromXPercent },
-                            {
-                                xPercent: toXPercent,
-                                ease: "none",
-                                scrollTrigger: {
-                                    trigger: section,
-                                    start: "bottom bottom",
-                                    end: "top top",
-                                    scrub: true
-                                }
-                            }
-                        );
+    <!-- ══════════════════════════════════════════════
+         CTA — conversion anchor
+    ══════════════════════════════════════════════ -->
+    <section class="pf-cta" id="pf-cta">
+        <div class="pf-cta__inner">
+            <p class="pf-cta__eyebrow">Ready to start?</p>
+            <h2 class="pf-cta__headline">Your project<br><em>could be next.</em></h2>
+            <p class="pf-cta__sub">
+                Every project starts with a conversation. Book a free 30-min call and
+                let&rsquo;s map out exactly what you need &mdash; no commitment required.
+            </p>
+            <div class="pf-cta__actions">
+                <a href="contact-us.html" class="pf-cta__btn-primary">
+                    Start a Project
+                    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" aria-hidden="true" width="13" height="13">
+                        <path d="M2 7h10M8 3l4 4-4 4"/>
+                    </svg>
+                </a>
+                <a href="pricing.html" class="pf-cta__btn-ghost">View Pricing &rarr;</a>
+            </div>
+            <!-- Trust signals -->
+            <div class="pf-cta__trust">
+                <span>Free 30-min call</span>
+                <span class="pf-cta__sep">&middot;</span>
+                <span>No-template builds</span>
+                <span class="pf-cta__sep">&middot;</span>
+                <span>Response in &lt;24hrs</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════════════ -->
+    <footer class="nf-footer" role="contentinfo">
+        <span class="nf-footer-bg-letter nf-left" aria-hidden="true">N</span>
+        <span class="nf-footer-bg-letter nf-right" aria-hidden="true">F</span>
+
+        <nav class="nf-footer-nav" aria-label="Footer">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="portfolio.html">Projects</a></li>
+                <li class="nf-contact-btn"><a href="contact-us.html">Let&rsquo;s Talk</a></li>
+            </ul>
+        </nav>
+
+        <div class="nf-footer-bottom">
+            <p class="nf-copy">@ 2025 NOBLE FIR STUDIO, LLC. ALL RIGHTS RESERVED.</p>
+            <div class="nf-social">
+                <a href="#" aria-label="Instagram" class="nf-social-icon">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="#" aria-label="LinkedIn" class="nf-social-icon">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div>
+            <div class="nf-legal">
+                <a href="privacy.html">Privacy Policy</a>
+                <span class="nf-sep" aria-hidden="true">&bull;</span>
+                <a href="terms.html">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/index.js"></script>
+
+    <script>
+        /* ── Portfolio category filter ── */
+        (function () {
+            const filters = document.querySelectorAll('.pf-filter');
+            const cards   = document.querySelectorAll('.pf-card');
+            if (!filters.length || !cards.length) return;
+
+            filters.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var cat = this.dataset.cat;
+
+                    // active pill
+                    filters.forEach(function (f) { f.classList.remove('is-active'); });
+                    this.classList.add('is-active');
+
+                    // show / hide with transition
+                    cards.forEach(function (card) {
+                        var cats = card.dataset.cat ? card.dataset.cat.split(' ') : [];
+                        var show = cat === 'all' || cats.indexOf(cat) > -1;
+                        card.style.opacity    = show ? '1' : '0';
+                        card.style.transform  = show ? 'none' : 'translateY(8px)';
+                        card.style.pointerEvents = show ? '' : 'none';
+                        // keep in flow but invisible — avoids grid reflow
+                        card.setAttribute('aria-hidden', show ? 'false' : 'true');
                     });
+                });
+            });
+        })();
+    </script>
 
-                    // ---- GALLERY SECTIONS (horizontal scroll rows)
-                    const gallerySections = Array.prototype.slice.call(
-                        root.querySelectorAll(".demo-gallery")
-                    );
-
-                    gallerySections.forEach(function (section, index) {
-                        const wrapper = section.querySelector(".wrapper");
-                        if (!wrapper) return;
-
-                        let startX;
-                        let endX;
-
-                        // Alternate direction per row
-                        if (index % 2 === 1) {
-                            // odd: right -> left
-                            startX = "100%";
-                            endX = (wrapper.scrollWidth - section.offsetWidth) * -1;
-                        } else {
-                            // even: left -> right
-                            startX = wrapper.scrollWidth * -1;
-                            endX = 0;
-                        }
-
-                        gsap.fromTo(
-                            wrapper,
-                            { x: startX },
-                            {
-                                x: endX,
-                                ease: "none",
-                                scrollTrigger: {
-                                    trigger: section,
-                                    start: "top bottom",
-                                    end: "bottom top",
-                                    scrub: 0.5
-                                }
-                            }
-                        );
-                    });
-                }
-
-                // ============================
-                // HEADER DUST EFFECT
-                // ============================
-                (function () {
-                    const COUNT = 75;
-                    const REPEAT_COUNT = 3;
-
-                    const headerSection = document.querySelector(".nf-dust-header");
-                    const captureEl = document.querySelector("#nf-header-capture");
-
-                    if (!headerSection || !captureEl) return;
-
-                    function createHeaderCanvases() {
-                        html2canvas(captureEl, { backgroundColor: null }).then((canvas) => {
-                            const width = canvas.width;
-                            const height = canvas.height;
-                            const ctx = canvas.getContext("2d");
-                            const imageData = ctx.getImageData(0, 0, width, height);
-
-                            const dataList = [];
-
-                            // Hide original text once we capture it
-                            captureEl.style.visibility = "hidden";
-
-                            for (let i = 0; i < COUNT; i++) {
-                                dataList.push(ctx.createImageData(width, height));
-                            }
-
-                            // Distribute pixels across the data buckets
-                            for (let x = 0; x < width; x++) {
-                                for (let y = 0; y < height; y++) {
-                                    for (let l = 0; l < REPEAT_COUNT; l++) {
-                                        const index = (x + y * width) * 4;
-                                        const dataIndex = Math.floor(
-                                            (COUNT * (Math.random() + (2 * x) / width)) / 3
-                                        );
-                                        for (let p = 0; p < 4; p++) {
-                                            dataList[dataIndex].data[index + p] =
-                                                imageData.data[index + p];
-                                        }
-                                    }
-                                }
-                            }
-
-                            // How long (in scroll px) the header stays pinned
-                            const pinDuration = window.innerHeight * 2; // tweak for longer/shorter dust
-
-                            // Pin the header section during the dust animation
-                            ScrollTrigger.create({
-                                trigger: headerSection,
-                                start: "top top",
-                                end: "+=" + pinDuration,
-                                pin: true,
-                                scrub: true
-                            });
-
-                            // Create and animate each canvas
-                            dataList.forEach((data, i) => {
-                                const clonedCanvas = canvas.cloneNode();
-                                clonedCanvas.getContext("2d").putImageData(data, 0, 0);
-                                clonedCanvas.className = "nf-header-canvas";
-
-                                // attach to the HEADER, not body
-                                headerSection.appendChild(clonedCanvas);
-
-                                const randomAngle = (Math.random() - 0.5) * 2 * Math.PI;
-                                const randomRotationAngle = 30 * (Math.random() - 0.5);
-
-                                gsap.to(clonedCanvas, {
-                                    rotate: randomRotationAngle,
-                                    x: 80 * Math.sin(randomAngle),
-                                    y: 80 * Math.cos(randomAngle),
-                                    opacity: 0,
-                                    delay: (i / dataList.length) * 0.6, // stagger the dust
-                                    ease: "none",
-                                    scrollTrigger: {
-                                        trigger: headerSection,
-                                        start: "top top",          // when header starts pinning
-                                        end: "+=" + pinDuration,   // same span as the pin
-                                        scrub: 1
-                                    }
-                                });
-                            });
-
-                            // NOW that the pin + canvases exist, init the rest and refresh
-                            initTextAndGalleries();
-                            ScrollTrigger.refresh();
-                        });
-                    }
-
-                    window.addEventListener("load", createHeaderCanvases);
-                })();
-        </script>
     </body>
 </html>
