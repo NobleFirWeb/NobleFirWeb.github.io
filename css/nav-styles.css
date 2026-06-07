@@ -500,6 +500,10 @@ body.nf-logo-visible .navbar .logo-name {
     pointer-events: auto;
 }
 
+body.nf-logo-visible {
+    background-color: #0A0A0A;
+}
+
 body.nf-nav-open .navbar .logo-name {
     opacity: 0 !important;
     transform: translateY(-8px) !important;
@@ -834,7 +838,7 @@ Panel items + animated links
     Footer Styles
    ======================= */
 :root{
-    --nf-bg:#0f0e0f;
+    --nf-bg:#0A0A0A;
     --nf-fg:#fff;
     --nf-gray:#464646;
     --nf-red:#ff0000;
@@ -847,9 +851,9 @@ Panel items + animated links
     width: 100%;
     min-height: 60vh;
     height: auto;
-    background-color: #0f0e0f;
     /* black background */
     color: #fff;
+    background-color: var(--nf-bg);
     display: grid;
     place-items: center;
     /* center the nav stack */
@@ -867,7 +871,7 @@ Panel items + animated links
     font-weight: 700;
     letter-spacing: -0.04em;
     font-size: 24vw;
-    color: #0f0e0f;
+    color: #0A0A0A;
     text-shadow:
     2px 2px 0 var(--nf-red),
     -2px -2px 0 var(--nf-red),

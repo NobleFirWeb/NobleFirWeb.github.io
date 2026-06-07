@@ -1,5 +1,5 @@
-// Requires: gsap, SplitText, CustomEase
-gsap.registerPlugin(SplitText, CustomEase);
+// Requires: gsap, SplitText, ScrollTrigger, CustomEase
+gsap.registerPlugin(SplitText, ScrollTrigger, CustomEase);
 
 // Ease from the CodePen
 CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1");
@@ -279,30 +279,283 @@ setInterval(changeWord, 3000);
   observer.observe(statsSection);
 })();
 
-// ===== Review Slider logic (no autoslide) =====
+// ===== Review Slider — GSAP Draggable Carousel =====
 (() => {
-  const track = document.querySelector('.nf-reviews__track');
-  const slides = Array.from(document.querySelectorAll('.nf-review'));
-  const prev = document.getElementById('nfPrev');
-  const next = document.getElementById('nfNext');
-  let index = 0;
+  const stage   = document.getElementById('nfStage');
+  const track   = document.getElementById('nfTrack');
+  const prevBtn = document.getElementById('nfPrev');
+  const nextBtn = document.getElementById('nfNext');
+  const counter = document.getElementById('nfCounter');
+  const dotsWrap = document.getElementById('nfDots');
+  if (!stage || !track) return;
 
-  function go(i){
-    index = (i + slides.length) % slides.length;          // wrap around
-    const offset = -100 * index;                           // percent
-    track.style.transform = `translateX(${offset}vw)`;     // slide by viewport widths
+  const cards = Array.from(track.querySelectorAll('.nf-card-review'));
+  const dots  = Array.from(dotsWrap ? dotsWrap.querySelectorAll('.nf-dot') : []);
+  const N     = cards.length;
+  let current = 0;
+  let autoTimer = null;
+
+  // padding offset so the active card starts just inside the left edge
+  const SIDE_PEEK = () => stage.getBoundingClientRect().width * 0.05;
+
+  function cardWidth() {
+    return cards[0] ? cards[0].getBoundingClientRect().width : 0;
   }
 
-  prev.addEventListener('click', () => go(index - 1));
-  next.addEventListener('click', () => go(index + 1));
+  function gap() {
+    const style = window.getComputedStyle(track);
+    return parseFloat(style.columnGap) || 24;
+  }
 
-  // keyboard support when section is focused
-  document.getElementById('nf-reviews').addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') go(index - 1);
-    if (e.key === 'ArrowRight') go(index + 1);
+  function targetX(idx) {
+    return SIDE_PEEK() - idx * (cardWidth() + gap());
+  }
+
+  function updateCards(idx) {
+    cards.forEach((c, i) => {
+      const active = i === idx;
+      c.classList.toggle('is-active', active);
+      gsap.to(c, {
+        opacity: active ? 1 : 0.45,
+        scale:   active ? 1 : 0.97,
+        duration: 0.4,
+        ease: 'power2.out'
+      });
+    });
+  }
+
+  function updateDots(idx) {
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+  }
+
+  function updateCounter(idx) {
+    if (!counter) return;
+    const pad = n => String(n).padStart(2, '0');
+    counter.innerHTML = `<em>${pad(idx + 1)}</em>&nbsp;/&nbsp;${pad(N)}`;
+  }
+
+  function goTo(idx, animate = true) {
+    current = ((idx % N) + N) % N;
+    const x = targetX(current);
+    if (animate) {
+      gsap.to(track, { x, duration: 0.55, ease: 'osmo-ease' });
+    } else {
+      gsap.set(track, { x });
+    }
+    updateCards(current);
+    updateDots(current);
+    updateCounter(current);
+  }
+
+  function startAuto() {
+    stopAuto();
+    autoTimer = setInterval(() => goTo(current + 1), 4000);
+  }
+
+  function stopAuto() {
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  }
+
+  // Init
+  gsap.set(track, { x: targetX(0) });
+  updateCards(0);
+  updateDots(0);
+  updateCounter(0);
+  startAuto();
+
+  // Arrow buttons
+  if (prevBtn) prevBtn.addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
+
+  // Dot clicks
+  dots.forEach((d, i) => d.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); }));
+
+  // Keyboard
+  const section = document.getElementById('nf-reviews');
+  if (section) {
+    section.setAttribute('tabindex', '-1');
+    section.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  { stopAuto(); goTo(current - 1); startAuto(); }
+      if (e.key === 'ArrowRight') { stopAuto(); goTo(current + 1); startAuto(); }
+    });
+  }
+
+  // Drag / pointer
+  let startX = 0, startTrackX = 0, dragging = false, moved = false;
+  const DRAG_THRESHOLD = 6;
+  const SNAP_THRESHOLD = 60;
+
+  stage.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;
+    stopAuto();
+    dragging = true;
+    moved = false;
+    startX = e.clientX;
+    startTrackX = gsap.getProperty(track, 'x');
+    stage.setPointerCapture(e.pointerId);
+    gsap.killTweensOf(track);
   });
+
+  stage.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    if (!moved && Math.abs(dx) > DRAG_THRESHOLD) moved = true;
+    if (moved) {
+      gsap.set(track, { x: startTrackX + dx });
+    }
+  });
+
+  stage.addEventListener('pointerup', (e) => {
+    if (!dragging) return;
+    dragging = false;
+    const dx = e.clientX - startX;
+    if (moved) {
+      if (dx < -SNAP_THRESHOLD)      goTo(current + 1);
+      else if (dx > SNAP_THRESHOLD)  goTo(current - 1);
+      else                            goTo(current);
+    } else {
+      goTo(current);
+    }
+    startAuto();
+  });
+
+  stage.addEventListener('pointercancel', () => {
+    if (dragging) { dragging = false; goTo(current); startAuto(); }
+  });
+
+  // Prevent click propagation on drag
+  stage.addEventListener('click', (e) => { if (moved) e.stopPropagation(); }, true);
+
+  // Recalculate on resize
+  window.addEventListener('resize', () => gsap.set(track, { x: targetX(current) }), { passive: true });
 })();
 
 
 
-// ===== NF Expand/Reveal Interaction =====
+// ===== Hero Entrance (GSAP — replaces CSS abFadeUp) =====
+(function () {
+    const headline = document.querySelector('.ab-hero-headline');
+    const sub      = document.querySelector('.ab-hero-sub');
+    const right    = document.querySelector('.ab-hero-right');
+    if (!headline || !sub || !right) return;
+
+    // Reset opacity so the elements are invisible before GSAP fires
+    gsap.set([headline, sub, right], { opacity: 0, y: 28 });
+
+    const tl = gsap.timeline({ defaults: { ease: 'osmo-ease', duration: 0.9 } });
+    tl.to(headline, { opacity: 1, y: 0 }, 0.05)
+      .to(sub,      { opacity: 1, y: 0 }, 0.22)
+      .to(right,    { opacity: 1, y: 0 }, 0.38);
+})();
+
+
+// ===== Skills list — ScrollTrigger stagger-in =====
+(function () {
+    const items = Array.from(document.querySelectorAll('.skill'));
+    if (!items.length) return;
+
+    gsap.set(items, { opacity: 0, x: 40 });
+
+    ScrollTrigger.create({
+        trigger: '.skills__ul',
+        start: 'top 80%',
+        onEnter: () => {
+            gsap.to(items, {
+                opacity: 1,
+                x: 0,
+                duration: 0.7,
+                stagger: 0.07,
+                ease: 'osmo-ease'
+            });
+        },
+        once: true
+    });
+})();
+
+
+// ===== Stats bg word — parallax scrub =====
+(function () {
+    const bg = document.querySelector('.nf-stats__bg');
+    if (!bg) return;
+
+    gsap.to(bg, {
+        yPercent: -18,
+        ease: 'none',
+        scrollTrigger: {
+            trigger: '.nf-stats',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.5
+        }
+    });
+})();
+
+
+// ===== Vibes numbers — horizontal parallax scrub =====
+(function () {
+    const vibe1num = document.querySelector('#vibe-1 .vibe-num');
+    const vibe2num = document.querySelector('#vibe-2 .vibe-num');
+    const vibe3num = document.querySelector('#vibe-3 .vibe-num');
+    const vibe4num = document.querySelector('#vibe-4 .vibe-num');
+
+    function addParallax(el, xStart, xEnd) {
+        if (!el) return;
+        gsap.fromTo(el,
+            { x: xStart },
+            {
+                x: xEnd,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: el.closest('.vibe-row'),
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 2
+                }
+            }
+        );
+    }
+
+    addParallax(vibe1num, -40, 40);
+    addParallax(vibe2num, 40, -40);
+    addParallax(vibe3num, -40, 40);
+    addParallax(vibe4num, 40, -40);
+})();
+
+
+// ===== Founder bio toggle (GSAP height tween) =====
+(function () {
+    const toggle   = document.querySelector('.nf-founder__toggle');
+    const expanded = document.getElementById('founderExpanded');
+    if (!toggle || !expanded) return;
+
+    let open = false;
+
+    // Set initial state
+    gsap.set(expanded, { height: 0, opacity: 0, overflow: 'hidden' });
+
+    toggle.addEventListener('click', () => {
+        open = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+        expanded.setAttribute('aria-hidden', String(!open));
+
+        const label = toggle.querySelector('.nf-founder__toggle-label');
+
+        if (open) {
+            if (label) label.textContent = 'Read Less';
+            gsap.to(expanded, {
+                height: 'auto',
+                opacity: 1,
+                duration: 0.6,
+                ease: 'osmo-ease'
+            });
+        } else {
+            if (label) label.textContent = 'Read More';
+            gsap.to(expanded, {
+                height: 0,
+                opacity: 0,
+                duration: 0.45,
+                ease: 'power2.inOut'
+            });
+        }
+    });
+})();

@@ -2,7 +2,7 @@
             *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
             :root {
-                --nf-bg:      #0f0e0f;
+                --nf-bg:      #0A0A0A;
                 --nf-fg:      #ffffff;
                 --nf-red:     #ff0000;
                 --nf-neutral: #bdbdbd;

@@ -336,7 +336,7 @@ function initHeroNFVideo() {
 
     // Your pinned hero behavior
     gsap.to("body", {
-      backgroundColor: "#0f0e0f",
+      backgroundColor: "#0A0A0A",
       ease: "none",
       scrollTrigger: {
         trigger: hero,
@@ -998,14 +998,6 @@ function initServicesHover() {
 
     gsap.killTweensOf(scrollCue);
     gsap.set(scrollCue, { autoAlpha: 1, y: 0 });
-
-    gsap.to(scrollCue, {
-      y: 10,
-      duration: 0.9,
-      repeat: -1,
-      yoyo: true,
-      ease: "power1.inOut"
-    });
 
     gsap.timeline({
       scrollTrigger: {

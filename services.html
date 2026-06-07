@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="./css/services.css">
         <link rel="stylesheet" href="./css/nav-styles.css">
         <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
@@ -69,8 +69,6 @@
         <div class="hero-eyebrow">
           <div class="hero-eyebrow-line"></div>
           <span>Web Design, Development &amp; More</span>
-          <div class="hero-eyebrow-dot"></div>
-          <span>Portland, OR</span>
         </div>
 
         <h1 class="hero-headline">
@@ -107,7 +105,7 @@
       <div class="hero-bottom">
         <div class="hero-stats">
           <div class="hero-stat">
-            <div class="hero-stat-val">5<span> +</span></div>
+            <div class="hero-stat-val">15<span> +</span></div>
             <div class="hero-stat-label">Projects Shipped</div>
           </div>
           <div class="hero-stat">
@@ -128,7 +126,7 @@
 
       <!-- Right panel -->
       <aside class="hero-right-panel">
-        <span class="hero-vertical-text">Noble Fir Studio — Tualatin, OR</span>
+        <span class="hero-vertical-text">Noble Fir Studio — Portland, OR</span>
 
         <ul class="hero-service-list">
           <li>Web Design</li>
@@ -145,7 +143,7 @@
             <circle cx="5" cy="4" r="2"/>
             <path d="M5 9C5 9 1.5 6 1.5 4a3.5 3.5 0 017 0C8.5 6 5 9 5 9z"/>
           </svg>
-          Tualatin, Oregon
+          Portland, Oregon
         </div>
       </aside>
 
@@ -210,7 +208,7 @@
         <div class="nf-reveal__col nf-reveal__right">
             <h3 class="nf-reveal__card-title">Digital Products with <span>Impact</span></h3>
             <div class="nf-reveal__media">
-                <img src="./img/casa-designs-front.png" alt="Content marketing in action">
+                <img src="./img/casa-designs-mockup.png" alt="Content marketing in action">
             </div>
             <p class="nf-reveal__card-copy" data-reveal="lines">
                 From design to deployment, Noble Fir’s solutions are tailored for businesses that need a professional, modern presence. Whether it’s a new build, a redesign, or an e-commerce integration, I create experiences that are both beautiful and functional.
@@ -261,13 +259,15 @@
             <div class="nf-proc__center">
                 <span class="nf-proc__eyebrow">From idea to <strong>identity</strong></span>
                 <h2 class="nf-proc__headline" data-reveal="lines">
-                    <span class="nf-proc__word--gray">Our</span>
+                    <span class="nf-proc__word--gray">My</span>
                     <span class="nf-proc__word--gray">Creative</span>
                     <span class="nf-proc__word--white">Process</span>
                 </h2>
-                <button class="about-btn">
-                <a href="contact-us.html">Get In Touch</a>
-            </button>
+                <a class="learn-more" href="contact-us.html">
+                    <span class="learn-more__icon learn-more__icon--left solar--arrow-right-down-linear" aria-hidden="true"></span>
+                    <span>Get In Touch</span>
+                    <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
+                </a>
             </div>
         </div>
     </section>
@@ -306,7 +306,7 @@
                             <span class="nf-svcs__num">02</span>
                             <span class="nf-svcs__title">Custom Web Development</span>
                             <span class="nf-svcs__desc">
-                                Brand-aligned UI/UX, component systems, and content that converts.
+                                Hand-coded, high-performance builds engineered for speed, scale, and search visibility.
                             </span>
                         </a>
                     </li>
@@ -368,12 +368,16 @@
     
                 </ol>
                 <div class="btn-group">
-                    <button class="about-btn">
-                        <a href="contact-us.html">Free Consultation</a>
-                    </button>
-                    <button class="about-btn btn2">
-                        <a href="#ux-ui-design">View All Services <sl-icon name="arrow-down"></sl-icon></a>
-                    </button>
+                    <a class="learn-more" href="contact-us.html">
+                        <span class="learn-more__icon learn-more__icon--left solar--arrow-right-down-linear" aria-hidden="true"></span>
+                        <span>Free Consultation</span>
+                        <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
+                    </a>
+                    <a class="learn-more" href="#ux-ui-design">
+                        <span class="learn-more__icon learn-more__icon--left solar--arrow-right-down-linear" aria-hidden="true"></span>
+                        <span>View All Services</span>
+                        <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -399,81 +403,93 @@
         </div>
     </section>
 
-    <!-- ===== Review Slider (About page) ===== -->
+    <!-- ===== Review Slider — GSAP Draggable Carousel ===== -->
         <section class="nf-reviews" id="nf-reviews" aria-label="Client reviews">
-            <div class="nf-reviews__viewport">
-                <div class="nf-reviews__track" role="list">
-                    <!-- Slide 1 -->
-                    <article class="nf-review" role="listitem">
-                        <div class="nf-review__media"" aria-hidden=" true">
-                            <img src="./img/review1.png" alt="Review 1">
-                        </div>
-                        <div class="nf-review__content">
-                            <div class="nf-review__quote-mark" aria-hidden="true">“</div>
-                            <h3 class="nf-review__headline">
-                                From logo to launch, Noble Fir took time to understand our goals and turned our vision
-                                into a cohesive, modern web presence.
-                            </h3>
-                            <p class="nf-review__blurb">
-                                We’ve never looked more professional online. Their process brought clarity, creativity,
-                                and deep insight into our user journeys.
-                            </p>
-                            <div class="nf-review__author">
+            <div class="nf-reviews__header">
+                <span class="nf-reviews__kicker">// Client Reviews</span>
+                <div class="nf-reviews__nav">
+                    <button class="nf-reviews__btn" id="nfPrev" aria-label="Previous review" type="button">←</button>
+                    <span class="nf-reviews__counter" id="nfCounter"><em>01</em>&nbsp;/&nbsp;06</span>
+                    <button class="nf-reviews__btn" id="nfNext" aria-label="Next review" type="button">→</button>
+                </div>
+            </div>
+            <div class="nf-reviews__stage" id="nfStage">
+                <div class="nf-reviews__track" id="nfTrack">
+                    <article class="nf-card-review">
+                        <div class="nf-card-review__mark">&ldquo;</div>
+                        <p class="nf-card-review__text">From logo to launch, Noble Fir took time to understand our goals and turned our vision into a cohesive, modern web presence. We’ve never looked more professional online.</p>
+                        <div class="nf-card-review__footer">
+                            <div class="nf-card-review__author">
                                 <strong>J. Labue</strong>
                                 <span>CEO at Casa Designs</span>
                             </div>
+                            <span class="nf-card-review__tag">Casa Designs</span>
                         </div>
                     </article>
-        
-                    <!-- Slide 2 -->
-                    <article class="nf-review" role="listitem">
-                        <div class="nf-review__media" aria-hidden="true">
-                            <img src="./img/review2.png" alt="Review 2">
-                        </div>
-                        <div class="nf-review__content">
-                            <div class="nf-review__quote-mark" aria-hidden="true">“</div>
-                            <h3 class="nf-review__headline">
-                                Clean design, fast performance, and a painless build—Noble Fir delivered exactly what our
-                                team needed to grow.
-                            </h3>
-                            <p class="nf-review__blurb">
-                                Communication was on point and timelines were clear. We’d recommend them to any
-                                small business that wants agency-level results.
-                            </p>
-                            <div class="nf-review__author">
+                    <article class="nf-card-review">
+                        <div class="nf-card-review__mark">&ldquo;</div>
+                        <p class="nf-card-review__text">Clean design, fast performance, and a painless build &mdash; Noble Fir delivered exactly what our team needed to grow. Communication was on point and timelines were clear.</p>
+                        <div class="nf-card-review__footer">
+                            <div class="nf-card-review__author">
                                 <strong>J. Kuykendall</strong>
-                                <span>Owner at J's Quality Custom Painting</span>
+                                <span>Owner at J’s Quality Painting</span>
                             </div>
+                            <span class="nf-card-review__tag">J’s Quality Painting</span>
                         </div>
                     </article>
-        
-                    <!-- Slide 3 -->
-                    <article class="nf-review" role="listitem">
-                        <div class="nf-review__media" aria-hidden="true">
-                            <img src="./img/review3.png" alt="Review 3">
-                        </div>
-                        <div class="nf-review__content">
-                            <div class="nf-review__quote-mark" aria-hidden="true">“</div>
-                            <h3 class="nf-review__headline">
-                                They treated our project like a partnership—thoughtful strategy, meticulous execution,
-                                and a site our customers love.
-                            </h3>
-                            <p class="nf-review__blurb">
-                                The rollout was smooth and measurable. Our inquiries increased immediately after launch.
-                            </p>
-                            <div class="nf-review__author">
+                    <article class="nf-card-review">
+                        <div class="nf-card-review__mark">&ldquo;</div>
+                        <p class="nf-card-review__text">They treated our project like a partnership &mdash; thoughtful strategy, meticulous execution, and a site our customers love. The rollout was smooth and our inquiries increased immediately.</p>
+                        <div class="nf-card-review__footer">
+                            <div class="nf-card-review__author">
                                 <strong>A. Taylor</strong>
                                 <span>Project Manager at Crown Clothing</span>
                             </div>
+                            <span class="nf-card-review__tag">Crown Clothing</span>
+                        </div>
+                    </article>
+                    <article class="nf-card-review">
+                        <div class="nf-card-review__mark">&ldquo;</div>
+                        <p class="nf-card-review__text">Noble Fir built us a platform that actually fits how we operate. The booking flow is slick, the brand feels alive, and our clients notice the difference every single session.</p>
+                        <div class="nf-card-review__footer">
+                            <div class="nf-card-review__author">
+                                <strong>S. Monroe</strong>
+                                <span>Founder at Gracefully Captured</span>
+                            </div>
+                            <span class="nf-card-review__tag">Gracefully Captured</span>
+                        </div>
+                    </article>
+                    <article class="nf-card-review">
+                        <div class="nf-card-review__mark">&ldquo;</div>
+                        <p class="nf-card-review__text">We needed a site that matched our energy &mdash; bold, fast, and built for the community. Noble Fir nailed it. The drop page and stream hub have been huge for our growth.</p>
+                        <div class="nf-card-review__footer">
+                            <div class="nf-card-review__author">
+                                <strong>D. Williams</strong>
+                                <span>Founder at Rise With Us Gaming</span>
+                            </div>
+                            <span class="nf-card-review__tag">Rise With Us Gaming</span>
+                        </div>
+                    </article>
+                    <article class="nf-card-review">
+                        <div class="nf-card-review__mark">&ldquo;</div>
+                        <p class="nf-card-review__text">The CosmiQ site feels otherworldly in the best way. Noble Fir understood the vision immediately and delivered an experience that keeps users exploring long after they land.</p>
+                        <div class="nf-card-review__footer">
+                            <div class="nf-card-review__author">
+                                <strong>R. Patel</strong>
+                                <span>Co-Founder at CosmiQ</span>
+                            </div>
+                            <span class="nf-card-review__tag">CosmiQ</span>
                         </div>
                     </article>
                 </div>
             </div>
-        
-            <!-- Controls -->
-            <div class="nf-reviews__controls">
-                <button class="nf-reviews__btn" id="nfPrev" aria-label="Previous review" type="button">←</button>
-                <button class="nf-reviews__btn" id="nfNext" aria-label="Next review" type="button">→</button>
+            <div class="nf-reviews__dots" id="nfDots" aria-hidden="true">
+                <span class="nf-dot is-active"></span>
+                <span class="nf-dot"></span>
+                <span class="nf-dot"></span>
+                <span class="nf-dot"></span>
+                <span class="nf-dot"></span>
+                <span class="nf-dot"></span>
             </div>
         </section>
 
@@ -727,9 +743,11 @@
                 Whether you're starting fresh or leveling up your online presence, Noble Fir is here to bring your vision to
                 life.
             </p>
-            <button class="about-btn">
-                <a href="contact-us.html">Get In Touch</a>
-            </button>
+            <a class="learn-more" href="contact-us.html">
+                <span class="learn-more__icon learn-more__icon--left solar--arrow-right-down-linear" aria-hidden="true"></span>
+                <span>Get In Touch</span>
+                <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
+            </a>
         </div>
     </section>
 
@@ -808,7 +826,6 @@
         <script src="./js/index.js"></script>
         <script src="./js/about.js" async defer></script>
         <script src="./js/services.js" async defer></script>
-        <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
 
         <!-- Noble Fir Hero — Custom Cursor -->
         <div class="nf-cursor-dot" id="nf-cursor"></div>

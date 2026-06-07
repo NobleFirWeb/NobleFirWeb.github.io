@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300&display=swap');
 /* ── Contact Hero Fonts — look here for Bebas Neue / Barlow / JetBrains Mono */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap');
+/* ── Hero headline font — matches the about-page hero title */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
 
 
 /* General Reset */
@@ -19,7 +21,7 @@ html, body {
 body {
     margin: 0;
     padding: 0;
-    background-color: #0f0e0f;
+    background-color: #0A0A0A;
     overflow-x: hidden;
 }
 
@@ -47,6 +49,7 @@ body {
     cursor: pointer;
     text-decoration: none;
     --spin-duration: 12s;
+    display: none;
 }
 
 .text-spinner svg {
@@ -692,34 +695,30 @@ body {
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.04;
+  opacity: 0.01;
   pointer-events: none;
   z-index: 1;
 }
 
-/* Diagonal red slash between columns */
-.ct-slash {
-  position: absolute;
-  top: -10%;
-  left: 48%;
-  width: 2px;
-  height: 130%;
-  background: #E8001E;
-  transform: rotate(8deg);
-  transform-origin: top center;
-  opacity: 0;
-  animation: ctSlashIn 0.6s 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  z-index: 1;
-}
-
-.ct-slash::before {
+/* Vertical centre rule — mirrors the about-page hero divider */
+.ct-hero::after {
   content: '';
   position: absolute;
-  top: 0; left: -18px;
+  top: 15%; bottom: 15%;
+  left: 50%;
   width: 1px;
-  height: 100%;
-  background: #1A1A1A;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(232,0,30,0.18) 30%,
+    rgba(232,0,30,0.18) 70%,
+    transparent
+  );
+  z-index: 1;
+  pointer-events: none;
 }
+
+
 
 @keyframes ctSlashIn {
   from { opacity: 0; transform: rotate(8deg) scaleY(0); transform-origin: top center; }
@@ -770,20 +769,22 @@ body {
   letter-spacing: 0 !important;
 }
 
-/* Big Bebas Neue headline */
+/* Big headline — matches the about-page hero title (Playfair Display) */
 .ct-headline {
   display: flex;
   flex-direction: column;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(4.5rem, 8vw, 8.5rem);
-  line-height: 0.92;
-  letter-spacing: 0.02em;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: normal;
+  text-transform: uppercase;
   margin-bottom: 1.75rem;
 }
 
 .ct-hl-row {
   display: block;
-  color: #F5F5F5;
+  color: #FFFFFF;
   opacity: 0;
   animation: ctFadeUp 0.6s ease forwards;
 }
@@ -792,10 +793,11 @@ body {
 .ct-hl-row:nth-child(2) { animation-delay: 0.5s; }
 .ct-hl-row:nth-child(3) { animation-delay: 0.65s; }
 
-/* Line 2: outline treatment */
+/* Line 2: italic grey accent — matches .ab-hero-headline em */
 .ct-hl-outline {
-  color: transparent;
-  -webkit-text-stroke: 1.5px #F5F5F5;
+  font-style: italic;
+  color: #C4C4C4;
+  -webkit-text-stroke: 0;
 }
 
 /* Line 3: red */
@@ -884,7 +886,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 8rem 5% 4rem 4rem;
   position: relative;
   z-index: 2;
@@ -894,8 +896,8 @@ body {
 
 /* Terminal window */
 .ct-terminal {
-  width: 100%;
-  max-width: 460px;
+  width: 600px;
+  height: auto;
   background: #0D0D0D;
   border: 1px solid #252525;
   border-radius: 10px;
@@ -1001,7 +1003,7 @@ body {
   padding: 0.7rem 1.1rem;
   backdrop-filter: blur(8px);
   animation: ctFloat 4s ease-in-out infinite;
-  max-width: 260px;
+  width: 340px;
 }
 
 .ct-response-dot {
@@ -1041,7 +1043,8 @@ body {
   border-radius: 20px;
   backdrop-filter: blur(6px);
   animation: ctFloat 5.5s 1.5s ease-in-out infinite;
-  align-self: flex-start;
+  align-self: flex-end;
+  margin-right: 6rem;
 }
 
 .ct-loc-dot {
@@ -1060,26 +1063,46 @@ body {
   color: #888;
 }
 
-/* ── Bottom scroll hint */
+/* ── Bottom-right scroll hint — matches the services-page hero scroll indicator */
 .ct-scroll-hint {
-  grid-column: 1 / -1;
-  grid-row: 2;
+  position: absolute;
+  right: 5%;
+  bottom: 2.5rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1.5rem 5%;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.2em;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #444;
+  color: #AAAAAA;
   z-index: 2;
+  opacity: 0;
+  animation: ctFadeUp 0.7s 1.2s ease forwards;
 }
 
 .ct-scroll-line {
-  width: 28px;
-  height: 1px;
-  background: #333;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, #666666, transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.ct-scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #E8001E;
+  animation: ctScrollDrop 1.8s ease infinite;
+}
+
+@keyframes ctScrollDrop {
+  from { top: -100%; }
+  to   { top: 200%; }
 }
 
 /* ── Keyframes */
@@ -1093,24 +1116,40 @@ body {
   50%      { transform: translateY(-6px); }
 }
 
-/* ── Responsive: tablet */
+/* ── Responsive: tablet (mirrors the about-page hero breakpoint) */
 @media (max-width: 1024px) {
   .ct-hero {
     grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
     min-height: auto;
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
   }
-  .ct-slash    { display: none; }
-  .ct-hero-right { display: none; }
+  .ct-hero::after {
+    display: none;
+  }
   .ct-hero-content {
-    padding: 9rem 5% 3rem;
+    grid-column: 1;
+    grid-row: 1;
+    padding: 7rem 5% 0 5%;
     max-width: 100%;
   }
   .ct-headline {
-    font-size: clamp(4rem, 16vw, 7rem);
+    font-size: clamp(2.75rem, 9vw, 4rem);
   }
   .ct-sub { max-width: 100%; }
-  .ct-scroll-hint { grid-column: 1; }
+
+  /* Right-side animation drops below the headline/sub/buttons */
+  .ct-hero-right {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 5% 5%;
+    max-width: 100%;
+  }
+
+  /* Scroll indicator hidden at this breakpoint, like the about-page hero */
+  .ct-scroll-hint {
+    display: none;
+  }
 }
 
 /* ── Responsive: mobile */
@@ -1119,11 +1158,26 @@ body {
     padding: 7rem 5% 2.5rem;
   }
   .ct-headline {
-    font-size: clamp(3.5rem, 18vw, 5rem);
+    font-size: clamp(2.25rem, 11vw, 3rem);
   }
   .ct-actions {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+  }
+  .ct-hero-right {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .ct-terminal {
+    width: 100%;
+  }
+  .ct-response-badge {
+    width: 100%;
+    justify-content: center;
+  }
+  .ct-loc-badge {
+    margin-right: 0;
+    align-self: flex-start;
   }
 }
