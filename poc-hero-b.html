@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NF Hero POC — B: Editorial Stack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <style>
+        :root {
+            --nf-bg: #0A0A0A;
+            --nf-fg: #fff;
+            --nf-red: #E8001E;
+            --nf-neutral: #bdbdbd;
+            --nf-gray: #464646;
+            --nf-border: rgba(255,255,255,0.08);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            background: var(--nf-bg);
+            scrollbar-gutter: stable;
+        }
+
+        body {
+            background: var(--nf-bg);
+            color: var(--nf-fg);
+            font-family: "Inter", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            /* locked until loader exits */
+            overflow-y: hidden;
+        }
+
+        body.is-ready { overflow-y: auto; }
+
+        /* ─── POC Label ─── */
+        .poc-label {
+            position: fixed; top: 20px; right: 24px; z-index: 9999;
+            font-family: "JetBrains Mono", monospace; font-size: 0.6rem;
+            letter-spacing: 0.2em; text-transform: uppercase; color: var(--nf-red);
+            border: 1px solid rgba(232,0,30,0.3); padding: 6px 12px; border-radius: 3px;
+            background: rgba(10,10,10,0.92); backdrop-filter: blur(6px);
+        }
+
+        /* ─── Loader ─── */
+        #nf-loader {
+            position: fixed; inset: 0; z-index: 9000;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .nf-loader__curtain {
+            position: absolute; left: 0; right: 0; height: 50%;
+            background: var(--nf-bg); z-index: 1; will-change: transform;
+        }
+        .nf-loader__curtain--top { top: 0; }
+        .nf-loader__curtain--bot { bottom: 0; }
+        .nf-loader__brand {
+            position: relative; z-index: 2;
+            text-align: center; user-select: none; pointer-events: none;
+        }
+        .nf-loader__initials {
+            display: flex; align-items: flex-end; justify-content: center;
+            gap: 0.01em; margin: 0; line-height: 0.88;
+        }
+        .nf-loader__initial-wrap { display: inline-block; overflow: hidden; line-height: 0.88; }
+        .nf-loader__initial {
+            display: inline-block; font-family: "Space Grotesk", sans-serif;
+            font-weight: 700; font-size: clamp(5rem, 18vw, 14rem);
+            letter-spacing: -0.03em; color: var(--nf-fg); will-change: transform;
+        }
+        .nf-loader__name {
+            font-family: "Inter", sans-serif; font-weight: 300;
+            font-size: clamp(0.75rem, 1.4vw, 1rem); letter-spacing: 0.38em;
+            text-transform: uppercase; color: var(--nf-neutral); margin-top: 1rem;
+        }
+        .nf-loader__city {
+            font-family: "Inter", sans-serif; font-weight: 300;
+            font-size: clamp(0.6rem, 0.9vw, 0.75rem); letter-spacing: 0.28em;
+            text-transform: uppercase; color: var(--nf-gray); margin-top: 0.4rem;
+        }
+        .nf-loader__bar {
+            position: fixed; bottom: 0; left: 0; right: 0; height: 2px;
+            background: rgba(255,255,255,0.07); z-index: 10000; pointer-events: none;
+        }
+        .nf-loader__bar-fill { height: 100%; width: 0%; background: var(--nf-red); }
+
+        /* ─── Nav ─── */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 5%; height: 80px; opacity: 0;
+        }
+        .navbar__logo {
+            font-family: "Space Grotesk", sans-serif; font-weight: 700;
+            font-size: 1.1rem; letter-spacing: -0.02em; color: var(--nf-fg); text-decoration: none;
+        }
+        .navbar__logo span { color: var(--nf-red); }
+        .navbar__cta {
+            font-family: "JetBrains Mono", monospace; font-size: 0.65rem;
+            letter-spacing: 0.2em; text-transform: uppercase; color: var(--nf-neutral);
+            text-decoration: none; border: 1px solid var(--nf-gray); padding: 8px 18px; border-radius: 3px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .navbar__cta:hover { border-color: var(--nf-red); color: var(--nf-fg); }
+
+        /* ══════════════════════════════════════
+           HERO — Editorial Stack
+        ══════════════════════════════════════ */
+        #hero {
+            position: relative; width: 100%; height: 100svh;
+            display: flex; flex-direction: column;
+            justify-content: center; padding: 0 5%;
+            overflow: hidden;
+        }
+
+        .hero-eyebrow {
+            font-family: "JetBrains Mono", monospace; font-size: 0.65rem;
+            letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--nf-red); margin-bottom: 24px;
+            display: flex; align-items: center; gap: 14px;
+            opacity: 0;
+        }
+        .hero-eyebrow::before {
+            content: ''; display: block; width: 0; height: 1px;
+            background: var(--nf-red); transition: width 0.4s ease;
+        }
+        .hero-eyebrow.is-revealed::before { width: 32px; }
+
+        /* Stacked headline */
+        .hero-headline {
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 700;
+            font-size: clamp(5.5rem, 14vw, 16rem);
+            letter-spacing: -0.055em;
+            text-transform: uppercase;
+            line-height: 0.88;
+        }
+
+        .hero-line { display: block; overflow: hidden; }
+        .hero-line__inner { display: block; will-change: transform; }
+
+        .hero-line--1 .hero-line__inner { color: var(--nf-fg); }
+        .hero-line--2 .hero-line__inner {
+            -webkit-text-stroke: 2px rgba(255,255,255,0.2);
+            color: transparent;
+        }
+        .hero-line--3 .hero-line__inner { color: var(--nf-fg); }
+        .hero-dot { color: var(--nf-red); }
+
+        .hero-kicker {
+            position: absolute; right: 5%; bottom: 18vh;
+            display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+            opacity: 0;
+        }
+        .hero-kicker__label {
+            font-family: "JetBrains Mono", monospace; font-size: 0.58rem;
+            letter-spacing: 0.2em; text-transform: uppercase; color: var(--nf-red);
+        }
+        .hero-kicker__text {
+            font-family: "Inter", sans-serif; font-weight: 300;
+            font-size: clamp(0.75rem, 1vw, 0.9rem); letter-spacing: 0.1em;
+            color: var(--nf-neutral); text-align: right; line-height: 1.9;
+            text-transform: uppercase;
+        }
+
+        .hero-meta {
+            position: absolute; left: 5%; bottom: 10vh;
+            display: flex; flex-direction: column; gap: 6px; opacity: 0;
+        }
+        .hero-meta__loc {
+            font-family: "JetBrains Mono", monospace; font-size: 0.57rem;
+            letter-spacing: 0.22em; text-transform: uppercase; color: var(--nf-gray);
+        }
+        .hero-meta__sub {
+            font-family: "Inter", sans-serif; font-weight: 300;
+            font-size: clamp(0.75rem, 1vw, 0.9rem); letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--nf-neutral);
+        }
+
+        .hero-scroll {
+            position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 12px;
+            opacity: 0;
+        }
+        .hero-scroll__line {
+            width: 1px; height: 50px;
+            background: linear-gradient(to bottom, transparent, var(--nf-red), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.35; transform: scaleY(0.75); }
+            50%       { opacity: 1;    transform: scaleY(1); }
+        }
+        .hero-scroll__label {
+            font-family: "JetBrains Mono", monospace; font-size: 0.53rem;
+            letter-spacing: 0.22em; text-transform: uppercase; color: var(--nf-gray);
+            writing-mode: vertical-rl;
+        }
+
+        /* ══════════════════════════════════════
+           SCROLL STORY — video morphs to about
+        ══════════════════════════════════════ */
+        #scrollStory {
+            position: relative;
+            width: 100%;
+            /* height is just the pin trigger height — ScrollTrigger extends it */
+            height: 100svh;
+        }
+
+        /* The scene that gets pinned */
+        .ss-scene {
+            position: relative;
+            width: 100%;
+            height: 100svh;
+            overflow: hidden;
+            background: var(--nf-bg);
+        }
+
+        /* Video wrap — starts covering entire scene */
+        .ss-video-wrap {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            overflow: hidden;
+            z-index: 2;
+            will-change: width, height, top, left, border-radius;
+        }
+
+        .ss-video-wrap video {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            /* oversized so nothing crops awkwardly when container shrinks */
+            width: 110%; height: 110%;
+            object-fit: cover;
+        }
+
+        /* Dark gradient scrim on the video (bottom fade) */
+        .ss-video-scrim {
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(10,10,10,0.65) 0%,
+                transparent 60%
+            );
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* About content — already in its final position, waiting */
+        .ss-about {
+            position: absolute;
+            top: 50%;
+            left: 54%;
+            right: 4%;
+            width: auto;
+            transform: translateY(-50%);
+            z-index: 1;
+            display: flex; flex-direction: column; gap: 28px;
+        }
+
+        .ss-about__kicker {
+            font-family: "JetBrains Mono", monospace; font-size: 0.65rem;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--nf-red);
+            opacity: 0; /* animated in */
+        }
+
+        .ss-about__heading {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(1.8rem, 3vw, 3rem);
+            font-weight: 700; letter-spacing: -0.04em;
+            text-transform: uppercase; line-height: 1;
+            /* words start ghost, fill to white */
+        }
+
+        .ss-about__text {
+            font-family: "Inter", sans-serif; font-weight: 300;
+            font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+            line-height: 1.85; color: var(--nf-neutral);
+            max-width: 480px;
+        }
+
+        /* Each split word starts near-invisible */
+        .ss-about__heading .word,
+        .ss-about__text .word {
+            display: inline-block;
+            color: rgba(255,255,255,0.08);
+            will-change: color;
+        }
+
+        .ss-about__link {
+            display: inline-flex; align-items: center; gap: 12px;
+            font-family: "Inter", sans-serif; font-weight: 500;
+            font-size: 0.8rem; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--nf-fg);
+            text-decoration: none; opacity: 0;
+            will-change: opacity;
+        }
+        .ss-about__link svg { width: 14px; height: 14px; }
+        .ss-about__link:hover { color: var(--nf-red); }
+
+        /* Thin vertical divider that appears between video and text */
+        .ss-divider {
+            position: absolute;
+            top: 15vh; bottom: 15vh;
+            /* starts at video right edge — GSAP sets exact left */
+            left: 50%;
+            width: 1px;
+            background: var(--nf-border);
+            transform: scaleY(0);
+            transform-origin: top center;
+            z-index: 3;
+            will-change: transform, opacity;
+        }
+
+        /* ══════════════════════════════════════
+           MOBILE — scroll story overrides
+        ══════════════════════════════════════ */
+        @media (max-width: 768px) {
+
+            /* Hero adjustments */
+            .hero-kicker { display: none; }
+            .hero-meta   { bottom: 7vh; }
+            .hero-scroll { display: none; }
+
+            /* About block stacks below the video */
+            .ss-about {
+                top: auto;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                width: 100%;
+                /* height of the text area at the bottom of the scene */
+                height: 44%;
+                transform: none;
+                padding: 24px 6%;
+                justify-content: center;
+                gap: 16px;
+                /* subtle bg so text is readable once video shrinks above */
+                background: linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    rgba(10,10,10,0.92) 18%,
+                    var(--nf-bg) 60%
+                );
+                z-index: 3;
+            }
+
+            .ss-about__heading {
+                font-size: clamp(1.4rem, 6vw, 2rem);
+            }
+
+            .ss-about__text {
+                font-size: clamp(0.8rem, 3.5vw, 0.95rem);
+                line-height: 1.7;
+                max-width: 100%;
+            }
+
+            /* Hide the vertical divider — doesn't translate to stacked */
+            .ss-divider { display: none; }
+        }
+
+        /* ── Page continues below ── */
+        .page-continue {
+            padding: 120px 5%;
+            display: flex; flex-direction: column; gap: 12px;
+        }
+        .page-continue p {
+            font-family: "JetBrains Mono", monospace; font-size: 0.65rem;
+            letter-spacing: 0.2em; text-transform: uppercase; color: var(--nf-gray);
+        }
+        .page-continue span { color: var(--nf-red); }
+    </style>
+</head>
+<body>
+
+<span class="poc-label">POC — B · Editorial + Scroll Story</span>
+
+<!-- ─── Loader ─── -->
+<div id="nf-loader" aria-hidden="true">
+    <div class="nf-loader__curtain nf-loader__curtain--top"></div>
+    <div class="nf-loader__curtain nf-loader__curtain--bot"></div>
+    <div class="nf-loader__brand">
+        <p class="nf-loader__initials">
+            <span class="nf-loader__initial-wrap"><span class="nf-loader__initial">N</span></span>
+            <span class="nf-loader__initial-wrap"><span class="nf-loader__initial">F</span></span>
+        </p>
+        <p class="nf-loader__name">Noble Fir Studio</p>
+        <p class="nf-loader__city">Portland, OR</p>
+    </div>
+    <div class="nf-loader__bar"><div class="nf-loader__bar-fill" id="loaderBar"></div></div>
+</div>
+
+<!-- ─── Nav ─── -->
+<header class="navbar" id="navbar">
+    <a href="#" class="navbar__logo">NF<span>.</span></a>
+    <a href="#" class="navbar__cta">Get in touch</a>
+</header>
+
+<!-- ══════════════════════════════════════
+     HERO — Editorial Stack
+══════════════════════════════════════ -->
+<section id="hero">
+
+    <div class="hero-eyebrow" id="heroEyebrow">Portland, OR — Web Design &amp; Development</div>
+
+    <h1 class="hero-headline">
+        <span class="hero-line hero-line--1"><span class="hero-line__inner" id="hLine1">Noble</span></span>
+        <span class="hero-line hero-line--2"><span class="hero-line__inner" id="hLine2">Fir</span></span>
+        <span class="hero-line hero-line--3"><span class="hero-line__inner" id="hLine3">Studio<span class="hero-dot">.</span></span></span>
+    </h1>
+
+    <div class="hero-kicker" id="heroKicker">
+        <span class="hero-kicker__label">// Services</span>
+        <p class="hero-kicker__text">
+            Custom Web Design<br>
+            AI Integrations<br>
+            Technical Strategy
+        </p>
+    </div>
+
+    <div class="hero-meta" id="heroMeta">
+        <span class="hero-meta__loc">Portland, OR — Est. 2023</span>
+        <span class="hero-meta__sub">Boutique web design &amp; development</span>
+    </div>
+
+    <div class="hero-scroll" id="heroScroll">
+        <div class="hero-scroll__line"></div>
+        <span class="hero-scroll__label">Scroll</span>
+    </div>
+
+</section>
+
+<!-- ══════════════════════════════════════
+     SCROLL STORY — video shrinks into about
+══════════════════════════════════════ -->
+<section id="scrollStory">
+    <div class="ss-scene" id="ssScene">
+
+        <!-- Full-bleed video — will morph to left column -->
+        <div class="ss-video-wrap" id="ssVideoWrap">
+            <video autoplay muted loop playsinline>
+                <source src="./media/noble_fir.mp4" type="video/mp4">
+            </video>
+            <div class="ss-video-scrim"></div>
+        </div>
+
+        <!-- Vertical divider between columns (appears at end) -->
+        <div class="ss-divider" id="ssDivider"></div>
+
+        <!-- About text — already positioned on the right, waiting to fill -->
+        <div class="ss-about" id="ssAbout">
+            <span class="ss-about__kicker" id="ssKicker">// About the studio</span>
+            <h2 class="ss-about__heading" id="ssHeading">Built in Portland.<br>Shipped worldwide.</h2>
+            <p class="ss-about__text" id="ssText">Noble Fir Studio is a boutique web design and development practice. I believe in integrity, innovation, and direct communication — every client gets my full attention, from first call to final launch.</p>
+            <a href="#" class="ss-about__link" id="ssLink">
+                Learn more about the studio
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="m6 6 12 12m0 0V9m0 9H9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- Rest of page (so scroll has room to breathe) -->
+<div class="page-continue">
+    <p>↓ &nbsp; Continue scrolling — services, work, contact below</p>
+    <p><span>Noble Fir Studio</span> · Portland, OR · 2025</p>
+</div>
+
+
+<script>
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
+// ── refs ──
+const loader   = document.getElementById('nf-loader');
+const curtainT = document.querySelector('.nf-loader__curtain--top');
+const curtainB = document.querySelector('.nf-loader__curtain--bot');
+const bar      = document.getElementById('loaderBar');
+
+const hLine1   = document.getElementById('hLine1');
+const hLine2   = document.getElementById('hLine2');
+const hLine3   = document.getElementById('hLine3');
+const eyebrow  = document.getElementById('heroEyebrow');
+const kicker   = document.getElementById('heroKicker');
+const meta     = document.getElementById('heroMeta');
+const heroScroll = document.getElementById('heroScroll');
+const navbar   = document.getElementById('navbar');
+
+const ssVideoWrap = document.getElementById('ssVideoWrap');
+const ssDivider   = document.getElementById('ssDivider');
+const ssKicker    = document.getElementById('ssKicker');
+const ssHeading   = document.getElementById('ssHeading');
+const ssText      = document.getElementById('ssText');
+const ssLink      = document.getElementById('ssLink');
+
+// ── Pre-hide hero elements ──
+gsap.set([hLine1, hLine2, hLine3], { yPercent: 115 });
+gsap.set([eyebrow, kicker, meta, heroScroll, navbar], { opacity: 0, y: 14 });
+
+// ── Split about text into words (done before scroll init) ──
+const splitHeading = SplitText.create(ssHeading, { type: 'words', wordsClass: 'word' });
+const splitBody    = SplitText.create(ssText,    { type: 'words', wordsClass: 'word' });
+
+// Start all words near invisible
+gsap.set([...splitHeading.words, ...splitBody.words], { color: 'rgba(255,255,255,0.07)' });
+gsap.set([ssKicker, ssLink], { opacity: 0 });
+
+
+// ════════════════════════════════
+//  LOADER FAKE PROGRESS
+// ════════════════════════════════
+const loadTl = gsap.timeline({ onComplete: revealHero });
+loadTl
+    .to(bar, { width: '55%', duration: 0.55, ease: 'power1.inOut' })
+    .to(bar, { width: '87%', duration: 0.45, ease: 'power1.inOut' })
+    .to(bar, { width: '100%', duration: 0.22, ease: 'power2.in' })
+    .to(bar, { opacity: 0, duration: 0.15 });
+
+
+// ════════════════════════════════
+//  HERO REVEAL (on load)
+// ════════════════════════════════
+function revealHero() {
+    const tl = gsap.timeline({
+        onComplete: () => {
+            // Unlock scroll + init the scroll story
+            document.body.classList.add('is-ready');
+            ScrollTrigger.refresh();
+            initScrollStory();
+        }
+    });
+
+    // Curtains part
+    tl.to(curtainT, { yPercent: -105, duration: 0.82, ease: 'power3.inOut' }, 0)
+      .to(curtainB, { yPercent: 105,  duration: 0.82, ease: 'power3.inOut' }, 0)
+      .set(loader,  { display: 'none' }, 0.82);
+
+    // Eyebrow kicker
+    tl.to(eyebrow, { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' }, 0.35);
+
+    // Headline lines stamp in with stagger
+    tl.to(hLine1, { yPercent: 0, duration: 0.85, ease: 'expo.out' }, 0.42)
+      .to(hLine2, { yPercent: 0, duration: 0.85, ease: 'expo.out' }, 0.56)
+      .to(hLine3, { yPercent: 0, duration: 0.85, ease: 'expo.out' }, 0.70);
+
+    // Nav, kicker, meta, scroll cue cascade
+    tl.to(navbar,     { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, 0.62)
+      .to(kicker,     { opacity: 1, y: 0, duration: 0.5,  ease: 'power3.out' }, 0.88)
+      .to(meta,       { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, 1.0)
+      .to(heroScroll, { opacity: 1, y: 0, duration: 0.4,  ease: 'power2.out' }, 1.12);
+
+    // Eyebrow line extends (CSS class trigger)
+    tl.call(() => eyebrow.classList.add('is-revealed'), [], 0.6);
+}
+
+
+// ════════════════════════════════
+//  SCROLL STORY — pinned morph
+// ════════════════════════════════
+function initScrollStory() {
+    const isMobile = window.innerWidth <= 768;
+
+    // ── Final video state: side-by-side (desktop) vs. top card (mobile) ──
+    const finalVideoW = isMobile ? '90%'  : '48%';
+    const finalVideoH = isMobile ? '52%'  : '76vh';
+    const finalVideoT = isMobile ? '0%'   : '12vh';
+    const finalVideoL = isMobile ? '5%'   : '3%';
+    const finalRadius = isMobile ? '0 0 14px 14px' : '14px';
+
+    // Pin duration: shorter on mobile so the screen doesn't feel trapped
+    const pinEnd      = isMobile ? '+=110%' : '+=180%';
+
+    // Scrub feel: slightly snappier on mobile
+    const scrubVal    = isMobile ? 1.2 : 1.8;
+
+    const storyTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#scrollStory',
+            start: 'top top',
+            end: pinEnd,
+            pin: true,
+            scrub: scrubVal,
+            anticipatePin: 1,
+        }
+    });
+
+    // ── 1. Video wrap morphs ──
+    storyTl.to(ssVideoWrap, {
+        width:        finalVideoW,
+        height:       finalVideoH,
+        top:          finalVideoT,
+        left:         finalVideoL,
+        borderRadius: finalRadius,
+        ease: 'power1.inOut',
+        duration: 1,
+    }, 0);
+
+    // ── 2. Kicker fades in early ──
+    storyTl.to(ssKicker, {
+        opacity: 1,
+        ease: 'none',
+        duration: 0.25,
+    }, 0.1);
+
+    // ── 3. Heading words fill ──
+    storyTl.to(splitHeading.words, {
+        color: '#ffffff',
+        stagger: { each: isMobile ? 0.04 : 0.06, from: 'start', ease: 'none' },
+        ease: 'none',
+        duration: 0.5,
+    }, 0.18);
+
+    // ── 4. Body text words fill ──
+    storyTl.to(splitBody.words, {
+        color: 'rgba(255,255,255,0.82)',
+        stagger: { each: isMobile ? 0.018 : 0.025, from: 'start', ease: 'none' },
+        ease: 'none',
+        duration: 0.6,
+    }, 0.38);
+
+    // ── 5. Divider (desktop only — hidden via CSS on mobile) ──
+    if (!isMobile) {
+        gsap.set(ssDivider, { left: 'calc(3% + 48% + 1.5%)' });
+        storyTl.to(ssDivider, {
+            scaleY: 1,
+            ease: 'power2.out',
+            duration: 0.18,
+        }, 0.78);
+    }
+
+    // ── 6. Learn more link fades in last ──
+    storyTl.to(ssLink, {
+        opacity: 1,
+        ease: 'none',
+        duration: 0.15,
+    }, 0.88);
+}
+</script>
+</body>
+</html>

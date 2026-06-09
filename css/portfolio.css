@@ -183,6 +183,13 @@ body {
     to   { top: 200%; }
 }
 
+/* ── Hero pre-hide (GSAP takes over immediately on DOMContentLoaded) */
+.pf-hero__title span,
+.pf-hero__foot,
+.pf-hero__scroll {
+    opacity: 0;
+}
+
 /* ── Hero responsive ── */
 @media (max-width: 768px) {
     .pf-hero { min-height: 78vh; }

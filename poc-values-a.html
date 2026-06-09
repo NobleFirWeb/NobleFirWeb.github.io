@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NF Values POC — A: Outcome Cards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --nf-bg: #0A0A0A;
+            --nf-fg: #ffffff;
+            --nf-red: #E8001E;
+            --nf-neutral: #bdbdbd;
+            --nf-gray: #464646;
+            --nf-dim: #1a1a1a;
+            --nf-border: rgba(255,255,255,0.08);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--nf-bg);
+            color: var(--nf-fg);
+            font-family: "Inter", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── POC Label ── */
+        .poc-label {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            z-index: 999;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--nf-red);
+            border: 1px solid rgba(232,0,30,0.3);
+            padding: 6px 12px;
+            border-radius: 3px;
+            background: rgba(10,10,10,0.85);
+            backdrop-filter: blur(8px);
+        }
+
+        /* ── Section wrapper ── */
+        .nf-values {
+            width: 100%;
+            padding: 120px 5% 140px;
+        }
+
+        /* ── Header row ── */
+        .nf-values__header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 80px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--nf-border);
+        }
+
+        .nf-values__kicker {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--nf-red);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .nf-values__headline {
+            font-family: "Inter", sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3.8rem);
+            font-weight: 400;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            line-height: 0.95;
+            max-width: 600px;
+        }
+
+        .nf-values__headline em {
+            font-style: normal;
+            color: var(--nf-red);
+        }
+
+        .nf-values__statement {
+            max-width: 340px;
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--nf-neutral);
+            text-align: right;
+        }
+
+        /* ── Cards grid ── */
+        .nf-values__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .nf-value-card {
+            position: relative;
+            padding: 44px 36px 40px;
+            background: transparent;
+            border: 1px solid var(--nf-border);
+            overflow: hidden;
+            cursor: default;
+            transition: background 0.35s ease, border-color 0.35s ease;
+        }
+
+        /* Red fill sweeps up from bottom on hover */
+        .nf-value-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--nf-red);
+            transform: translateY(100%);
+            transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+            z-index: 0;
+        }
+
+        .nf-value-card:hover::before {
+            transform: translateY(0%);
+        }
+
+        .nf-value-card:hover {
+            border-color: var(--nf-red);
+        }
+
+        /* All card content sits above the fill */
+        .nf-value-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .nf-card__number {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            color: var(--nf-gray);
+            margin-bottom: 32px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .nf-value-card:hover .nf-card__number {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .nf-card__label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--nf-red);
+            margin-bottom: 14px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .nf-value-card:hover .nf-card__label {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .nf-card__heading {
+            font-family: "Inter", sans-serif;
+            font-size: clamp(1.4rem, 2vw, 2rem);
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .nf-card__body {
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--nf-neutral);
+            transition: color 0.3s ease;
+        }
+
+        .nf-value-card:hover .nf-card__body {
+            color: rgba(255,255,255,0.85);
+        }
+
+        /* Bottom CTA row */
+        .nf-values__footer {
+            margin-top: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 40px;
+            border-top: 1px solid var(--nf-border);
+        }
+
+        .nf-values__tagline {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            color: var(--nf-neutral);
+        }
+
+        .nf-values__tagline strong {
+            color: var(--nf-fg);
+            font-weight: 500;
+        }
+
+        .nf-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: "Inter", sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--nf-fg);
+            text-decoration: none;
+            border: 1px solid var(--nf-border);
+            padding: 14px 28px;
+            border-radius: 3px;
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .nf-cta-btn:hover {
+            border-color: var(--nf-red);
+            background: rgba(232,0,30,0.06);
+        }
+
+        .nf-cta-btn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.25s ease;
+        }
+
+        .nf-cta-btn:hover svg {
+            transform: translate(3px, 3px);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .nf-values__grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+            .nf-values { padding: 80px 5% 100px; }
+            .nf-values__header { flex-direction: column; align-items: flex-start; }
+            .nf-values__statement { text-align: left; max-width: 100%; }
+            .nf-values__grid { grid-template-columns: 1fr; }
+            .nf-values__footer { flex-direction: column; gap: 28px; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<span class="poc-label">POC — A · Outcome Cards</span>
+
+<section class="nf-values">
+
+    <div class="nf-values__header">
+        <div>
+            <span class="nf-values__kicker">// How I Work</span>
+            <h2 class="nf-values__headline">The standard<br>behind every<br><em>build.</em></h2>
+        </div>
+        <p class="nf-values__statement">
+            Not principles for the wall — the actual criteria I use to decide what gets built, how it ships, and who I work with.
+        </p>
+    </div>
+
+    <div class="nf-values__grid">
+
+        <div class="nf-value-card">
+            <span class="nf-card__number">01</span>
+            <span class="nf-card__label">Quality</span>
+            <h3 class="nf-card__heading">Measurable Results</h3>
+            <p class="nf-card__body">Faster load times, stronger rankings, higher conversion — because quality is an engineering decision, not an aesthetic one.</p>
+        </div>
+
+        <div class="nf-value-card">
+            <span class="nf-card__number">02</span>
+            <span class="nf-card__label">Creativity</span>
+            <h3 class="nf-card__heading">A Brand That Leads</h3>
+            <p class="nf-card__body">In a market full of template sites, a distinct creative identity is a real competitive edge — one that attracts better leads.</p>
+        </div>
+
+        <div class="nf-value-card">
+            <span class="nf-card__number">03</span>
+            <span class="nf-card__label">Accountability</span>
+            <h3 class="nf-card__heading">No Surprises. Ever.</h3>
+            <p class="nf-card__body">Clear timelines, honest communication, and work that ships when I say it will. The process is as polished as the product.</p>
+        </div>
+
+        <div class="nf-value-card">
+            <span class="nf-card__number">04</span>
+            <span class="nf-card__label">Collaboration</span>
+            <h3 class="nf-card__heading">Your Vision, Amplified</h3>
+            <p class="nf-card__body">You know your business. I know the web. Your domain expertise meets my technical precision — built around how your customers think.</p>
+        </div>
+
+        <div class="nf-value-card">
+            <span class="nf-card__number">05</span>
+            <span class="nf-card__label">You</span>
+            <h3 class="nf-card__heading">Built to Scale With You</h3>
+            <p class="nf-card__body">Every architecture decision is made with your next chapter in mind. A platform that grows with you — not something you'll rebuild in 18 months.</p>
+        </div>
+
+        <!-- Spacer card with CTA feel -->
+        <div class="nf-value-card" style="display:flex; flex-direction:column; justify-content:flex-end; background: rgba(232,0,30,0.04); border-color: rgba(232,0,30,0.2);">
+            <span class="nf-card__number" style="color: rgba(232,0,30,0.4);">NF</span>
+            <h3 class="nf-card__heading" style="font-size: 1.2rem; margin-bottom:16px;">Ready to build<br>something real?</h3>
+            <a href="contact-us.html" style="font-family: JetBrains Mono, monospace; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--nf-red); text-decoration:none;">Get in touch ↘</a>
+        </div>
+
+    </div>
+
+    <div class="nf-values__footer">
+        <p class="nf-values__tagline">
+            <strong>Noble Fir</strong> — Portland, OR · Boutique web design & development
+        </p>
+        <a href="about.html" class="nf-cta-btn">
+            More about the studio
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="m6 6 12 12m0 0V9m0 9H9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </div>
+
+</section>
+
+</body>
+</html>

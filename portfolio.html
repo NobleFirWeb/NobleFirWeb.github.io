@@ -452,5 +452,27 @@
         })();
     </script>
 
+    <script>
+        /* ── Portfolio hero reveal ── */
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof gsap === 'undefined') return;
+
+            const title  = document.querySelector('.pf-hero__title span');
+            const foot   = document.querySelector('.pf-hero__foot');
+            const scroll = document.querySelector('.pf-hero__scroll');
+
+            if (!title) return;
+
+            gsap.set(title,  { yPercent: 35, autoAlpha: 0 });
+            gsap.set(foot,   { y: 18, autoAlpha: 0 });
+            gsap.set(scroll, { y: 12, autoAlpha: 0 });
+
+            const tl = gsap.timeline({ delay: 0.08 });
+            tl.to(title,  { yPercent: 0, autoAlpha: 1, duration: 1.05, ease: 'expo.out'   }, 0)
+              .to(foot,   { y: 0, autoAlpha: 1, duration: 0.55, ease: 'power3.out' }, 0.42)
+              .to(scroll, { y: 0, autoAlpha: 1, duration: 0.4,  ease: 'power2.out' }, 0.62);
+        });
+    </script>
+
     </body>
 </html>

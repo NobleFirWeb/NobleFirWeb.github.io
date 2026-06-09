@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NF Hero POC — C: Continuity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <style>
+        :root {
+            --nf-bg: #0A0A0A;
+            --nf-fg: #fff;
+            --nf-red: #E8001E;
+            --nf-neutral: #bdbdbd;
+            --nf-gray: #464646;
+            --nf-border: rgba(255,255,255,0.08);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; background: var(--nf-bg); color: var(--nf-fg); overflow: hidden; }
+        body { font-family: "Inter", sans-serif; -webkit-font-smoothing: antialiased; }
+
+        .poc-label {
+            position: fixed; top: 20px; right: 24px; z-index: 9999;
+            font-family: "JetBrains Mono", monospace; font-size: 0.6rem;
+            letter-spacing: 0.2em; text-transform: uppercase; color: var(--nf-red);
+            border: 1px solid rgba(232,0,30,0.3); padding: 6px 12px; border-radius: 3px;
+            background: rgba(10,10,10,0.9);
+        }
+
+        /* ── Loader ── */
+        #nf-loader {
+            position: fixed; inset: 0; z-index: 9000;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .nf-loader__curtain {
+            position: absolute; left: 0; right: 0; height: 50%;
+            background: var(--nf-bg); z-index: 1; will-change: transform;
+        }
+        .nf-loader__curtain--top { top: 0; }
+        .nf-loader__curtain--bot { bottom: 0; }
+        .nf-loader__brand { position: relative; z-index: 2; text-align: center; user-select: none; pointer-events: none; }
+        .nf-loader__initials { display: flex; align-items: flex-end; justify-content: center; gap: 0.01em; margin: 0; line-height: 0.88; }
+        .nf-loader__initial-wrap { display: inline-block; overflow: hidden; line-height: 0.88; }
+        .nf-loader__initial {
+            display: inline-block; font-family: "Space Grotesk", sans-serif;
+            font-weight: 700; font-size: clamp(5rem, 18vw, 14rem);
+            letter-spacing: -0.03em; color: var(--nf-fg); will-change: transform;
+        }
+        .nf-loader__name {
+            font-family: "Inter", sans-serif; font-weight: 300;
+            font-size: clamp(0.75rem, 1.4vw, 1rem); letter-spacing: 0.38em;
+            text-transform: uppercase; color: var(--nf-neutral); margin-top: 1rem;
+        }
+        .nf-loader__city {
+            font-family: "Inter", sans-serif; font-weight: 300;
+            font-size: clamp(0.6rem, 0.9vw, 0.75rem); letter-spacing: 0.28em;
+            text-transform: uppercase; color: var(--nf-gray); margin-top: 0.4rem;
+        }
+        .nf-loader__bar { position: fixed; bottom: 0; left: 0; right: 0; height: 2px; background: rgba(255,255,255,0.07); z-index: 10000; pointer-events: none; }
+        .nf-loader__bar-fill { height: 100%; width: 0%; background: var(--nf-red); }
+
+        /* ── Nav ── */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 5%; height: 80px; opacity: 0;
+        }
+        .navbar__logo {
+            font-family: "Space Grotesk", sans-serif; font-weight: 700;
+            font-size: 1.1rem; letter-spacing: -0.02em; color: var(--nf-fg); text-decoration: none;
+        }
+        .navbar__logo span { color: var(--nf-red); }
+        .navbar__cta {
+            font-family: "JetBrains Mono", monospace; font-size: 0.65rem;
+            letter-spacing: 0.2em; text-transform: uppercase; color: var(--nf-neutral);
+            text-decoration: none; border: 1px solid var(--nf-gray); padding: 8px 16px; border-radius: 3px;
+        }
+
+        /* ── Hero: full-bleed video ── */
+        #hero {
+            position: relative; width: 100%; height: 100svh;
+            display: flex; align-items: flex-end;
+            overflow: hidden;
+        }
+
+        /* Full-bleed video bg */
+        .hero-video-bg {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0; /* animated in */
+            will-change: opacity;
+            /* Fallback: gradient if no video */
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a0a00 50%, #0a0a0a 100%);
+        }
+
+        /* Dark scrim — gradient from bottom */
+        .hero-scrim {
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.55) 40%, rgba(10,10,10,0.2) 70%, rgba(10,10,10,0.05) 100%),
+                linear-gradient(to right, rgba(10,10,10,0.7) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        /* Content positioned at bottom-left */
+        .hero-content {
+            position: relative; z-index: 2;
+            padding: 0 5% 7vh;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            gap: 40px;
+        }
+
+        .hero-left {}
+
+        /* Kicker above headline */
+        .hero-eyebrow {
+            font-family: "JetBrains Mono", monospace; font-size: 0.65rem;
+            letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--nf-red); margin-bottom: 20px;
+            display: flex; align-items: center; gap: 12px;
+            opacity: 0; will-change: opacity;
+        }
+        .hero-eyebrow::before {
+            content: ''; display: block; width: 32px; height: 1px;
+            background: var(--nf-red);
+        }
+
+        /* Massive headline */
+        .hero-headline {
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 700;
+            font-size: clamp(4rem, 10vw, 12rem);
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            line-height: 0.9;
+        }
+
+        .hero-line { display: block; overflow: hidden; }
+        .hero-line__inner { display: block; will-change: transform; }
+
+        /* Second line in outline */
+        .hero-line--2 .hero-line__inner {
+            -webkit-text-stroke: 1.5px rgba(255,255,255,0.3);
+            color: transparent;
+        }
+
+        /* Subline */
+        .hero-sub {
+            margin-top: 28px;
+            font-family: "Inter", sans-serif; font-weight: 300;
+            font-size: clamp(0.8rem, 1.1vw, 1rem); letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--nf-neutral);
+            opacity: 0; will-change: opacity, transform;
+            max-width: 500px; line-height: 1.8;
+        }
+
+        /* CTA button */
+        .hero-cta {
+            display: inline-flex; align-items: center; gap: 12px;
+            margin-top: 36px;
+            font-family: "Inter", sans-serif; font-weight: 500;
+            font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--nf-fg); text-decoration: none;
+            background: var(--nf-red); padding: 16px 32px; border-radius: 3px;
+            opacity: 0; will-change: opacity, transform;
+            transition: opacity 0.2s ease;
+        }
+        .hero-cta:hover { opacity: 0.88; }
+        .hero-cta svg { width: 14px; height: 14px; }
+
+        /* Right side: stats column */
+        .hero-right {
+            display: flex; flex-direction: column; gap: 28px;
+            align-items: flex-end; opacity: 0;
+            will-change: opacity, transform;
+            padding-bottom: 4px;
+        }
+        .hero-stat {
+            text-align: right;
+            border-right: 2px solid var(--nf-red);
+            padding-right: 16px;
+        }
+        .hero-stat__num {
+            font-family: "Space Grotesk", sans-serif; font-weight: 700;
+            font-size: clamp(1.8rem, 3vw, 2.8rem); letter-spacing: -0.04em;
+            line-height: 1; color: var(--nf-fg);
+        }
+        .hero-stat__label {
+            font-family: "JetBrains Mono", monospace; font-size: 0.55rem;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--nf-gray); margin-top: 4px;
+        }
+
+        /* Scroll indicator — bottom right */
+        .hero-scroll {
+            position: absolute; right: 5%; top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 10px; opacity: 0;
+        }
+        .hero-scroll__pip {
+            width: 4px; height: 4px; background: var(--nf-red);
+            border-radius: 50%;
+            animation: scrollBob 1.4s ease-in-out infinite;
+        }
+        @keyframes scrollBob {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(20px); opacity: 0; }
+        }
+        .hero-scroll__label {
+            font-family: "JetBrains Mono", monospace; font-size: 0.55rem;
+            letter-spacing: 0.2em; text-transform: uppercase; color: var(--nf-gray);
+            writing-mode: vertical-rl;
+        }
+    </style>
+</head>
+<body>
+
+<span class="poc-label">POC — C · Cinematic</span>
+
+<!-- Loader -->
+<div id="nf-loader" aria-hidden="true">
+    <div class="nf-loader__curtain nf-loader__curtain--top"></div>
+    <div class="nf-loader__curtain nf-loader__curtain--bot"></div>
+    <div class="nf-loader__brand">
+        <p class="nf-loader__initials">
+            <span class="nf-loader__initial-wrap"><span class="nf-loader__initial">N</span></span>
+            <span class="nf-loader__initial-wrap"><span class="nf-loader__initial">F</span></span>
+        </p>
+        <p class="nf-loader__name">Noble Fir Studio</p>
+        <p class="nf-loader__city">Portland, OR</p>
+    </div>
+    <div class="nf-loader__bar"><div class="nf-loader__bar-fill" id="loaderBar"></div></div>
+</div>
+
+<!-- Nav -->
+<header class="navbar" id="navbar">
+    <a href="#" class="navbar__logo">NF<span>.</span></a>
+    <a href="#" class="navbar__cta">Get in touch</a>
+</header>
+
+<!-- Hero -->
+<section id="hero">
+
+    <!-- Video / bg -->
+    <video class="hero-video-bg" id="heroBg" autoplay muted loop playsinline>
+        <source src="./media/noble_fir.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-scrim"></div>
+
+    <div class="hero-content">
+        <div class="hero-left">
+            <div class="hero-eyebrow" id="heroEyebrow">Portland, OR — Web Design &amp; Development</div>
+
+            <h1 class="hero-headline">
+                <span class="hero-line hero-line--1"><span class="hero-line__inner" id="hLine1">Digital</span></span>
+                <span class="hero-line hero-line--2"><span class="hero-line__inner" id="hLine2">Engines</span></span>
+                <span class="hero-line hero-line--3"><span class="hero-line__inner" id="hLine3">Built.</span></span>
+            </h1>
+
+            <p class="hero-sub" id="heroSub">
+                Noble Fir Studio crafts high-performance websites, AI integrations, and digital systems that drive real business growth.
+            </p>
+
+            <a href="#" class="hero-cta" id="heroCta">
+                Start a project
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="m6 6 12 12m0 0V9m0 9H9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="hero-right" id="heroRight">
+            <div class="hero-stat">
+                <div class="hero-stat__num">12+</div>
+                <div class="hero-stat__label">Projects shipped</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat__num">100%</div>
+                <div class="hero-stat__label">Custom builds</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat__num">01</div>
+                <div class="hero-stat__label">Studio · PDX</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-scroll" id="heroScroll">
+        <div class="hero-scroll__pip"></div>
+        <span class="hero-scroll__label">Scroll</span>
+    </div>
+
+</section>
+
+<script>
+gsap.registerPlugin(SplitText);
+
+const loader   = document.getElementById('nf-loader');
+const curtainT = document.querySelector('.nf-loader__curtain--top');
+const curtainB = document.querySelector('.nf-loader__curtain--bot');
+const bar      = document.getElementById('loaderBar');
+const heroBg   = document.getElementById('heroBg');
+const hLine1   = document.getElementById('hLine1');
+const hLine2   = document.getElementById('hLine2');
+const hLine3   = document.getElementById('hLine3');
+const eyebrow  = document.getElementById('heroEyebrow');
+const sub      = document.getElementById('heroSub');
+const cta      = document.getElementById('heroCta');
+const right    = document.getElementById('heroRight');
+const scroll   = document.getElementById('heroScroll');
+const navbar   = document.getElementById('navbar');
+
+// Pre-position everything
+gsap.set([hLine1, hLine2, hLine3], { yPercent: 115 });
+gsap.set([eyebrow, sub, cta, right, scroll, navbar], { opacity: 0, y: 20 });
+gsap.set(heroBg, { opacity: 0, scale: 1.08 });
+
+// ── Loader progress ──
+const loadTl = gsap.timeline({ onComplete: reveal });
+loadTl
+    .to(bar, { width: '50%', duration: 0.5, ease: 'power1.inOut' })
+    .to(bar, { width: '82%', duration: 0.5, ease: 'power1.inOut' })
+    .to(bar, { width: '100%', duration: 0.25, ease: 'power2.in' })
+    .to(bar, { opacity: 0, duration: 0.15 });
+
+function reveal() {
+    const tl = gsap.timeline();
+
+    // 1. Curtains part
+    tl.to(curtainT, { yPercent: -105, duration: 0.85, ease: 'power3.inOut' }, 0)
+      .to(curtainB, { yPercent: 105,  duration: 0.85, ease: 'power3.inOut' }, 0)
+      .set(loader, { display: 'none' }, 0.85);
+
+    // 2. Video / bg fades up and gently descales — cinematic
+    tl.to(heroBg, {
+        opacity: 1, scale: 1, duration: 1.6,
+        ease: 'power2.out'
+    }, 0.1);
+
+    // 3. Eyebrow slides up first
+    tl.to(eyebrow, {
+        opacity: 1, y: 0, duration: 0.5, ease: 'power3.out'
+    }, 0.5);
+
+    // 4. Headline: each line bursts up with stagger — felt like a punch
+    tl.to(hLine1, { yPercent: 0, duration: 0.9, ease: 'expo.out' }, 0.65)
+      .to(hLine2, { yPercent: 0, duration: 0.9, ease: 'expo.out' }, 0.78)
+      .to(hLine3, { yPercent: 0, duration: 0.9, ease: 'expo.out' }, 0.91);
+
+    // 5. Nav
+    tl.to(navbar, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, 0.75);
+
+    // 6. Sub + CTA cascade
+    tl.to(sub, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 1.05)
+      .to(cta, { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' }, 1.18);
+
+    // 7. Right stats column
+    tl.to(right, { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, 1.1);
+
+    // 8. Scroll pip
+    tl.to(scroll, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 1.3);
+}
+</script>
+</body>
+</html>

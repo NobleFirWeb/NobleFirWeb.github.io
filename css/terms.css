@@ -13,7 +13,7 @@ body {
     width: 100vw;
     height: 100%;
     overflow-x: hidden;
-    background-color: #0f0e0f;
+    background-color: #0A0A0A;
 }
 
 /* ===== Text Spinner ===== */
@@ -103,9 +103,8 @@ body {
 }
 
 .terms__container {
-  max-width: 1200px;
+  max-width: 75%;
   margin: 0 auto;
-  background: var(--nf-black);
   padding: 2rem 3rem;
 }
 
@@ -171,58 +170,110 @@ body {
   text-decoration: underline;
 }
 
+/* CTA Section Styles */
 #cta {
-  width: 100%;
-  height: auto;
-  max-height: 60vh;
-  display: flex;
-  justify-content: center;
-  padding: 0 5%;
-  padding-bottom: 10%;
-  margin: 5% 0;
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+    background: var(--nf-bg);
+    display: flex;
+    justify-content: center;
+    padding: 0 5%;
+    padding-bottom: 10%;
+    margin-top: 10%;
 }
 
 #cta .contact-title1 {
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  color: #343434;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 1.25rem;
+    text-transform: uppercase;
 }
 
 #cta .contact-title2 {
-  font-size: 5rem;
-  font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 200;
-  color: #fff;
-  margin-top: 20px;
+    font-size: 5rem;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    color: #ffffff;
+    margin-top: 20px;
+    letter-spacing: -3px;
+    text-transform: uppercase;
 }
 
 #cta .contact-title2 span {
-  font-size: 5rem;
-  font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 200;
-  color: #ff0000;
-  margin-top: 20px;
+    font-size: 5rem;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    color: #ff0000;
+    letter-spacing: -3px;
+    text-transform: uppercase;
 }
 
 #cta p {
-  font-family: "Inter", sans-serif;
-  font-weight: 300;
-  font-size: 1.25rem;
-  color: #a6a6a6;
-  margin-top: 20px;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    color: #ffffff;
+    margin-top: 20px;
 }
 
 #cta .contact-subtitle {
-  font-family: "Inter", sans-serif;
-  font-weight: 300;
-  margin-top: 20px;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    margin-top: 20px;
 }
 
-#cta .about-btn {
-  display: block;
-  margin-top: 20px;
+#cta .learn-more {
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+#cta .learn-more {
+    display: block;
+    margin-top: 40px;
+}
+
+@media (max-width: 1024px) {
+    #cta {
+        width: 100%;
+        height: auto;
+        max-height: 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    #cta {
+        max-height: 70vh;
+        margin: 10% auto;
+    }
+
+    #cta .contact-title2,
+    #cta .contact-title2 span {
+        font-size: 4.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #cta {
+        margin: 30px auto;
+        padding-top: 30px;
+    }
+
+    #cta .contact-title1 {
+        font-size: 1rem;
+    }
+
+    #cta .contact-title2,
+    #cta .contact-title2 span {
+        font-size: 2.5rem;
+        line-height: 1;
+        letter-spacing: -1.5px;
+    }
+    #cta p {
+        line-height: 1;
+    }
 }
 
 .about-btn {

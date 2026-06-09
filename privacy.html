@@ -13,7 +13,6 @@
         <link rel="stylesheet" href="./css/privacy.css">
         <link rel="stylesheet" href="./css/nav-styles.css">
         <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
         <!-- Favicon Links -->
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -37,64 +36,37 @@
     </a>
 
     <!-- Navbar -->
-    <header class="navbar sticky">
-        <!-- Left: Navigation Links -->
-        <div class="nav-left">
-            <ul class="nav-links">
-                <li><a href="about.html">About Us</a></li>
-                <li class="dropdown">
-                    <a href="services.html" class="dropdown-toggle">Services</a>
-                </li>
-                <li><a href="portfolio.html">Our Work</a></li>
-            </ul>
-        </div>
+    <header class="navbar">
+        <a href="index.html" class="logo-name" aria-label="Noble Fir Studio Home">
+            <img src="./img/Noblefir_nav_logo.png" alt="Navbar logo">
+        </a>
         
-        <!-- Center: Logo -->
-        <div class="nav-center">
-            <a href="index.html" class="logo">
-                <img src="./img/Noblefir_nav_logo.png" alt="Logo" />
-            </a>
-        </div>
-        
-        <!-- Right: Email + Button -->
-        <div class="nav-right">
-            <a href="mailto:info@noblefirstudio.com" class="nav-email">info@noblefirstudio.com</a>
-            <a href="contact-us.html" class="nav-contact">Let's Talk</a>
-        </div>
+        <nav class="navigation">
+            <button type="button" id="btn-nav-toggle" aria-expanded="false" aria-controls="nav-menu"
+                aria-label="Toggle navigation menu">
+                <!--Menu-->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <g fill="none" stroke="currentColor" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 6l16 0" />
+                        <path d="M4 12l16 0" />
+                        <path d="M4 12l16 0" />
+                        <path d="M4 18l16 0" />
+                    </g>
+                </svg>
+            </button>
 
-        <!-- Mobile Navbar -->
-        <div id="menuToggle" class="menu-toggle">
-            <span id="openIcon"></span>
-            <span></span>
-            <span id="closeIcon" style="display: none;"></span>
-        </div>
+            <svg class="menu-icon" viewBox="0 0 24 24">...</svg>
+
         
-        <nav id="mobileMenu" class="mobile-menu">
-            <div class="menu-header">
-            <p>Noble Fir Studio</p>
-                <hr />
-            </div>
-            <ul class="menu-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="portfolio.html">Projects</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
+            <ul id="nav-menu" role='list' aria-labelledby="btn-nav-toggle" aria-hidden="true" inert>
+                <li style="--i: 1;"><a href="index.html"><span>Home</span></a></li>
+                <li style="--i: 2;"><a href="about.html"><span>About Us</span></a></li>
+                <li style="--i: 3;"><a href="services.html"><span>Services</span></a></li>
+                <li style="--i: 4;"><a href="pricing.html"><span>Pricing</span></a></li>
+                <li style="--i: 5;"><a href="portfolio.html"><span>Projects</span></a></li>
+                <li style="--i: 6;"><a href="contact-us.html"><span>Contact Us</span></a></li>
+
             </ul>
-            <hr />
-            <div class="menu-footer">
-                <p>SOCIALS</p>
-                <div class="social-links">
-                    <a href="#">Instagram</a>
-                    <span> | </span>
-                    <a href="#">Twitter</a>
-                    <span> | </span>
-                    <a href="#">LinkedIn</a>
-                </div>
-            </div>
-            <div class="menu-logo">
-                <img src="./img/footer-logo.png" alt="Logo">
-            </div>
         </nav>
     </header>
 
@@ -212,10 +184,10 @@
         </div>
     </section>
 
-    <footer class="nf-footer" role="contentinfo">
+    <footer class="nf-footer" id="nf-footer" role="contentinfo">
         <!-- giant background letters -->
-        <span class="nf-footer-bg-letter nf-left" aria-hidden="true">N</span>
-        <span class="nf-footer-bg-letter nf-right" aria-hidden="true">F</span>
+        <span class="nf-footer-bg-letter nf-left" aria-hidden="true" data-reveal="lines">N</span>
+        <span class="nf-footer-bg-letter nf-right" aria-hidden="true" data-reveal="lines">F</span>
     
         <!-- centered nav -->
         <nav class="nf-footer-nav" aria-label="Footer">
@@ -223,6 +195,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="portfolio.html">Projects</a></li>
                 <li class="nf-contact-btn"><a href="contact-us.html">Let's Talk</a></li>
             </ul>
@@ -249,7 +222,7 @@
         </div>
     </footer>
         
-        <script src="./js/index.js" async defer></script>
+        <script src="./js/index.js"></script>
         <script src="./js/about.js" async defer></script>
     </body>
 </html>

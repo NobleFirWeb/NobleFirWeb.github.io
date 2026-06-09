@@ -110,67 +110,71 @@
 
     <div class="cursor"></div>
     
-    <section class="nf-intro" id="nf-intro">
-        <!-- Title must NOT live inside the white panel -->
-        <h1 class="nf-intro__title nf-intro__title--blend" data-reveal="lines">NOBLE FIR STUDIO</h1>
-    
-        <div class="nf-intro__scrollcue nf-intro__scrollcue--blend" aria-hidden="true">
-            <div class="nf-intro__scroll-line"></div>
-            <span>Scroll</span>
+        <!-- Hero — Editorial Stack -->
+    <section id="hero" class="hero-editorial">
+
+        <div class="hero-eyebrow" id="heroEyebrow">Web Design &amp; Development</div>
+
+        <h1 class="hero-headline">
+            <span class="hero-line hero-line--1"><span class="hero-line__inner" id="hLine1">Noble</span></span>
+            <span class="hero-line hero-line--2"><span class="hero-line__inner" id="hLine2">Fir</span></span>
+            <span class="hero-line hero-line--3"><span class="hero-line__inner" id="hLine3">Studio<span class="hero-dot">.</span></span></span>
+        </h1>
+
+        <div class="hero-kicker" id="heroKicker">
+            <span class="hero-kicker__label">// Services</span>
+            <p class="hero-kicker__text">
+                Custom Web Design<br>
+                AI Integrations<br>
+                Technical Strategy
+            </p>
         </div>
-    
-        <div class="nf-intro__panel nf-intro__panel--white"></div>
-        <div class="nf-intro__panel nf-intro__panel--black"></div>
+
+        <div class="hero-meta" id="heroMeta">
+            <span class="hero-meta__loc">Portland, OR — Est. 2023</span>
+            <span class="hero-meta__sub">Boutique web design &amp; development</span>
+        </div>
+
+        <div class="hero-scroll-cue" id="heroScrollCue">
+            <span class="hero-scroll-cue__label">Scroll</span>
+            <div class="hero-scroll-cue__line"></div>
+        </div>
+
     </section>
 
 
+    <!-- Scroll Story — video morphs to about layout on scroll -->
+    <section id="scrollStory">
+        <div class="ss-scene" id="ssScene">
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-container">
-            <div class="hero-row">
-                <p class="left-char char">N</p>
-    
-                <div class="video-wrap">
-                    <video title="future web" playsinline autoplay muted loop>
-                        <source src="https://www.pexels.com/download/video/8721932/" type="video/mp4" />
-                    </video>
-                </div>
-    
-                <p class="right-char char">F</p>
-            </div>
-    
-            <p class="hero-subline" data-reveal="lines">I build digital engines that power growth.<br>Custom design & development &middot; AI integrations &middot; Technical strategy</p>
-        </div>
-    </section>
-    
-    <div class="hero-video-wrapper" id="heroVideoWrapper">
-                <video autoplay muted loop playsinline class="hero-video" id="heroVideo">
+            <div class="ss-video-wrap" id="ssVideoWrap">
+                <video autoplay muted loop playsinline>
                     <source src="./media/noble_fir.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
                 </video>
+                <div class="ss-video-scrim"></div>
+            </div>
 
-                <button class="video-overlay" id="videoOverlay" aria-label="Toggle Play/Pause">
-                    <i class="fa fa-pause"></i> <!-- or fa-play when paused -->
-                </button>
+            <div class="ss-divider" id="ssDivider"></div>
+
+            <div class="ss-about" id="ssAbout">
+                <span class="ss-about__kicker" id="ssKicker">// About the studio</span>
+                <h2 class="ss-about__heading" id="ssHeading">Built in Portland.<br>Shipped worldwide.</h2>
+                <p class="ss-about__text" id="ssText">Noble Fir Studio is a boutique web design and development practice built in Portland, OR. I believe in integrity, innovation, and direct communication — every client gets my full attention, from first call to final launch.</p>
+                <a href="about.html" class="ss-about__link" id="ssLink">
+                    More about the studio
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="m6 6 12 12m0 0V9m0 9H9" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
         </div>
+    </section>
 
 
     <section class="about" id="about">
-        <div class="about-container">
-            <div class="about-right">
-                <p class="about-text_home indent-first-word">
-                    <span class="first-word">Noble</span> Fir Studio is a boutique web design and development practice built in Portland, OR. I believe in integrity, innovation, and direct communication — every client gets my full attention, from first call to final launch.
-                </p>
-                <a class="learn-more" href="about.html">
-                    <span class="learn-more__icon learn-more__icon--left solar--arrow-right-down-linear" aria-hidden="true"></span>
-                    <span>LEARN MORE</span>
-                    <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
-                </a>
-            </div>
-        </div>
 
-        <!-- Marquee 1 — What we build · How we work -->
+                <!-- Marquee 1 — What we build · How we work -->
         <div class="scroll-container">
 
             <!-- Row 1 → left-to-right: services & deliverables -->
@@ -235,100 +239,168 @@
 
         </div>
         
-        <div class="about-header">
-                <p class="values-title indent-first-word" data-reveal="lines"><span class="first-word">My</span> core tenets form the foundation of how I work and define what Noble Fir stands for. They guide every choice and are woven into everything I build. I'm dedicated to helping businesses thrive in the digital world while building lasting, meaningful partnerships. With Quality, Creativity, Accountability, and Collaboration in mind, I put my best work forward and deliver for every partner — Every. Time.</p>
-                <div class="values-header-text">
-                <p>My purpose is simple: build things that help driven people win. Everything I do is shaped by intention, craft, and a refusal to settle for “good enough.” I work with people who care deeply about what they’re building — clients and partners alike — because meaningful work only happens when everyone involved is invested in the outcome.</p>
-                </div>
-                <div class="values-header-text" id="text-middle"><p>That standard guides who I collaborate with and how I operate. I choose partners who take pride in their work, push for better solutions, and value long-term impact over quick wins. When the right people align around a shared vision, the result isn’t just a polished product — it’s momentum, clarity, and growth that lasts.</p>
-                </div>
-                <div class="values-header-text2">
-                    <p>Scroll to learn more.</p>
-                    <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
-                </div>
+        <!-- Values: Statement Rows -->
+        <div class="nf-values__header">
+            <div>
+                <span class="nf-values__kicker">// The Standard</span>
+                <h2 class="nf-values__headline">
+                    Work that<br>
+                    <span class="nf-values__outline">earns </span>results.
+                </h2>
+            </div>
+            <div class="nf-values__right">
+                <p class="nf-values__statement">
+                    Five commitments that shape every decision — from who I work with to how projects ship.
+                </p>
+                <span class="nf-values__count">&middot; <em>05</em> Commitments</span>
+            </div>
         </div>
-        <div class="values-content fluid" id="valuesPin">
-            <h2 class="we-believe"><span>I Believe In</span></h2>
-                <div class="cloneable">
-                    <div data-tabs="wrapper" class="tab-layout">
-                        <div class="tab-layout-col">
-                            <div class="tab-layout-container">
-                                <div class="tab-container">
-                                    <div class="tab-container-top">
-                                        <div data-flip-button="wrap" data-tabs="nav" class="filter-bar">
-                                            <button data-tabs="button"
-                                                data-flip-button="button" class="filter-button active">
-                                                <div class="filter-button__p">Quality</div>
-                                                <div data-flip-button="bg" class="tab-button__bg"></div>
-                                            </button>
-                                            <button data-tabs="button" data-flip-button="button" class="filter-button">
-                                                <div class="filter-button__p">Creativity</div>
-                                            </button>
-                                            <button data-tabs="button" data-flip-button="button" class="filter-button">
-                                                <div class="filter-button__p">Accountability</div>
-                                            </button>
-                                            <button data-tabs="button" data-flip-button="button" class="filter-button">
-                                                <div class="filter-button__p">Collaboration</div>
-                                            </button>
-                                            <button data-tabs="button" data-flip-button="button" class="filter-button">
-                                                <div class="filter-button__p">You</div>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="tab-container-bottom">
-                                        <div data-tabs="content-wrap" class="tab-content-wrap">
-                                            <div data-tabs="content-item" class="tab-content-item active">
-                                                <h2 data-tabs-fade="" class="tab-content__heading">Measurable Results</h2>
-                                                <p data-tabs-fade="" class="content-p opacity--100">When quality is non-negotiable, your site doesn't just look polished — it performs. Clients who work with me see faster load times, stronger SEO rankings, and higher conversion rates because every build is engineered to work as beautifully as it looks.</p>
-                                            </div>
-                                            <div data-tabs="content-item" class="tab-content-item">
-                                                <h2 data-tabs-fade="" class="tab-content__heading">A Brand That Leads</h2>
-                                                <p data-tabs-fade="" class="content-p opacity--100">In a space flooded with template sites and look-alike brands, a distinct creative identity is a real competitive edge. Clients I work with don't just look professional — they look like the obvious choice, attracting better leads and commanding stronger positioning in their market.</p>
-                                            </div>
-                                            <div data-tabs="content-item" class="tab-content-item">
-                                                <h2 data-tabs-fade="" class="tab-content__heading">No Surprises, Ever</h2>
-                                                <p data-tabs-fade="" class="content-p opacity--100">Clear timelines, honest communication, and work that ships when I say it will. Clients consistently tell me the difference wasn't just the final product — it was how seamless the process felt compared to every agency they'd worked with before.</p>
-                                            </div>
-                                            <div data-tabs="content-item" class="tab-content-item">
-                                                <h2 data-tabs-fade="" class="tab-content__heading">Your Vision, Amplified</h2>
-                                                <p data-tabs-fade="" class="content-p opacity--100">You know your business. I know the web. When we build together, your domain expertise meets my technical precision — producing a product that genuinely reflects how your customers think, what they need, and what drives them to act.</p>
-                                            </div>
-                                            <div data-tabs="content-item" class="tab-content-item">
-                                                <h2 data-tabs-fade="" class="tab-content__heading">Built to Scale With You</h2>
-                                                <p data-tabs-fade="" class="content-p opacity--100">I don't build sites for where you are today — I build for where you're going. Every decision, from architecture to content strategy, is made with your growth in mind so your digital platform becomes a long-term asset, not something you'll need to rebuild in 18 months.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-layout-col">
-                            <div data-tabs="visual-wrap" class="tab-visual-wrap">
-                                <!-- Quality → clean conversion / analytics feel -->
-                                <div data-tabs="visual-item" class="tab-visual-item active">
-                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80&auto=format&fit=crop" loading="lazy" class="tab-image" alt="Clean analytics dashboard">
-                                </div>
-                                <!-- Creativity → bold design / branding work -->
-                                <div data-tabs="visual-item" class="tab-visual-item">
-                                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=80&auto=format&fit=crop" loading="lazy" class="tab-image" alt="Creative design workspace">
-                                </div>
-                                <!-- Accountability → organised planning / no surprises -->
-                                <div data-tabs="visual-item" class="tab-visual-item">
-                                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80&auto=format&fit=crop" loading="lazy" class="tab-image" alt="Professional planning and strategy session">
-                                </div>
-                                <!-- Collaboration → people building together -->
-                                <div data-tabs="visual-item" class="tab-visual-item">
-                                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80&auto=format&fit=crop" loading="lazy" class="tab-image" alt="Team collaborating around a laptop">
-                                </div>
-                                <!-- You → person with their own device / personalised -->
-                                <div data-tabs="visual-item" class="tab-visual-item">
-                                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=900&q=80&auto=format&fit=crop" loading="lazy" class="tab-image" alt="Person working with a laptop and notebook">
-                                </div>
+
+        <ul class="nf-values__list" role="list">
+
+            <li class="nf-value-row is-open">
+                <div class="nf-row__trigger" role="button" tabindex="0" aria-expanded="true">
+                    <span class="nf-row__num">01</span>
+                    <div class="nf-row__title-wrap">
+                        <span class="nf-row__label">Quality</span>
+                        <span class="nf-row__outcome">Measurable Results</span>
+                    </div>
+                    <div class="nf-row__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                    </div>
+                </div>
+                <div class="nf-row__body">
+                    <div class="nf-row__body-inner">
+                        <div class="nf-row__content">
+                            <div class="nf-row__content-spacer"></div>
+                            <p class="nf-row__description">When quality is non-negotiable, your site doesn’t just look polished — it performs. Faster load times, stronger SEO rankings, and higher conversion rates because every build is engineered to work as beautifully as it looks.</p>
+                            <div class="nf-row__meta">
+                                <span class="nf-row__tag">Performance</span>
+                                <span class="nf-row__tag">SEO</span>
+                                <span class="nf-row__tag">Conversion</span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </li>
+
+            <li class="nf-value-row">
+                <div class="nf-row__trigger" role="button" tabindex="0" aria-expanded="false">
+                    <span class="nf-row__num">02</span>
+                    <div class="nf-row__title-wrap">
+                        <span class="nf-row__label">Creativity</span>
+                        <span class="nf-row__outcome">A Brand That Leads</span>
+                    </div>
+                    <div class="nf-row__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                    </div>
+                </div>
+                <div class="nf-row__body">
+                    <div class="nf-row__body-inner">
+                        <div class="nf-row__content">
+                            <div class="nf-row__content-spacer"></div>
+                            <p class="nf-row__description">In a market flooded with template sites and look-alike brands, a distinct creative identity is a real competitive edge. Clients I work with don’t just look professional — they look like the obvious choice, attracting better leads and stronger market positioning.</p>
+                            <div class="nf-row__meta">
+                                <span class="nf-row__tag">Brand Identity</span>
+                                <span class="nf-row__tag">UX Design</span>
+                                <span class="nf-row__tag">Positioning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nf-value-row">
+                <div class="nf-row__trigger" role="button" tabindex="0" aria-expanded="false">
+                    <span class="nf-row__num">03</span>
+                    <div class="nf-row__title-wrap">
+                        <span class="nf-row__label">Accountability</span>
+                        <span class="nf-row__outcome">No Surprises. Ever.</span>
+                    </div>
+                    <div class="nf-row__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                    </div>
+                </div>
+                <div class="nf-row__body">
+                    <div class="nf-row__body-inner">
+                        <div class="nf-row__content">
+                            <div class="nf-row__content-spacer"></div>
+                            <p class="nf-row__description">Clear timelines, honest communication, and work that ships when I say it will. Clients consistently say the difference wasn’t just the final product — it was how seamless the process felt compared to every agency they’d worked with before.</p>
+                            <div class="nf-row__meta">
+                                <span class="nf-row__tag">Transparency</span>
+                                <span class="nf-row__tag">Communication</span>
+                                <span class="nf-row__tag">Delivery</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nf-value-row">
+                <div class="nf-row__trigger" role="button" tabindex="0" aria-expanded="false">
+                    <span class="nf-row__num">04</span>
+                    <div class="nf-row__title-wrap">
+                        <span class="nf-row__label">Collaboration</span>
+                        <span class="nf-row__outcome">Your Vision, Amplified</span>
+                    </div>
+                    <div class="nf-row__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                    </div>
+                </div>
+                <div class="nf-row__body">
+                    <div class="nf-row__body-inner">
+                        <div class="nf-row__content">
+                            <div class="nf-row__content-spacer"></div>
+                            <p class="nf-row__description">You know your business. I know the web. When we build together, your domain expertise meets my technical precision — producing a product that genuinely reflects how your customers think, what they need, and what drives them to act.</p>
+                            <div class="nf-row__meta">
+                                <span class="nf-row__tag">Partnership</span>
+                                <span class="nf-row__tag">Strategy</span>
+                                <span class="nf-row__tag">User Research</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nf-value-row">
+                <div class="nf-row__trigger" role="button" tabindex="0" aria-expanded="false">
+                    <span class="nf-row__num">05</span>
+                    <div class="nf-row__title-wrap">
+                        <span class="nf-row__label">You</span>
+                        <span class="nf-row__outcome">Built to Scale With You</span>
+                    </div>
+                    <div class="nf-row__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                    </div>
+                </div>
+                <div class="nf-row__body">
+                    <div class="nf-row__body-inner">
+                        <div class="nf-row__content">
+                            <div class="nf-row__content-spacer"></div>
+                            <p class="nf-row__description">I don’t build sites for where you are today — I build for where you’re going. Every architecture decision is made with your growth in mind so your digital platform becomes a long-term asset, not something you’ll rebuild in 18 months.</p>
+                            <div class="nf-row__meta">
+                                <span class="nf-row__tag">Architecture</span>
+                                <span class="nf-row__tag">Growth</span>
+                                <span class="nf-row__tag">Long-term</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+        <div class="nf-values__footer">
+            <p class="nf-values__cta-text">
+                Ready to work with someone<br>who <strong>gives a damn?</strong>
+            </p>
+            <a class="learn-more nf-services-cta" href="services.html">
+                    <span class="learn-more__icon learn-more__icon--left solar--arrow-right-down-linear" aria-hidden="true"></span>
+                    <span>Start a project</span>
+                    <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
+                </a>
         </div>
+
     </section>
 
     <section class="nf-transition" id="nfTransition">
@@ -417,7 +489,7 @@
     
                 <a class="learn-more nf-services-cta" href="services.html">
                     <span class="learn-more__icon learn-more__icon--left solar--arrow-right-down-linear" aria-hidden="true"></span>
-                    <span>SEE ALL OUR SERVICES</span>
+                    <span>All Services</span>
                     <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
                 </a>
             </div>
@@ -513,7 +585,7 @@
 
             <a class="learn-more" href="portfolio.html">
                 <span class="learn-more__icon learn-more__icon--left solar--arrow-right-down-linear" aria-hidden="true"></span>
-                <span>SEE ALL PROJECTS</span>
+                <span>All Projects</span>
                 <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
             </a>
     
@@ -963,6 +1035,41 @@
 })();
 </script>
 
+
+<!-- Values accordion -->
+<script defer>
+(function () {
+    const rows = document.querySelectorAll('.nf-value-row');
+    if (!rows.length) return;
+
+    rows.forEach(row => {
+        const trigger = row.querySelector('.nf-row__trigger');
+        if (!trigger) return;
+
+        trigger.addEventListener('click', () => {
+            const isOpen = row.classList.contains('is-open');
+
+            rows.forEach(r => {
+                r.classList.remove('is-open');
+                const t = r.querySelector('.nf-row__trigger');
+                if (t) t.setAttribute('aria-expanded', 'false');
+            });
+
+            if (!isOpen) {
+                row.classList.add('is-open');
+                trigger.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        trigger.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                trigger.click();
+            }
+        });
+    });
+})();
+</script>
 
 <!-- MAIN SITE SCRIPT (LAST) -->
 <script src="./js/index.js" defer></script>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NF Values POC — B: Statement Rows</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --nf-bg: #0A0A0A;
+            --nf-fg: #ffffff;
+            --nf-red: #E8001E;
+            --nf-neutral: #bdbdbd;
+            --nf-gray: #464646;
+            --nf-border: rgba(255,255,255,0.08);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--nf-bg);
+            color: var(--nf-fg);
+            font-family: "Inter", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── POC Label ── */
+        .poc-label {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            z-index: 999;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--nf-red);
+            border: 1px solid rgba(232,0,30,0.3);
+            padding: 6px 12px;
+            border-radius: 3px;
+            background: rgba(10,10,10,0.85);
+            backdrop-filter: blur(8px);
+        }
+
+        /* ── Section ── */
+        .nf-values {
+            width: 100%;
+            padding: 120px 5% 140px;
+        }
+
+        /* ── Header ── */
+        .nf-values__header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: end;
+            margin-bottom: 100px;
+        }
+
+        .nf-values__kicker {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--nf-red);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .nf-values__headline {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(3rem, 6vw, 6.5rem);
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            line-height: 0.88;
+        }
+
+        .nf-values__headline .outline {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.25);
+            color: transparent;
+        }
+
+        .nf-values__right {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 28px;
+        }
+
+        .nf-values__statement {
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--nf-neutral);
+            max-width: 420px;
+        }
+
+        .nf-values__count {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            color: var(--nf-gray);
+        }
+
+        .nf-values__count em {
+            color: var(--nf-fg);
+            font-style: normal;
+        }
+
+        /* ── Rows list ── */
+        .nf-values__list {
+            list-style: none;
+            border-top: 1px solid var(--nf-border);
+        }
+
+        /* ── Single row ── */
+        .nf-value-row {
+            border-bottom: 1px solid var(--nf-border);
+            overflow: hidden;
+            transition: background 0.3s ease;
+        }
+
+        .nf-value-row.is-open {
+            background: rgba(255,255,255,0.02);
+        }
+
+        /* Trigger row — always visible */
+        .nf-row__trigger {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            align-items: center;
+            gap: 24px;
+            padding: 28px 0;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .nf-row__num {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            color: var(--nf-gray);
+            transition: color 0.25s ease;
+        }
+
+        .nf-value-row.is-open .nf-row__num,
+        .nf-row__trigger:hover .nf-row__num {
+            color: var(--nf-red);
+        }
+
+        .nf-row__title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            overflow: hidden;
+        }
+
+        .nf-row__label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--nf-gray);
+            flex-shrink: 0;
+            transition: color 0.25s ease;
+            width: 110px;
+        }
+
+        .nf-value-row.is-open .nf-row__label {
+            color: var(--nf-red);
+        }
+
+        .nf-row__outcome {
+            font-family: "Inter", sans-serif;
+            font-size: clamp(1.4rem, 2.8vw, 2.8rem);
+            font-weight: 400;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            line-height: 1;
+            color: rgba(255,255,255,0.35);
+            transition: color 0.35s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nf-value-row.is-open .nf-row__outcome,
+        .nf-row__trigger:hover .nf-row__outcome {
+            color: var(--nf-fg);
+        }
+
+        /* Plus / minus indicator */
+        .nf-row__icon {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--nf-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: border-color 0.25s ease, background 0.25s ease, transform 0.4s ease;
+        }
+
+        .nf-value-row.is-open .nf-row__icon {
+            border-color: var(--nf-red);
+            background: var(--nf-red);
+            transform: rotate(45deg);
+        }
+
+        .nf-row__icon svg {
+            width: 12px;
+            height: 12px;
+            stroke: var(--nf-neutral);
+            transition: stroke 0.25s ease;
+        }
+
+        .nf-value-row.is-open .nf-row__icon svg {
+            stroke: #ffffff;
+        }
+
+        /* Expandable body */
+        .nf-row__body {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        .nf-value-row.is-open .nf-row__body {
+            grid-template-rows: 1fr;
+        }
+
+        .nf-row__body-inner {
+            overflow: hidden;
+        }
+
+        .nf-row__content {
+            display: grid;
+            grid-template-columns: 80px 1fr 1fr;
+            gap: 24px;
+            padding: 0 0 40px;
+            align-items: start;
+        }
+
+        .nf-row__content-spacer {
+            /* aligns under the number column */
+        }
+
+        .nf-row__description {
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--nf-neutral);
+            max-width: 480px;
+        }
+
+        .nf-row__meta {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .nf-row__tag {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.58rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--nf-red);
+            border: 1px solid rgba(232,0,30,0.25);
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        /* ── Footer ── */
+        .nf-values__footer {
+            margin-top: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .nf-values__cta-text {
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-weight: 400;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            line-height: 1;
+            color: rgba(255,255,255,0.15);
+        }
+
+        .nf-values__cta-text strong {
+            color: var(--nf-fg);
+            font-weight: 400;
+        }
+
+        .nf-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            font-family: "Inter", sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--nf-fg);
+            text-decoration: none;
+            background: var(--nf-red);
+            padding: 16px 32px;
+            border-radius: 3px;
+            flex-shrink: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .nf-cta-btn:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+
+        .nf-cta-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: #fff;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .nf-values__header {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                margin-bottom: 60px;
+            }
+            .nf-row__trigger {
+                grid-template-columns: 50px 1fr auto;
+                gap: 16px;
+            }
+            .nf-row__content {
+                grid-template-columns: 50px 1fr;
+                gap: 16px;
+            }
+            .nf-row__meta { display: none; }
+            .nf-row__label { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .nf-values { padding: 80px 5% 100px; }
+            .nf-row__outcome { font-size: 1.25rem; }
+            .nf-values__footer { flex-direction: column; align-items: flex-start; }
+            .nf-values__cta-text { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<span class="poc-label">POC — B · Statement Rows</span>
+
+<section class="nf-values">
+
+    <div class="nf-values__header">
+        <div>
+            <span class="nf-values__kicker">// The Standard</span>
+            <h2 class="nf-values__headline">
+                Work that<br>
+                <span class="outline">earns</span><br>
+                results.
+            </h2>
+        </div>
+        <div class="nf-values__right">
+            <p class="nf-values__statement">
+                Five commitments that shape every decision — from who I work with to how work ships. Click any row to read the reasoning.
+            </p>
+            <span class="nf-values__count"><em>05</em> Commitments · Portland, OR</span>
+        </div>
+    </div>
+
+    <ul class="nf-values__list" role="list">
+
+        <!-- Row 1 -->
+        <li class="nf-value-row is-open">
+            <div class="nf-row__trigger" role="button" tabindex="0" aria-expanded="true">
+                <span class="nf-row__num">01</span>
+                <div class="nf-row__title-wrap">
+                    <span class="nf-row__label">Quality</span>
+                    <span class="nf-row__outcome">Measurable Results</span>
+                </div>
+                <div class="nf-row__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                </div>
+            </div>
+            <div class="nf-row__body">
+                <div class="nf-row__body-inner">
+                    <div class="nf-row__content">
+                        <div class="nf-row__content-spacer"></div>
+                        <p class="nf-row__description">When quality is non-negotiable, your site doesn't just look polished — it performs. Faster load times, stronger SEO rankings, and higher conversion rates because every build is engineered to work as beautifully as it looks.</p>
+                        <div class="nf-row__meta">
+                            <span class="nf-row__tag">Performance</span>
+                            <span class="nf-row__tag">SEO</span>
+                            <span class="nf-row__tag">Conversion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <!-- Row 2 -->
+        <li class="nf-value-row">
+            <div class="nf-row__trigger" role="button" tabindex="0" aria-expanded="false">
+                <span class="nf-row__num">02</span>
+                <div class="nf-row__title-wrap">
+                    <span class="nf-row__label">Creativity</span>
+                    <span class="nf-row__outcome">A Brand That Leads</span>
+                </div>
+                <div class="nf-row__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                </div>
+            </div>
+            <div class="nf-row__body">
+                <div class="nf-row__body-inner">
+                    <div class="nf-row__content">
+                        <div class="nf-row__content-spacer"></div>
+                        <p class="nf-row__description">In a market flooded with template sites and look-alike brands, a distinct creative identity is a real competitive edge. Clients I work with don't just look professional — they look like the obvious choice, attracting better leads and stronger market positioning.</p>
+                        <div class="nf-row__meta">
+                            <span class="nf-row__tag">Brand Identity</span>
+                            <span class="nf-row__tag">UX Design</span>
+                            <span class="nf-row__tag">Positioning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <!-- Row 3 -->
+        <li class="nf-value-row">
+            <div class="nf-row__trigger" role="button" tabindex="0" aria-expanded="false">
+                <span class="nf-row__num">03</span>
+                <div class="nf-row__title-wrap">
+                    <span class="nf-row__label">Accountability</span>
+                    <span class="nf-row__outcome">No Surprises. Ever.</span>
+                </div>
+                <div class="nf-row__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                </div>
+            </div>
+            <div class="nf-row__body">
+                <div class="nf-row__body-inner">
+                    <div class="nf-row__content">
+                        <div class="nf-row__content-spacer"></div>
+                        <p class="nf-row__description">Clear timelines, honest communication, and work that ships when I say it will. Clients consistently say the difference wasn't just the final product — it was how seamless the process felt compared to every agency they'd worked with before.</p>
+                        <div class="nf-row__meta">
+                            <span class="nf-row__tag">Transparency</span>
+                            <span class="nf-row__tag">Communication</span>
+                            <span class="nf-row__tag">Delivery</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <!-- Row 4 -->
+        <li class="nf-value-row">
+            <div class="nf-row__trigger" role="button" tabindex="0" aria-expanded="false">
+                <span class="nf-row__num">04</span>
+                <div class="nf-row__title-wrap">
+                    <span class="nf-row__label">Collaboration</span>
+                    <span class="nf-row__outcome">Your Vision, Amplified</span>
+                </div>
+                <div class="nf-row__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                </div>
+            </div>
+            <div class="nf-row__body">
+                <div class="nf-row__body-inner">
+                    <div class="nf-row__content">
+                        <div class="nf-row__content-spacer"></div>
+                        <p class="nf-row__description">You know your business. I know the web. When we build together, your domain expertise meets my technical precision — producing a product that genuinely reflects how your customers think, what they need, and what drives them to act.</p>
+                        <div class="nf-row__meta">
+                            <span class="nf-row__tag">Partnership</span>
+                            <span class="nf-row__tag">Strategy</span>
+                            <span class="nf-row__tag">User Research</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <!-- Row 5 -->
+        <li class="nf-value-row">
+            <div class="nf-row__trigger" role="button" tabindex="0" aria-expanded="false">
+                <span class="nf-row__num">05</span>
+                <div class="nf-row__title-wrap">
+                    <span class="nf-row__label">You</span>
+                    <span class="nf-row__outcome">Built to Scale With You</span>
+                </div>
+                <div class="nf-row__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                </div>
+            </div>
+            <div class="nf-row__body">
+                <div class="nf-row__body-inner">
+                    <div class="nf-row__content">
+                        <div class="nf-row__content-spacer"></div>
+                        <p class="nf-row__description">I don't build sites for where you are today — I build for where you're going. Every decision, from architecture to content strategy, is made with your growth in mind so your digital platform becomes a long-term asset, not something you'll rebuild in 18 months.</p>
+                        <div class="nf-row__meta">
+                            <span class="nf-row__tag">Architecture</span>
+                            <span class="nf-row__tag">Growth</span>
+                            <span class="nf-row__tag">Long-term</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+    </ul>
+
+    <div class="nf-values__footer">
+        <p class="nf-values__cta-text">
+            Ready to work<br>with someone who <strong>gives a damn?</strong>
+        </p>
+        <a href="contact-us.html" class="nf-cta-btn">
+            Start a project
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                <path d="m6 6 12 12m0 0V9m0 9H9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </div>
+
+</section>
+
+<script>
+    const rows = document.querySelectorAll('.nf-value-row');
+
+    rows.forEach(row => {
+        const trigger = row.querySelector('.nf-row__trigger');
+
+        trigger.addEventListener('click', () => {
+            const isOpen = row.classList.contains('is-open');
+
+            // Close all
+            rows.forEach(r => {
+                r.classList.remove('is-open');
+                r.querySelector('.nf-row__trigger').setAttribute('aria-expanded', 'false');
+            });
+
+            // If it wasn't open, open it
+            if (!isOpen) {
+                row.classList.add('is-open');
+                trigger.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        // Keyboard support
+        trigger.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                trigger.click();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

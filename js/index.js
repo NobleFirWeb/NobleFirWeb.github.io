@@ -165,12 +165,15 @@
       tl.to(page, { autoAlpha: 1, duration: 0.5, ease: "power2.out" }, CURTAIN_START + 0.18);
 
       // â”€â”€ Cleanup â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // Fire loaderComplete AT curtain-start so the hero can begin
+      // animating in sync with the curtains parting (not after)
       tl.add(() => {
-        loader.style.display = "none";
         document.body.classList.remove("nf-loading");
-        revealIntroTitleLines();
         document.dispatchEvent(new Event("nf:loaderComplete"));
-      });
+      }, CURTAIN_START);
+
+      // Hide the loader element after curtains fully close
+      tl.add(() => { loader.style.display = "none"; });
     };
 
     run();
@@ -637,6 +640,189 @@ function initTabSystem(){
 
 
   /* --------------------------------
+  //   Editorial Hero reveal (index only)
+  --------------------------------- */
+  function initEditorialHero() {
+    if (typeof gsap === "undefined") return;
+    const hLine1    = document.getElementById("hLine1");
+    const hLine2    = document.getElementById("hLine2");
+    const hLine3    = document.getElementById("hLine3");
+    const eyebrow   = document.getElementById("heroEyebrow");
+    const kicker    = document.getElementById("heroKicker");
+    const meta      = document.getElementById("heroMeta");
+    const scrollCue = document.getElementById("heroScrollCue");
+    const navLogo   = document.querySelector(".navbar .logo-name");
+    if (!hLine1) return;
+
+    // Pre-hide: yPercent slides lines below overflow clip, autoAlpha as fallback
+    gsap.set([hLine1, hLine2, hLine3], { yPercent: 115, autoAlpha: 0 });
+    gsap.set([eyebrow, kicker, meta, scrollCue], { opacity: 0, y: 10 });
+    if (navLogo) gsap.set(navLogo, { autoAlpha: 0 });
+
+    const tl = gsap.timeline();
+    tl.to(eyebrow, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.05);
+    tl.to(hLine1,  { yPercent: 0, autoAlpha: 1, duration: 0.85, ease: "expo.out" }, 0.12);
+    tl.to(hLine2,  { yPercent: 0, autoAlpha: 1, duration: 0.85, ease: "expo.out" }, 0.26);
+    tl.to(hLine3,  { yPercent: 0, autoAlpha: 1, duration: 0.85, ease: "expo.out" }, 0.40);
+    if (navLogo) tl.to(navLogo, { autoAlpha: 1, duration: 0.4, ease: "power2.out" }, 0.28);
+    tl.to(kicker,    { opacity: 1, y: 0, duration: 0.5,  ease: "power3.out" }, 0.55);
+    tl.to(meta,      { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.68);
+    tl.to(scrollCue, { opacity: 1, y: 0, duration: 0.4,  ease: "power2.out" }, 0.80);
+    tl.call(() => { if (eyebrow) eyebrow.classList.add("is-revealed"); }, [], 0.30);
+  }
+
+
+  /* --------------------------------
+  //   Scroll Story — video morph + about text fill
+  --------------------------------- */
+  function initScrollStory() {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || typeof SplitText === "undefined") return;
+    const ssVideoWrap = document.getElementById("ssVideoWrap");
+    const ssDivider   = document.getElementById("ssDivider");
+    const ssKicker    = document.getElementById("ssKicker");
+    const ssHeading   = document.getElementById("ssHeading");
+    const ssText      = document.getElementById("ssText");
+    const ssLink      = document.getElementById("ssLink");
+    if (!ssVideoWrap || !ssHeading || !ssText) return;
+
+    const isMobile = window.innerWidth <= 768;
+
+    const splitHeading = SplitText.create(ssHeading, { type: "words", wordsClass: "word" });
+    const splitBody    = SplitText.create(ssText,    { type: "words", wordsClass: "word" });
+    gsap.set([...splitHeading.words, ...splitBody.words], { color: "rgba(255,255,255,0.07)" });
+    gsap.set([ssKicker, ssLink], { opacity: 0 });
+
+    const finalVideoW = isMobile ? "90%"         : "48%";
+    const finalVideoH = isMobile ? "38%"         : "64vh";
+    const finalVideoT = isMobile ? "var(--nav-h)" : "calc(50% - 32vh)";
+    const finalVideoL = isMobile ? "5%"          : "3%";
+    const finalRadius = isMobile ? "0 0 14px 14px" : "14px";
+    const pinEnd      = isMobile ? "+=110%"      : "+=180%";
+    const scrubVal    = isMobile ? 1.2           : 1.8;
+
+    const storyTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#scrollStory",
+        start: "top top",
+        end: pinEnd,
+        pin: true,
+        scrub: scrubVal,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    });
+
+    storyTl.to(ssVideoWrap, {
+      width: finalVideoW, height: finalVideoH,
+      top: finalVideoT,   left: finalVideoL,
+      borderRadius: finalRadius,
+      ease: "power1.inOut", duration: 1
+    }, 0);
+
+    storyTl.to(ssKicker, { opacity: 1, ease: "none", duration: 0.25 }, 0.1);
+
+    storyTl.to(splitHeading.words, {
+      color: "#ffffff",
+      stagger: { each: isMobile ? 0.04 : 0.06, from: "start", ease: "none" },
+      ease: "none", duration: 0.5
+    }, 0.18);
+
+    storyTl.to(splitBody.words, {
+      color: "rgba(255,255,255,0.82)",
+      stagger: { each: isMobile ? 0.018 : 0.025, from: "start", ease: "none" },
+      ease: "none", duration: 0.6
+    }, 0.38);
+
+    if (!isMobile && ssDivider) {
+      gsap.set(ssDivider, { left: "calc(3% + 48% + 1.5%)" });
+      storyTl.to(ssDivider, { scaleY: 1, ease: "power2.out", duration: 0.18 }, 0.78);
+    }
+
+    if (ssLink) storyTl.to(ssLink, { opacity: 1, ease: "none", duration: 0.15 }, 0.88);
+  }
+
+
+  /* --------------------------------
+  //   Values section animations
+  --------------------------------- */
+  function initValuesAnimations() {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || typeof SplitText === "undefined") return;
+
+    const headline  = document.querySelector(".nf-values__headline");
+    const statement = document.querySelector(".nf-values__statement");
+    const kicker    = document.querySelector(".nf-values__kicker");
+    const count     = document.querySelector(".nf-values__count");
+    const rows      = document.querySelectorAll(".nf-value-row");
+    const ctaText   = document.querySelector(".nf-values__cta-text");
+
+    if (!headline) return;
+
+    // ── Header: kicker, headline, count slide up on enter
+    gsap.set([kicker, headline, count], { opacity: 0, y: 22 });
+    ScrollTrigger.create({
+      trigger: ".nf-values__header",
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        gsap.to(kicker,   { opacity: 1, y: 0, duration: 0.5,  ease: "power3.out" });
+        gsap.to(headline, { opacity: 1, y: 0, duration: 0.8,  ease: "expo.out",   delay: 0.1 });
+        gsap.to(count,    { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", delay: 0.35 });
+      }
+    });
+
+    // ── Statement: word-fill scrub as header scrolls through
+    if (statement) {
+      const splitStatement = SplitText.create(statement, { type: "words", wordsClass: "nf-val-word" });
+      gsap.set(splitStatement.words, { color: "rgba(255,255,255,0.07)" });
+      gsap.to(splitStatement.words, {
+        color: "rgba(255,255,255,0.75)",
+        stagger: { each: 0.04, from: "start", ease: "none" },
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".nf-values__header",
+          start: "top 58%",
+          end: "bottom 15%",
+          scrub: 1.4,
+        }
+      });
+    }
+
+    // ── Value rows: staggered fade + slide up when list enters
+    if (rows.length) {
+      gsap.set(rows, { opacity: 0, y: 26 });
+      gsap.to(rows, {
+        opacity: 1, y: 0,
+        duration: 0.6,
+        ease: "power3.out",
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: ".nf-values__list",
+          start: "top 84%",
+          toggleActions: "play none none none",
+        }
+      });
+    }
+
+    // ── CTA: word-fill scrub
+    if (ctaText) {
+      const splitCta = SplitText.create(ctaText, { type: "words", wordsClass: "nf-val-cta-word" });
+      gsap.set(splitCta.words, { color: "rgba(255,255,255,0.07)" });
+      gsap.to(splitCta.words, {
+        color: "#ffffff",
+        stagger: { each: 0.1, from: "start", ease: "none" },
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".nf-values__footer",
+          start: "top 75%",
+          end: "center 35%",
+          scrub: 1.0,
+        }
+      });
+    }
+  }
+
+
+  /* --------------------------------
   //   nfTransition (Concept â†’ Deployment)
   --------------------------------- */
   function initNFTransition() {
@@ -884,6 +1070,8 @@ function initServicesHover() {
     document.querySelectorAll(".nf-card__media img").forEach((img) => {
       const card = img.closest(".nf-card");
       if (!card) return;
+      // Featured card is a static header — skip parallax
+      if (card.classList.contains("nf-card--featured")) return;
 
       gsap.to(img, {
         yPercent: 35,
@@ -1190,12 +1378,14 @@ function initServicesHover() {
       initNavToggle();
       initObserversAndUI();
 
-      // HERO 
-      initHeroNFVideo();
-      initHeroVideoExpand();
+      // HERO — editorial stack + scroll story
+      initEditorialHero();
+      initScrollStory();
+
+      // Values section
+      initValuesAnimations();
 
       // GSAP/ScrollTrigger pieces
-      initAboutTextFill();
       initHeaderPin();
       initFlipButtons();
       initTabSystem();
@@ -1210,9 +1400,6 @@ function initServicesHover() {
         .then(NF.afterPaint)
         .then(() => initLineReveals())
         .catch(() => initLineReveals());
-
-      // IMPORTANT: Intro pin LAST, then refresh once
-      initIntroGate();
 
       if (typeof ScrollTrigger !== "undefined") {
         NF.afterFonts().then(NF.afterPaint).then(() => ScrollTrigger.refresh(true));
