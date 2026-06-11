@@ -140,35 +140,30 @@
     </section>
 
     <section class="mission" id="mission">
-        <h1 class="mission-title" data-reveal="lines"><span>[01]</span>The Mission<strong>*</strong></h1>
+        <div class="section-marker section-marker--center">
+            <span class="section-marker__line"></span>
+            <span class="section-marker__num">01</span>
+            <h1 class="section-marker__title" data-reveal="lines">The Mission<span class="section-marker__star">*</span></h1>
+            <span class="section-marker__line"></span>
+        </div>
 
         <div class="section-header">
             <p class="header-paragraph">
                 Noble Fir Studio. Small, intentional, and <strong>built for impact</strong>.
             </p>
-            <p class="header-paragraph">
+            <p class="header-paragraph" id="p2">
                 My process is personal, my standards are high, and my mission is your success. I help businesses cut through <span>the noise</span> and make their mark online — with sharp design, clean code, and relentless focus.
             </p>
         </div>
 
-        <div class="mission-content">
-            <div class="mission-text">
+        <div class="mission-manifesto">
+            <div class="mission-manifesto__text">
                 <p>
                     My mission is to empower businesses with innovative digital tools and custom web solutions that inspire growth and visibility. I’m committed to delivering strategic design and development services that help clients stand out, connect with their audience, and thrive in an ever-evolving online world.
                 </p>
                 <p>
                     Noble Fir doesn’t just build websites — I build opportunities. Every project begins with a conversation, where I listen to your goals, understand your brand, and craft tailored digital experiences that work for you. My approach blends design, functionality, and strategy, ensuring each solution not only looks great but also performs seamlessly across all platforms. From local entrepreneurs to growing enterprises, I provide the framework and support businesses need to compete and grow online with confidence.
                 </p>
-            </div>
-            <div class="mission-image" slide-left="true">
-                <img src="./img/go-team.jpg" alt="Mission Image">
-            </div>
-        </div>
-        <div class="mission-content2">
-            <div class="mission-image" data-rise="true">
-                <img src="./img/service1.jpg" alt="Mission Image">
-            </div>
-            <div class="mission-text text2">
                 <p>
                     I envision a digital landscape where every business — regardless of size — has access to high-quality, customized web experiences that reflect their unique identity and goals. As Noble Fir grows, I remain committed to building lasting partnerships rooted in transparency, creativity, and performance.
                 </p>
@@ -180,6 +175,28 @@
                     <span>View My Work</span>
                     <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
                 </a>
+            </div>
+            <div class="mission-manifesto__aside">
+                <div class="mission-manifesto__photo" slide-left="true">
+                    <img src="./img/go-team.jpg" alt="Noble Fir Studio">
+                </div>
+                <ul class="mission-facts" data-rise="true">
+                    <li>
+                        <span class="mission-facts__num">01</span>
+                        <span class="mission-facts__line"></span>
+                        <span class="mission-facts__label">Based in Portland, OR</span>
+                    </li>
+                    <li>
+                        <span class="mission-facts__num">02</span>
+                        <span class="mission-facts__line"></span>
+                        <span class="mission-facts__label">Boutique &amp; Independent</span>
+                    </li>
+                    <li>
+                        <span class="mission-facts__num">03</span>
+                        <span class="mission-facts__line"></span>
+                        <span class="mission-facts__label">Direct Access — No Middlemen</span>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="mission-content3">
@@ -202,7 +219,11 @@
     </section>
 
     <section class="expertise" id="expertise">
-        <h1 class="expertise-title" slide-right="true">The Skills<strong>*</strong><span>[02]</span></h1>
+        <div class="section-marker">
+            <span class="section-marker__num">02</span>
+            <h1 class="section-marker__title" data-reveal="lines">The Skills<span class="section-marker__star">*</span></h1>
+            <span class="section-marker__line"></span>
+        </div>
         <div class="section-header">
             <div class="header-paragraph">
                 <div class="text">
@@ -397,7 +418,11 @@
 
     <section class="team" id="team">
 
-        <h1 class="team-title" slide-left="true"><span>[03]</span>The Architect<strong>*</strong></h1>
+        <div class="section-marker section-marker--right">
+            <span class="section-marker__line"></span>
+            <h1 class="section-marker__title" data-reveal="lines">The Architect<span class="section-marker__star">*</span></h1>
+            <span class="section-marker__num">03</span>
+        </div>
 
         <div class="nf-founder">
             <div class="nf-founder__media">
@@ -543,7 +568,12 @@
     </section>
 
     <section class="vibes" id="vibes">
-        <h1 class="vibes-title" data-rise="true"><span>[04]</span>The Vibes<strong>*</strong></h1>
+        <div class="section-marker section-marker--center">
+            <span class="section-marker__line"></span>
+            <span class="section-marker__num">04</span>
+            <h1 class="section-marker__title" data-reveal="lines">The Vibes<span class="section-marker__star">*</span></h1>
+            <span class="section-marker__line"></span>
+        </div>
 
         <div class="section-header">
             <div class="header-paragraph">
@@ -786,50 +816,24 @@
             const vibeIds = ['#vibe-1', '#vibe-2', '#vibe-3', '#vibe-4'];
             const vibeEls = vibeIds.map(id => document.querySelector(id)).filter(Boolean);
 
-            // --- helpers ---
-            function isFullyInViewport(el, headerH) {
-                const r = el.getBoundingClientRect();
-                const vh = window.innerHeight || document.documentElement.clientHeight;
-                return (r.top >= headerH) && (r.bottom <= vh);
-            }
-
-            // Track visibility ratios per row
-            const visRatio = new Map(vibeEls.map(el => [el.id, 0]));
-
             let showObs, activeObs;
-            const thresholds = [0, 0.25, 0.5, 0.6, 0.75, 0.9, 1];
 
             function rebuildObservers(headerH) {
                 currentHeaderH = headerH;
                 if (showObs) { showObs.disconnect(); }
                 if (activeObs) { activeObs.disconnect(); }
 
-                // SHOW/HIDE observer — use generous thresholds + header offset
+                // SHOW/HIDE observer — rail stays put as long as ANY part of the
+                // vibes track is in view (mirrors the services rail behavior)
                 showObs = new IntersectionObserver(
                     (entries) => {
-                        entries.forEach(e => {
-                            const fullFitPossible = e.boundingClientRect.height <= (window.innerHeight - headerH);
-                            // true-full if it actually fits and is within viewport bounds
-                            const isTrulyFull = fullFitPossible && isFullyInViewport(e.target, headerH);
-
-                            // Otherwise, fall back to a strong ratio (>= 0.6) meaning "you're on this card"
-                            const ratio = (e.intersectionRect.height / e.boundingClientRect.height);
-                            visRatio.set(e.target.id, Math.max(0, Math.min(1, ratio)));
-
-                            // Decide visibility for this target
-                            const rowCountsAsVisible = isTrulyFull || ratio >= 0.6;
-                            visRatio.set(e.target.id, rowCountsAsVisible ? 1 : ratio);
-                        });
-
-                        // Show rail if ANY vibe row qualifies as visible
-                        const anyVisible = [...visRatio.values()].some(v => v === 1 || v >= 0.6);
+                        const anyVisible = entries.some(e => e.isIntersecting);
                         rail.classList.toggle('is-visible', anyVisible);
                     },
                     {
                         root: null,
-                        // Pull the top boundary down by the header height so content under header still "counts"
                         rootMargin: `-${headerH}px 0px 0px 0px`,
-                        threshold: thresholds
+                        threshold: 0
                     }
                 );
 

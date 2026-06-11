@@ -1746,6 +1746,8 @@ body.nf-loading {
     justify-content: flex-start;
     margin-top: 20px;
     margin-right: 5px;
+    width: fit-content;
+    margin-left: 0;
 }
 
 
@@ -2261,13 +2263,14 @@ body.nf-loading {
     gap: 48px;
     align-items: end;
     margin-top: 140px;
-    margin-bottom: 56px;
+    margin-bottom: 86px;
 }
 
 /* Values pre-hide — GSAP animates these in on scroll */
 .nf-values__kicker,
 .nf-values__headline,
-.nf-values__count {
+.nf-values__count,
+.nf-values__statement {
     opacity: 0;
 }
 .nf-value-row {

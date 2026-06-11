@@ -56,6 +56,7 @@ body {
   cursor: pointer;
   text-decoration: none;
   --spin-duration: 12s;
+  display: none;
 }
 
 .text-spinner svg {
@@ -461,6 +462,92 @@ body {
   padding-top: 10%;
 }
 
+/* ═══════════════════════════════════════════
+   SECTION MARKER — proof of concept
+   Smaller, modern replacement for the giant
+   outline section titles ([01] The Mission*)
+   ═══════════════════════════════════════════ */
+.section-marker {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 5%;
+  width: 100%;
+}
+
+.section-marker__num {
+  font-family: "JetBrains Mono", "DM Mono", monospace;
+  font-size: clamp(0.85rem, 1.1vw, 1.1rem);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--nf-red);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.section-marker__line {
+  flex: 1 1 auto;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255,255,255,0.18), rgba(255,255,255,0));
+  min-width: 24px;
+}
+
+.section-marker__title {
+  display: block;
+  overflow: hidden;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.section-marker__title .section-marker__star {
+  color: var(--nf-red);
+  font-weight: 500;
+}
+
+/* Center variant: line on both sides — used for mission/vibes */
+.section-marker--center {
+  justify-content: center;
+}
+.section-marker--center .section-marker__line:first-child {
+  background: linear-gradient(to left, rgba(255,255,255,0.18), rgba(255,255,255,0));
+}
+
+/* Right variant: number trails the title — used for the architect */
+.section-marker--right {
+  justify-content: flex-end;
+}
+.section-marker--right .section-marker__num {
+  order: 3;
+}
+.section-marker--right .section-marker__line:first-of-type {
+  order: 2;
+}
+.section-marker--right .section-marker__title {
+  order: 1;
+}
+
+@media only screen and (max-width: 768px) {
+  .section-marker {
+    gap: 1rem;
+  }
+  .section-marker__line {
+    display: none;
+  }
+  .section-marker--right {
+    justify-content: flex-start;
+  }
+  .section-marker--right .section-marker__num,
+  .section-marker--right .section-marker__title {
+    order: initial;
+  }
+}
+
 .mission-title {
     font-family: "Space Grotesk", sans-serif;
     font-size: 8rem;
@@ -502,6 +589,8 @@ body {
     color: #fff;
     font-size: 1.5rem;
     line-height: 1.6;
+    text-align: center;
+
 }
 
 .mission .header-paragraph strong {
@@ -518,33 +607,122 @@ body {
     text-decoration-thickness: 0.1rem;
 }
 
-.mission-content {
-  display: flex;
-  flex-direction: row;
-  gap: 10%;
-  justify-content: center;
-  padding: 80px 5%;
+#p2 {
+      font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgb(166, 166, 166);
+    margin: 0 auto;
+    max-width: 620px;
 }
 
-.mission-content2 {
-  display: flex;
-  flex-direction: row;
-  gap: 10%;
-  justify-content: center;
-  padding: 100px 5%;
+#p2 span {
+  color: rgb(166, 166, 166);
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
-.mission-text {
-  width: 50%;
+/* ═══════════════════════════════════════════
+   MISSION MANIFESTO
+   Single-column copy + framed photo / facts aside
+   ═══════════════════════════════════════════ */
+.mission-manifesto {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  padding: 60px 5% 100px;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.mission-manifesto__text {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 30px;
+  gap: 24px;
+  max-width: 640px;
   font-family: "Inter", sans-serif;
-  font-size: 1.25rem;
+  font-weight: 300;
+  font-size: 1.05rem;
+  line-height: 1.7;
   color: #a6a6a6;
-  line-height: 1.25;
-  padding: 0 100px;
+}
+
+.mission-manifesto__text p:first-child {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.5;
+}
+
+.mission-manifesto__text .learn-more {
+  margin-top: 0.5rem;
+  width: fit-content;
+  margin-left: 0;
+  justify-content: flex-start;
+}
+
+.mission-manifesto__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: sticky;
+  top: calc(var(--nav-h, 100px) + 40px);
+}
+
+.mission-manifesto__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.mission-manifesto__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mission-facts {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.mission-facts li {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.mission-facts li:first-child {
+  border-top: none;
+}
+
+.mission-facts__num {
+  font-family: "JetBrains Mono", "DM Mono", monospace;
+  font-size: clamp(.85rem, 1.1vw, 1.1rem);
+  font-weight: 500;
+  letter-spacing: .2em;
+  color: var(--nf-red);
+  flex-shrink: 0;
+}
+
+.mission-facts__line {
+  flex: 0 0 32px;
+  height: 1px;
+  background: rgba(255,255,255,.18);
+}
+
+.mission-facts__label {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #ffffff;
 }
 
 .about-btn {
@@ -580,14 +758,6 @@ body {
   width: 50%;
   max-width: 720px;
   height: auto;
-}
-
-.mission-image img {
-  width: 100%;
-  max-width: 720px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 10px;
 }
 
 .mission-content3 {
@@ -679,27 +849,19 @@ body {
   .mission .section-header {
     margin: 60px auto;
 }
-  .mission-content {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-evenly;
-    row-gap: 60px;
-    padding: 5% 5%;
-    align-items: center;
-    margin: 0 auto;
+  .mission-manifesto {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 5% 5% 60px;
   }
-  .mission-content2 {
-    display: flex;
-    flex-direction: column;
-    row-gap: 60px;
-    padding: 5% 5%;
-    align-items: center;
-    margin: 0 auto;
+  .mission-manifesto__text {
+    max-width: 100%;
   }
-  .mission-text {
-    padding: 0 5%;
+  .mission-manifesto__aside {
+    position: static;
+    max-width: 480px;
+    margin: 0 auto;
     width: 100%;
-    max-width: 850px;
   }
   .global-container {
     flex-direction: column;
@@ -731,6 +893,9 @@ body {
   .mission-title {
     font-size: 4.75rem;
   }
+  .mission-manifesto {
+    max-width: 100%;
+  }
   .mission-title span {
   font-size: 1.75rem;
   padding-right: 0;
@@ -739,13 +904,6 @@ body {
     width: 100%;
     max-width: 100%;
     padding: 0 5%;
-  }
-  .mission-image {
-    max-width: 85%;
-  }
-  .mission-text {
-    padding: 0;
-    max-width: 100%;
   }
   .global1 .global-title {
     font-size: 5.5rem;
@@ -766,8 +924,8 @@ body {
   .mission-title span {
   font-size: 1.5rem;
   }
-  .mission-image {
-    max-width: 100%;
+  .mission-manifesto__text p:first-child {
+    font-size: 1.15rem;
   }
   .global-container {
     gap: 20%;
@@ -813,16 +971,24 @@ body {
 
 .expertise .section-header {
   max-width: 1100px;
-  margin: 100px 0;
+  margin: 60px 0;
   padding-left: 5%;
 }
 
 .expertise .header-paragraph {
     font-family: "inter", sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    max-width: 620px;
+}
+
+.expertise .header-paragraph .subtext {
+    font-weight: 300;
+    font-size: 1.05rem;
     line-height: 1.6;
+    color: #a6a6a6;
 }
 
 .expertise-title span {
@@ -836,11 +1002,31 @@ body {
 .expertise .section-header .text {
   display: flex;
   flex-direction: column;
-  row-gap: 24px;
+  row-gap: 14px;
 }
 
 .expertise .about-btn {
   margin: 30px 0;
+}
+
+.expertise .section-header .learn-more {
+  margin-top: 8px;
+  width: fit-content;
+  margin-left: 0;
+  justify-content: flex-start;
+}
+
+.expertise .section-header .learn-more span {
+  font-size: 1.15rem;
+}
+
+.expertise .section-header .learn-more__icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.expertise .section-header .learn-more:hover .learn-more__icon--left {
+  width: 1.75rem;
 }
 
 :root{
@@ -854,7 +1040,7 @@ body {
 #skills.skills{
   color: var(--fg);
   width: 100%;
-  padding: 5% 0;
+  padding: 0;
 }
 
 .skills__inner{
@@ -1591,18 +1777,23 @@ body {
 }
 
 #vibes .header-paragraph {
-    font-family: "inter", sans-serif;
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #a6a6a6;
+    text-align: center;
+}
+
+
+#vibes .header-paragraph .text p {
+  display: inline-block;
+  vertical-align: top;
+  font-family: "inter", sans-serif;
     font-weight: 400;
     color: #fff;
     font-size: 1.5rem;
     text-align: center;
     line-height: 1.6;
-}
-
-
-.header-paragraph .text p {
-  display: inline-block;
-  vertical-align: top;
 }
 
 .header-paragraph p .word {
@@ -2501,6 +2692,12 @@ sl-button::part(label):hover {
   }
 }
 
+@media (max-width: 480px) {
+  .ab-code-float {
+    bottom: -40px; right: -45px;
+  }
+}
+
 
 
 
@@ -2565,6 +2762,7 @@ sl-button::part(label):hover {
     margin: 0 5px;
     line-height: 1;
     text-decoration: none;
+    text-transform: uppercase;
     transition: transform 260ms ease, color 0.3s ease;
     will-change: transform, color;
 }
@@ -2634,6 +2832,8 @@ sl-button::part(label):hover {
 #cta .learn-more {
     margin-top: 2rem;
     justify-content: flex-start;
+    width: fit-content;
+    margin-left: 0;
 }
 
 

@@ -770,19 +770,15 @@ function initTabSystem(){
       }
     });
 
-    // ── Statement: word-fill scrub as header scrolls through
+    // ── Statement: slide in from right + fade in on enter
     if (statement) {
-      const splitStatement = SplitText.create(statement, { type: "words", wordsClass: "nf-val-word" });
-      gsap.set(splitStatement.words, { color: "rgba(255,255,255,0.07)" });
-      gsap.to(splitStatement.words, {
-        color: "rgba(255,255,255,0.75)",
-        stagger: { each: 0.04, from: "start", ease: "none" },
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".nf-values__header",
-          start: "top 58%",
-          end: "bottom 15%",
-          scrub: 1.4,
+      gsap.set(statement, { opacity: 0, x: 40 });
+      ScrollTrigger.create({
+        trigger: ".nf-values__header",
+        start: "top 80%",
+        once: true,
+        onEnter: () => {
+          gsap.to(statement, { opacity: 1, x: 0, duration: 0.8, ease: "expo.out", delay: 0.15 });
         }
       });
     }
