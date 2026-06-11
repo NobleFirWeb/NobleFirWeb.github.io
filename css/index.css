@@ -321,8 +321,9 @@ body.nf-loading {
     margin: 0 5px;
     line-height: 1;
     text-decoration: none;
-    transition: transform 260ms ease;
-    will-change: transform;
+    text-transform: uppercase;
+    transition: transform 260ms ease, color 0.3s ease;
+    will-change: transform, color;
 }
 
 .solar--arrow-right-down-linear {
@@ -378,9 +379,13 @@ body.nf-loading {
 }
 
 .learn-more:hover .learn-more__icon--left {
-    width: 2rem;
+    width: 3rem;
     opacity: 1;
     transform: translateX(0);
+}
+
+.learn-more:hover span {
+    color: var(--nf-red);
 }
 
 
@@ -514,6 +519,10 @@ body.nf-loading {
     .solar--arrow-right-down-linear {
         width: 1.25rem;
         height: 1.25rem;
+    }
+
+    .learn-more:hover .learn-more__icon--left {
+        width: 1.25rem;
     }
 }
 
@@ -1736,6 +1745,7 @@ body.nf-loading {
 #cta .learn-more {
     justify-content: flex-start;
     margin-top: 20px;
+    margin-right: 5px;
 }
 
 
@@ -2248,10 +2258,10 @@ body.nf-loading {
 .nf-values__header {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 48px;
     align-items: end;
-    margin-top: 180px;
-    margin-bottom: 80px;
+    margin-top: 140px;
+    margin-bottom: 56px;
 }
 
 /* Values pre-hide — GSAP animates these in on scroll */
@@ -2261,6 +2271,9 @@ body.nf-loading {
     opacity: 0;
 }
 .nf-value-row {
+    opacity: 0;
+}
+.nf-values__cta-text {
     opacity: 0;
 }
 
@@ -2276,7 +2289,7 @@ body.nf-loading {
 
 .nf-values__headline {
     font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(3rem, 6vw, 6.5rem);
+    font-size: clamp(2.4rem, 5vw, 5.2rem);
     font-weight: 700;
     letter-spacing: -0.05em;
     text-transform: uppercase;
@@ -2297,18 +2310,18 @@ body.nf-loading {
 }
 
 .nf-values__statement {
-    font-size: 1.85rem;
+    font-size: 1.5rem;
     font-weight: 300;
-    line-height: 0.85;
+    line-height: 0.95;
     color: var(--nf-neutral);
-    max-width: 420px;
+    max-width: 380px;
     text-align: right;
 
 }
 
 .nf-values__count {
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     letter-spacing: 0.18em;
     color: var(--nf-fg);
 }
@@ -2340,10 +2353,10 @@ body.nf-loading {
 /* Trigger */
 .nf-row__trigger {
     display: grid;
-    grid-template-columns: 80px 1fr auto;
+    grid-template-columns: 70px 1fr auto;
     align-items: center;
     gap: 24px;
-    padding: 28px 0;
+    padding: 22px 0;
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
@@ -2351,7 +2364,7 @@ body.nf-loading {
 
 .nf-row__num {
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     letter-spacing: 0.18em;
     color: var(--nf-fg);
     transition: color 0.25s ease;
@@ -2371,12 +2384,12 @@ body.nf-loading {
 
 .nf-row__label {
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--nf-fg);
     flex-shrink: 0;
-    width: 110px;
+    width: 100px;
     transition: color 0.25s ease;
 }
 
@@ -2386,7 +2399,7 @@ body.nf-loading {
 
 .nf-row__outcome {
     font-family: "Inter", sans-serif;
-    font-size: clamp(1.4rem, 2.8vw, 2.8rem);
+    font-size: clamp(1.2rem, 2.2vw, 2.2rem);
     font-weight: 400;
     letter-spacing: -0.04em;
     text-transform: uppercase;
@@ -2405,8 +2418,8 @@ body.nf-loading {
 
 /* Icon */
 .nf-row__icon {
-    width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2415,8 +2428,8 @@ body.nf-loading {
 }
 
 .nf-row__icon svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     color: var(--nf-neutral);
     transition: color 0.25s ease;
 }
@@ -2685,7 +2698,7 @@ body.nf-loading {
 /* Scroll cue -- LABEL on top, red animated line BELOW */
 .hero-scroll-cue {
     position: absolute;
-    bottom: 7vh;
+    bottom: 2.5vh;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -2830,19 +2843,56 @@ body.nf-loading {
 .ss-about__link {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     font-family: "Inter", sans-serif;
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--nf-fg);
     text-decoration: none;
     opacity: 0;
-    transition: color 0.2s ease;
+    transition: transform 260ms ease, color 0.3s ease;
 }
-.ss-about__link:hover { color: var(--nf-red); }
-.ss-about__link svg { width: 14px; height: 14px; flex-shrink: 0; }
+.ss-about__link:hover {
+    color: var(--nf-red);
+    transform: translateX(8px);
+}
+.ss-about__link span {
+    transition: color 0.3s ease;
+}
+.ss-about__icon {
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: opacity 260ms ease, transform 260ms ease, width 260ms ease;
+}
+.ss-about__icon svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: #ffffff;
+}
+.ss-about__icon--left {
+    width: 0;
+    opacity: 0;
+    transform: translateX(-3px);
+    overflow: hidden;
+}
+.ss-about__icon--right {
+    opacity: 1;
+    transform: translateX(0);
+}
+.ss-about__link:hover .ss-about__icon--right {
+    opacity: 0;
+    transform: translateX(12px);
+}
+.ss-about__link:hover .ss-about__icon--left {
+    width: 18px;
+    opacity: 1;
+    transform: translateX(0);
+}
 
 .ss-divider {
     position: absolute;

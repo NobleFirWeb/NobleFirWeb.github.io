@@ -803,19 +803,17 @@ function initTabSystem(){
       });
     }
 
-    // ── CTA: word-fill scrub
+    // ── CTA: simple rise on enter
     if (ctaText) {
-      const splitCta = SplitText.create(ctaText, { type: "words", wordsClass: "nf-val-cta-word" });
-      gsap.set(splitCta.words, { color: "rgba(255,255,255,0.07)" });
-      gsap.to(splitCta.words, {
-        color: "#ffffff",
-        stagger: { each: 0.1, from: "start", ease: "none" },
-        ease: "none",
+      gsap.set(ctaText, { opacity: 0, y: 24 });
+      gsap.to(ctaText, {
+        opacity: 1, y: 0,
+        duration: 0.7,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: ".nf-values__footer",
-          start: "top 75%",
-          end: "center 35%",
-          scrub: 1.0,
+          start: "top 85%",
+          toggleActions: "play none none none",
         }
       });
     }

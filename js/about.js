@@ -62,9 +62,45 @@ function initLineReveals({
   items.forEach((item) => io.observe(item.el));
 }
 
+// Faster, simple fade + rise for vibe section paragraphs (too much text for line-by-line)
+function initVibeTextReveal({
+  selector = '[data-reveal="vibe-rise"]',
+  once = true,
+  rootMargin = "0px 0px -10% 0px"
+} = {}) {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const els = Array.from(document.querySelectorAll(selector));
+  if (!els.length) return;
+
+  if (prefersReducedMotion) return;
+
+  gsap.set(els, { opacity: 0, y: 28 });
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        gsap.to(entry.target, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out"
+        });
+
+        if (once) io.unobserve(entry.target);
+      });
+    },
+    { root: null, rootMargin, threshold: 0.1 }
+  );
+
+  els.forEach((el) => io.observe(el));
+}
+
 // Wait for fonts so line breaks are correct (same idea as the CodePen)
 document.fonts.ready.then(() => {
   initLineReveals();
+  initVibeTextReveal();
 });
 
 // Initialize the spinner: repeat text to fill the circle and set speed.

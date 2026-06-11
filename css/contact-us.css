@@ -769,11 +769,11 @@ body {
   letter-spacing: 0 !important;
 }
 
-/* Big headline — matches the about-page hero title (Playfair Display) */
+/* Big headline — matches the homepage hero title (Space Grotesk) */
 .ct-headline {
   display: flex;
   flex-direction: column;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3rem, 5.5vw, 5.5rem);
   font-weight: 900;
   line-height: 1.05;
@@ -793,10 +793,10 @@ body {
 .ct-hl-row:nth-child(2) { animation-delay: 0.5s; }
 .ct-hl-row:nth-child(3) { animation-delay: 0.65s; }
 
-/* Line 2: italic grey accent — matches .ab-hero-headline em */
+/* Line 2: grey accent — matches the homepage hero "Fir" treatment */
 .ct-hl-outline {
-  font-style: italic;
-  color: #C4C4C4;
+  font-style: normal;
+  color: #464646;
   -webkit-text-stroke: 0;
 }
 

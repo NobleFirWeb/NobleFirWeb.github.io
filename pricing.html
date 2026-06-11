@@ -322,8 +322,8 @@
 
     <!-- ── Footer ────────────────────────────────────────────────────────── -->
     <footer class="nf-footer" role="contentinfo">
-        <span class="nf-footer-bg-letter nf-left"  aria-hidden="true">N</span>
-        <span class="nf-footer-bg-letter nf-right" aria-hidden="true">F</span>
+        <span class="nf-footer-bg-letter nf-left"  aria-hidden="true" data-reveal="lines">N</span>
+        <span class="nf-footer-bg-letter nf-right" aria-hidden="true" data-reveal="lines">F</span>
 
         <nav class="nf-footer-nav" aria-label="Footer">
             <ul>
@@ -358,5 +358,179 @@
 
     <script src="./js/index.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+
+    <script>
+        /* ── Pricing page animations ── */
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof gsap === 'undefined') return;
+            gsap.registerPlugin(ScrollTrigger);
+
+            /* Hero onload reveal */
+            const heroEyebrow = document.querySelector('.pricing-hero__eyebrow');
+            const heroTitle   = document.querySelector('.pricing-hero__title');
+            const heroSub     = document.querySelector('.pricing-hero__sub');
+            const heroNote    = document.querySelector('.pricing-hero__note');
+
+            if (heroTitle) {
+                gsap.set([heroEyebrow, heroTitle, heroSub, heroNote], { y: 24, autoAlpha: 0 });
+
+                const heroTl = gsap.timeline({ delay: 0.1 });
+                heroTl
+                    .to(heroEyebrow, { y: 0, autoAlpha: 1, duration: 0.5, ease: 'power3.out' }, 0)
+                    .to(heroTitle,   { y: 0, autoAlpha: 1, duration: 0.95, ease: 'expo.out' }, 0.1)
+                    .to(heroSub,     { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' }, 0.45)
+                    .to(heroNote,    { y: 0, autoAlpha: 1, duration: 0.5, ease: 'power3.out' }, 0.6);
+            }
+
+            /* Pricing cards — rise one at a time, left to right */
+            const cards = document.querySelectorAll('.pricing-card');
+            if (cards.length) {
+                gsap.set(cards, { y: 40, autoAlpha: 0 });
+                ScrollTrigger.create({
+                    trigger: '.pricing-grid',
+                    start: 'top 82%',
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(cards, {
+                            y: 0,
+                            autoAlpha: 1,
+                            duration: 0.7,
+                            ease: 'power3.out',
+                            stagger: 0.18
+                        });
+                    }
+                });
+            }
+
+            /* Disclaimer note */
+            const note = document.querySelector('.pricing-note');
+            if (note) {
+                gsap.set(note, { y: 20, autoAlpha: 0 });
+                ScrollTrigger.create({
+                    trigger: note,
+                    start: 'top 88%',
+                    once: true,
+                    onEnter: () => gsap.to(note, { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' })
+                });
+            }
+
+            /* Service Rates section */
+            const rateHeading = document.querySelector('.rate-section__heading');
+            const rateSub     = document.querySelector('.rate-section__sub');
+            const rateRows    = document.querySelectorAll('.rate-row');
+
+            if (rateHeading) {
+                gsap.set([rateHeading, rateSub], { y: 22, autoAlpha: 0 });
+                ScrollTrigger.create({
+                    trigger: '.rate-section',
+                    start: 'top 80%',
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(rateHeading, { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' });
+                        gsap.to(rateSub,     { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out', delay: 0.1 });
+                    }
+                });
+            }
+
+            if (rateRows.length) {
+                gsap.set(rateRows, { y: 18, autoAlpha: 0 });
+                ScrollTrigger.create({
+                    trigger: '.rate-table',
+                    start: 'top 85%',
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(rateRows, {
+                            y: 0,
+                            autoAlpha: 1,
+                            duration: 0.5,
+                            ease: 'power3.out',
+                            stagger: 0.06
+                        });
+                    }
+                });
+            }
+
+            /* Payment Structure (milestones) */
+            const msHeading = document.querySelector('.milestone-section__heading');
+            const msSub     = document.querySelector('.milestone-section__sub');
+            const msSteps   = document.querySelectorAll('.milestone-step');
+
+            if (msHeading) {
+                gsap.set([msHeading, msSub], { y: 22, autoAlpha: 0 });
+                ScrollTrigger.create({
+                    trigger: '.milestone-section',
+                    start: 'top 80%',
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(msHeading, { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' });
+                        gsap.to(msSub,     { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out', delay: 0.1 });
+                    }
+                });
+            }
+
+            if (msSteps.length) {
+                gsap.set(msSteps, { y: 24, autoAlpha: 0 });
+                ScrollTrigger.create({
+                    trigger: '.milestone-track',
+                    start: 'top 85%',
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(msSteps, {
+                            y: 0,
+                            autoAlpha: 1,
+                            duration: 0.6,
+                            ease: 'power3.out',
+                            stagger: 0.12
+                        });
+                    }
+                });
+            }
+
+            /* FAQ */
+            const faqHeading = document.querySelector('.pricing-faq__heading');
+            const faqItems   = document.querySelectorAll('.faq-item');
+
+            if (faqHeading) {
+                gsap.set(faqHeading, { y: 22, autoAlpha: 0 });
+                ScrollTrigger.create({
+                    trigger: '.pricing-faq',
+                    start: 'top 80%',
+                    once: true,
+                    onEnter: () => gsap.to(faqHeading, { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' })
+                });
+            }
+
+            if (faqItems.length) {
+                faqItems.forEach((item) => {
+                    gsap.set(item, { y: 24, autoAlpha: 0 });
+                    ScrollTrigger.create({
+                        trigger: item,
+                        start: 'top 88%',
+                        once: true,
+                        onEnter: () => gsap.to(item, { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' })
+                    });
+                });
+            }
+
+            /* CTA */
+            const ctaTitle = document.querySelector('.pricing-cta__title');
+            const ctaSub   = document.querySelector('.pricing-cta__sub');
+            const ctaBtn   = document.querySelector('.pricing-cta__btn');
+
+            if (ctaTitle) {
+                gsap.set([ctaTitle, ctaSub, ctaBtn], { y: 24, autoAlpha: 0 });
+                ScrollTrigger.create({
+                    trigger: '.pricing-cta',
+                    start: 'top 80%',
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(ctaTitle, { y: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out' });
+                        gsap.to(ctaSub,   { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out', delay: 0.12 });
+                        gsap.to(ctaBtn,   { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out', delay: 0.22 });
+                    }
+                });
+            }
+        });
+    </script>
     </body>
 </html>

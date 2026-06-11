@@ -37,6 +37,26 @@
 
             a { color: inherit; text-decoration: none; }
 
+            /* ── GSAP pre-hide — JS animates these in (onload + on scroll) ──── */
+            .pricing-hero__eyebrow,
+            .pricing-hero__title,
+            .pricing-hero__sub,
+            .pricing-hero__note,
+            .pricing-card,
+            .rate-section__heading,
+            .rate-section__sub,
+            .rate-row,
+            .milestone-section__heading,
+            .milestone-section__sub,
+            .milestone-step,
+            .pricing-faq__heading,
+            .faq-item,
+            .pricing-cta__title,
+            .pricing-cta__sub,
+            .pricing-cta__btn {
+                opacity: 0;
+            }
+
             /* ── Pricing Hero ──────────────────────────────────────────────── */
             .pricing-hero {
                 position: relative;
@@ -72,6 +92,7 @@
                 letter-spacing: -0.04em;
                 line-height: 1;
                 margin-bottom: 28px;
+                text-transform: uppercase;
             }
 
             .pricing-hero__title span { color: var(--nf-red); }
