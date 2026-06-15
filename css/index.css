@@ -21,9 +21,7 @@ body {
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
 }
-html {
-    scrollbar-gutter: stable;
-}
+
 /* General Reset */
 * {
     margin: 0;
@@ -39,19 +37,7 @@ body {
     color: white;
 }
 
-/* Scrollbar styling for webkit browsers */
-::-webkit-scrollbar {
-    width: 8px;
-}
 
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--nf-neutral);
-    border-radius: 4px;
-}
 
 /* SplitText line wrapper */
 .nf-line {
@@ -2381,7 +2367,7 @@ body.nf-loading {
 .nf-row__title-wrap {
     display: flex;
     align-items: center;
-    gap: 2.5vw;
+    justify-content: space-between;
     overflow: hidden;
 }
 
@@ -2496,7 +2482,7 @@ body.nf-loading {
 
 /* Footer */
 .nf-values__footer {
-    margin-top: 90px;
+    margin-top: 110px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2555,7 +2541,7 @@ body.nf-loading {
     }
 
     .nf-row__content {
-        grid-template-columns: 20px 1fr;
+        grid-template-columns: 1fr;
         gap: 16px;
     }
 
@@ -2791,6 +2777,51 @@ body.nf-loading {
     background: linear-gradient(to top, rgba(10,10,10,0.6) 0%, transparent 60%);
     z-index: 1;
     pointer-events: none;
+}
+
+/* Corner brackets — appear once the video has settled into its final frame */
+.ss-video-corner {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ss-video-corner--tl {
+    top: -1px; left: -1px;
+    border-top: 2px solid rgba(255,255,255,0.85);
+    border-left: 2px solid rgba(255,255,255,0.85);
+    border-radius: 14px 0 0 0;
+}
+
+.ss-video-corner--tr {
+    top: -1px; right: -1px;
+    border-top: 2px solid rgba(255,255,255,0.85);
+    border-right: 2px solid rgba(255,255,255,0.85);
+    border-radius: 0 14px 0 0;
+}
+
+.ss-video-corner--bl {
+    bottom: -1px; left: -1px;
+    border-bottom: 2px solid rgba(255,255,255,0.85);
+    border-left: 2px solid rgba(255,255,255,0.85);
+    border-radius: 0 0 0 14px;
+}
+
+.ss-video-corner--br {
+    bottom: -1px; right: -1px;
+    border-bottom: 2px solid rgba(255,255,255,0.85);
+    border-right: 2px solid rgba(255,255,255,0.85);
+    border-radius: 0 0 14px 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .ss-video-corner {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 .ss-about {

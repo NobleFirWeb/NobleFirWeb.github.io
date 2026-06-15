@@ -696,7 +696,7 @@ function initTabSystem(){
     const finalVideoH = isMobile ? "38%"         : "64vh";
     const finalVideoT = isMobile ? "var(--nav-h)" : "calc(50% - 32vh)";
     const finalVideoL = isMobile ? "5%"          : "3%";
-    const finalRadius = isMobile ? "0 0 14px 14px" : "14px";
+    const finalRadius = "14px";
     const pinEnd      = isMobile ? "+=110%"      : "+=180%";
     const scrubVal    = isMobile ? 1.2           : 1.8;
 
@@ -718,6 +718,9 @@ function initTabSystem(){
       borderRadius: finalRadius,
       ease: "power1.inOut", duration: 1
     }, 0);
+
+    const ssCorners = ssVideoWrap.querySelectorAll(".ss-video-corner");
+    storyTl.to(ssCorners, { opacity: 1, ease: "none", duration: 0.15 }, 1);
 
     storyTl.to(ssKicker, { opacity: 1, ease: "none", duration: 0.25 }, 0.1);
 
@@ -808,7 +811,7 @@ function initTabSystem(){
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".nf-values__footer",
-          start: "top 85%",
+          start: "top bottom",
           toggleActions: "play none none none",
         }
       });

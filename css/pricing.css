@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 /* ── Reset / Base ──────────────────────────────────────────────── */
             *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
             :root {
+                color-scheme: dark !important;
                 --nf-bg:      #0A0A0A;
                 --nf-fg:      #ffffff;
                 --nf-red:     #ff0000;
@@ -18,20 +21,6 @@
                 color: var(--nf-fg);
                 font-family: "Inter", system-ui, -apple-system, Arial, sans-serif;
                 overflow-x: hidden;
-            }
-
-            /* Scrollbar styling for webkit browsers */
-            ::-webkit-scrollbar {
-                width: 8px;
-            }
-
-            ::-webkit-scrollbar-track {
-                background: transparent;
-            }
-
-            ::-webkit-scrollbar-thumb {
-                background-color: var(--nf-neutral);
-                border-radius: 4px;
             }
 
             a { color: inherit; text-decoration: none; }

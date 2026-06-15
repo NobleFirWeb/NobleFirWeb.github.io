@@ -36,9 +36,7 @@ body {
     --pf-red:     #E8001E;
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 3px; }
+
 
 /* ── Shared: Tag pill ────────────────────────────────────────── */
 /* Look here for all tag/badge styles */

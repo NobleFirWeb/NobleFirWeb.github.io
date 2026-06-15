@@ -6,8 +6,8 @@
         <title>Pricing - Noble Fir Studio</title>
         <meta name="description" content="Transparent, straightforward pricing from Noble Fir Studio. No hidden fees, no surprises — just honest rates for custom web design and development in Portland, OR.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./css/nav-styles.css">
         <link rel="stylesheet" href="./css/pricing.css">
+        <link rel="stylesheet" href="./css/nav-styles.css">
         <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
@@ -45,13 +45,32 @@
                 </svg>
             </button>
         
+                        <div class="nav-brand" aria-hidden="true">
+                <span>Noble</span>
+                <span>Fir Studio.</span>
+            </div>
+
             <ul id="nav-menu" role='list' aria-labelledby="btn-nav-toggle" aria-hidden="true" inert>
-                <li style="--i: 1;"><a href="index.html"><span>Home</span></a></li>
-                <li style="--i: 2;"><a href="about.html"><span>About Us</span></a></li>
-                <li style="--i: 3;"><a href="services.html"><span>Services</span></a></li>
-                <li style="--i: 4;"><a href="pricing.html"><span>Pricing</span></a></li>
-                <li style="--i: 5;"><a href="portfolio.html"><span>Projects</span></a></li>
-                <li style="--i: 6;"><a href="contact-us.html"><span>Contact Us</span></a></li>
+                <li class="nav-panel__header" aria-hidden="true">
+                    <span class="nav-panel__brand">Noble Fir Studio</span>
+                    <span class="nav-panel__est">Est. 2025</span>
+                </li>
+                <li style="--i: 1;"><a href="index.html"><span class="nav-link__num">01</span><span>Home</span></a></li>
+                <li style="--i: 2;"><a href="about.html"><span class="nav-link__num">02</span><span>About</span></a></li>
+                <li style="--i: 3;"><a href="services.html"><span class="nav-link__num">03</span><span>Services</span></a></li>
+                <li style="--i: 4;"><a href="pricing.html"><span class="nav-link__num">04</span><span>Pricing</span></a></li>
+                <li style="--i: 5;"><a href="portfolio.html"><span class="nav-link__num">05</span><span>Projects</span></a></li>
+                <li style="--i: 6;"><a href="contact-us.html"><span class="nav-link__num">06</span><span>Contact</span></a></li>
+                <li class="nav-panel__footer" aria-hidden="true">
+                    <div class="nav-panel__social">
+                        <a href="#" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                    <a class="nav-panel__email" href="mailto:hello@noblefirstudio.com">
+                        <span>hello@noblefirstudio.com</span>
+                        <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -322,9 +341,11 @@
 
     <!-- ── Footer ────────────────────────────────────────────────────────── -->
     <footer class="nf-footer" role="contentinfo">
-        <span class="nf-footer-bg-letter nf-left"  aria-hidden="true" data-reveal="lines">N</span>
+        <!-- giant background letters -->
+        <span class="nf-footer-bg-letter nf-left" aria-hidden="true" data-reveal="lines">N</span>
         <span class="nf-footer-bg-letter nf-right" aria-hidden="true" data-reveal="lines">F</span>
-
+    
+        <!-- centered nav -->
         <nav class="nf-footer-nav" aria-label="Footer">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -335,10 +356,11 @@
                 <li class="nf-contact-btn"><a href="contact-us.html">Let's Talk</a></li>
             </ul>
         </nav>
-
+    
+        <!-- bottom row -->
         <div class="nf-footer-bottom">
             <p class="nf-copy">@ 2025 NOBLE FIR STUDIO, LLC. ALL RIGHTS RESERVED.</p>
-
+    
             <div class="nf-social">
                 <a href="#" aria-label="Instagram" class="nf-social-icon">
                     <i class="fa fa-instagram"></i>
@@ -347,7 +369,7 @@
                     <i class="fa fa-linkedin"></i>
                 </a>
             </div>
-
+    
             <div class="nf-legal">
                 <a href="privacy.html">Privacy Policy</a>
                 <span class="nf-sep" aria-hidden="true">•</span>
