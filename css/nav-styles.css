@@ -825,7 +825,7 @@ Nav panel: header (brand + est.)
     gap: 0.35rem;
     width: 100%;
     padding-bottom: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     overflow: visible;
 }
