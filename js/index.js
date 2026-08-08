@@ -687,9 +687,6 @@ function initTabSystem(){
 
     const isMobile = window.innerWidth <= 768;
 
-    const splitHeading = SplitText.create(ssHeading, { type: "words", wordsClass: "word" });
-    const splitBody    = SplitText.create(ssText,    { type: "words", wordsClass: "word" });
-    gsap.set([...splitHeading.words, ...splitBody.words], { color: "rgba(255,255,255,0.07)" });
     gsap.set([ssKicker, ssLink], { opacity: 0 });
 
     const finalVideoW = isMobile ? "90%"         : "48%";
@@ -724,18 +721,6 @@ function initTabSystem(){
 
     storyTl.to(ssKicker, { opacity: 1, ease: "none", duration: 0.25 }, 0.1);
 
-    storyTl.to(splitHeading.words, {
-      color: "#ffffff",
-      stagger: { each: isMobile ? 0.04 : 0.06, from: "start", ease: "none" },
-      ease: "none", duration: 0.5
-    }, 0.18);
-
-    storyTl.to(splitBody.words, {
-      color: "rgba(255,255,255,0.82)",
-      stagger: { each: isMobile ? 0.018 : 0.025, from: "start", ease: "none" },
-      ease: "none", duration: 0.6
-    }, 0.38);
-
     if (!isMobile && ssDivider) {
       gsap.set(ssDivider, { left: "calc(3% + 48% + 1.5%)" });
       storyTl.to(ssDivider, { scaleY: 1, ease: "power2.out", duration: 0.18 }, 0.78);
@@ -749,13 +734,13 @@ function initTabSystem(){
   //   Values section animations
   --------------------------------- */
   function initValuesAnimations() {
-    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || typeof SplitText === "undefined") return;
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
     const headline  = document.querySelector(".nf-values__headline");
     const statement = document.querySelector(".nf-values__statement");
     const kicker    = document.querySelector(".nf-values__kicker");
     const count     = document.querySelector(".nf-values__count");
-    const rows      = document.querySelectorAll(".nf-value-row");
+    const cards     = document.querySelectorAll(".nf-val-card");
     const ctaText   = document.querySelector(".nf-values__cta-text");
 
     if (!headline) return;
@@ -773,7 +758,7 @@ function initTabSystem(){
       }
     });
 
-    // ── Statement: slide in from right + fade in on enter
+    // ── Statement: slide in from right
     if (statement) {
       gsap.set(statement, { opacity: 0, x: 40 });
       ScrollTrigger.create({
@@ -786,16 +771,16 @@ function initTabSystem(){
       });
     }
 
-    // ── Value rows: staggered fade + slide up when list enters
-    if (rows.length) {
-      gsap.set(rows, { opacity: 0, y: 26 });
-      gsap.to(rows, {
+    // ── Cards: staggered fade + slide up
+    if (cards.length) {
+      gsap.set(cards, { opacity: 0, y: 36 });
+      gsap.to(cards, {
         opacity: 1, y: 0,
-        duration: 0.6,
+        duration: 0.65,
         ease: "power3.out",
         stagger: 0.1,
         scrollTrigger: {
-          trigger: ".nf-values__list",
+          trigger: ".nf-cards-wrap",
           start: "top 84%",
           toggleActions: "play none none none",
         }
@@ -816,6 +801,96 @@ function initTabSystem(){
         }
       });
     }
+
+    // ── Draggable card slider
+    const track    = document.getElementById("nfCardsTrack");
+    const viewport = track ? track.closest(".nf-cards-viewport") : null;
+    const btnPrev  = document.getElementById("nfCardsPrev");
+    const btnNext  = document.getElementById("nfCardsNext");
+    if (!track || !viewport) return;
+
+    const allCards  = Array.from(track.querySelectorAll(".nf-val-card"));
+    const numCards  = allCards.length;
+    let currentIdx  = 0;
+    let currentX    = 0;
+    let isDragging  = false;
+    let startX      = 0;
+    let startDragX  = 0;
+    const CARD_GAP  = 20;
+
+    function getCardWidth() {
+      const card = allCards[0];
+      return card ? card.offsetWidth + CARD_GAP : 300;
+    }
+
+    function getCenterOffset() {
+      const card = allCards[0];
+      if (!card) return 0;
+      // Only center when a single card nearly fills the viewport (mobile)
+      if (viewport.offsetWidth >= card.offsetWidth * 1.8) return 0;
+      return (viewport.offsetWidth - card.offsetWidth) / 2;
+    }
+
+    function clamp(val, min, max) { return Math.min(Math.max(val, min), max); }
+
+    function slideToIndex(i) {
+      currentIdx = clamp(i, 0, numCards - 1);
+      const x = -currentIdx * getCardWidth() + getCenterOffset();
+      currentX = x;
+      gsap.to(track, { x: currentX, duration: 0.55, ease: "power3.out" });
+    }
+
+    // Initialize centered on first card
+    slideToIndex(0);
+    window.addEventListener("resize", () => slideToIndex(currentIdx));
+
+    // Arrow buttons
+    if (btnNext) btnNext.addEventListener("click", () => slideToIndex(currentIdx + 1));
+    if (btnPrev) btnPrev.addEventListener("click", () => slideToIndex(currentIdx - 1));
+
+    // Drag — mouse
+    viewport.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      startDragX = currentX;
+      gsap.killTweensOf(track);
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      const delta = e.clientX - startX;
+      const minX = -(numCards - 1) * getCardWidth() + getCenterOffset() - 60;
+      const maxX = getCenterOffset() + 60;
+      gsap.set(track, { x: clamp(startDragX + delta, minX, maxX) });
+    });
+
+    window.addEventListener("mouseup", (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      const delta = e.clientX - startX;
+      const snappedIdx = Math.round(-(startDragX + delta - getCenterOffset()) / getCardWidth());
+      slideToIndex(snappedIdx);
+    });
+
+    // Drag — touch
+    viewport.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+      startDragX = currentX;
+      gsap.killTweensOf(track);
+    }, { passive: true });
+
+    viewport.addEventListener("touchmove", (e) => {
+      const delta = e.touches[0].clientX - startX;
+      const minX = -(numCards - 1) * getCardWidth() + getCenterOffset() - 40;
+      const maxX = getCenterOffset() + 40;
+      gsap.set(track, { x: clamp(startDragX + delta, minX, maxX) });
+    }, { passive: true });
+
+    viewport.addEventListener("touchend", (e) => {
+      const delta = e.changedTouches[0].clientX - startX;
+      const snappedIdx = Math.round(-(startDragX + delta - getCenterOffset()) / getCardWidth());
+      slideToIndex(snappedIdx);
+    });
   }
 
 
