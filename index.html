@@ -11,7 +11,7 @@
         <meta name="description" content="Noble Fir Studio is a boutique web design and development studio based in Portland, OR. I specialize in custom web design, development, e-commerce, and AI integrations for businesses ready to grow online. Free consultation.">
         <meta name="author" content="Noble Fir Studio">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./css/index.css?v=3">
+        <link rel="stylesheet" href="./css/index.css?v=9">
         <link rel="stylesheet" href="./css/nav-styles.css">
         <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
@@ -127,36 +127,40 @@
 
     <div class="cursor"></div>
     
-        <!-- Hero — Editorial Stack -->
-    <section id="hero" class="hero-editorial">
+        <!-- Hero — Cursor Image B -->
+        <section id="hero" class="hero-editorial">
 
-        <div class="hero-eyebrow" id="heroEyebrow">Web Design &amp; Development</div>
+            <!-- Crosshairs (H+V lines pass through image center) -->
+            <div class="hero-xhair" id="heroXhair" aria-hidden="true">
+                <div class="hero-xhair__h"></div>
+                <div class="hero-xhair__v"></div>
+                <div class="hero-xhair__label" id="heroXhairLabel">[ Custom Web Development ]</div>
+            </div>
 
-        <h1 class="hero-headline">
-            <span class="hero-line hero-line--1"><span class="hero-line__inner" id="hLine1">Noble</span></span>
-            <span class="hero-line hero-line--2"><span class="hero-line__inner" id="hLine2">Fir</span></span>
-            <span class="hero-line hero-line--3"><span class="hero-line__inner" id="hLine3">Studio<span class="hero-dot">.</span></span></span>
-        </h1>
+            <!-- Image card (z-index 3 — slides between bg and headline) -->
+            <div class="hero-img-card" id="heroImgCard" aria-hidden="true">
+                <div class="hero-img-card__face hero-img-card__face--1 is-active"></div>
+                <div class="hero-img-card__face hero-img-card__face--2"></div>
+                <div class="hero-img-card__face hero-img-card__face--3"></div>
+            </div>
 
-        <div class="hero-kicker" id="heroKicker">
-            <p class="hero-kicker__text">
-                Custom Web Design<br>
-                AI Integrations<br>
-                Technical Strategy
-            </p>
-        </div>
+            <!-- Caption below image card, updates per image swap -->
+            <div class="hero-img-caption" id="heroImgCaption" aria-hidden="true">[ Abstract No. 001 ]</div>
 
-        <div class="hero-meta" id="heroMeta">
-            <span class="hero-meta__loc">Portland, OR — Est. 2025</span>
-            <span class="hero-meta__sub">Web design &amp; development</span>
-        </div>
+            <!-- Headline (z-index 5 — image card slides beneath letters) -->
+            <h1 class="hero-headline" id="heroHeadline">
+                <span class="hero-line hero-line--1" aria-label="Noble Fir">
+                    <span class="hero-letter">N</span><span class="hero-letter">O</span><span class="hero-letter">B</span><span class="hero-letter">L</span><span class="hero-letter">E</span><span class="hero-letter hero-letter--space">&nbsp;</span><span class="hero-letter">F</span><span class="hero-letter">I</span><span class="hero-letter">R</span>
+                </span>
+<span class="hero-line hero-line--2" aria-label="Studio">
+                    <span class="hero-letter">S</span><span class="hero-letter">T</span><span class="hero-letter">U</span><span class="hero-letter">D</span><span class="hero-letter">I</span><span class="hero-letter">O</span>
+                </span>
+            </h1>
 
-        <div class="hero-scroll-cue" id="heroScrollCue">
-            <span class="hero-scroll-cue__label">Scroll</span>
-            <div class="hero-scroll-cue__line"></div>
-        </div>
+            <!-- Custom cursor dot (z-index 6 — above all) -->
+            <div class="hero-cursor" id="heroCursor" aria-hidden="true"></div>
 
-    </section>
+        </section>
 
 
     <!-- Scroll Story — video morphs to about layout on scroll -->
@@ -174,11 +178,8 @@
                 <span class="ss-video-corner ss-video-corner--br"></span>
             </div>
 
-            <div class="ss-divider" id="ssDivider"></div>
-
             <div class="ss-about" id="ssAbout">
-                <span class="ss-about__kicker" id="ssKicker">// About the studio</span>
-                <h2 class="ss-about__heading" id="ssHeading">Built in Portland.<br>Shipped worldwide.</h2>
+                <h2 class="ss-about__heading" id="ssHeading">Built in the PNW.<br>Shipped worldwide.</h2>
                 <p class="ss-about__text" id="ssText">Noble Fir Studio designs, develops, and ships digital products that drive success for my clients through strong branding, clean websites, and intuitive user experiences.</p>
                 <a href="about.html" class="ss-about__link" id="ssLink">
                     <span class="ss-about__icon ss-about__icon--left" aria-hidden="true">
@@ -240,7 +241,7 @@
             <div>
                 <span class="nf-values__kicker">// The Standard</span>
                 <h2 class="nf-values__headline">
-                    Values that earn results.
+                    Principals that drive performance.
                 </h2>
             </div>
             <div class="nf-values__right">
@@ -258,17 +259,7 @@
 
                     <div class="nf-val-card">
                         <div class="nf-val-card__illus">
-                            <!-- Quality: pencil / ruler illustration -->
-                            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="rgba(255,255,255,0.5)">
-                                <rect x="14" y="12" width="12" height="56" rx="2"/>
-                                <line x1="14" y1="52" x2="26" y2="52"/>
-                                <polygon points="20,12 14,20 26,20" fill="rgba(255,0,0,0.5)" stroke="none"/>
-                                <line x1="38" y1="16" x2="66" y2="16"/>
-                                <line x1="38" y1="28" x2="66" y2="28"/>
-                                <line x1="38" y1="40" x2="58" y2="40"/>
-                                <line x1="38" y1="52" x2="62" y2="52"/>
-                                <line x1="38" y1="64" x2="54" y2="64"/>
-                            </svg>
+                            <img src="./img/skill7.png">
                         </div>
                         <div class="nf-val-card__body">
                             <h3 class="nf-val-card__title">Quality</h3>
@@ -284,15 +275,7 @@
 
                     <div class="nf-val-card">
                         <div class="nf-val-card__illus">
-                            <!-- Creativity: camera illustration -->
-                            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="rgba(255,255,255,0.5)">
-                                <rect x="8" y="26" width="64" height="42" rx="4"/>
-                                <circle cx="40" cy="47" r="13"/>
-                                <circle cx="40" cy="47" r="8"/>
-                                <circle cx="40" cy="47" r="3" fill="rgba(255,0,0,0.5)" stroke="none"/>
-                                <rect x="28" y="16" width="24" height="12" rx="2"/>
-                                <circle cx="62" cy="34" r="3" fill="rgba(255,255,255,0.3)" stroke="none"/>
-                            </svg>
+                            <img src="./img/skill5.png">
                         </div>
                         <div class="nf-val-card__body">
                             <h3 class="nf-val-card__title">Creativity</h3>
@@ -308,15 +291,7 @@
 
                     <div class="nf-val-card">
                         <div class="nf-val-card__illus">
-                            <!-- Accountability: floppy disk / save illustration -->
-                            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="rgba(255,255,255,0.5)">
-                                <rect x="12" y="10" width="56" height="60" rx="3"/>
-                                <rect x="22" y="10" width="28" height="22" rx="1" fill="rgba(255,255,255,0.08)"/>
-                                <rect x="28" y="42" width="24" height="28" rx="1"/>
-                                <line x1="34" y1="14" x2="34" y2="30"/>
-                                <line x1="40" y1="14" x2="40" y2="30"/>
-                                <rect x="34" y="50" width="12" height="8" rx="1" fill="rgba(255,0,0,0.4)" stroke="none"/>
-                            </svg>
+                            <img src="./img/skill6.png">
                         </div>
                         <div class="nf-val-card__body">
                             <h3 class="nf-val-card__title">Accountability</h3>
@@ -332,13 +307,7 @@
 
                     <div class="nf-val-card">
                         <div class="nf-val-card__illus">
-                            <!-- Collaboration: mouse / cursor illustration -->
-                            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="rgba(255,255,255,0.5)">
-                                <path d="M32 12 C18 12 12 22 12 36 L12 48 C12 62 22 68 36 68 C50 68 60 60 60 46 L60 34 C60 20 50 12 36 12 Z"/>
-                                <line x1="36" y1="12" x2="36" y2="36"/>
-                                <line x1="12" y1="36" x2="60" y2="36"/>
-                                <rect x="30" y="16" width="12" height="16" rx="6" fill="rgba(255,0,0,0.35)" stroke="none"/>
-                            </svg>
+                            <img src="./img/skill3.png">
                         </div>
                         <div class="nf-val-card__body">
                             <h3 class="nf-val-card__title">Collaboration</h3>
@@ -354,17 +323,7 @@
 
                     <div class="nf-val-card">
                         <div class="nf-val-card__illus">
-                            <!-- You: target / scope illustration -->
-                            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="rgba(255,255,255,0.5)">
-                                <circle cx="40" cy="40" r="28"/>
-                                <circle cx="40" cy="40" r="18"/>
-                                <circle cx="40" cy="40" r="8" fill="rgba(255,0,0,0.45)" stroke="none"/>
-                                <circle cx="40" cy="40" r="8"/>
-                                <line x1="40" y1="8" x2="40" y2="16"/>
-                                <line x1="40" y1="64" x2="40" y2="72"/>
-                                <line x1="8" y1="40" x2="16" y2="40"/>
-                                <line x1="64" y1="40" x2="72" y2="40"/>
-                            </svg>
+                            <img src="./img/skill2.png">
                         </div>
                         <div class="nf-val-card__body">
                             <h3 class="nf-val-card__title">You</h3>
@@ -412,69 +371,25 @@
         </div>
     </section>
 
-    <section class="nf-services-panel" id="services">
-        <div class="nf-services-header">
-            <p class="nf-services-kicker indent-first-word" data-reveal="lines"><a class="first-word">NOBLE</a> FIR IS A CREATIVE DEVELOPMENT STUDIO AND TECHNICAL PARTNER FOCUSED ON DESIGNING, BUILDING, AND SCALING MODERN DIGITAL EXPERIENCES.</p>
-        
-            <p class="nf-services-sub">
-            Noble Fir's work is organized across five core services that can be engaged independently or combined into a unified delivery, depending on project goals, stage of execution, and the evolving needs of each partner.
-            </p>
+    <section class="svc" id="services">
+        <div class="svc__top">
+            <h2 class="svc__heading">SERVICES</h2>
         </div>
-        <div class="nf-services-inner">
-            <div class="nf-services-copy">
-    
-                <ul class="nf-services-list" aria-label="Services">
-                    <li class="nf-service">
-                        <a class="nf-service-link" href="#web-design">
-                            <span class="nf-service-title" aria-label="Web Design">WEB DESIGN</span>
-                            <span class="nf-service-desc">
-                                <span class="nf-desc-item">Modern UI/UX layouts</span>
-                                <span class="nf-desc-item">Brand-consistent design</span>
-                                <span class="nf-desc-item">Conversion-focused structure</span>
-                            </span>
-                        </a>
-                    </li>
-    
-                    <li class="nf-service">
-                        <a class="nf-service-link" href="#custom-development">
-                            <span class="nf-service-title" aria-label="Custom Development">CUSTOM DEVELOPMENT</span>
-                            <span class="nf-service-desc">
-                                <span class="nf-desc-item">High-performance builds</span>
-                                <span class="nf-desc-item">Animations & interactions</span>
-                                <span class="nf-desc-item">Integrations & APIs</span>
-                            </span>
-                        </a>
-                    </li>
-    
-                    <li class="nf-service">
-                        <a class="nf-service-link" href="#managed-services">
-                            <span class="nf-service-title" aria-label="Managed Services">MANAGED SERVICES</span>
-                            <span class="nf-service-desc">
-                                <span class="nf-desc-item">Ongoing updates</span>
-                                <span class="nf-desc-item">Performance & security</span>
-                                <span class="nf-desc-item">Content support</span>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li class="nf-service">
-                        <a class="nf-service-link" href="#ai-integrations">
-                            <span class="nf-service-title" aria-label="AI Integrations">AI INTEGRATIONS</span>
-                            <span class="nf-service-desc">
-                                <span class="nf-desc-item">Intelligent automation</span>
-                                <span class="nf-desc-item">LLM &amp; API connectivity</span>
-                                <span class="nf-desc-item">Workflow optimization</span>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-    
-                <a class="learn-more nf-services-cta" href="services.html">
-                    <span class="learn-more__icon learn-more__icon--left solar--arrow-right-down-linear" aria-hidden="true"></span>
-                    <span>All Services</span>
-                    <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
-                </a>
+        <div class="svc__body">
+            <div class="svc__left">
+                <span class="svc__kicker">WHAT I CAN HELP YOU WITH</span>
             </div>
+            <ul class="svc__list" aria-label="Services">
+                <li class="svc__item"><a class="svc__link" href="services.html#web-development">WEB DEVELOPMENT</a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#ui-ux-design">UI/UX DESIGN</a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#shopify">SHOPIFY DEVELOPMENT</a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#no-code">NO CODE DEVELOPMENT (WEBFLOW &amp; FRAMER)</a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#animations">INTERACTIVE ANIMATIONS (GSAP &amp; CSS)</a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#3d">3D EXPERIENCES (THREE.JS &amp; R3F)</a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#backend">BACKEND &amp; CMS SOLUTIONS</a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#seo">SEO OPTIMIZATION</a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#aiso">AI SEARCH OPTIMIZATION (AISO)</a></li>
+            </ul>
         </div>
     </section>
 

@@ -643,32 +643,134 @@ function initTabSystem(){
   //   Editorial Hero reveal (index only)
   --------------------------------- */
   function initEditorialHero() {
-    if (typeof gsap === "undefined") return;
-    const hLine1    = document.getElementById("hLine1");
-    const hLine2    = document.getElementById("hLine2");
-    const hLine3    = document.getElementById("hLine3");
-    const eyebrow   = document.getElementById("heroEyebrow");
-    const kicker    = document.getElementById("heroKicker");
-    const meta      = document.getElementById("heroMeta");
-    const scrollCue = document.getElementById("heroScrollCue");
-    const navLogo   = document.querySelector(".navbar .logo-name");
-    if (!hLine1) return;
+    const section   = document.getElementById("hero");
+    if (!section) return;
 
-    // Pre-hide: yPercent slides lines below overflow clip, autoAlpha as fallback
-    gsap.set([hLine1, hLine2, hLine3], { yPercent: 115, autoAlpha: 0 });
-    gsap.set([eyebrow, kicker, meta, scrollCue], { opacity: 0, y: 10 });
-    if (navLogo) gsap.set(navLogo, { autoAlpha: 0 });
+    const line1Letters = section.querySelectorAll(".hero-line--1 .hero-letter");
+    const line2Letters = section.querySelectorAll(".hero-line--2 .hero-letter");
+    const xhair        = document.getElementById("heroXhair");
+    const imgCard      = document.getElementById("heroImgCard");
+    const imgCaption   = document.getElementById("heroImgCaption");
+    const cursorDot    = document.getElementById("heroCursor");
+    const cornerBR     = document.getElementById("heroCornerBR");
+    const navLogo      = document.querySelector(".navbar .logo-name");
+    const globalCursor = document.querySelector(".cursor");
 
-    const tl = gsap.timeline();
-    tl.to(eyebrow, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.05);
-    tl.to(hLine1,  { yPercent: 0, autoAlpha: 1, duration: 0.85, ease: "expo.out" }, 0.12);
-    tl.to(hLine2,  { yPercent: 0, autoAlpha: 1, duration: 0.85, ease: "expo.out" }, 0.26);
-    tl.to(hLine3,  { yPercent: 0, autoAlpha: 1, duration: 0.85, ease: "expo.out" }, 0.40);
-    if (navLogo) tl.to(navLogo, { autoAlpha: 1, duration: 0.4, ease: "power2.out" }, 0.28);
-    tl.to(kicker,    { opacity: 1, y: 0, duration: 0.5,  ease: "power3.out" }, 0.55);
-    tl.to(meta,      { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.68);
-    tl.to(scrollCue, { opacity: 1, y: 0, duration: 0.4,  ease: "power2.out" }, 0.80);
-    tl.call(() => { if (eyebrow) eyebrow.classList.add("is-revealed"); }, [], 0.30);
+    if (!line1Letters.length) return;
+
+    if (typeof gsap !== "undefined") {
+      // Pre-hide nav logo
+      if (navLogo) gsap.set(navLogo, { autoAlpha: 0 });
+
+      const tl = gsap.timeline();
+
+      // NOBLE FIR letters stagger
+      tl.to(line1Letters, { y: "0%", duration: 0.75, ease: "expo.out", stagger: 0.045 }, 0);
+
+      // STUDIO letters stagger after a beat
+      tl.to(line2Letters, { y: "0%", duration: 0.75, ease: "expo.out", stagger: 0.05 }, 0.38);
+
+      // navLogo
+      if (navLogo) tl.to(navLogo, { autoAlpha: 1, duration: 0.4, ease: "power2.out" }, 0.3);
+
+      // Corner meta
+      if (cornerBR) tl.to(cornerBR, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.0);
+
+      // Crosshair + image card + caption + cursor dot at initial position
+      const cursorTargets = [xhair, imgCard, imgCaption, cursorDot].filter(Boolean);
+      if (cursorTargets.length) {
+        tl.to(cursorTargets, { opacity: 1, duration: 0.55, ease: "power2.out" }, 1.1);
+      }
+    } else {
+      // No GSAP fallback: just show everything
+      [line1Letters, line2Letters].forEach(els => els.forEach(el => { el.style.transform = "translateY(0)"; }));
+      if (rule) rule.style.opacity = "1";
+      if (cornerBR) cornerBR.style.opacity = "1";
+    }
+
+    // Live cursor tracking (fine pointer only)
+    if (window.matchMedia("(pointer: fine)").matches) {
+      initHeroCursorTracking(section, xhair, imgCard, cursorDot, globalCursor);
+    }
+  }
+
+  function initHeroParallax() {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+    const hero     = document.getElementById("hero");
+    const headline = document.getElementById("heroHeadline");
+    if (!hero || !headline) return;
+
+    const maxRise = window.innerHeight * 0.20;
+
+    // Pin hero; drive headline rise directly from pin progress to avoid offset bug
+    ScrollTrigger.create({
+      trigger: hero,
+      start: "top top",
+      end: "+=100%",
+      pin: true,
+      pinSpacing: false,
+      onUpdate: (self) => {
+        gsap.to(headline, {
+          y: self.progress * -maxRise,
+          duration: 1.2,
+          ease: "power1.out",
+          overwrite: true,
+        });
+      }
+    });
+  }
+
+  function initHeroCursorTracking(section, xhair, imgCard, cursorDot, globalCursor) {
+    const xhairH     = xhair ? xhair.querySelector(".hero-xhair__h") : null;
+    const xhairV     = xhair ? xhair.querySelector(".hero-xhair__v") : null;
+    const xhairLabel = document.getElementById("heroXhairLabel");
+    const imgCaption = document.getElementById("heroImgCaption");
+    const faces      = imgCard ? Array.from(imgCard.querySelectorAll(".hero-img-card__face")) : [];
+    const captions   = ["[ Abstract No. 001 ]", "[ Abstract No. 002 ]", "[ Abstract No. 003 ]"];
+    const CARD_HALF_H = 145;
+    let currentFace = 0;
+    let distAccum   = 0;
+    let lastX = null, lastY = null;
+
+    const setPos = (x, y) => {
+      if (xhairH) xhairH.style.top  = y + "px";
+      if (xhairV) xhairV.style.left = x + "px";
+      if (xhairLabel) xhairLabel.style.top = y + "px";
+      if (imgCard) { imgCard.style.left = x + "px"; imgCard.style.top = y + "px"; }
+      if (imgCaption) { imgCaption.style.left = x + "px"; imgCaption.style.top = (y + CARD_HALF_H + 14) + "px"; }
+      if (cursorDot) { cursorDot.style.left = x + "px"; cursorDot.style.top = y + "px"; }
+    };
+
+    // Initial position: upper-right quadrant
+    setPos(section.offsetWidth * 0.72, section.offsetHeight * 0.28);
+
+    section.addEventListener("mousemove", (e) => {
+      const rect = section.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (lastX !== null) {
+        const dx = x - lastX, dy = y - lastY;
+        distAccum += Math.sqrt(dx * dx + dy * dy);
+        if (distAccum >= 200 && faces.length) {
+          distAccum = 0;
+          const next = (currentFace + 1) % faces.length;
+          faces[currentFace].classList.remove("is-active");
+          faces[next].classList.add("is-active");
+          currentFace = next;
+          if (imgCaption) imgCaption.textContent = captions[next];
+        }
+      }
+      lastX = x; lastY = y;
+      setPos(x, y);
+    });
+
+    section.addEventListener("mouseenter", () => {
+      if (globalCursor) globalCursor.style.opacity = "0";
+    });
+    section.addEventListener("mouseleave", () => {
+      if (globalCursor) globalCursor.style.opacity = "";
+    });
   }
 
 
@@ -687,7 +789,7 @@ function initTabSystem(){
 
     const isMobile = window.innerWidth <= 768;
 
-    gsap.set([ssKicker, ssLink], { opacity: 0 });
+    gsap.set(ssKicker, { opacity: 0 });
 
     const finalVideoW = isMobile ? "90%"         : "48%";
     const finalVideoH = isMobile ? "38%"         : "64vh";
@@ -726,7 +828,6 @@ function initTabSystem(){
       storyTl.to(ssDivider, { scaleY: 1, ease: "power2.out", duration: 0.18 }, 0.78);
     }
 
-    if (ssLink) storyTl.to(ssLink, { opacity: 1, ease: "none", duration: 0.15 }, 0.88);
   }
 
 
@@ -1452,6 +1553,7 @@ function initServicesHover() {
 
       // HERO — editorial stack + scroll story
       initEditorialHero();
+      initHeroParallax();
       initScrollStory();
 
       // Values section
