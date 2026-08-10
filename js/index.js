@@ -789,7 +789,7 @@ function initTabSystem(){
 
     const isMobile = window.innerWidth <= 768;
 
-    gsap.set(ssKicker, { opacity: 0 });
+    if (ssKicker) gsap.set(ssKicker, { opacity: 0 });
 
     const finalVideoW = isMobile ? "90%"         : "48%";
     const finalVideoH = isMobile ? "38%"         : "64vh";
@@ -821,7 +821,7 @@ function initTabSystem(){
     const ssCorners = ssVideoWrap.querySelectorAll(".ss-video-corner");
     storyTl.to(ssCorners, { opacity: 1, ease: "none", duration: 0.15 }, 1);
 
-    storyTl.to(ssKicker, { opacity: 1, ease: "none", duration: 0.25 }, 0.1);
+    if (ssKicker) storyTl.to(ssKicker, { opacity: 1, ease: "none", duration: 0.25 }, 0.1);
 
     if (!isMobile && ssDivider) {
       gsap.set(ssDivider, { left: "calc(3% + 48% + 1.5%)" });
@@ -846,16 +846,17 @@ function initTabSystem(){
 
     if (!headline) return;
 
-    // ── Header: kicker, headline, count slide up on enter
-    gsap.set([kicker, headline, count], { opacity: 0, y: 22 });
+    // ── Header: kicker (optional), headline, count slide up on enter
+    const headerEls = [kicker, headline, count].filter(Boolean);
+    if (headerEls.length) gsap.set(headerEls, { opacity: 0, y: 22 });
     ScrollTrigger.create({
       trigger: ".nf-values__header",
       start: "top 80%",
       once: true,
       onEnter: () => {
-        gsap.to(kicker,   { opacity: 1, y: 0, duration: 0.5,  ease: "power3.out" });
-        gsap.to(headline, { opacity: 1, y: 0, duration: 0.8,  ease: "expo.out",   delay: 0.1 });
-        gsap.to(count,    { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", delay: 0.35 });
+        if (kicker)   gsap.to(kicker,   { opacity: 1, y: 0, duration: 0.5,  ease: "power3.out" });
+        if (headline) gsap.to(headline, { opacity: 1, y: 0, duration: 0.8,  ease: "expo.out",   delay: 0.1 });
+        if (count)    gsap.to(count,    { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", delay: 0.35 });
       }
     });
 
@@ -1091,6 +1092,36 @@ function initTabSystem(){
    Services hover (desktop only)
 --------------------------------- */
 function initServicesHover() {
+  // replaced by initServicesScroll — kept as no-op so call site is unchanged
+}
+
+function initServicesScroll() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+  const section = document.querySelector(".svc");
+  if (!section) return;
+
+  const heading = section.querySelector(".svc__heading");
+  const rule    = section.querySelector(".svc__rule");
+  const kicker  = section.querySelector(".svc__kicker");
+  const items   = section.querySelectorAll(".svc__item");
+
+  // set initial states — filter nulls so gsap.set never receives null elements
+  const topEls = [heading, rule, kicker].filter(Boolean);
+  if (topEls.length) gsap.set(topEls, { autoAlpha: 0, y: 20 });
+  if (items.length)  gsap.set(items,  { autoAlpha: 0, y: 24 });
+
+  ScrollTrigger.create({
+    trigger: section,
+    start: "top 80%",
+    once: true,
+    onEnter: () => {
+      const tl = gsap.timeline();
+      if (heading) tl.to(heading, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0);
+      if (kicker)  tl.to(kicker,  { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.25);
+      if (items.length) tl.to(items, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.06 }, 0.45);
+    }
+  });
+
   const panel = document.querySelector(".nf-services-panel");
   const list = document.querySelector(".nf-services-list");
   const links = panel ? Array.from(panel.querySelectorAll(".nf-service-link")) : [];
@@ -1566,6 +1597,7 @@ function initServicesHover() {
       initNFTransition();
       initUnderlineReveals();
       initServicesHover();
+      initServicesScroll();
       initParallaxCards();
       initTextWidgetScroll();
 
