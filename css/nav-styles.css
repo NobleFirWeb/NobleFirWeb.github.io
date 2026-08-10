@@ -435,7 +435,7 @@ Base + Theme Variables
 (Replaces light-dark() with explicit light defaults + dark overrides)
 ------------------------------ */
 :root {
-    --_nav-f-family: "Space Grotesk", sans-serif;
+    --_nav-f-family: "Jost", sans-serif;
     --_nav-btn-transition-duration: 150ms;
     --_nav-btn-clr: #000000;
     --_nav-btn-clr-hover: #464646;
@@ -449,7 +449,7 @@ Base + Theme Variables
     --_nav-panel-transition-timing-function: cubic-bezier(0.86, 0, 0.672, 1.003);
     --_nav-link-clr: var(--txt-light);
     --_nav-link-clr-hover: var(--txt-light);
-    --_nav-link-bg-clr-hover: #343434;
+    --_nav-link-bg-clr-hover: transparent;
     --nav-btn-label: "Menu";
 }
 
@@ -696,7 +696,7 @@ Panel items + animated links
     position: relative;
     display: flex;
     font-size: clamp(2rem, 2.5vw + 0.5rem, 3rem);
-    font-weight: 700;
+    font-weight: 400;
     text-transform: uppercase;
     line-height: 1;
     padding: 0.5rem 0 0.5rem 0;
@@ -804,6 +804,8 @@ Nav panel: large wordmark in red panel
     font-weight: 700;
     text-transform: uppercase;
     font-size: clamp(4rem, 13vw, 13rem);
+    display: block;
+    line-height: 0.92;
     letter-spacing: -0.03em;
     color: transparent;
     -webkit-text-stroke: 2px rgba(255, 255, 255, 0.35);
@@ -831,20 +833,12 @@ Nav panel: header (brand + est.)
 }
 
 .nav-panel__brand {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Jost", sans-serif;
     font-weight: 700;
     text-transform: uppercase;
     font-size: clamp(1rem, 1.6vw, 1.25rem);
     letter-spacing: 0.04em;
     color: var(--_nav-link-clr, #ffffff);
-}
-
-.nav-panel__est {
-    font-family: "JetBrains Mono", "DM Mono", monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--nf-red, #ff0000);
 }
 
 /* -----------------------------
@@ -862,6 +856,8 @@ Nav panel: numbered links
     letter-spacing: 0.15em;
     color: var(--nf-red, #ff0000);
     flex: 0 0 auto;
+    display: inline-block;
+    transform: rotate(-90deg);
 }
 
 /* -----------------------------

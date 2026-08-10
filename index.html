@@ -59,19 +59,6 @@
     
     <div id="nf-page">
 
-    <!-- Text Spinner (place near the end of <body> in about.html) -->
-    <a class="text-spinner" href="contact-us.html" aria-label="Go to Contact" data-text="LET’S TALK! • " data-speed="12s">
-        <svg viewBox="0 0 110 110" width="110" height="110" role="img" aria-hidden="true">
-            <defs>
-                <!-- Circle path the text follows -->
-                <path id="spinnerCircle" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"></path>
-            </defs>
-            <text dy="4">
-                <textPath id="spinnerText" href="#spinnerCircle" startOffset="0%"></textPath>
-            </text>
-        </svg>
-    </a>
-
 
     <header class="navbar">
         <a href="index.html" class="logo-name" aria-label="Noble Fir Studio Home">
@@ -102,7 +89,6 @@
             <ul id="nav-menu" role='list' aria-labelledby="btn-nav-toggle" aria-hidden="true" inert>
                 <li class="nav-panel__header" aria-hidden="true">
                     <span class="nav-panel__brand">Noble Fir Studio</span>
-                    <span class="nav-panel__est">Est. 2025</span>
                 </li>
                 <li style="--i: 1;"><a href="index.html"><span class="nav-link__num">01</span><span>Home</span></a></li>
                 <li style="--i: 2;"><a href="about.html"><span class="nav-link__num">02</span><span>About</span></a></li>
@@ -239,7 +225,6 @@
         <!-- Values: Statement Rows -->
         <div class="nf-values__header">
             <div>
-                <span class="nf-values__kicker">// The Standard</span>
                 <h2 class="nf-values__headline">
                     Principals that drive performance.
                 </h2>
@@ -380,15 +365,14 @@
                 <span class="svc__kicker">WHAT I CAN HELP YOU WITH</span>
             </div>
             <ul class="svc__list" aria-label="Services">
-                <li class="svc__item"><a class="svc__link" href="services.html#web-development">WEB DEVELOPMENT</a></li>
-                <li class="svc__item"><a class="svc__link" href="services.html#ui-ux-design">UI/UX DESIGN</a></li>
-                <li class="svc__item"><a class="svc__link" href="services.html#shopify">SHOPIFY DEVELOPMENT</a></li>
-                <li class="svc__item"><a class="svc__link" href="services.html#no-code">NO CODE DEVELOPMENT (WEBFLOW &amp; FRAMER)</a></li>
-                <li class="svc__item"><a class="svc__link" href="services.html#animations">INTERACTIVE ANIMATIONS (GSAP &amp; CSS)</a></li>
-                <li class="svc__item"><a class="svc__link" href="services.html#3d">3D EXPERIENCES (THREE.JS &amp; R3F)</a></li>
-                <li class="svc__item"><a class="svc__link" href="services.html#backend">BACKEND &amp; CMS SOLUTIONS</a></li>
-                <li class="svc__item"><a class="svc__link" href="services.html#seo">SEO OPTIMIZATION</a></li>
-                <li class="svc__item"><a class="svc__link" href="services.html#aiso">AI SEARCH OPTIMIZATION (AISO)</a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#ui-ux-design"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">UI/UX DESIGN</span></a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#web-development"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">CUSTOM WEB DEVELOPMENT</span></a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#shopify"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">E-COMMERCE DEVELOPMENT</span></a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#animations"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">INTERACTIVE ANIMATIONS (GSAP &amp; CSS)</span></a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#3d"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">3D EXPERIENCES (THREE.JS &amp; R3F)</span></a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#backend"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">BACKEND &amp; CMS SOLUTIONS</span></a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#seo"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">SEARCH ENGINE OPTIMIZATION</span></a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#aiso"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">AI SEARCH OPTIMIZATION (AISO)</span></a></li>
             </ul>
         </div>
     </section>
