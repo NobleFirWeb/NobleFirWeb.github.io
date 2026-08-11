@@ -688,10 +688,26 @@ function initTabSystem(){
       if (cornerBR) cornerBR.style.opacity = "1";
     }
 
-    // Live cursor tracking (fine pointer only)
-    if (window.matchMedia("(pointer: fine)").matches) {
+    // Cursor tracking on desktop fine-pointer only; auto-slide on tablet/mobile
+    if (window.matchMedia("(min-width: 1025px) and (pointer: fine)").matches) {
       initHeroCursorTracking(section, xhair, imgCard, cursorDot, globalCursor);
+    } else if (window.matchMedia("(max-width: 1024px)").matches) {
+      initHeroAutoSlide(imgCard, imgCaption);
     }
+  }
+
+  function initHeroAutoSlide(imgCard, imgCaption) {
+    if (!imgCard) return;
+    const faces    = Array.from(imgCard.querySelectorAll('.hero-img-card__face'));
+    const captions = ['[ Abstract No. 001 ]', '[ Abstract No. 002 ]', '[ Abstract No. 003 ]'];
+    if (!faces.length) return;
+    let current = 0;
+    setInterval(() => {
+      faces[current].classList.remove('is-active');
+      current = (current + 1) % faces.length;
+      faces[current].classList.add('is-active');
+      if (imgCaption) imgCaption.textContent = captions[current];
+    }, 1500);
   }
 
   function initHeroParallax() {
@@ -765,12 +781,6 @@ function initTabSystem(){
       setPos(x, y);
     });
 
-    section.addEventListener("mouseenter", () => {
-      if (globalCursor) globalCursor.style.opacity = "0";
-    });
-    section.addEventListener("mouseleave", () => {
-      if (globalCursor) globalCursor.style.opacity = "";
-    });
   }
 
 
@@ -1098,6 +1108,22 @@ function initTabSystem(){
         // Ensure no residual x offset from a previous desktop context
         gsap.set(media, { x: 0 });
 
+        const wrapper = section.querySelector('.nf-connector-wrapper');
+        const arrowEl = section.querySelector('.nf-arrow-head');
+        const toEl    = section.querySelector('.nf-to');
+
+        // Force line to small start width, overriding the 480px flex:1 1 auto CSS
+        line.style.flexGrow   = '0';
+        line.style.flexShrink = '0';
+        gsap.set(line, { width: 5 });
+
+        // Target: fill the wrapper minus arrow, TO DEPLOYMENT, and its margin
+        const wrapW   = wrapper ? wrapper.getBoundingClientRect().width : 0;
+        const arrowW  = arrowEl ? arrowEl.getBoundingClientRect().width : 28;
+        const toW     = toEl    ? toEl.getBoundingClientRect().width    : 0;
+        const arrowML = arrowEl ? Math.abs(parseFloat(getComputedStyle(arrowEl).marginLeft) || 7) : 7;
+        const targetW = Math.max(5, wrapW - arrowW - toW - 16 + arrowML);
+
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: media,
@@ -1107,12 +1133,43 @@ function initTabSystem(){
                 onUpdate: cycleFrames
             }
         });
-        tl.to(line, { width: "calc(100% - 2rem)", ease: "none" }, 0);
-        // media.x intentionally omitted â€” images still cycle via onUpdate above
+        tl.to(line, { width: targetW, ease: 'none' }, 0);
         return () => {
             tl.kill();
-            gsap.set(media, { clearProps: "x" });
+            line.style.flexGrow   = '';
+            line.style.flexShrink = '';
+            gsap.set(line, { clearProps: 'width' });
+            gsap.set(media, { clearProps: 'x' });
         };
+    });
+  }
+
+  /* --------------------------------
+  //   Interrupt section — terminal typewriter
+  --------------------------------- */
+  function initIntTerminal() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    const wrap = document.getElementById('intTerminal');
+    const text = document.getElementById('intTerminalText');
+    if (!wrap || !text) return;
+
+    const str = 'Full-stack  ·  React  ·  Next.js  ·  Node  ·  GSAP  ·  Figma';
+    let started = false;
+
+    function typeOut() {
+      let i = 0;
+      gsap.to(wrap, { opacity: 1, duration: 0.4, ease: 'power2.out' });
+      const iv = setInterval(() => {
+        text.textContent = str.slice(0, ++i);
+        if (i === str.length) clearInterval(iv);
+      }, 45);
+    }
+
+    ScrollTrigger.create({
+      trigger: wrap,
+      start: 'top 80%',
+      once: true,
+      onEnter: () => { if (!started) { started = true; typeOut(); } }
     });
   }
 
@@ -1686,6 +1743,7 @@ function initServicesScroll() {
       initEditorialHero();
       initHeroParallax();
       initScrollStory();
+      initIntTerminal();
 
       // Values section
       initValuesAnimations();

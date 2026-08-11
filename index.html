@@ -62,20 +62,16 @@
 
     <header class="navbar">
         <a href="index.html" class="logo-name" aria-label="Noble Fir Studio Home">
-            <img src="./img/Noblefir_nav_logo.png" alt="Navbar logo">
+            <span class="nf-logo-text">NF</span>
         </a>
         
         <nav class="navigation">
             <button type="button" id="btn-nav-toggle" aria-expanded="false" aria-controls="nav-menu"
                 aria-label="Toggle navigation menu">
                 <!--Menu-->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 6l16 0" />
-                        <path d="M4 12l16 0" />
-                        <path d="M4 12l16 0" />
-                        <path d="M4 18l16 0" />
-                    </g>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path class="burger-line burger-line--1" d="M4 8L20 8" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"/>
+                    <path class="burger-line burger-line--2" d="M4 16L20 16" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"/>
                 </svg>
             </button>
 
@@ -169,11 +165,16 @@
                         <span class="int-vid__corner int-vid__corner--tl"></span>
                         <span class="int-vid__corner int-vid__corner--br"></span>
                     </span><!--
-                    --><span class="int-chunk int-chunk--r"><span class="int-word">IN</span>&nbsp;<span class="int-word">THE</span>&nbsp;<span class="int-word">PACIFIC NW,</span></span><br>
+                    --><span class="int-chunk int-chunk--r"><span class="int-word">IN</span>&nbsp;<br class="int-mob-br"><span class="int-word">THE</span>&nbsp;<span class="int-word">PACIFIC NW,</span></span><br>
                     <span class="int-word">SHIPPED</span>&nbsp;<span class="int-word">WORLDWIDE.</span>
                 </p>
 
                 <div class="int-rule"></div>
+
+                <div class="int-terminal" id="intTerminal" aria-hidden="true">
+                    <span class="int-terminal__prompt">&gt;</span>
+                    <span class="int-terminal__text" id="intTerminalText"></span><span class="int-terminal__cursor"></span>
+                </div>
 
                 <p class="int-body">Noble Fir Studio designs, develops, and ships digital products that drive success for clients through strong branding, clean code, and intuitive user experiences.</p>
 
@@ -372,7 +373,7 @@
                 <li class="svc__item"><a class="svc__link" href="services.html#web-development"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">CUSTOM WEB DEVELOPMENT</span></a></li>
                 <li class="svc__item"><a class="svc__link" href="services.html#shopify"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">E-COMMERCE DEVELOPMENT</span></a></li>
                 <li class="svc__item"><a class="svc__link" href="services.html#animations"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">INTERACTIVE ANIMATIONS (GSAP &amp; CSS)</span></a></li>
-                <li class="svc__item"><a class="svc__link" href="services.html#3d"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">3D EXPERIENCES (THREE.JS &amp; R3F)</span></a></li>
+                <li class="svc__item"><a class="svc__link" href="services.html#3d"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">3D EXPERIENCES (THREE.JS)</span></a></li>
                 <li class="svc__item"><a class="svc__link" href="services.html#backend"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">BACKEND &amp; CMS SOLUTIONS</span></a></li>
                 <li class="svc__item"><a class="svc__link" href="services.html#seo"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">SEARCH ENGINE OPTIMIZATION</span></a></li>
                 <li class="svc__item"><a class="svc__link" href="services.html#aiso"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">AI SEARCH OPTIMIZATION (AISO)</span></a></li>
@@ -385,7 +386,6 @@
             <h2 class="nf-portfolio__title">
                 Selected Projects
             </h2>
-            <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
         </div>
         <div class="nf-portfolio__inner">
 
