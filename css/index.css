@@ -767,7 +767,7 @@ body.nf-loading {
     gap: 0;
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    font-size: clamp(1.2rem, 2.5vw, 3.4rem);
+    font-size: clamp(1rem, 2.5vw, 3.4rem);
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--nf-fg);
@@ -2014,8 +2014,8 @@ body.nf-loading {
 .nf-marquee-single {
     gap: 0;
     padding: 32px 0;
-    margin-bottom: 80px;
-    /* override the viewport fade — marquee runs off screen */
+    margin-bottom: 10svh;
+    margin-top: 0;
     -webkit-mask-image: none !important;
     mask-image: none !important;
     overflow: visible;
@@ -2311,7 +2311,7 @@ body.nf-loading {
 
 @media (max-width: 480px) {
     /* Marquee */
-    .nf-marquee-single { padding: 16px 0; margin-bottom: 7.5vh; }
+    .nf-marquee-single { padding: 16px 0; margin-bottom: 12.5vh; }
     .nf-marquee-item .nf-marquee-phrase { font-size: clamp(1.6rem, 8vw, 2.4rem); }
     .nf-gem { width: clamp(48px, 14vw, 72px); margin: 0 clamp(16px, 3vw, 24px); }
 
