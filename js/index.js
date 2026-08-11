@@ -778,56 +778,108 @@ function initTabSystem(){
   //   Scroll Story — video morph + about text fill
   --------------------------------- */
   function initScrollStory() {
-    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || typeof SplitText === "undefined") return;
-    const ssVideoWrap = document.getElementById("ssVideoWrap");
-    const ssDivider   = document.getElementById("ssDivider");
-    const ssKicker    = document.getElementById("ssKicker");
-    const ssHeading   = document.getElementById("ssHeading");
-    const ssText      = document.getElementById("ssText");
-    const ssLink      = document.getElementById("ssLink");
-    if (!ssVideoWrap || !ssHeading || !ssText) return;
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-    const isMobile = window.innerWidth <= 768;
+    const section = document.getElementById('scrollStory');
+    const vidWrap = document.getElementById('intVid');
+    const words   = section ? Array.from(section.querySelectorAll('.int-word')) : [];
 
-    if (ssKicker) gsap.set(ssKicker, { opacity: 0 });
+    if (!section || !vidWrap || !words.length) return;
 
-    const finalVideoW = isMobile ? "90%"         : "48%";
-    const finalVideoH = isMobile ? "38%"         : "64vh";
-    const finalVideoT = isMobile ? "var(--nav-h)" : "calc(50% - 32vh)";
-    const finalVideoL = isMobile ? "5%"          : "3%";
-    const finalRadius = "14px";
-    const pinEnd      = isMobile ? "+=110%"      : "+=180%";
-    const scrubVal    = isMobile ? 1.2           : 1.8;
+    // Measure natural video width before collapsing it
+    const naturalW = vidWrap.getBoundingClientRect().width;
 
-    const storyTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#scrollStory",
-        start: "top top",
-        end: pinEnd,
-        pin: true,
-        scrub: scrubVal,
-        anticipatePin: 1,
-        invalidateOnRefresh: true
-      }
+    // Initial state — words hidden, video takes zero space (BUILT and IN sit naturally adjacent)
+    gsap.set(words,   { y: '105%', autoAlpha: 0 });
+    gsap.set(vidWrap, { width: 0, marginLeft: '0.25em', marginRight: '0.25em', overflow: 'hidden', autoAlpha: 0 });
+
+    const tl = gsap.timeline({ paused: true });
+
+    // 1. Stagger word rise — text reads as normal sentence with no gap
+    tl.to(words, {
+      y: 0,
+      autoAlpha: 1,
+      stagger: 0.07,
+      duration: 0.6,
+      ease: 'power3.out'
     });
 
-    storyTl.to(ssVideoWrap, {
-      width: finalVideoW, height: finalVideoH,
-      top: finalVideoT,   left: finalVideoL,
-      borderRadius: finalRadius,
-      ease: "power1.inOut", duration: 1
-    }, 0);
+    // 2. Video width + margins expand together (words spread apart) + fade in
+    tl.to(vidWrap, {
+      width: naturalW,
+      marginLeft: '0.3em',
+      marginRight: '0.3em',
+      autoAlpha: 1,
+      duration: 1.35,
+      ease: 'expo.out',
+      onComplete: () => gsap.set(vidWrap, { clearProps: 'overflow' })
+    }, '>0.08');
 
-    const ssCorners = ssVideoWrap.querySelectorAll(".ss-video-corner");
-    storyTl.to(ssCorners, { opacity: 1, ease: "none", duration: 0.15 }, 1);
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top 72%',
+      once: true,
+      onEnter: () => tl.play()
+    });
 
-    if (ssKicker) storyTl.to(ssKicker, { opacity: 1, ease: "none", duration: 0.25 }, 0.1);
-
-    if (!isMobile && ssDivider) {
-      gsap.set(ssDivider, { left: "calc(3% + 48% + 1.5%)" });
-      storyTl.to(ssDivider, { scaleY: 1, ease: "power2.out", duration: 0.18 }, 0.78);
+    // --- Custom "Watch Reel" cursor — instant follow via style.left/top, no GSAP lag ---
+    const cursor = document.getElementById('reelCursor');
+    if (cursor) {
+      const onMouseMove = (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top  = e.clientY + 'px';
+      };
+      vidWrap.addEventListener('mouseenter', () => {
+        cursor.classList.add('visible');
+        document.addEventListener('mousemove', onMouseMove);
+      });
+      vidWrap.addEventListener('mouseleave', () => {
+        cursor.classList.remove('visible');
+        document.removeEventListener('mousemove', onMouseMove);
+      });
     }
 
+    // --- Reel overlay ---
+    const overlay   = document.getElementById('reelOverlay');
+    const closeBtn  = document.getElementById('reelClose');
+    const reelVideo = document.getElementById('reelVideo');
+    const ppBtn     = document.getElementById('reelPlayPause');
+
+    if (!overlay || !reelVideo) return;
+
+    function syncIcon() {
+      const iconPause = ppBtn.querySelector('.icon-pause');
+      const iconPlay  = ppBtn.querySelector('.icon-play');
+      if (iconPause) iconPause.style.display = reelVideo.paused ? 'none' : '';
+      if (iconPlay)  iconPlay.style.display  = reelVideo.paused ? ''     : 'none';
+    }
+
+    function openReel() {
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      reelVideo.currentTime = 0;
+      reelVideo.play();
+      syncIcon();
+    }
+
+    function closeReel() {
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      reelVideo.pause();
+    }
+
+    vidWrap.addEventListener('click', openReel);
+    if (closeBtn) closeBtn.addEventListener('click', closeReel);
+    if (ppBtn) ppBtn.addEventListener('click', () => {
+      if (reelVideo.paused) reelVideo.play(); else reelVideo.pause();
+      syncIcon();
+    });
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeReel(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeReel();
+    });
   }
 
 
@@ -1018,6 +1070,15 @@ function initTabSystem(){
 
     // â”€â”€ Desktop (â‰¥769px): slide line + media card together â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     mm.add("(min-width: 769px)", () => {
+        const wrapper  = section.querySelector('.nf-connector-wrapper');
+        const arrowEl  = section.querySelector('.nf-arrow-head');
+        const toEl     = section.querySelector('.nf-to');
+        const targetW  = wrapper.getBoundingClientRect().width
+                       - arrowEl.getBoundingClientRect().width
+                       - toEl.getBoundingClientRect().width
+                       - 16  // nf-to margin-left
+                       + 10; // arrowhead margin-left: -10px overlap
+
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: media,
@@ -1027,7 +1088,7 @@ function initTabSystem(){
                 onUpdate: cycleFrames
             }
         });
-        tl.to(line, { width: "50vw", ease: "none" }, 0);
+        tl.to(line, { width: targetW, ease: "none" }, 0);
         tl.to(media, { x: "55vw", ease: "none" }, 0);
         return () => { tl.kill(); };
     });
@@ -1046,12 +1107,51 @@ function initTabSystem(){
                 onUpdate: cycleFrames
             }
         });
-        tl.to(line, { width: "50vw", ease: "none" }, 0);
+        tl.to(line, { width: "calc(100% - 2rem)", ease: "none" }, 0);
         // media.x intentionally omitted â€” images still cycle via onUpdate above
         return () => {
             tl.kill();
             gsap.set(media, { clearProps: "x" });
         };
+    });
+  }
+
+  /* --------------------------------
+  //   Value card asset parallax
+  --------------------------------- */
+  function initValueCardParallax() {
+    if (typeof gsap === 'undefined') return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    const cards = document.querySelectorAll('.nf-val-card');
+    if (!cards.length) return;
+
+    cards.forEach(card => {
+      const asset = card.querySelector('.nf-val-card__illus img');
+      if (!asset) return;
+
+      card.addEventListener('mousemove', (e) => {
+        const r  = card.getBoundingClientRect();
+        const nx = (e.clientX - r.left) / r.width  - 0.5;
+        const ny = (e.clientY - r.top)  / r.height - 0.5;
+        gsap.to(asset, {
+          x: nx * 22,
+          y: ny * 16,
+          scale: 1.06,
+          duration: 0.45,
+          ease: 'power2.out'
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        gsap.to(asset, {
+          x: 0,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          ease: 'elastic.out(1, 0.55)'
+        });
+      });
     });
   }
 
@@ -1112,13 +1212,13 @@ function initServicesScroll() {
 
   ScrollTrigger.create({
     trigger: section,
-    start: "top 80%",
+    start: "top 55%",
     once: true,
     onEnter: () => {
-      const tl = gsap.timeline();
-      if (heading) tl.to(heading, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0);
-      if (kicker)  tl.to(kicker,  { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.25);
-      if (items.length) tl.to(items, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.06 }, 0.45);
+      const tl = gsap.timeline({ delay: 0.15 });
+      if (heading) tl.to(heading, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power2.out" }, 0);
+      if (kicker)  tl.to(kicker,  { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.3);
+      if (items.length) tl.to(items, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out", stagger: 0.09 }, 0.55);
     }
   });
 
@@ -1589,6 +1689,7 @@ function initServicesScroll() {
 
       // Values section
       initValuesAnimations();
+      initValueCardParallax();
 
       // GSAP/ScrollTrigger pieces
       initHeaderPin();

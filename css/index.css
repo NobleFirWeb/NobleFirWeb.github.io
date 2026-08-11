@@ -533,10 +533,10 @@ body.nf-loading {
     gap: 15px 25px;
     font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: -0.02em;
-    font-family: "Inter", sans-serif;
+    letter-spacing: -0.04em;
+    font-family: "Jost", sans-serif;
     line-height: 1;
-    font-size: 3rem;
+    font-size: clamp(1.4rem, 3vw, 2.6rem);
     width: 100%;
     z-index: 10;
 }
@@ -544,26 +544,27 @@ body.nf-loading {
 /* Keep FROM as the anchor */
 .nf-from { flex: 0 0 auto; }
 
-/* TO starts “normal”, then gets pushed by GSAP */
-.nf-to { flex: 0 0 auto; }
+/* TO sits right after the arrowhead, gets pushed rightward as line grows */
+.nf-to { flex: 0 0 auto; white-space: nowrap; margin-left: 16px; }
 
 .nf-connector-wrapper {
     display: flex;
     align-items: center;
-    flex-grow: 0;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .nf-connector-line {
-    height: 4px; /* Matches the bold feel of the new arrow */
-    width: 40px;  /* Starting width */
+    height: 4px;
+    width: 40px;
     background-color: #fff;
     border-radius: 2px;
 }
 
 .nf-arrow-head {
-    width: 2rem;  /* Adjust size as needed */
+    width: 2rem;
     height: 2rem;
-    margin-left: -10px; /* Overlap the line slightly for a seamless joint */
+    margin-left: -10px;
     flex-shrink: 0;
 }
 
@@ -752,7 +753,6 @@ body.nf-loading {
     list-style: none;
     margin: 0;
     padding: 0;
-    border-top: 1px solid rgba(255,255,255,0.12);
 }
 
 .svc__item {
@@ -2135,7 +2135,7 @@ body.nf-loading {
 }
 
 .nf-val-card__illus img {
-    width: 90%;
+    width: 80%;
     height: auto;
     opacity: 0.7;
     object-fit: contain;
@@ -2539,7 +2539,7 @@ body.nf-loading {
 
 
 /* ==============================================
-   SCROLL STORY -- video morph + about text
+   INTERRUPT SECTION — inline video headline
    ============================================== */
 
 #scrollStory {
@@ -2547,218 +2547,266 @@ body.nf-loading {
     z-index: 2;
     width: 100%;
     height: 100svh;
-    margin-top: 10vh;
-     /* create breathing room for scroll-triggered animations to start before the section enters the viewport */
+    margin-top: 5%;
+    border-top: 1px solid rgba(255,255,255,0.08);
 }
 
 .ss-scene {
     position: relative;
     width: 100%;
-    height: 100svh;
-    overflow: hidden;
-    overflow: hidden;
-    background: var(--nf-bg);
-}
-
-.ss-video-wrap {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
     height: 100%;
-    border-radius: 0;
-    overflow: hidden;
-    z-index: 2;
-    will-change: width, height, top, left, border-radius;
+    background: var(--nf-bg);
+    display: flex;
+    align-items: center;
 }
 
-.ss-video-wrap video {
+/* Main content block */
+.nf-interrupt {
+    padding: 0 7%;
+    width: 100%;
+}
+
+/* Headline */
+.int-hed {
+    font-family: "Jost", sans-serif;
+    font-weight: 200;
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* Chunks need inline-block to support x transforms */
+.int-chunk {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+/* Individual words */
+.int-word {
+    display: inline-block;
+}
+
+/* Inline video — outer wrapper (no overflow clip, so corners show) */
+.int-vid {
+    display: inline-block;
+    width: 2.3em;
+    height: 1.42em;
+    position: relative;
+    vertical-align: -0.175em;
+    cursor: none;
+    flex-shrink: 0;
+    margin: 0 0.3em;
+}
+
+/* Inner clip — rounds and clips the video only */
+.int-vid-clip {
     position: absolute;
-    top: 50%; left: 50%;
+    inset: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.int-vid__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 110%; height: 110%;
+    width: 110%;
+    height: 110%;
     object-fit: cover;
 }
 
-.ss-video-scrim {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(10,10,10,0.6) 0%, transparent 60%);
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* Corner brackets — appear once the video has settled into its final frame */
-.ss-video-corner {
+/* Corner brackets — sit outside .int-vid-clip so overflow:hidden doesn't clip them */
+.int-vid__corner {
     position: absolute;
-    width: 28px;
-    height: 28px;
+    width: 12px;
+    height: 12px;
     z-index: 3;
-    opacity: 0;
     pointer-events: none;
 }
-
-.ss-video-corner--tl {
-    top: -1px; left: -1px;
-    border-top: 2px solid rgba(255,255,255,0.85);
-    border-left: 2px solid rgba(255,255,255,0.85);
-    border-radius: 14px 0 0 0;
+.int-vid__corner--tl {
+    top: 5px; left: 5px;
+    border-top: 1.5px solid rgba(255,255,255,0.75);
+    border-left: 1.5px solid rgba(255,255,255,0.75);
 }
 
-.ss-video-corner--tr {
-    top: -1px; right: -1px;
-    border-top: 2px solid rgba(255,255,255,0.85);
-    border-right: 2px solid rgba(255,255,255,0.85);
-    border-radius: 0 14px 0 0;
+.int-vid__corner--br {
+    bottom: 5px; right: 5px;
+    border-bottom: 1.5px solid rgba(255,255,255,0.75);
+    border-right: 1.5px solid rgba(255,255,255,0.75);
 }
 
-.ss-video-corner--bl {
-    bottom: -1px; left: -1px;
-    border-bottom: 2px solid rgba(255,255,255,0.85);
-    border-left: 2px solid rgba(255,255,255,0.85);
-    border-radius: 0 0 0 14px;
+/* Divider */
+.int-rule {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin-top: clamp(2rem, 3.5vh, 3rem);
+    margin-bottom: clamp(1.2rem, 2vh, 1.8rem);
 }
 
-.ss-video-corner--br {
-    bottom: -1px; right: -1px;
-    border-bottom: 2px solid rgba(255,255,255,0.85);
-    border-right: 2px solid rgba(255,255,255,0.85);
-    border-radius: 0 0 14px 0;
-}
-
-@media only screen and (max-width: 768px) {
-    .ss-video-corner {
-        width: 18px;
-        height: 18px;
-    }
-}
-
-.ss-about {
-    position: absolute;
-    top: 50%;
-    /* span the right column with equal breathing room on both sides */
-    left: 60%;
-    right: 4%;
-    width: auto;
-    transform: translateY(-50%);
-    z-index: 1;
-    display: flex; flex-direction: column; gap: 28px;
-}
-
-.ss-about__kicker {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--nf-red);
-    opacity: 0;
-}
-
-.ss-about__heading {
-    font-family: "Inter", sans-serif;
-    font-size: clamp(1.8rem, 3vw, 3rem);
-    font-weight: 400;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
-    line-height: 1;
-}
-
-.ss-about__text {
+/* Body copy */
+.int-body {
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    font-size: clamp(0.9rem, 1.1vw, 1.05rem);
-    overflow-wrap: break-word;
-    word-break: break-word;
-    line-height: 1.85;
-    color: var(--nf-neutral);
-    max-width: 480px;
+    font-size: clamp(1.4rem, 3vw, 2.6rem);
+    line-height: 1.55;
+    color: rgba(255,255,255,0.35);
+    max-width: 54ch;
+    margin: 0;
 }
 
-.ss-about__heading .word,
-.ss-about__text .word {
-    display: inline-block;
-    color: rgba(255,255,255,0.07);
-    will-change: color;
-}
-
-.ss-about__link {
+/* CTA link */
+.int-link {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    margin-top: 1.4rem;
     font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: 0.14em;
+    font-size: clamp(0.68rem, 0.9vw, 0.78rem);
+    font-weight: 400;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--nf-fg);
+    color: rgba(255,255,255,0.45);
     text-decoration: none;
-    transition: transform 260ms ease, color 0.3s ease;
+    transition: color 0.25s ease, gap 0.25s ease;
 }
-.ss-about__link:hover {
-    color: var(--nf-red);
-    transform: translateX(8px);
+.int-link:hover {
+    color: #fff;
+    gap: 13px;
 }
-.ss-about__link span {
-    transition: color 0.3s ease;
-}
-.ss-about__icon {
-    display: inline-flex;
-    width: 18px;
-    height: 18px;
+.int-link svg {
+    width: 1em;
+    height: 1em;
+    stroke: currentColor;
+    fill: none;
     flex-shrink: 0;
-    transition: opacity 260ms ease, transform 260ms ease, width 260ms ease;
-}
-.ss-about__icon svg {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-    color: #ffffff;
-}
-.ss-about__icon--left {
-    width: 0;
-    opacity: 0;
-    transform: translateX(-3px);
-    overflow: hidden;
-}
-.ss-about__icon--right {
-    opacity: 1;
-    transform: translateX(0);
-}
-.ss-about__link:hover .ss-about__icon--right {
-    opacity: 0;
-    transform: translateX(12px);
-}
-.ss-about__link:hover .ss-about__icon--left {
-    width: 18px;
-    opacity: 1;
-    transform: translateX(0);
 }
 
+/* Mobile */
 @media (max-width: 768px) {
-    .ss-about {
-        top: auto;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        width: 100%;
-        height: 44%;
-        transform: none;
-        padding: 24px 6%;
-        justify-content: center;
-        gap: 16px;
-        background: linear-gradient(
-            to bottom,
-            transparent 0%,
-            rgba(10,10,10,0.92) 18%,
-            var(--nf-bg) 60%
-        );
-        z-index: 3;
+    .int-hed {
+        font-size: clamp(1.8rem, 9vw, 3rem);
     }
-    .ss-about__heading { font-size: clamp(1.4rem, 6vw, 2rem); }
-    .ss-about__text {
-        font-size: clamp(0.8rem, 3.5vw, 0.95rem);
-        line-height: 1.7;
-        max-width: 100%;
+    .int-vid {
+        width: 2em;
+        height: 1.3em;
     }
-    .ss-divider { display: none; }
+    .nf-interrupt {
+        padding: 0 6%;
+    }
+}
+
+/* ==============================================
+   CUSTOM CURSOR — Watch Reel
+   ============================================== */
+
+.reel-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    background: #fff;
+    color: #0A0A0A;
+    font-family: "Inter", sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 100px;
+    white-space: nowrap;
+    opacity: 0;
+    /* left/top are set by JS with no transition — instant follow */
+    /* only scale and opacity transition for appear/disappear */
+    transition: opacity 0.18s ease, scale 0.18s ease;
+    scale: 0.8;
+    will-change: left, top;
+}
+.reel-cursor.visible {
+    opacity: 1;
+    scale: 1;
+}
+
+/* ==============================================
+   REEL OVERLAY — full-screen popup
+   ============================================== */
+
+.reel-overlay {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+.reel-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.reel-overlay__video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.reel-overlay__close {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 2;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    transition: background 0.2s ease;
+}
+.reel-overlay__close:hover {
+    background: rgba(255,255,255,0.18);
+}
+.reel-overlay__close svg {
+    width: 16px;
+    height: 16px;
+}
+
+.reel-overlay__controls {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.reel-overlay__playpause {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    transition: background 0.2s ease;
+}
+.reel-overlay__playpause:hover {
+    background: rgba(255,255,255,0.18);
+}
+.reel-overlay__playpause svg {
+    width: 18px;
+    height: 18px;
 }

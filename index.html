@@ -151,35 +151,39 @@
 
     <!-- Scroll Story — video morphs to about layout on scroll -->
     <section id="scrollStory">
-        <div class="ss-scene" id="ssScene">
+        <div class="ss-scene">
 
-            <div class="ss-video-wrap" id="ssVideoWrap">
-                <video autoplay muted loop playsinline>
-                    <source src="./media/noble_fir.mp4" type="video/mp4">
-                </video>
-                <div class="ss-video-scrim"></div>
-                <span class="ss-video-corner ss-video-corner--tl"></span>
-                <span class="ss-video-corner ss-video-corner--tr"></span>
-                <span class="ss-video-corner ss-video-corner--bl"></span>
-                <span class="ss-video-corner ss-video-corner--br"></span>
-            </div>
+            <!-- Custom cursor -->
+            <div class="reel-cursor" id="reelCursor">Watch Reel</div>
 
-            <div class="ss-about" id="ssAbout">
-                <h2 class="ss-about__heading" id="ssHeading">Built in the PNW.<br>Shipped worldwide.</h2>
-                <p class="ss-about__text" id="ssText">Noble Fir Studio designs, develops, and ships digital products that drive success for my clients through strong branding, clean websites, and intuitive user experiences.</p>
-                <a href="about.html" class="ss-about__link" id="ssLink">
-                    <span class="ss-about__icon ss-about__icon--left" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="m6 6 12 12m0 0V9m0 9H9" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
-                    <span>More about the studio</span>
-                    <span class="ss-about__icon ss-about__icon--right" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="m6 6 12 12m0 0V9m0 9H9" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
+            <div class="nf-interrupt">
+
+                <p class="int-hed"><!--
+                    --><span class="int-chunk int-chunk--l"><span class="int-word">BUILT</span></span><!--
+                    --><span class="int-vid" id="intVid">
+                        <span class="int-vid-clip">
+                            <video class="int-vid__video" autoplay muted loop playsinline>
+                                <source src="./media/noble_fir.mp4" type="video/mp4">
+                            </video>
+                        </span>
+                        <span class="int-vid__corner int-vid__corner--tl"></span>
+                        <span class="int-vid__corner int-vid__corner--br"></span>
+                    </span><!--
+                    --><span class="int-chunk int-chunk--r"><span class="int-word">IN</span>&nbsp;<span class="int-word">THE</span>&nbsp;<span class="int-word">PACIFIC NW,</span></span><br>
+                    <span class="int-word">SHIPPED</span>&nbsp;<span class="int-word">WORLDWIDE.</span>
+                </p>
+
+                <div class="int-rule"></div>
+
+                <p class="int-body">Noble Fir Studio designs, develops, and ships digital products that drive success for clients through strong branding, clean code, and intuitive user experiences.</p>
+
+                <a href="about.html" class="int-link">
+                    More about the studio
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12h14m0 0-6-6m6 6-6 6"/>
+                    </svg>
                 </a>
+
             </div>
 
         </div>
@@ -226,7 +230,7 @@
         <div class="nf-values__header">
             <div>
                 <h2 class="nf-values__headline">
-                    Principals that drive performance.
+                    Principals that drive performance
                 </h2>
             </div>
             <div class="nf-values__right">
@@ -341,9 +345,8 @@
                             d="M23.987 12a2.4 2.4 0 0 0-.814-1.8L11.994.361a1.44 1.44 0 0 0-1.9 2.162l8.637 7.6a.25.25 0 0 1-.165.437H1.452a1.44 1.44 0 0 0 0 2.88h17.111a.251.251 0 0 1 .165.438l-8.637 7.6a1.44 1.44 0 1 0 1.9 2.161L23.172 13.8a2.4 2.4 0 0 0 .815-1.8"
                             fill="currentColor" />
                     </svg>
+                    <span class="nf-to">TO DEPLOYMENT</span>
                 </div>
-    
-                <span class="nf-to">TO DEPLOYMENT</span>
             </div>
     
             <div class="nf-transition__media">
@@ -883,5 +886,25 @@
 
 
     </div> <!-- End of nf-page -->
+    <!-- Reel overlay -->
+    <div class="reel-overlay" id="reelOverlay" aria-hidden="true">
+        <button class="reel-overlay__close" id="reelClose" aria-label="Close reel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+        <video class="reel-overlay__video" id="reelVideo" src="./media/noble_fir.mp4" playsinline></video>
+        <div class="reel-overlay__controls">
+            <button class="reel-overlay__playpause" id="reelPlayPause" aria-label="Play/pause">
+                <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                </svg>
+                <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+                    <path d="M5 3l14 9-14 9V3z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
     </body>
 </html>
