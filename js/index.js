@@ -865,10 +865,11 @@ function initTabSystem(){
     }
 
     function openReel() {
+      const bgVideo = document.querySelector('.int-vid__video');
+      if (bgVideo) reelVideo.currentTime = bgVideo.currentTime;
       overlay.classList.add('open');
       overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-      reelVideo.currentTime = 0;
       reelVideo.play();
       syncIcon();
     }
@@ -1037,22 +1038,43 @@ function initTabSystem(){
     });
 
     // Drag — touch
+    let startY = 0;
+    let touchLocked = false; // true = horizontal swipe, false = vertical scroll
+
     viewport.addEventListener("touchstart", (e) => {
       startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
       startDragX = currentX;
+      touchLocked = false;
       gsap.killTweensOf(track);
     }, { passive: true });
 
     viewport.addEventListener("touchmove", (e) => {
-      const delta = e.touches[0].clientX - startX;
+      const deltaX = e.touches[0].clientX - startX;
+      const deltaY = e.touches[0].clientY - startY;
+
+      // Direction not yet decided — wait for at least 6px of movement
+      if (!touchLocked && Math.abs(deltaX) < 6 && Math.abs(deltaY) < 6) return;
+
+      // Lock to whichever axis moved first
+      if (!touchLocked) {
+        touchLocked = true;
+        if (Math.abs(deltaY) > Math.abs(deltaX)) return; // vertical — let page scroll
+      }
+
+      if (Math.abs(deltaY) > Math.abs(deltaX)) return; // still vertical, keep scrolling
+
       const minX = -(numCards - 1) * getCardWidth() + getCenterOffset() - 40;
       const maxX = getCenterOffset() + 40;
-      gsap.set(track, { x: clamp(startDragX + delta, minX, maxX) });
+      gsap.set(track, { x: clamp(startDragX + deltaX, minX, maxX) });
     }, { passive: true });
 
     viewport.addEventListener("touchend", (e) => {
-      const delta = e.changedTouches[0].clientX - startX;
-      const snappedIdx = Math.round(-(startDragX + delta - getCenterOffset()) / getCardWidth());
+      const deltaX = e.changedTouches[0].clientX - startX;
+      const deltaY = e.changedTouches[0].clientY - startY;
+      // Only snap if this was a horizontal swipe, and moved at least 30px
+      if (Math.abs(deltaX) < 30 || Math.abs(deltaY) > Math.abs(deltaX)) return;
+      const snappedIdx = Math.round(-(startDragX + deltaX - getCenterOffset()) / getCardWidth());
       slideToIndex(snappedIdx);
     });
   }
@@ -1079,7 +1101,8 @@ function initTabSystem(){
     const mm = gsap.matchMedia();
 
     // â”€â”€ Desktop (â‰¥769px): slide line + media card together â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    mm.add("(min-width: 769px)", () => {
+    // >= 1025px: slide line + media card together
+    mm.add("(min-width: 1025px)", () => {
         const wrapper  = section.querySelector('.nf-connector-wrapper');
         const arrowEl  = section.querySelector('.nf-arrow-head');
         const toEl     = section.querySelector('.nf-to');
@@ -1101,6 +1124,33 @@ function initTabSystem(){
         tl.to(line, { width: targetW, ease: "none" }, 0);
         tl.to(media, { x: "55vw", ease: "none" }, 0);
         return () => { tl.kill(); };
+    });
+
+    // 769px-1024px: slide line only, media stays stationary
+    mm.add("(min-width: 769px) and (max-width: 1024px)", () => {
+        gsap.set(media, { x: 0 });
+        const wrapper  = section.querySelector('.nf-connector-wrapper');
+        const arrowEl  = section.querySelector('.nf-arrow-head');
+        const toEl     = section.querySelector('.nf-to');
+        const targetW  = wrapper.getBoundingClientRect().width
+                       - arrowEl.getBoundingClientRect().width
+                       - toEl.getBoundingClientRect().width
+                       - 16 + 10;
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: media,
+                start: "top 85%",
+                end: "top 30%",
+                scrub: 1,
+                onUpdate: cycleFrames
+            }
+        });
+        tl.to(line, { width: targetW, ease: "none" }, 0);
+        return () => {
+            tl.kill();
+            gsap.set(media, { clearProps: 'x' });
+        };
     });
 
     // â”€â”€ Mobile (â‰¤768px): slide line + text only â€” media stays fixed â”€â”€â”€â”€â”€â”€â”€â”€â”€
