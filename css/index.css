@@ -3150,8 +3150,8 @@ body.nf-loading {
 
 /* ── 480px ── */
 @media (max-width: 480px) {
-    .nf-work { padding: 56px 0 48px; }
-    .nf-work__inner { padding: 0 20px; }
+    .nf-work { padding: 56px 0 48px; overflow-x: clip; }
+    .nf-work__inner { width: 100%; padding: 0 20px; }
     .nf-work__label { margin-bottom: 36px; }
     .nf-work__name { font-size: clamp(1.7rem, 8vw, 2.2rem); }
 
