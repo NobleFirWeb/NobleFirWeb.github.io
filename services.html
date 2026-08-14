@@ -33,24 +33,22 @@
     <!-- Navbar -->
     <header class="navbar">
         <a href="index.html" class="logo-name" aria-label="Noble Fir Studio Home">
-            <img src="./img/Noblefir_nav_logo.png" alt="Navbar logo">
+            <span class="nf-logo-text">NF</span>
         </a>
         
         <nav class="navigation">
             <button type="button" id="btn-nav-toggle" aria-expanded="false" aria-controls="nav-menu"
                 aria-label="Toggle navigation menu">
                 <!--Menu-->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 6l16 0" />
-                        <path d="M4 12l16 0" />
-                        <path d="M4 12l16 0" />
-                        <path d="M4 18l16 0" />
-                    </g>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path class="burger-line burger-line--1" d="M4 8L20 8" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"/>
+                    <path class="burger-line burger-line--2" d="M4 16L20 16" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"/>
                 </svg>
             </button>
-        
-                        <div class="nav-brand" aria-hidden="true">
+
+            <svg class="menu-icon" viewBox="0 0 24 24">...</svg>
+
+            <div class="nav-brand" aria-hidden="true">
                 <span>Noble</span>
                 <span>Fir Studio.</span>
             </div>
@@ -79,115 +77,110 @@
         </nav>
     </header>
 
-    <section class="nf-hero" id="services-hero">
-      <div class="hero-grid"></div>
-      <div class="hero-slash"></div>
+    <section class="svc-hero" id="services-hero">
 
-      <div class="hero-content">
-        <div class="hero-eyebrow">
-          <div class="hero-eyebrow-line"></div>
-          <span>Web Design, Development &amp; More</span>
+      <!-- Left column: NF watermark + headline -->
+      <div class="svc-hero__left">
+        <div class="svc-hero__nf" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 80 80">
+  <path d="M0 0h80v80H0z" fill="none" />
+  <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M40 12v56M24 28l16-16m0 0l16 16m-16-2L24 42m16-16l16 16m-16-2L24 56m16-16l16 16" />
+</svg>
         </div>
-
-        <h1 class="hero-headline">
-          <span class="hero-headline-row">
-            <span class="hero-headline-inner">I BUILD</span>
-          </span>
-          <span class="hero-headline-row">
-            <span class="hero-headline-inner hero-outline">POWERFUL</span>
-          </span>
-          <span class="hero-headline-row">
-            <span class="hero-headline-inner"><span class="hero-red">DIGITAL ENGINES.</span></span>
-          </span>
-        </h1>
-
-        <p class="hero-sub">
-          <strong>No templates. No shortcuts.</strong>
-          Every site is hand-coded from scratch — built to load fast, rank high, and make your brand the obvious choice.
-        </p>
-
-        <div class="hero-actions">
-          <a href="contact-us.html" class="hero-btn-primary">
-            Start a Project
-            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <path d="M2 7h10M8 3l4 4-4 4"/>
-            </svg>
-          </a>
-          <a href="portfolio.html" class="hero-btn-secondary">
-            View My Work
-          </a>
+        <div class="svc-hero__text">
+          <h1 class="svc-hero__title">Offerings</h1>
+          <p class="svc-hero__kicker">Strategy. Design. Code. Results.</p>
         </div>
       </div>
 
-      <!-- Stats + scroll hint -->
-      <div class="hero-bottom">
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="hero-stat-val">15<span> +</span></div>
-            <div class="hero-stat-label">Projects Shipped</div>
+      <!-- Right column: spinning rings + body copy -->
+      <div class="svc-hero__right">
+        <div class="svc-hero__rings" aria-hidden="true">
+          <!-- 8 dots — inner -->
+          <div class="svc-hero__ring svc-hero__ring--1">
+            <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span>
+            <span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span>
           </div>
-          <div class="hero-stat">
-            <div class="hero-stat-val">100<span> %</span></div>
-            <div class="hero-stat-label">Custom Code</div>
+          <!-- 18 dots — middle -->
+          <div class="svc-hero__ring svc-hero__ring--2">
+            <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span>
+            <span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span><span style="--i:10"></span><span style="--i:11"></span>
+            <span style="--i:12"></span><span style="--i:13"></span><span style="--i:14"></span><span style="--i:15"></span><span style="--i:16"></span><span style="--i:17"></span>
           </div>
-          <div class="hero-stat">
-            <div class="hero-stat-val">1<span> – 1</span></div>
-            <div class="hero-stat-label">Focused Attention</div>
+          <!-- 20 dots — outer -->
+          <div class="svc-hero__ring svc-hero__ring--3">
+            <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span>
+            <span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span>
+            <span style="--i:10"></span><span style="--i:11"></span><span style="--i:12"></span><span style="--i:13"></span><span style="--i:14"></span>
+            <span style="--i:15"></span><span style="--i:16"></span><span style="--i:17"></span><span style="--i:18"></span><span style="--i:19"></span>
           </div>
         </div>
-
-        <div class="hero-scroll-hint">
-          <div class="hero-scroll-line"></div>
-          Scroll
-        </div>
+        <p class="svc-hero__body">Noble Fir handles everything from first concept to final launch — branding, web design, custom development, and SEO. Every project is scoped to your goals, built to perform, and shipped on time. Explore what's available below.</p>
       </div>
 
-      <!-- Right panel -->
-      <aside class="hero-right-panel">
-        <span class="hero-vertical-text">Noble Fir Studio — Portland, OR</span>
-
-        <ul class="hero-service-list">
-          <li>Web Design</li>
-          <li>Custom Development</li>
-          <li>E-Commerce</li>
-          <li>UI / UX</li>
-          <li>SEO</li>
-          <li>AI Integrations</li>
-          <li>Technical Strategy</li>
-        </ul>
-
-        <div class="hero-location-tag">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="5" cy="4" r="2"/>
-            <path d="M5 9C5 9 1.5 6 1.5 4a3.5 3.5 0 017 0C8.5 6 5 9 5 9z"/>
-          </svg>
-          Portland, Oregon
-        </div>
-      </aside>
-
-      <!-- Marquee -->
-      <div class="hero-marquee">
-        <div class="hero-marquee-track">
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Custom Web Design</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Hand-Coded Builds</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Managed Services</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>E-Commerce</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>UI / UX Design</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>SEO Optimization</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Web Applications</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>AI Integrations</span></div>
-          <!-- Duplicate for seamless loop -->
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Custom Web Design</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Hand-Coded Builds</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Managed Services</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>E-Commerce</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>UI / UX Design</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>SEO Optimization</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>Web Applications</span></div>
-          <div class="hero-marquee-item"><div class="hero-marquee-sep"></div><span>AI Integrations</span></div>
-        </div>
-      </div>
     </section>
+
+    <script>
+    (function () {
+      function initSvcHeroAnim() {
+        if (typeof gsap === "undefined" || typeof SplitText === "undefined") return;
+
+        const title  = document.querySelector(".svc-hero__title");
+        const kicker = document.querySelector(".svc-hero__kicker");
+        const body   = document.querySelector(".svc-hero__body");
+        if (!title || !kicker || !body) return;
+
+        // Pre-hide everything
+        gsap.set([title, kicker, body], { visibility: "hidden" });
+
+        // Split title into chars — no mask to avoid glyph clipping
+        const splitTitle = SplitText.create(title, { type: "chars" });
+        gsap.set(title, { visibility: "visible" });
+        gsap.set(splitTitle.chars, { y: 40, autoAlpha: 0 });
+
+        // Split kicker into lines with mask
+        const splitKicker = SplitText.create(kicker, { type: "lines", mask: "lines" });
+        gsap.set(kicker, { visibility: "visible" });
+        gsap.set(splitKicker.lines, { yPercent: 110 });
+
+        // Body: start off-screen right, hidden
+        gsap.set(body, { visibility: "visible", x: 80, autoAlpha: 0 });
+
+        const tl = gsap.timeline({ delay: 0.1 });
+
+        // 1. "OFFERINGS" chars stagger up
+        tl.to(splitTitle.chars, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: "expo.out",
+          stagger: 0.04
+        });
+
+        // 2. Kicker lines rise — starts just as title finishes its first char
+        tl.to(splitKicker.lines, {
+          yPercent: 0,
+          duration: 0.7,
+          ease: "expo.out",
+          stagger: 0.1
+        }, "-=0.3");
+
+        // 3. Body slides in from right — simultaneous with kicker
+        tl.to(body, {
+          x: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: "expo.out"
+        }, "<");
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initSvcHeroAnim);
+      } else {
+        initSvcHeroAnim();
+      }
+    })();
+    </script>
 
     <section class="nf-reveal" aria-label="Brand analytics & content section">
         <div class="nf-reveal__col nf-reveal__left">

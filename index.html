@@ -11,7 +11,7 @@
         <meta name="description" content="Noble Fir Studio is a boutique web design and development studio based in Portland, OR. I specialize in custom web design, development, e-commerce, and AI integrations for businesses ready to grow online. Free consultation.">
         <meta name="author" content="Noble Fir Studio">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./css/index.css?v=17">
+        <link rel="stylesheet" href="./css/index.css?v=27">
         <link rel="stylesheet" href="./css/nav-styles.css">
         <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
@@ -379,6 +379,14 @@
                 <li class="svc__item"><a class="svc__link" href="services.html#aiso"><svg class="svc__arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg><span class="svc__link-text">AI SEARCH OPTIMIZATION (AISO)</span></a></li>
             </ul>
         </div>
+        <div class="svc__footer">
+            <a href="services.html" class="int-link">
+                All Services
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14m0 0-6-6m6 6-6 6"/>
+                </svg>
+            </a>
+        </div>
     </section>
 
     <section class="nf-work" id="portfolio">
@@ -390,7 +398,7 @@
                 <div class="nf-work__header">
                     <span class="nf-work__num">01</span>
                     <h2 class="nf-work__name">Rise With Us Gaming</h2>
-                    <a class="nf-work__cta" href="portfolio.html">In Dev ↗</a>
+                    <a class="nf-work__cta" href="portfolio.html">In Development ↗</a>
                 </div>
                 <div class="nf-work__rule"></div>
                 <div class="nf-work__body">
@@ -551,7 +559,7 @@
             </div>
 
             <!-- 06 CosmiQ -->
-            <div class="nf-work__project">
+            <div class="nf-work__project" id="lastProject">
                 <div class="nf-work__header">
                     <span class="nf-work__num">06</span>
                     <h2 class="nf-work__name">CosmiQ</h2>
@@ -592,53 +600,12 @@
         </div>
     </section>
 
-    <section class="nf-text-widget" aria-label="Noble Fir Text Slider">
-        <div class="nf-text-widget__inner">
-            <!-- Row 1 (static) -->
-            <div class="nf-text-row nf-text-row--static">
-                <span class="nf-word nf-word--highlight nf-word--noble">Noble</span>
-            </div>
-    
-            <!-- Row 2 (slides later with GSAP) -->
-            <div class="nf-text-row nf-text-row--slide nf-text-row--top" data-row="1">
-                <div class="nf-text-track">
-                    <span class="nf-word">Design</span>
-                    <span class="nf-word">Conception</span>
-                    <span class="nf-word nf-word--highlight nf-word--fir">Fir</span>
-                    <span class="nf-word">Development</span>
-    
-                    <!-- duplicate set for seamless looping -->
-                    <span class="nf-word" aria-hidden="true">3D Design</span>
-                    <span class="nf-word" aria-hidden="true">Conception</span>
-                    <span class="nf-word nf-word--highlight" aria-hidden="true">Fir</span>
-                    <span class="nf-word" aria-hidden="true">Development</span>
-                </div>
-            </div>
-    
-            <!-- Row 3 (slides later with GSAP) -->
-            <div class="nf-text-row nf-text-row--slide nf-text-row--bottom" data-row="2">
-                <div class="nf-text-track">
-                    <span class="nf-word">Design</span>
-                    <span class="nf-word">Build</span>
-                    <span class="nf-word nf-word--highlight nf-word--studio">Studio</span>
-                    <span class="nf-word">Deployment</span>
-    
-                    <!-- duplicate set for seamless looping -->
-                    <span class="nf-word" aria-hidden="true">Design</span>
-                    <span class="nf-word" aria-hidden="true">Development</span>
-                    <span class="nf-word nf-word--highlight nf-word--studio" aria-hidden="true">Studio</span>
-                    <span class="nf-word" aria-hidden="true">Deployment</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-
     <section class="testimonials" id="testimonials">
         <!-- ===== Review Slider (Index page) ===== -->
         <section class="nf-reviews" id="nf-reviews" aria-label="Client reviews">
+            <span class="nf-reviews__section-label">Client Reviews</span>
             <div class="nf-reviews__header">
-                <span class="nf-reviews__kicker">// Client Reviews</span>
+                <span class="nf-reviews__kicker">// What clients say</span>
                 <div class="nf-reviews__nav">
                     <button class="nf-reviews__btn" id="nfPrev" aria-label="Previous review" type="button">&#8249;</button>
                     <button class="nf-reviews__btn" id="nfNext" aria-label="Next review" type="button">&#8250;</button>
@@ -725,11 +692,52 @@
         </section>
     </section>
 
+    <section class="nf-text-widget" aria-label="Noble Fir Text Slider">
+        <div class="nf-text-widget__inner">
+            <!-- Row 1 (static) -->
+            <div class="nf-text-row nf-text-row--static">
+                <span class="nf-word nf-word--highlight nf-word--noble">Noble</span>
+            </div>
+
+            <!-- Row 2 (slides later with GSAP) -->
+            <div class="nf-text-row nf-text-row--slide nf-text-row--top" data-row="1">
+                <div class="nf-text-track">
+                    <span class="nf-word">Design</span>
+                    <span class="nf-word">Conception</span>
+                    <span class="nf-word nf-word--highlight nf-word--fir">Fir</span>
+                    <span class="nf-word">Development</span>
+
+                    <!-- duplicate set for seamless looping -->
+                    <span class="nf-word" aria-hidden="true">3D Design</span>
+                    <span class="nf-word" aria-hidden="true">Conception</span>
+                    <span class="nf-word nf-word--highlight" aria-hidden="true">Fir</span>
+                    <span class="nf-word" aria-hidden="true">Development</span>
+                </div>
+            </div>
+
+            <!-- Row 3 (slides later with GSAP) -->
+            <div class="nf-text-row nf-text-row--slide nf-text-row--bottom" data-row="2">
+                <div class="nf-text-track">
+                    <span class="nf-word">Design</span>
+                    <span class="nf-word">Build</span>
+                    <span class="nf-word nf-word--highlight nf-word--studio">Studio</span>
+                    <span class="nf-word">Deployment</span>
+
+                    <!-- duplicate set for seamless looping -->
+                    <span class="nf-word" aria-hidden="true">Design</span>
+                    <span class="nf-word" aria-hidden="true">Development</span>
+                    <span class="nf-word nf-word--highlight nf-word--studio" aria-hidden="true">Studio</span>
+                    <span class="nf-word" aria-hidden="true">Deployment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="cta">
         <div class="nf-cta__ghost" aria-hidden="true">LET’S TALK</div>
         <div class="nf-cta__content">
             <p class="nf-cta__question">Ready to work with someone who <span class="nf-cta__red">gives a damn?</span></p>
-            <a class="nf-cta__link" href="contact-us.html">Start a project</a>
+            <a class="int-link" href="contact-us.html">Start a project</a>
         </div>
     </section>
 
@@ -872,10 +880,25 @@
   let current = 0;
   let autoTimer = null;
 
-  const SIDE_PEEK = () => stage.getBoundingClientRect().width * 0.05;
-  const cardWidth = () => cards[0] ? cards[0].getBoundingClientRect().width : 0;
-  const gap = () => parseFloat(window.getComputedStyle(track).columnGap) || 24;
-  const targetX = idx => SIDE_PEEK() - idx * (cardWidth() + gap());
+  // Measured card offsets from stage origin with track at x=0.
+  // Re-measured on init and resize so subpixel/gap variations are always exact.
+  let offsets = [];
+  let cardWidths = [];
+
+  function measureOffsets() {
+    const saved = track.style.transform;
+    gsap.set(track, { x: 0 });
+    const stageLeft = stage.getBoundingClientRect().left;
+    offsets    = cards.map(c => c.getBoundingClientRect().left - stageLeft);
+    cardWidths = cards.map(c => c.getBoundingClientRect().width);
+    track.style.transform = saved;
+  }
+
+  const targetX = idx => {
+    const sw = stage.getBoundingClientRect().width;
+    const cw = cardWidths[idx] ?? (cards[idx] ? cards[idx].getBoundingClientRect().width : 0);
+    return (sw - cw) / 2 - offsets[idx];
+  };
 
   function updateCards(idx) {
     cards.forEach((c, i) => {
@@ -908,15 +931,35 @@
   function startAuto() { stopAuto(); autoTimer = setInterval(() => goTo(current + 1), 4000); }
   function stopAuto()  { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
 
-  gsap.set(track, { x: targetX(0) });
-  updateCards(0); updateDots(0); updateCounter(0);
-  startAuto();
+  function init() {
+    requestAnimationFrame(() => {
+      measureOffsets();
+      goTo(0, false);
+
+      // Only autoplay while the section is visible
+      const section = document.getElementById('nf-reviews');
+      if (section && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => {
+          entries[0].isIntersecting ? startAuto() : stopAuto();
+        }, { threshold: 0.2 });
+        io.observe(section);
+      }
+    });
+  }
+
+  // Wait for the loader to finish so getBoundingClientRect returns settled dimensions
+  if (document.getElementById('nf-loader')) {
+    document.addEventListener('nf:loaderComplete', init, { once: true });
+  } else {
+    window.addEventListener('load', init, { once: true });
+  }
+
+  const section = document.getElementById('nf-reviews');
 
   if (prevBtn) prevBtn.addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
   if (nextBtn) nextBtn.addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
   dots.forEach((d, i) => d.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); }));
 
-  const section = document.getElementById('nf-reviews');
   if (section) {
     section.setAttribute('tabindex', '-1');
     section.addEventListener('keydown', e => {
@@ -957,7 +1000,12 @@
 
   stage.addEventListener('pointercancel', () => { if (dragging) { dragging = false; goTo(current); startAuto(); } });
   stage.addEventListener('click', e => { if (moved) e.stopPropagation(); }, true);
-  window.addEventListener('resize', () => gsap.set(track, { x: targetX(current) }), { passive: true });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { measureOffsets(); gsap.set(track, { x: targetX(current) }); }, 100);
+  }, { passive: true });
 })();
 </script>
 

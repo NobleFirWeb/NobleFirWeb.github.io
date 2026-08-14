@@ -45,24 +45,22 @@
     <!-- Navbar -->
     <header class="navbar">
         <a href="index.html" class="logo-name" aria-label="Noble Fir Studio Home">
-            <img src="./img/Noblefir_nav_logo.png" alt="Navbar logo">
+            <span class="nf-logo-text">NF</span>
         </a>
         
         <nav class="navigation">
             <button type="button" id="btn-nav-toggle" aria-expanded="false" aria-controls="nav-menu"
                 aria-label="Toggle navigation menu">
                 <!--Menu-->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 6l16 0" />
-                        <path d="M4 12l16 0" />
-                        <path d="M4 12l16 0" />
-                        <path d="M4 18l16 0" />
-                    </g>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path class="burger-line burger-line--1" d="M4 8L20 8" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"/>
+                    <path class="burger-line burger-line--2" d="M4 16L20 16" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"/>
                 </svg>
             </button>
-        
-                        <div class="nav-brand" aria-hidden="true">
+
+            <svg class="menu-icon" viewBox="0 0 24 24">...</svg>
+
+            <div class="nav-brand" aria-hidden="true">
                 <span>Noble</span>
                 <span>Fir Studio.</span>
             </div>
@@ -93,69 +91,84 @@
 
     <div class="cursor"></div>
 
-    <section class="ab-hero" aria-label="About Noble Fir Studio">
+    <section class="ab-cascade" aria-label="About Noble Fir Studio">
 
-      <!-- Left: headline + sub -->
-      <div class="ab-hero-left">
-        <h1 class="ab-hero-headline">
-          All in,<br>
-          every <em>single</em><br>
-          <span class="ab-accent">time.</span>
-        </h1>
-
-        <p class="ab-hero-sub">
-          I'm Jesse Kuykendall — Founder of Noble Fir Studio. Based in Portland, Oregon, I build custom websites for businesses that deserve more. Direct access, no middlemen, and an obsessive focus on getting it right.
-        </p>
+      <div class="ab-cascade__headline" aria-label="All in, every single time.">
+        <span class="ab-cascade__line ab-cascade__line--1">All in,</span>
+        <span class="ab-cascade__line ab-cascade__line--2">Every</span>
+        <span class="ab-cascade__line ab-cascade__line--3">Single</span>
+        <span class="ab-cascade__line ab-cascade__line--4">Time.</span>
       </div>
 
-      <!-- Right: animated widget -->
-      <div class="ab-hero-right">
-        <div class="ab-hero-visual">
 
-          <!-- Rotating rings -->
-          <div class="ab-ring ab-ring-1"></div>
-          <div class="ab-ring ab-ring-2"></div>
-          <div class="ab-ring ab-ring-3"></div>
-
-          <!-- Centre circle -->
-          <div class="ab-visual-center">
-            <div class="ab-visual-icon">
-              <!-- Noble Fir tree mark -->
-              <svg width="38" height="38" viewBox="0 0 32 32" fill="none">
-                <path d="M16 3 L22 11 L19 11 L24 18 L20 18 L25 26 L7 26 L12 18 L8 18 L13 11 L10 11 Z"
-                  stroke="#E8001E" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-                <rect x="14.5" y="26" width="3" height="3" rx="0.5" fill="#E8001E"/>
-              </svg>
-            </div>
-            <div class="ab-visual-text">
-              Noble Fir<br>
-              Studio<br>
-              ———<br>
-              Jesse K.<br>
-              Founder
-            </div>
+      <div class="ab-cascade__bottom">
+        <p class="ab-cascade__bio">
+          I'm Jesse Kuykendall — Founder of Noble Fir Studio. Based in Portland, Oregon, I build custom websites for businesses that deserve more. Direct access, no middlemen, and an obsessive focus on getting every detail right — from first concept to launch.
+        </p>
+        <div class="ab-cascade__facts">
+          <div class="ab-cascade__fact">
+            <span class="ab-cascade__fact-label">Founder</span>
+            <span class="ab-cascade__fact-value">Jesse Kuykendall</span>
           </div>
-
-          <!-- Floating code card -->
-          <div class="ab-code-float">
-            <pre><span class="c-dim">// Noble Fir Studio</span>
-<span class="c-grey">const</span> <span class="c-white">founder</span> = {
-  <span class="c-grey">name</span>:     <span class="c-red">'Jesse K.'</span>,
-  <span class="c-grey">based</span>:    <span class="c-red">'Portland, OR'</span>,
-  <span class="c-grey">approach</span>: <span class="c-red">'all-in'</span>
-}</pre>
+          <div class="ab-cascade__fact">
+            <span class="ab-cascade__fact-label">Based in</span>
+            <span class="ab-cascade__fact-value">Portland, Oregon</span>
           </div>
-
-          <!-- Location badge -->
-          <div class="ab-location-badge">
-            <div class="ab-location-dot"></div>
-            <span>Portland, Oregon</span>
+          <div class="ab-cascade__fact">
+            <span class="ab-cascade__fact-label">Specialty</span>
+            <span class="ab-cascade__fact-value">Web Design &amp; Development</span>
           </div>
-
         </div>
       </div>
 
     </section>
+
+    <script>
+    (function () {
+      function initAbCascade() {
+        if (typeof gsap === 'undefined') return;
+
+        const lines  = document.querySelectorAll('.ab-cascade__line');
+        const rule   = document.querySelector('.ab-cascade__rule');
+        const bottom = document.querySelector('.ab-cascade__bottom');
+
+        if (!lines.length) return;
+
+        gsap.set(lines, { y: 60, autoAlpha: 0 });
+        if (rule)   gsap.set(rule,   { autoAlpha: 0 });
+        if (bottom) gsap.set(bottom, { autoAlpha: 0, y: 20 });
+
+        const tl = gsap.timeline({ delay: 0.1 });
+
+        tl.to(lines, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.85,
+          ease: 'expo.out',
+          stagger: 0.12
+        });
+
+        if (rule) tl.to(rule, {
+          autoAlpha: 1,
+          duration: 0.6,
+          ease: 'power2.out'
+        }, '-=0.3');
+
+        if (bottom) tl.to(bottom, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'expo.out'
+        }, '-=0.3');
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAbCascade);
+      } else {
+        initAbCascade();
+      }
+    })();
+    </script>
 
     <section class="mission" id="mission">
         <div class="section-marker section-marker--center">

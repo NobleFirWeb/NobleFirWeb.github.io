@@ -743,7 +743,7 @@ function initTabSystem(){
     const imgCaption = document.getElementById("heroImgCaption");
     const faces      = imgCard ? Array.from(imgCard.querySelectorAll(".hero-img-card__face")) : [];
     const captions   = ["[ Abstract No. 001 ]", "[ Abstract No. 002 ]", "[ Abstract No. 003 ]"];
-    const CARD_HALF_H = 145;
+    const CARD_HALF_H = imgCard ? imgCard.offsetHeight / 2 : 90;
     let currentFace = 0;
     let distAccum   = 0;
     let lastX = null, lastY = null;
@@ -936,18 +936,20 @@ function initTabSystem(){
       });
     }
 
-    // ── Cards: staggered fade + slide up
+    // ── Cards: staggered rise left-to-right on scroll in
     if (cards.length) {
-      gsap.set(cards, { opacity: 0, y: 36 });
-      gsap.to(cards, {
-        opacity: 1, y: 0,
-        duration: 0.65,
-        ease: "power3.out",
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: ".nf-cards-wrap",
-          start: "top 84%",
-          toggleActions: "play none none none",
+      gsap.set(cards, { opacity: 0, y: 100 });
+      ScrollTrigger.create({
+        trigger: ".nf-cards-wrap",
+        start: "top 80%",
+        once: true,
+        onEnter: () => {
+          gsap.to(cards, {
+            opacity: 1, y: 0,
+            duration: 0.7,
+            ease: "power3.out",
+            stagger: 0.15,
+          });
         }
       });
     }
@@ -1013,29 +1015,46 @@ function initTabSystem(){
     if (btnNext) btnNext.addEventListener("click", () => slideToIndex(currentIdx + 1));
     if (btnPrev) btnPrev.addEventListener("click", () => slideToIndex(currentIdx - 1));
 
-    // Drag — mouse
-    viewport.addEventListener("mousedown", (e) => {
+    // Drag — pointer events (captures pointer even when leaving window)
+    let moved = false;
+    const DRAG_THRESHOLD = 6;
+
+    viewport.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0) return;
       isDragging = true;
+      moved = false;
       startX = e.clientX;
       startDragX = currentX;
+      viewport.setPointerCapture(e.pointerId);
       gsap.killTweensOf(track);
     });
 
-    window.addEventListener("mousemove", (e) => {
+    viewport.addEventListener("pointermove", (e) => {
       if (!isDragging) return;
       const delta = e.clientX - startX;
-      const minX = -(numCards - 1) * getCardWidth() + getCenterOffset() - 60;
-      const maxX = getCenterOffset() + 60;
-      gsap.set(track, { x: clamp(startDragX + delta, minX, maxX) });
+      if (!moved && Math.abs(delta) > DRAG_THRESHOLD) moved = true;
+      if (moved) {
+        const minX = -(numCards - 1) * getCardWidth() + getCenterOffset() - 60;
+        const maxX = getCenterOffset() + 60;
+        gsap.set(track, { x: clamp(startDragX + delta, minX, maxX) });
+      }
     });
 
-    window.addEventListener("mouseup", (e) => {
+    viewport.addEventListener("pointerup", (e) => {
       if (!isDragging) return;
       isDragging = false;
       const delta = e.clientX - startX;
       const snappedIdx = Math.round(-(startDragX + delta - getCenterOffset()) / getCardWidth());
       slideToIndex(snappedIdx);
     });
+
+    viewport.addEventListener("pointercancel", () => {
+      if (!isDragging) return;
+      isDragging = false;
+      slideToIndex(currentIdx);
+    });
+
+    viewport.addEventListener("click", (e) => { if (moved) e.stopPropagation(); }, true);
 
     // Drag — touch
     let startY = 0;
@@ -1300,6 +1319,80 @@ function initTabSystem(){
 --------------------------------- */
 function initServicesHover() {
   // replaced by initServicesScroll — kept as no-op so call site is unchanged
+}
+
+function initWorkAnimations() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+  const section = document.querySelector(".nf-work");
+  if (!section) return;
+
+  // Section label — same treatment as other titles
+  const label = section.querySelector(".nf-work__label");
+  if (label) {
+    gsap.set(label, { autoAlpha: 0, y: 20 });
+    ScrollTrigger.create({
+      trigger: label,
+      start: "top 80%",
+      once: true,
+      onEnter: () => gsap.to(label, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power2.out" })
+    });
+  }
+
+  // Per-project staggered reveal — fires as each record scrolls into view
+  const projects = section.querySelectorAll(".nf-work__project");
+  projects.forEach((project) => {
+    const header = project.querySelector(".nf-work__header");
+    const rule   = project.querySelector(".nf-work__rule");
+    const meta   = project.querySelector(".nf-work__meta");
+    const img    = project.querySelector(".nf-work__img-wrap");
+
+    // Initial states
+    if (header) gsap.set(header, { autoAlpha: 0, y: 24 });
+    if (rule)   gsap.set(rule,   { scaleX: 0, transformOrigin: "left center" });
+    if (meta)   gsap.set(meta,   { autoAlpha: 0, y: 20 });
+    if (img)    gsap.set(img,    { autoAlpha: 0, x: 32 });
+
+    ScrollTrigger.create({
+      trigger: project,
+      start: "top 72%",
+      once: true,
+      onEnter: () => {
+        const tl = gsap.timeline();
+        if (header) tl.to(header, { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out" }, 0);
+        if (rule)   tl.to(rule,   { scaleX: 1,    duration: 0.6,  ease: "power2.inOut" },     0.3);
+        if (meta)   tl.to(meta,   { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out" }, 0.45);
+        if (img)    tl.to(img,    { autoAlpha: 1, x: 0, duration: 0.65, ease: "power2.out" }, 0.45);
+      }
+    });
+  });
+}
+
+function initCtaAnimation() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+  const question = document.querySelector(".nf-cta__question");
+  if (!question) return;
+
+  gsap.set(question, { autoAlpha: 0, y: 60 });
+  ScrollTrigger.create({
+    trigger: "#cta",
+    start: "top 60%",
+    once: true,
+    onEnter: () => gsap.to(question, { autoAlpha: 1, y: 0, duration: 0.9, ease: "power3.out" })
+  });
+}
+
+function initReviewsAnimations() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+  const label = document.querySelector(".nf-reviews__section-label");
+  if (!label) return;
+
+  gsap.set(label, { autoAlpha: 0, y: 20 });
+  ScrollTrigger.create({
+    trigger: label,
+    start: "top 80%",
+    once: true,
+    onEnter: () => gsap.to(label, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power2.out" })
+  });
 }
 
 function initServicesScroll() {
@@ -1807,6 +1900,9 @@ function initServicesScroll() {
       initUnderlineReveals();
       initServicesHover();
       initServicesScroll();
+      initWorkAnimations();
+      initReviewsAnimations();
+      initCtaAnimation();
       initParallaxCards();
       initTextWidgetScroll();
 

@@ -92,6 +92,127 @@ body {
   }
 }
 
+/* ═══════════════════════════════════════════
+   About Hero — Concept C: The Cascade
+═══════════════════════════════════════════ */
+.ab-cascade {
+  min-height: 100vh;
+  width: 100%;
+  background: #0A0A0A;
+  color: #F5F5F5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10vh 8vw 8vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.ab-cascade__pg {
+  position: absolute;
+  bottom: -4vh;
+  right: 4vw;
+  font-family: 'Jost', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  font-size: clamp(10rem, 22vw, 22rem);
+  letter-spacing: -0.08em;
+  color: rgba(245,245,245,0.04);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.ab-cascade__headline {
+  display: flex;
+  flex-direction: column;
+  margin-top: 6vh;
+  margin-bottom: 7vh;
+}
+
+.ab-cascade__line {
+  display: block;
+  font-family: 'Jost', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  font-size: clamp(3.8rem, 9vw, 13rem);
+  letter-spacing: -0.065em;
+  line-height: 0.88;
+  text-transform: uppercase;
+  color: #F5F5F5;
+}
+.ab-cascade__line--1 { margin-left: 0; }
+.ab-cascade__line--2 { margin-left: 12%; }
+.ab-cascade__line--3 { margin-left: 24%; }
+.ab-cascade__line--4 {
+  margin-left: auto;
+  text-align: right;
+  color: #E8001E;
+}
+
+.ab-cascade__rule {
+  width: 100%;
+  height: 1px;
+  background: rgba(245,245,245,0.14);
+  margin-bottom: 5vh;
+}
+
+.ab-cascade__bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6vw;
+}
+
+.ab-cascade__bio {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  line-height: 1.8;
+  color: var(--nf-fg)
+}
+
+.ab-cascade__facts {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-left: auto;
+}
+
+.ab-cascade__fact {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 24px;
+  align-items: baseline;
+}
+
+.ab-cascade__fact-label {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.3);
+}
+
+.ab-cascade__fact-value {
+  font-family: 'Jost', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: rgba(245,245,245,0.6);
+}
+
+@media (max-width: 900px) {
+  .ab-cascade { padding: 8vh 6% 6vh; }
+  .ab-cascade__line--2 { margin-left: 8%; }
+  .ab-cascade__line--3 { margin-left: 16%; }
+  .ab-cascade__bottom { grid-template-columns: 1fr; gap: 4vh; }
+}
+
+@media (max-width: 480px) {
+  .ab-cascade { padding: 6vh 5% 5vh; }
+  .ab-cascade__line--2 { margin-left: 5%; }
+  .ab-cascade__line--3 { margin-left: 10%; }
+  .ab-cascade__eyebrow { font-size: 0.55rem; }
+}
+
+/* ── Legacy hero (kept, no longer rendered) ── */
 .ab-hero {
           min-height: 100vh;
           width: 100%;

@@ -757,6 +757,12 @@ body.nf-loading {
     padding-top: 0.2em;
 }
 
+.svc__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 3vh;
+}
+
 .svc__kicker {
     font-family: "JetBrains Mono", monospace;
     font-size: 0.55rem;
@@ -1218,12 +1224,24 @@ body.nf-loading {
 
 /* ===== Review Slider — GSAP Draggable ===== */
 .nf-reviews {
-    margin-top: 10vh;
     width: 100%;
-    padding: 5rem 0 4rem;
+    padding: 6vh 0 8vh;
     background: var(--nf-bg);
     overflow: hidden;
     position: relative;
+}
+
+.nf-reviews__section-label {
+    font-family: "Jost", sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.55rem, 3vw, 2.6rem);
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--nf-fg);
+    margin: 0 0 4vh;
+    display: block;
+    padding: 0 5%;
 }
 
 .nf-reviews__header {
@@ -1235,44 +1253,44 @@ body.nf-loading {
 }
 
 .nf-reviews__kicker {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
+    font-family: "JetBrains Mono", "Courier New", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #E8001E;
+    color: var(--nf-gray);
 }
 
 .nf-reviews__nav {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 0.75rem;
 }
 
 .nf-reviews__counter {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.68rem;
     letter-spacing: 0.1em;
-    color: #444;
+    color: var(--nf-gray);
     min-width: 56px;
     text-align: center;
 }
 
 .nf-reviews__counter em {
     font-style: normal;
-    color: #fff;
+    color: var(--nf-fg);
 }
 
 .nf-reviews__btn {
     background: none;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 2px;
-    width: 40px;
-    height: 40px;
+    border: 1px solid #2a2a2a;
+    border-radius: 0;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255,255,255,0.6);
+    color: var(--nf-neutral);
     font-size: 1.1rem;
     transition: border-color 0.2s ease, color 0.2s ease;
     flex-shrink: 0;
@@ -1303,16 +1321,16 @@ body.nf-loading {
 
 .nf-reviews__track {
     display: flex;
-    gap: clamp(16px, 2.5vw, 32px);
+    gap: clamp(16px, 2.5vw, 28px);
     will-change: transform;
     touch-action: pan-y;
 }
 
 .nf-card-review {
     flex-shrink: 0;
-    width: clamp(280px, 36vw, 460px);
+    width: clamp(280px, 34vw, 440px);
     border: 1px solid #1d1d1d;
-    padding: clamp(1.5rem, 2.5vw, 2.25rem);
+    padding: clamp(1.5rem, 2.5vw, 2rem);
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
@@ -1322,23 +1340,24 @@ body.nf-loading {
 }
 
 .nf-card-review.is-active {
-    border-color: rgba(232, 0, 30, 0.3);
+    border-color: #2a2a2a;
 }
 
 .nf-card-review__mark {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    line-height: 0.75;
-    color: #E8001E;
-    font-weight: 700;
+    font-family: "Jost", sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 0.7;
+    color: var(--nf-red);
+    font-weight: 300;
+    letter-spacing: -0.04em;
 }
 
 .nf-card-review__text {
-    font-family: "Jost", sans-serif;
-    font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+    font-family: "Inter", sans-serif;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
     font-weight: 300;
-    color: #ffffff;
-    line-height: 1.65;
+    color: var(--nf-fg);
+    line-height: 1.75;
     flex: 1;
     margin: 0;
 }
@@ -1356,53 +1375,53 @@ body.nf-loading {
 .nf-card-review__author {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
 }
 
 .nf-card-review__author strong {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 0.875rem;
-    font-weight: 600;
-    color: #ffffff;
+    font-weight: 500;
+    color: var(--nf-fg);
 }
 
 .nf-card-review__author span {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.725rem;
+    font-family: "Inter", sans-serif;
+    font-size: 0.72rem;
     font-weight: 300;
-    color: #555;
+    color: var(--nf-neutral);
 }
 
 .nf-card-review__tag {
-    font-family: 'DM Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
     font-size: 0.58rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #E8001E;
+    color: var(--nf-gray);
     white-space: nowrap;
     flex-shrink: 0;
 }
 
 .nf-reviews__dots {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 8px;
     margin-top: 2rem;
+    padding: 0 5%;
 }
 
 .nf-dot {
     width: 20px;
-    height: 2px;
-    background: #222;
+    height: 1px;
+    background: #2a2a2a;
     transition: width 0.3s ease, background 0.3s ease;
-    border-radius: 2px;
     cursor: pointer;
 }
 
 .nf-dot.is-active {
     width: 40px;
-    background: #E8001E;
+    background: var(--nf-red);
 }
 
 @media (max-width: 768px) {
@@ -1433,6 +1452,7 @@ body.nf-loading {
     align-items: center;
     justify-content: center;
     padding: 80px 5%;
+    margin-top: 10vh;
 }
 
 .nf-cta__ghost {
@@ -1461,16 +1481,23 @@ body.nf-loading {
     align-items: center;
     gap: 28px;
     text-align: center;
-    max-width: 560px;
+    max-width: 710px;
+}
+
+.nf-cta__content .int-link,
+#scrollStory .int-link {
+    margin-left: 0;
+    margin-top: 4rem;
 }
 
 .nf-cta__question {
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    font-size: clamp(1.1rem, 2.4vw, 2.1rem);
-    line-height: 1.5;
+    font-size: clamp(1.55rem, 3vw, 2.6rem);
+    line-height: 1;
     color: rgba(255, 255, 255, 0.78);
     letter-spacing: 0.01em;
+    text-transform: uppercase;
 }
 
 .nf-cta__red {
@@ -1504,7 +1531,11 @@ body.nf-loading {
 @media (max-width: 480px) {
     #cta { min-height: 260px; padding: 48px 5%; }
     .nf-cta__ghost { font-size: clamp(3rem, 21vw, 5.75rem); }
-    .nf-cta__content {gap: 20px;}
+    .nf-cta__content {gap: 30px;}
+    .nf-cta__content .int-link {
+        margin-top: 10px;
+    }
+
 }
 
 @keyframes slideDownFade {
@@ -2759,17 +2790,19 @@ body.nf-loading {
     line-height: 1.55;
     color: var(--nf-neutral);
     max-width: 52ch;
-    margin: 28px 0;
+    margin: 1.5rem 0;
 }
 
 /* CTA link */
 .int-link {
-    display: inline-block;
-    margin-top: 1.4rem;
+    display: block;
+    margin-top: 3rem;
+    margin-left: auto;
+    width: fit-content;
     font-family: "Inter", sans-serif;
-    font-size: clamp(0.78rem, 1.1vw, 1.15rem);
+    font-size: clamp(1.15rem, 2.4vw, 2rem);
     font-weight: 300;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     color: var(--nf-fg);
     text-decoration: none;
@@ -2820,6 +2853,18 @@ body.nf-loading {
     .int-terminal { display: inline-flex; overflow: hidden; }
     .int-terminal__prompt,
     .int-terminal__text { font-size: 0.5rem; white-space: nowrap; }
+}
+
+@media (max-width: 480px) {
+    .svc {
+        margin-top: 5vh;
+    }
+    .svc__list {
+        padding-top: 18px;
+    }
+    .svc__body {
+        padding-top: 0;
+    }
 }
 
 /* ==============================================
@@ -2954,17 +2999,21 @@ body.nf-loading {
     text-transform: uppercase;
     line-height: 1;
     color: var(--nf-fg);
-    margin: 0 0 7.5vh;
+    margin: 0 0 10vh;
     display: block;
 }
 
 .nf-work__project {
-    margin-bottom: 10vh;
+    margin-bottom: 20vh;
+}
+
+.nf-work__project#lastProject {
+    margin-bottom: 5vh;
 }
 
 .nf-work__header {
     display: grid;
-    grid-template-columns: 80px 1fr 160px;
+    grid-template-columns: 80px 1fr auto;
     align-items: baseline;
     margin-bottom: 20px;
 }
@@ -3091,7 +3140,7 @@ body.nf-loading {
 
 /* ── 1024px ── */
 @media (max-width: 1024px) {
-    .nf-work__header { grid-template-columns: 60px 1fr 140px; }
+    .nf-work__header { grid-template-columns: 60px 1fr auto; }
     .nf-work__name { font-size: clamp(1.8rem, 3.5vw, 3rem); }
     .nf-work__body { grid-template-columns: 5fr 7fr; }
     .nf-work__meta { gap: 22px; }
@@ -3152,7 +3201,7 @@ body.nf-loading {
 @media (max-width: 480px) {
     .nf-work { padding: 56px 0 48px; overflow-x: clip; }
     .nf-work__inner { width: 100%; padding: 0 20px; }
-    .nf-work__label { margin-bottom: 36px; }
+    .nf-work__label { margin-bottom: 60px; }
     .nf-work__name { font-size: clamp(1.7rem, 8vw, 2.2rem); }
 
     .nf-work__img-wrap {
@@ -3172,5 +3221,5 @@ body.nf-loading {
     .nf-work__meta-desc { font-size: 0.78rem; }
 
     .nf-work__meta-row { padding: 10px 0; }
-    .nf-work__project { margin-bottom: 52px; }
+    .nf-work__project { margin-bottom: 120px; }
 }
