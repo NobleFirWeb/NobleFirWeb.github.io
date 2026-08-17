@@ -130,8 +130,13 @@
         const body   = document.querySelector(".svc-hero__body");
         if (!title || !kicker || !body) return;
 
+        const ring1 = document.querySelector(".svc-hero__ring--1");
+        const ring2 = document.querySelector(".svc-hero__ring--2");
+        const ring3 = document.querySelector(".svc-hero__ring--3");
+
         // Pre-hide everything
         gsap.set([title, kicker, body], { visibility: "hidden" });
+        gsap.set([ring1, ring2, ring3], { autoAlpha: 0 });
 
         // Split title into chars — no mask to avoid glyph clipping
         const splitTitle = SplitText.create(title, { type: "chars" });
@@ -172,6 +177,11 @@
           duration: 0.8,
           ease: "expo.out"
         }, "<");
+
+        // 4. Rings fade in sequentially, starting 0.25s after body completes
+        tl.to(ring1, { autoAlpha: 1, duration: 0.5,  ease: "power2.out" }, "+=0.25");
+        tl.to(ring2, { autoAlpha: 1, duration: 0.75, ease: "power2.out" }, "+=1.0");
+        tl.to(ring3, { autoAlpha: 1, duration: 1.0,  ease: "power2.out" }, "+=1.0");
       }
 
       if (document.readyState === "loading") {

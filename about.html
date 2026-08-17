@@ -28,19 +28,6 @@
     </head>
     <body>
 
-    <!-- Text Spinner (place near the end of <body> in about.html) -->
-    <a class="text-spinner" href="contact-us.html" aria-label="Go to Contact" data-text="LET’S TALK! • " data-speed="12s">
-        <svg viewBox="0 0 110 110" width="110" height="110" role="img" aria-hidden="true">
-            <defs>
-                <!-- Circle path the text follows -->
-                <path id="spinnerCircle" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"></path>
-            </defs>
-            <text dy="4">
-                <textPath id="spinnerText" href="#spinnerCircle" startOffset="0%"></textPath>
-            </text>
-        </svg>
-    </a>
-
         
     <!-- Navbar -->
     <header class="navbar">
@@ -91,81 +78,89 @@
 
     <div class="cursor"></div>
 
-    <section class="ab-cascade" aria-label="About Noble Fir Studio">
+    <section class="ab-hero" aria-label="About Noble Fir Studio">
 
-      <div class="ab-cascade__headline" aria-label="All in, every single time.">
-        <span class="ab-cascade__line ab-cascade__line--1">All in,</span>
-        <span class="ab-cascade__line ab-cascade__line--2">Every</span>
-        <span class="ab-cascade__line ab-cascade__line--3">Single</span>
-        <span class="ab-cascade__line ab-cascade__line--4">Time.</span>
+      <!-- Left column -->
+      <div class="ab-hero__left">
+        <div class="ab-hero__nf" aria-hidden="true">
+          <img src="img/3d_assets/8.png" alt="" draggable="false">
+        </div>
+        <div class="ab-hero__text">
+          <h1 class="ab-hero__title">About NF</h1>
+          <p class="ab-hero__kicker">
+            <span class="ab-hero__kicker-line">All In.</span>
+            <span class="ab-hero__kicker-words">
+              <span class="ab-hero__kicker-word">Every.</span>
+              <span class="ab-hero__kicker-word">Single.</span>
+              <span class="ab-hero__kicker-word">Time.</span>
+            </span>
+          </p>
+        </div>
       </div>
 
-
-      <div class="ab-cascade__bottom">
-        <p class="ab-cascade__bio">
-          I'm Jesse Kuykendall — Founder of Noble Fir Studio. Based in Portland, Oregon, I build custom websites for businesses that deserve more. Direct access, no middlemen, and an obsessive focus on getting every detail right — from first concept to launch.
-        </p>
-        <div class="ab-cascade__facts">
-          <div class="ab-cascade__fact">
-            <span class="ab-cascade__fact-label">Founder</span>
-            <span class="ab-cascade__fact-value">Jesse Kuykendall</span>
-          </div>
-          <div class="ab-cascade__fact">
-            <span class="ab-cascade__fact-label">Based in</span>
-            <span class="ab-cascade__fact-value">Portland, Oregon</span>
-          </div>
-          <div class="ab-cascade__fact">
-            <span class="ab-cascade__fact-label">Specialty</span>
-            <span class="ab-cascade__fact-value">Web Design &amp; Development</span>
-          </div>
-        </div>
+      <!-- Right column -->
+      <div class="ab-hero__right">
+        <p class="ab-hero__body">I'm Jesse Kuykendall — Founder of Noble Fir Studio. Based in Portland, Oregon, I build custom websites for businesses that deserve more. Direct access, no middlemen, and an obsessive focus on getting every detail right — from first concept to launch.</p>
       </div>
 
     </section>
 
     <script>
     (function () {
-      function initAbCascade() {
-        if (typeof gsap === 'undefined') return;
+      function initAbHeroAnim() {
+        if (typeof gsap === 'undefined' || typeof SplitText === 'undefined') return;
 
-        const lines  = document.querySelectorAll('.ab-cascade__line');
-        const rule   = document.querySelector('.ab-cascade__rule');
-        const bottom = document.querySelector('.ab-cascade__bottom');
+        const title     = document.querySelector('.ab-hero__title');
+        const kicker    = document.querySelector('.ab-hero__kicker');
+        const kickerLine = document.querySelector('.ab-hero__kicker-line');
+        const kickerWords = document.querySelectorAll('.ab-hero__kicker-word');
+        const body      = document.querySelector('.ab-hero__body');
 
-        if (!lines.length) return;
+        if (!title) return;
 
-        gsap.set(lines, { y: 60, autoAlpha: 0 });
-        if (rule)   gsap.set(rule,   { autoAlpha: 0 });
-        if (bottom) gsap.set(bottom, { autoAlpha: 0, y: 20 });
+        // Hide before split
+        gsap.set([title, body], { visibility: 'hidden' });
+        gsap.set(kicker, { visibility: 'visible' });
+
+        // Split title chars
+        const splitTitle = SplitText.create(title, { type: 'chars' });
+        gsap.set(title, { visibility: 'visible' });
+        gsap.set(splitTitle.chars, { y: 40, autoAlpha: 0 });
+
+        // Kicker elements start invisible
+        gsap.set(kickerLine, { autoAlpha: 0, y: 30 });
+        gsap.set(kickerWords, { autoAlpha: 0, y: 30 });
+
+        // Body starts off-screen right
+        gsap.set(body, { visibility: 'visible', x: 80, autoAlpha: 0 });
 
         const tl = gsap.timeline({ delay: 0.1 });
 
-        tl.to(lines, {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.85,
-          ease: 'expo.out',
-          stagger: 0.12
+        // 1. "ABOUT NF" chars stagger up
+        tl.to(splitTitle.chars, {
+          y: 0, autoAlpha: 1, duration: 0.8, ease: 'expo.out', stagger: 0.04
         });
 
-        if (rule) tl.to(rule, {
-          autoAlpha: 1,
-          duration: 0.6,
-          ease: 'power2.out'
+        // 2. Body slides in from right
+        tl.to(body, {
+          x: 0, autoAlpha: 1, duration: 0.8, ease: 'expo.out'
         }, '-=0.3');
 
-        if (bottom) tl.to(bottom, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.7,
-          ease: 'expo.out'
-        }, '-=0.3');
+        // 3. "All In." rises
+        tl.to(kickerLine, {
+          autoAlpha: 1, y: 0, duration: 0.7, ease: 'expo.out'
+        }, '-=0.2');
+
+        // 4. Pause — then "Every." "Single." "Time." each rise individually
+        tl.to(kickerWords, {
+          autoAlpha: 1, y: 0, duration: 0.6, ease: 'expo.out', stagger: 0.22
+        }, '+=0.45');
       }
 
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initAbCascade);
+        document.addEventListener('DOMContentLoaded', initAbHeroAnim);
       } else {
-        initAbCascade();
+        initAbHeroAnim();
       }
     })();
     </script>
