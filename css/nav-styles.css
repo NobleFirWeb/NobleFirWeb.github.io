@@ -641,7 +641,7 @@ Slide-out nav panel
     top: 0;
     right: 50%;
     margin: 0;
-    padding: 1.25rem 1.75rem;
+    padding: 1.25rem 0.5rem;
     width: calc(33vw + var(--_nav-panel-border-radius));
     height: 100svh;
     list-style: none;

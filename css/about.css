@@ -61,19 +61,21 @@ body {
   z-index: 2;
 }
 
-/* 3D asset watermark — bottom-left of full hero on mobile */
+/* NF watermark — matches services hero placement */
 .ab-hero__nf {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 55%;
+  bottom: -10%;
+  left: -40%;
+  height: 70%;
   width: auto;
-  opacity: 0.1;
+  color: #F5F5F5;
+  opacity: 0.06;
   user-select: none;
   pointer-events: none;
+  white-space: nowrap;
   z-index: 1;
 }
-.ab-hero__nf img {
+.ab-hero__nf svg {
   height: 100%;
   width: auto;
   display: block;
@@ -169,14 +171,11 @@ body {
   }
   .ab-hero__nf {
     position: absolute;
-    bottom: 0;
-    left: 5%;
+    bottom: -5%;
+    left: 0%;
     height: auto;
-    width: clamp(22rem, 50vw, 64rem);
-  }
-  .ab-hero__nf img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    opacity: 0.04;
   }
   .ab-hero__right {
     flex: 0 0 45%;
@@ -1324,55 +1323,42 @@ body {
 }
 
 .nf-reviews__kicker {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
+    font-family: "JetBrains Mono", "Courier New", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #E8001E;
+    color: var(--nf-gray);
 }
 
 .nf-reviews__nav {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
-}
-
-.nf-reviews__counter {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    color: #444;
-    min-width: 56px;
-    text-align: center;
-}
-
-.nf-reviews__counter em {
-    font-style: normal;
-    color: #fff;
+    gap: 0.75rem;
 }
 
 .nf-reviews__btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.15);
-    color: #fff;
-    font-size: 1rem;
+    background: none;
+    border: 1px solid #2a2a2a;
+    border-radius: 0;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
-    display: grid;
-    place-items: center;
-    transition: border-color 0.2s ease, background 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--nf-neutral);
+    font-size: 1.1rem;
+    transition: border-color 0.2s ease, color 0.2s ease;
     flex-shrink: 0;
 }
 
 .nf-reviews__btn:hover {
-    border-color: #E8001E;
-    background: #E8001E;
+    border-color: var(--nf-red);
+    color: var(--nf-red);
 }
 
 .nf-reviews__btn:focus-visible {
-    outline: 2px solid #E8001E;
+    outline: 2px solid var(--nf-red);
     outline-offset: 3px;
 }
 
@@ -2157,110 +2143,106 @@ sl-button::part(label):hover {
 
 
 
-/* CTA Section Styles */
-#cta {
+/* ===== int-link ===== */
+.int-link {
+    display: block;
+    width: fit-content;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(1.15rem, 2.4vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--nf-fg);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.25s ease;
+}
+.int-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
     width: 100%;
-    height: auto;
-    max-height: 60vh;
+    height: 1px;
+    background: var(--nf-red);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.35s ease;
+}
+.int-link:hover::after { transform: scaleX(1); }
+.int-link svg { display: none; }
+
+/* ===== CTA Section ===== */
+#cta {
+    position: relative;
+    min-height: 420px;
+    overflow: hidden;
     background: var(--nf-bg);
     display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 0 5%;
-    padding-bottom: 10%;
-    margin-top: 10%;
+    padding: 80px 5%;
+    margin-top: 10vh;
 }
 
-#cta .contact-title1 {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    color: #ffffff;
-    font-size: 1.25rem;
+.nf-cta__ghost {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: clamp(7rem, 22vw, 18rem);
+    letter-spacing: -0.04em;
     text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.09);
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+    line-height: 1;
 }
 
-#cta .contact-title2 {
-    font-size: 5rem;
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    color: #ffffff;
-    margin-top: 20px;
-    letter-spacing: -3px;
-    text-transform: uppercase;
+.nf-cta__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    text-align: center;
+    max-width: 710px;
 }
 
-#cta .contact-title2 span {
-    font-size: 5rem;
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    color: #ff0000;
-    letter-spacing: -3px;
-    text-transform: uppercase;
+.nf-cta__content .int-link {
+    margin-left: 0;
+    margin-top: 4rem;
 }
 
-#cta p {
+.nf-cta__question {
     font-family: "Inter", sans-serif;
     font-weight: 300;
-    color: #ffffff;
-    margin-top: 20px;
+    font-size: clamp(1.55rem, 3vw, 2.6rem);
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.78);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
 }
 
-#cta .contact-subtitle {
-    font-family: "Inter", sans-serif;
-    font-weight: 300;
-    margin-top: 20px;
-}
-
-#cta .learn-more {
-    justify-content: flex-start;
-    margin-top: 20px;
-}
-
-#cta .learn-more {
-    display: block;
-    margin-top: 40px;
-}
-
-@media (max-width: 1024px) {
-    #cta {
-        width: 100%;
-        height: auto;
-        max-height: 5%;
-    }
+.nf-cta__red {
+    color: var(--nf-red);
 }
 
 @media (max-width: 768px) {
-    #cta {
-        max-height: 70vh;
-        margin: 10% auto;
-    }
-
-    #cta .contact-title2,
-    #cta .contact-title2 span {
-        font-size: 4.75rem;
-    }
+    #cta { min-height: 320px; padding: 60px 5%; }
+    .nf-cta__ghost { font-size: clamp(4rem, 18vw, 7rem); }
 }
 
 @media (max-width: 480px) {
-    #cta {
-        margin: 30px auto;
-        padding-top: 30px;
-    }
-
-    #cta .contact-title1 {
-        font-size: 1rem;
-    }
-
-    #cta .contact-title2,
-    #cta .contact-title2 span {
-        font-size: 2.5rem;
-        line-height: 1;
-        letter-spacing: -1.5px;
-    }
-    #cta p {
-        line-height: 1;
-    }
+    #cta { min-height: 260px; padding: 48px 5%; }
+    .nf-cta__ghost { font-size: clamp(3rem, 21vw, 5.75rem); }
+    .nf-cta__content { gap: 30px; }
+    .nf-cta__content .int-link { margin-top: 10px; }
 }
 
 

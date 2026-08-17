@@ -248,27 +248,24 @@ document.fonts.ready.then(() => {
 })();
 
 
-// ===== Creative Process — staggered card entrance =====
-(function () {
-    const cards = Array.from(document.querySelectorAll('.nf-proc__card'));
-    if (!cards.length) return;
+// ===== Creative Process — scroll-scrubbed connector lines =====
+(() => {
+  const connectors = Array.from(document.querySelectorAll('.nf-proc__connector'));
+  if (!connectors.length) return;
 
-    gsap.set(cards, { opacity: 0, y: 36 });
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.nf-proc__list',
+      start: 'top 75%',
+      end: 'bottom 85%',
+      scrub: 1,
+    }
+  });
 
-    ScrollTrigger.create({
-        trigger: '#nf-process',
-        start: 'top 70%',
-        once: true,
-        onEnter: () => {
-            gsap.to(cards, {
-                opacity: 1,
-                y: 0,
-                duration: 0.7,
-                stagger: 0.12,
-                ease: 'osmo-ease'
-            });
-        }
-    });
+  const step = 1 / connectors.length;
+  connectors.forEach((line, i) => {
+    tl.to(line, { scaleY: 1, ease: 'none', duration: step }, i * step);
+  });
 })();
 
 

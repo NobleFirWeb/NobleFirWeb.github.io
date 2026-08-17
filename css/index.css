@@ -731,9 +731,7 @@ body.nf-loading {
     font-family: "Jost", sans-serif;
 }
 
-.svc__top {
-    margin-bottom: 4vh;
-}
+
 
 .svc__heading {
     font-family: "Jost", sans-serif;
@@ -2787,7 +2785,7 @@ body.nf-loading {
     font-family: "Inter", sans-serif;
     font-weight: 300;
     font-size: clamp(1.4rem, 3vw, 2.6rem);
-    line-height: 1.55;
+    line-height: 1.5;
     color: var(--nf-neutral);
     max-width: 52ch;
     margin: 1.5rem 0;
