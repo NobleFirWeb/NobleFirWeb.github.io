@@ -4,7 +4,7 @@
    Fonts: Space Grotesk (display), Inter (body)
    ════════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 /* ── Scroll cue font — matches the services/contact hero scroll indicator */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&display=swap');
 
@@ -13,6 +13,11 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+::selection {
+    background: var(--nf-red);
+    color: var(--nf-fg);
 }
 
 html {
@@ -34,6 +39,13 @@ body {
     --pf-white:   #F5F5F5;
     --pf-muted:   #888888;
     --pf-red:     #E8001E;
+
+    /* shared tokens — used by nf-reviews slider + CTA */
+    --nf-bg:      #0A0A0A;
+    --nf-fg:      #F5F5F5;
+    --nf-red:     #E8001E;
+    --nf-gray:    #555555;
+    --nf-neutral: #888888;
 }
 
 
@@ -97,9 +109,9 @@ body {
     justify-content: center;
     padding-top: 14vh;          /* clear the fixed navbar */
     margin: 0;
-    font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.065em;
+    font-family: "Jost", sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.06em;
     line-height: 0.85;
     white-space: nowrap;
     text-align: center;
@@ -322,9 +334,9 @@ body {
 }
 
 .pf-featured__title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1.65rem, 2.8vw, 2.6rem);
-    font-weight: 600;
+    font-family: "Jost", sans-serif;
+    font-size: clamp(1.55rem, 3vw, 2.6rem);
+    font-weight: 300;
     letter-spacing: -0.03em;
     line-height: 1.15;
     color: var(--pf-white);
@@ -502,9 +514,9 @@ body {
 }
 
 .pf-card__name {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: "Jost", sans-serif;
     font-size: 1.05rem;
-    font-weight: 500;
+    font-weight: 300;
     letter-spacing: -0.02em;
     color: var(--pf-white);
     line-height: 1.2;
@@ -551,9 +563,9 @@ body {
 .pf-stat:last-child { border-right: none; }
 
 .pf-stat__num {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: "Jost", sans-serif;
     font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-    font-weight: 600;
+    font-weight: 300;
     letter-spacing: -0.04em;
     color: var(--pf-white);
     line-height: 1;
@@ -609,12 +621,14 @@ body {
 }
 
 .pf-process__headline {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1.75rem, 3.5vw, 3rem);
-    font-weight: 500;
+    font-family: "Jost", sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.55rem, 3vw, 2.6rem);
     letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: #F5F5F5;
+    overflow: hidden;
     line-height: 1.2;
-    color: var(--pf-white);
     margin-bottom: 3.5rem;
 }
 
@@ -637,9 +651,9 @@ body {
 }
 
 .pf-step__title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: "Jost", sans-serif;
     font-size: 1.05rem;
-    font-weight: 600;
+    font-weight: 300;
     letter-spacing: -0.02em;
     color: var(--pf-white);
     margin-bottom: 0.75rem;
@@ -677,228 +691,291 @@ body {
 
 
 /* ════════════════════════════════════════════════════════════════
-   TESTIMONIALS — .pf-reviews / .pf-review
-   3-column review cards — social proof drives conversion
+   REVIEW SLIDER — matches homepage nf-reviews pattern
    ════════════════════════════════════════════════════════════════ */
 
-.pf-reviews {
-    padding: 6rem 5%;
-    background: var(--pf-bg);
-    border-top: 1px solid var(--pf-border);
+.nf-reviews {
+    width: 100%;
+    padding: 6vh 0 8vh;
+    background: var(--nf-bg);
+    overflow: hidden;
+    position: relative;
 }
 
-.pf-reviews__title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1.4rem, 3vw, 2.25rem);
+.nf-reviews__section-label {
+    font-family: "Jost", sans-serif;
     font-weight: 400;
+    font-size: clamp(1.55rem, 3vw, 2.6rem);
     letter-spacing: -0.04em;
-    color: var(--pf-white);
     text-transform: uppercase;
+    line-height: 1;
+    color: var(--nf-fg);
+    margin: 0 0 4vh;
+    display: block;
+    padding: 0 5%;
+}
+
+.nf-reviews__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
     margin-bottom: 2.5rem;
 }
 
-.pf-reviews__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-}
-
-.pf-review {
-    padding: 1.75rem;
-    background: var(--pf-surface);
-    border: 1px solid var(--pf-border);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-.pf-review:hover { border-color: rgba(232, 0, 30, 0.22); }
-
-.pf-review__quote {
-    font-size: 2.5rem;
-    line-height: 0.7;
-    color: var(--pf-red);
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    opacity: 0.6;
-}
-
-.pf-review__text {
-    font-size: 0.85rem;
-    line-height: 1.75;
-    color: #C4C4C4;
-    font-style: normal;
-    flex: 1;
-}
-
-.pf-review__cite {
-    display: flex;
-    flex-direction: column;
-    gap: 0.18rem;
-    font-style: normal;
-    border-top: 1px solid var(--pf-border);
-    padding-top: 1rem;
-}
-
-.pf-review__cite strong {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--pf-white);
-}
-
-.pf-review__cite span {
+.nf-reviews__kicker {
+    font-family: "JetBrains Mono", "Courier New", monospace;
     font-size: 0.68rem;
-    color: var(--pf-muted);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--nf-gray);
 }
 
-/* Reviews responsive */
-@media (max-width: 1024px) {
-    .pf-reviews__grid { grid-template-columns: 1fr 1fr; }
+.nf-reviews__nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
-@media (max-width: 640px) {
-    .pf-reviews__grid { grid-template-columns: 1fr; }
+.nf-reviews__btn {
+    background: none;
+    border: 1px solid #2a2a2a;
+    border-radius: 0;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--nf-neutral);
+    font-size: 1.1rem;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.nf-reviews__btn:hover {
+    border-color: var(--nf-red);
+    color: var(--nf-red);
+}
+
+.nf-reviews__btn:focus-visible {
+    outline: 2px solid var(--nf-red);
+    outline-offset: 3px;
+}
+
+.nf-reviews__stage {
+    width: 100%;
+    overflow: hidden;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    padding: 1rem 0 1.5rem;
+}
+
+.nf-reviews__stage:active { cursor: grabbing; }
+
+.nf-reviews__track {
+    display: flex;
+    gap: clamp(16px, 2.5vw, 28px);
+    will-change: transform;
+    touch-action: pan-y;
+}
+
+.nf-card-review {
+    flex-shrink: 0;
+    width: clamp(280px, 34vw, 440px);
+    border: 1px solid #1d1d1d;
+    padding: clamp(1.5rem, 2.5vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
+    will-change: transform, opacity;
+    transition: border-color 0.4s ease;
+}
+
+.nf-card-review.is-active { border-color: #2a2a2a; }
+
+.nf-card-review__mark {
+    font-family: "Jost", sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 0.7;
+    color: var(--nf-red);
+    font-weight: 300;
+    letter-spacing: -0.04em;
+}
+
+.nf-card-review__text {
+    font-family: "Inter", sans-serif;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 300;
+    color: var(--nf-fg);
+    line-height: 1.75;
+    flex: 1;
+    margin: 0;
+}
+
+.nf-card-review__footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #1d1d1d;
+    margin-top: auto;
+}
+
+.nf-card-review__author {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nf-card-review__author strong {
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--nf-fg);
+}
+
+.nf-card-review__author span {
+    font-family: "Inter", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--nf-neutral);
+}
+
+.nf-card-review__tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--nf-gray);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.nf-reviews__dots {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    margin-top: 2rem;
+    padding: 0 5%;
+}
+
+.nf-dot {
+    width: 20px;
+    height: 1px;
+    background: #2a2a2a;
+    transition: width 0.3s ease, background 0.3s ease;
+    cursor: pointer;
+}
+
+.nf-dot.is-active {
+    width: 36px;
+    background: var(--nf-red);
 }
 
 
 /* ════════════════════════════════════════════════════════════════
-   CTA SECTION — .pf-cta*
-   Full red section — primary conversion anchor at page bottom
+   int-link + CTA — matches homepage pattern
    ════════════════════════════════════════════════════════════════ */
 
-.pf-cta {
-    background: var(--pf-red);
-    padding: 7rem 5%;
-    text-align: center;
+.int-link {
+    display: block;
+    width: fit-content;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(1.15rem, 2.4vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--nf-fg);
+    text-decoration: none;
     position: relative;
+    transition: color 0.25s ease;
+}
+.int-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--nf-red);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.35s ease;
+}
+.int-link:hover::after { transform: scaleX(1); }
+.int-link svg { display: none; }
+
+#cta {
+    position: relative;
+    min-height: 420px;
     overflow: hidden;
+    background: var(--nf-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 5%;
+    margin-top: 10vh;
 }
 
-/* Big ghost word behind content */
-.pf-cta::before {
-    content: 'START';
+.nf-cta__ghost {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(8rem, 22vw, 20rem);
+    font-family: "Space Grotesk", sans-serif;
     font-weight: 700;
-    letter-spacing: -0.08em;
-    color: rgba(0, 0, 0, 0.09);
+    font-size: clamp(7rem, 22vw, 18rem);
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.09);
     white-space: nowrap;
-    pointer-events: none;
     user-select: none;
+    pointer-events: none;
     line-height: 1;
 }
 
-.pf-cta__inner {
+.nf-cta__content {
     position: relative;
     z-index: 2;
-    max-width: 680px;
-    margin: 0 auto;
-}
-
-.pf-cta__eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.65);
-    margin-bottom: 1.1rem;
-}
-
-.pf-cta__headline {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(2.4rem, 6vw, 5rem);
-    font-weight: 600;
-    letter-spacing: -0.04em;
-    line-height: 1.1;
-    color: #ffffff;
-    margin-bottom: 1.1rem;
-}
-
-.pf-cta__headline em {
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.72);
-}
-
-.pf-cta__sub {
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.72);
-    margin-bottom: 2.5rem;
-    max-width: 460px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.pf-cta__actions {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
+    gap: 28px;
+    text-align: center;
+    max-width: 710px;
 }
 
-/* Dark clipped-corner button */
-.pf-cta__btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: #0A0A0A;
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 0.9rem 2rem;
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-    transition: background 0.2s ease, transform 0.2s ease;
+.nf-cta__content .int-link {
+    margin-left: 0;
+    margin-top: 4rem;
 }
 
-.pf-cta__btn-primary:hover {
-    background: #1a1a1a;
-    transform: translateY(-1px);
-}
-
-.pf-cta__btn-ghost {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 400;
+.nf-cta__question {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.55rem, 3vw, 2.6rem);
+    line-height: 1;
     color: rgba(255, 255, 255, 0.78);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.2s ease;
-}
-
-.pf-cta__btn-ghost:hover { color: #fff; }
-
-/* Trust signals below buttons */
-.pf-cta__trust {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.01em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
 }
 
-.pf-cta__sep { opacity: 0.4; }
+.nf-cta__red { color: var(--nf-red); }
 
-/* CTA responsive */
+@media (max-width: 768px) {
+    #cta { min-height: 320px; padding: 60px 5%; }
+    .nf-cta__ghost { font-size: clamp(4rem, 18vw, 7rem); }
+}
+
 @media (max-width: 480px) {
-    .pf-cta__headline { font-size: 2.25rem; }
-    .pf-cta__actions { flex-direction: column; }
+    #cta { min-height: 260px; padding: 48px 5%; }
+    .nf-cta__ghost { font-size: clamp(3rem, 21vw, 5.75rem); }
+    .nf-cta__content { gap: 30px; }
+    .nf-cta__content .int-link { margin-top: 10px; }
 }

@@ -3,6 +3,11 @@
 /* ── Scroll cue font — matches the scroll indicator used across the site */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&display=swap');
 
+::selection {
+    background: var(--nf-red);
+    color: var(--nf-fg);
+}
+
 :root {
     --nf-bg:#0A0A0A;
     --nf-fg:#fff;

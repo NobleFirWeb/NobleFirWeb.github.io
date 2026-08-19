@@ -227,23 +227,57 @@ document.fonts.ready.then(() => {
 })();
 
 
-// ===== Brand Reveal — column entrance (ScrollTrigger) =====
-(function () {
-    const left  = document.querySelector('.nf-reveal__left');
-    const right = document.querySelector('.nf-reveal__right');
-    if (!left || !right) return;
+// ===== nf-reveal headline — GSAP word-rise (matches scrollStory .int-hed) =====
+(() => {
+    const hed = document.querySelector('.nf-reveal__hed');
+    if (!hed) return;
 
-    gsap.set(left,  { opacity: 0, x: -32 });
-    gsap.set(right, { opacity: 0, x: 32 });
+    document.fonts.ready.then(() => {
+        const split = SplitText.create(hed, {
+            type: 'words',
+            mask: 'words',
+            wordsClass: 'nf-reveal__word'
+        });
 
-    ScrollTrigger.create({
-        trigger: '.nf-reveal',
-        start: 'top 75%',
-        once: true,
-        onEnter: () => {
-            gsap.to(left,  { opacity: 1, x: 0, duration: 0.8, ease: 'osmo-ease' });
-            gsap.to(right, { opacity: 1, x: 0, duration: 0.8, ease: 'osmo-ease', delay: 0.12 });
-        }
+        gsap.set(split.words, { y: '105%', autoAlpha: 0 });
+
+        ScrollTrigger.create({
+            trigger: '.nf-reveal',
+            start: 'top 72%',
+            once: true,
+            onEnter: () => {
+                gsap.to(split.words, {
+                    y: 0,
+                    autoAlpha: 1,
+                    stagger: 0.07,
+                    duration: 0.6,
+                    ease: 'power3.out'
+                });
+            }
+        });
+    });
+})();
+
+
+// ===== Brand Reveal — scroll-triggered entrance =====
+(() => {
+    const body  = document.querySelector('.nf-reveal__body');
+    const items = Array.from(document.querySelectorAll('.nf-reveal__list-item'));
+    if (!body && !items.length) return;
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+        });
+    }, { threshold: 0.15 });
+
+    if (body) io.observe(body);
+
+    items.forEach((item, i) => {
+        item.style.transitionDelay = `${i * 0.07}s`;
+        io.observe(item);
     });
 })();
 

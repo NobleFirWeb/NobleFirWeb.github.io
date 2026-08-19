@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@300;400&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap');
 
+::selection {
+    background: var(--nf-red);
+    color: var(--nf-fg);
+}
 
 /* General Reset */
 * {
@@ -149,10 +153,9 @@ body {
   width: 90%;
   font-family: "Inter", sans-serif;
   font-weight: 300;
-  font-size: clamp(0.8rem, 1.1vw, 1rem);
+  font-size: clamp(0.9rem, 1.1vw, 1.3rem);
   line-height: 1.5;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
   color: var(--nf-fg);
 }
 
@@ -1320,6 +1323,19 @@ body {
     justify-content: space-between;
     padding: 0 5%;
     margin-bottom: 2.5rem;
+}
+
+.nf-reviews__section-label {
+    font-family: "Jost", sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.55rem, 3vw, 2.6rem);
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--nf-fg);
+    margin: 0 0 4vh;
+    display: block;
+    padding: 0 5%;
 }
 
 .nf-reviews__kicker {
