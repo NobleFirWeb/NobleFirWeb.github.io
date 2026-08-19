@@ -2414,6 +2414,40 @@ body.nf-loading {
     padding: 0 5% 7vh;
 }
 
+/* ── PDX Clock ── */
+.hero-clock {
+    position: absolute;
+    bottom: 7vh;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    font-family: "JetBrains Mono", monospace;
+    font-size: clamp(0.65rem, 1vw, 0.85rem);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: rgba(245, 245, 245, 0.55);
+    z-index: 5;
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+}
+.hero-clock__label {
+    color: rgba(245, 245, 245, 0.35);
+}
+.hero-clock__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--nf-red);
+    flex-shrink: 0;
+    animation: clockPulse 1.4s ease-in-out infinite;
+}
+@keyframes clockPulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.2; }
+}
+
 /* ── Crosshairs ── */
 .hero-xhair {
     position: absolute;

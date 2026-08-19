@@ -653,8 +653,24 @@ function initTabSystem(){
     const imgCaption   = document.getElementById("heroImgCaption");
     const cursorDot    = document.getElementById("heroCursor");
     const cornerBR     = document.getElementById("heroCornerBR");
+    const clockEl      = document.getElementById("heroClock");
+    const clockTime    = document.getElementById("heroClockTime");
     const navLogo      = document.querySelector(".navbar .logo-name");
     const globalCursor = document.querySelector(".cursor");
+
+    // Live PDX clock
+    if (clockTime) {
+      const tickPDX = () => {
+        const now = new Date().toLocaleTimeString("en-US", {
+          timeZone: "America/Los_Angeles",
+          hour12: false,
+          hour: "2-digit", minute: "2-digit", second: "2-digit"
+        });
+        clockTime.textContent = now;
+      };
+      tickPDX();
+      setInterval(tickPDX, 1000);
+    }
 
     if (!line1Letters.length) return;
 
@@ -673,8 +689,9 @@ function initTabSystem(){
       // navLogo
       if (navLogo) tl.to(navLogo, { autoAlpha: 1, duration: 0.4, ease: "power2.out" }, 0.3);
 
-      // Corner meta
+      // Corner meta + clock
       if (cornerBR) tl.to(cornerBR, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.0);
+      if (clockEl)  tl.to(clockEl,  { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.0);
 
       // Crosshair + image card + caption + cursor dot at initial position
       const cursorTargets = [xhair, imgCard, imgCaption, cursorDot].filter(Boolean);
