@@ -16,7 +16,7 @@
 
 /* ── html overflow fix — body alone doesn't stop iOS Safari from horizontal scroll */
 html {
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
 }
 
@@ -24,7 +24,7 @@ body {
     width: 100%;
     max-width: 100%;
     height: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     background-color: #0A0A0A;
 }
 
@@ -41,6 +41,10 @@ body {
 /* ═══════════════════════════════════════════
    About Hero — mobile-first, mirrors services
 ═══════════════════════════════════════════ */
+.hero-reveal-wrap {
+  position: relative;
+}
+
 .ab-hero {
   width: 100%;
   min-height: 100svh;
@@ -48,8 +52,10 @@ body {
   flex-direction: column;
   background: #0A0A0A;
   color: #F5F5F5;
-  overflow: hidden;
-  position: relative;
+  overflow: clip;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 /* ── Left column ── */
@@ -302,11 +308,7 @@ body {
 }
 }
 
-#mission {
-  width: 100%;
-  min-height: 100vh;
-  padding-top: 10%;
-}
+
 
 /* ═══════════════════════════════════════════
    SECTION MARKER — proof of concept
@@ -394,220 +396,154 @@ body {
   }
 }
 
-.mission-title {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 8rem;
-    font-weight: 800;
-    color: #343434;
-    text-align: center;
-    text-transform: uppercase;
-    z-index: 0;
-    font-optical-sizing: auto;
-    padding: 0 5%;
-}
 
-.mission-title strong {
-  color: #ff0000;
-  font-weight: 500;
-}
-
-.mission-title span {
-  color: #ff0000;
-  font-size: 2rem;
-  display: inline-flex;
-  float: left;
-}
-
-.mission .section-header {
-    width: 75%;
-    max-width: 1100px;
-    margin: 100px auto;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    row-gap: 24px;
-}
-
-.mission .header-paragraph {
-    font-family: "inter", sans-serif;
-    font-weight: 300;
-    color: #fff;
-    font-size: 1.5rem;
-    line-height: 1.6;
-    text-align: center;
-
-}
-
-.mission .header-paragraph strong {
-  color: #ff0000;
-}
-
-.mission .header-paragraph span {
-    font-family: "inter", sans-serif;
-    font-weight: 300;
-    font-size: 1.5rem;
-    color: #fff;
-    text-decoration: line-through;
-    text-decoration-color: #ff0000;
-    text-decoration-thickness: 0.1rem;
-}
-
-#p2 {
-      font-weight: 300;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: rgb(166, 166, 166);
-    margin: 0 auto;
-    max-width: 620px;
-}
-
-#p2 span {
-  color: rgb(166, 166, 166);
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
 
 /* ═══════════════════════════════════════════
-   MISSION MANIFESTO
-   Single-column copy + framed photo / facts aside
+   MISSION — Concept A (Statement)
    ═══════════════════════════════════════════ */
-.mission-manifesto {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 4rem;
-  align-items: start;
-  padding: 60px 5% 100px;
-  max-width: 80%;
-  margin: 0 auto;
+.mission {
+  border-top: 1px solid rgba(255, 0, 0, 0.3);
+  background: var(--nf-bg);
+  position: relative;
+  z-index: 2;
 }
 
-.mission-manifesto__text {
+.mission__scene {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  max-width: 640px;
+  justify-content: space-evenly;
+  padding: 0;
+  margin: 0 0 10vh;
+}
+
+.mission__hed {
+  font-family: "Jost", sans-serif;
+  font-weight: 200;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--nf-fg);
+  margin: 10vh 7% 3rem;
+}
+
+.mission__hed em {
+  color: var(--nf-red);
+  font-style: normal;
+}
+
+.mission__rule {
+  border: none;
+  border-top: 1px solid rgba(245,245,245,0.1);
+  margin: 0 7% 1.5rem;
+}
+
+.mission__body {
   font-family: "Inter", sans-serif;
   font-weight: 300;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: #a6a6a6;
-}
-
-.mission-manifesto__text p:first-child {
-  font-size: 1.3rem;
-  font-weight: 400;
-  color: #ffffff;
+  font-size: clamp(1.4rem, 3vw, 2.6rem);
   line-height: 1.5;
-}
-
-.mission-manifesto__text .learn-more {
-  margin-top: 0.5rem;
-  width: fit-content;
-  margin-left: 0;
-  justify-content: flex-start;
-}
-
-.mission-manifesto__aside {
+  color: var(--nf-neutral);
+  max-width: 52ch;
+  margin: 0 7% 3rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  position: sticky;
-  top: calc(var(--nav-h, 100px) + 40px);
+  gap: 1.4em;
 }
 
-.mission-manifesto__photo {
+.mission__body strong {
+  color: var(--nf-fg);
+  font-weight: 300;
+}
+
+.mission-row {
+  height: 45vh;
   width: 100%;
-  aspect-ratio: 4 / 5;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.08);
+  margin-top: 5%;
 }
 
-.mission-manifesto__photo img {
-  display: block;
+.mission-cols {
+  display: flex;
+  flex-direction: row;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  color: white;
 }
 
-.mission-facts {
-  list-style: none;
+.col-1, .col-2, .col-3, .col-4 {
+  width: 25%;
+  height: 100%;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.col-1 {
+  background-color: var(--nf-red);
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
 }
 
-.mission-facts li {
+.col-1 h2 {
+  font-family: "Jost", sans-serif;
+  font-weight: 200;
+  font-size: clamp(1.6rem, 2.5vw, 2.5rem);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: #fff;
+}
+
+.col-2, .col-3, .col-4 {
+  background-color: var(--nf-bg);
   display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.1rem 0;
-  border-top: 1px solid rgba(255,255,255,.08);
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.mission-facts li:first-child {
-  border-top: none;
-}
-
-.mission-facts__num {
-  font-family: "JetBrains Mono", "DM Mono", monospace;
-  font-size: clamp(.85rem, 1.1vw, 1.1rem);
-  font-weight: 500;
-  letter-spacing: .2em;
+.col-2 h2, .col-3 h2, .col-4 h2 {
+  font-family: "Jost", sans-serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.5rem);
+  font-weight: 200;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
   color: var(--nf-red);
-  flex-shrink: 0;
 }
 
-.mission-facts__line {
-  flex: 0 0 32px;
-  height: 1px;
-  background: rgba(255,255,255,.18);
-}
-
-.mission-facts__label {
+.col-2 p, .col-3 p, .col-4 p {
   font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  color: #ffffff;
+  font-weight: 500;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  line-height: 1.65;
+  color: var(--nf-neutral);
 }
 
-.about-btn {
-    display: block;
-    align-self: flex-start;
-    text-decoration: none;
-    background-color: #ff0000;
-    border: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+/* ── 768px: 2×2 grid ── */
+@media (max-width: 768px) {
+  .mission-row {
+    height: auto;
+  }
+  .mission-cols {
+    flex-wrap: wrap;
+  }
+  .col-1, .col-2, .col-3, .col-4 {
+    width: 50%;
+    height: 40vh;
+  }
 }
 
-.about-btn a {
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
-    border: 1.25px solid #000;
-    font-family: "Inter", sans-serif;
-    text-transform: uppercase;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 1rem;
-    transition: color 0.3s ease-in-out;
-}
-
-.about-btn a:hover {
-    background-color: #000;
-    border: 1.25px solid #fff;
-    color: #fff;
-}
-
-.mission-img {
-  width: 50%;
-  max-width: 720px;
-  height: auto;
+/* ── 480px: single column stack ── */
+@media (max-width: 480px) {
+  .col-1, .col-2, .col-3, .col-4 {
+    width: 100%;
+    height: auto;
+    min-height: 45svh;
+  }
 }
 
 .mission-content3 {
-  margin: 5% 6%;
+  margin: 10% 6% 5%;
 }
 
 .global-container {
@@ -734,7 +670,7 @@ body {
 
 @media (max-width: 768px) {
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
   }
   .mission-title {
     font-size: 4.75rem;

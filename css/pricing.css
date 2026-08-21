@@ -14,6 +14,11 @@
                 --nf-card-bg: rgba(255,255,255,0.03);
             }
 
+            ::selection {
+    background: var(--nf-red);
+    color: var(--nf-fg);
+}
+
             html { scroll-behavior: smooth; }
 
             body {

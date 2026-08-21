@@ -485,6 +485,46 @@ setInterval(changeWord, 3000);
 })();
 
 
+// ===== Mission cols h2 — word-rise =====
+(() => {
+    const heads = Array.from(document.querySelectorAll('.col-2 h2, .col-3 h2, .col-4 h2'));
+    if (!heads.length) return;
+    document.fonts.ready.then(() => {
+        heads.forEach((hed) => {
+            const split = SplitText.create(hed, { type: 'words', mask: 'words' });
+            gsap.set(split.words, { y: '105%', autoAlpha: 0 });
+            ScrollTrigger.create({
+                trigger: hed.closest('[class^="col-"]'),
+                start: 'top 85%',
+                once: true,
+                onEnter: () => {
+                    gsap.to(split.words, { y: 0, autoAlpha: 1, stagger: 0.08, duration: 0.55, ease: 'power3.out' });
+                }
+            });
+        });
+    });
+})();
+
+// ===== Mission hed — word-rise =====
+(() => {
+    const hed = document.querySelector('.mission__hed');
+    if (!hed) return;
+    document.fonts.ready.then(() => {
+        const split = SplitText.create(hed, {
+            type: 'words', mask: 'words', wordsClass: 'mission__word'
+        });
+        gsap.set(split.words, { y: '105%', autoAlpha: 0 });
+        ScrollTrigger.create({
+            trigger: '.mission__scene',
+            start: 'top 72%',
+            once: true,
+            onEnter: () => {
+                gsap.to(split.words, { y: 0, autoAlpha: 1, stagger: 0.07, duration: 0.6, ease: 'power3.out' });
+            }
+        });
+    });
+})();
+
 // ===== Skills list — ScrollTrigger stagger-in =====
 (function () {
     const items = Array.from(document.querySelectorAll('.skill'));
@@ -595,3 +635,4 @@ setInterval(changeWord, 3000);
         }
     });
 })();
+

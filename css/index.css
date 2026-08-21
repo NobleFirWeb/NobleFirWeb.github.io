@@ -2411,14 +2411,14 @@ body.nf-loading {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 0 5% 7vh;
+    padding: 0 2.5% 5vh;
 }
 
 /* ── PDX Clock ── */
 .hero-clock {
     position: absolute;
-    bottom: 7vh;
-    left: 5%;
+    bottom: 5vh;
+    left: 1%;
     display: flex;
     align-items: center;
     gap: 0.75em;
@@ -2432,6 +2432,7 @@ body.nf-loading {
     user-select: none;
     pointer-events: none;
 }
+
 .hero-clock__label {
     color: rgba(245, 245, 245, 0.35);
 }
@@ -2454,29 +2455,16 @@ body.nf-loading {
     inset: 0;
     pointer-events: none;
     z-index: 4;
-    opacity: 0;
+    opacity: 1;
 }
-.hero-xhair__h {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.18);
-    top: 50%;
-}
-.hero-xhair__v {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: rgba(255, 255, 255, 0.18);
-    left: 50%;
-}
+.hero-xhair__h,
+.hero-xhair__v { display: none; }
 .hero-xhair__label {
+    display: none;
     position: absolute;
-    left: 5%;
-    top: 50%;
-    transform: translateY(-140%);
+    left: 1%;
+    top: calc(25% - 1.6rem);
+    transform: none;
     font-family: "JetBrains Mono", monospace;
     font-size: 0.5rem;
     letter-spacing: 0.18em;
@@ -2490,11 +2478,11 @@ body.nf-loading {
 .hero-img-card {
     position: absolute;
     z-index: 3;
-    width: 300px;
-    height: 180px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    width: 98%;
+    height: min(140px, 22vh);
+    left: 1%;
+    top: 25%;
+    transform: none;
     pointer-events: none;
     opacity: 0;
     overflow: hidden;
@@ -2527,13 +2515,23 @@ body.nf-loading {
     background-size: 22px 22px, 100% 100%;
     border: 1px solid rgba(255,255,255,0.06);
 }
+.hero-img-card__face--4 {
+    background:
+        linear-gradient(90deg, rgba(255,0,0,0.06) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,0,0,0.06) 1px, transparent 1px),
+        #0d0d0d;
+    background-size: 32px 32px, 32px 32px, 100% 100%;
+    border: 1px solid rgba(255, 0, 0, 0.1);
+}
 /* ── Caption below image card ── */
 .hero-img-caption {
     position: absolute;
     z-index: 4;
-    transform: translateX(-50%);
+    left: 1%;
+    top: calc(25% + min(140px, 22vh) + 0.75rem);
+    transform: none;
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.35);
@@ -2611,42 +2609,20 @@ body.nf-loading {
     opacity: 0;
 }
 
-/* ── Tablet / small desktop (≤1024px): fixed image strip + auto-slide ── */
+/* ── Tablet / small desktop (≤1024px) ── */
 @media (max-width: 1024px) {
-    .hero-xhair,
     .hero-cursor { display: none; }
-
-    .hero-img-card {
-        margin: 0 auto;
-        left: 2%;
-        top: 40%;
-        width: 96%;
-        height: min(112px, 20vh);
-        transform: none;
-    }
-
-    .hero-img-caption {
-        left: 2%;
-        top: calc(30% + min(112px, 20vh) + 10px);
-        transform: none;
-    }
 }
 
 /* ── Mobile (≤768px) ── */
 @media (max-width: 768px) {
     .hero-img-card {
-        margin: 0 auto;
-        left: 2%;
-        top: 30%;
-        width: 96%;
         height: min(112px, 20vh);
-        transform: none;
+        top: 30%;
     }
 
     .hero-img-caption {
-        left: 2%;
-        top: calc(30% + min(112px, 20vh) + 10px);
-        transform: none;
+        top: calc(30% + min(112px, 20vh) + 0.75rem);
     }
     .hero-editorial {
         cursor: auto;
@@ -2661,13 +2637,18 @@ body.nf-loading {
 
 @media (max-width: 480px) {
     .hero-img-card {
+        width: 96%;
+        left: 2%;
     }
 
     .hero-img-caption {
-        left: 5%;
         top: calc(18% + min(220px, 28vh) + 10px);
+        left: 2%;
         transform: none;
     }
+    .hero-clock {
+    left: 2%;
+}
 }
 
 
@@ -2681,7 +2662,7 @@ body.nf-loading {
     width: 100%;
     height: 100svh;
     margin-top: 5%;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255, 0, 0, 0.3);
 }
 
 .ss-scene {

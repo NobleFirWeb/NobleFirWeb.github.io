@@ -705,18 +705,14 @@ function initTabSystem(){
       if (cornerBR) cornerBR.style.opacity = "1";
     }
 
-    // Cursor tracking on desktop fine-pointer only; auto-slide on tablet/mobile
-    if (window.matchMedia("(min-width: 1025px) and (pointer: fine)").matches) {
-      initHeroCursorTracking(section, xhair, imgCard, cursorDot, globalCursor);
-    } else if (window.matchMedia("(max-width: 1024px)").matches) {
-      initHeroAutoSlide(imgCard, imgCaption);
-    }
+    // Auto-slide on all viewports
+    initHeroAutoSlide(imgCard, imgCaption);
   }
 
   function initHeroAutoSlide(imgCard, imgCaption) {
     if (!imgCard) return;
     const faces    = Array.from(imgCard.querySelectorAll('.hero-img-card__face'));
-    const captions = ['[ Abstract No. 001 ]', '[ Abstract No. 002 ]', '[ Abstract No. 003 ]'];
+    const captions = ['[ Fully Responsive ]', '[ High Performance ]', '[ Built to Rank ]', '[ Conversion Optimized ]'];
     if (!faces.length) return;
     let current = 0;
     setInterval(() => {
