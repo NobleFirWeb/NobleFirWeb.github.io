@@ -741,7 +741,7 @@ body.nf-loading {
 .svc__heading {
     font-family: "Jost", sans-serif;
     font-weight: 400;
-    font-size: clamp(1.55rem, 3vw, 2.6rem);
+    font-size: clamp(2rem, 4vw, 3.8rem);
     letter-spacing: -0.04em;
     text-transform: uppercase;
     line-height: 1;
@@ -860,6 +860,9 @@ body.nf-loading {
     }
     .svc__left {
         margin-bottom: 2vh;
+    }
+    .svc__arrow {
+        display: none;
     }
 }
 
@@ -1237,7 +1240,7 @@ body.nf-loading {
 .nf-reviews__section-label {
     font-family: "Jost", sans-serif;
     font-weight: 400;
-    font-size: clamp(1.55rem, 3vw, 2.6rem);
+    font-size: clamp(2rem, 4vw, 3.8rem);
     letter-spacing: -0.04em;
     text-transform: uppercase;
     line-height: 1;
@@ -2041,7 +2044,7 @@ body.nf-loading {
 
 .nf-values__headline {
     font-family: "Inter", sans-serif;
-    font-size: clamp(1.55rem, 3vw, 2.6rem);
+    font-size: clamp(2rem, 4vw, 3.8rem);
     font-weight: 400;
     letter-spacing: -0.04em;
     text-transform: uppercase;
@@ -2426,7 +2429,7 @@ body.nf-loading {
     font-size: clamp(0.65rem, 1vw, 0.85rem);
     font-weight: 400;
     letter-spacing: 0.1em;
-    color: rgba(245, 245, 245, 0.55);
+    color: var(--nf-fg);
     z-index: 5;
     opacity: 0;
     user-select: none;
@@ -2434,7 +2437,7 @@ body.nf-loading {
 }
 
 .hero-clock__label {
-    color: rgba(245, 245, 245, 0.35);
+    color: var(--nf-fg);
 }
 .hero-clock__dot {
     width: 5px;
@@ -2534,7 +2537,7 @@ body.nf-loading {
     font-size: 0.65rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.35);
+    color: var(--nf-fg);
     pointer-events: none;
     opacity: 0;
     white-space: nowrap;
@@ -2784,7 +2787,7 @@ body.nf-loading {
     font-weight: 300;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--nf-neutral);
+    color: var(--nf-fg);
 }
 .int-terminal__cursor {
     display: inline-block;
@@ -3012,7 +3015,7 @@ body.nf-loading {
 .nf-work__label {
     font-family: "Jost", sans-serif;
     font-weight: 400;
-    font-size: clamp(1.55rem, 3vw, 2.6rem);
+    font-size: clamp(2rem, 4vw, 3.8rem);
     letter-spacing: -0.04em;
     text-transform: uppercase;
     line-height: 1;
