@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>JS Quality Custom Painting — Noble Fir Studio</title>
+        <meta name="description" content="Case study: JS Quality Custom Painting — a custom-built website designed and developed by Noble Fir Studio.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/nav-styles.css">
+        <link rel="stylesheet" href="../css/project.css">
+        <script src="https://kit.fontawesome.com/c73bb36ef6.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+    </head>
+    <body>
+
+    <!-- ── Navbar ── -->
+    <header class="navbar">
+        <a href="../index.html" class="logo-name" aria-label="Noble Fir Studio Home">
+            <span class="nf-logo-text">NF</span>
+        </a>
+
+        <nav class="navigation">
+            <button type="button" id="btn-nav-toggle" aria-expanded="false" aria-controls="nav-menu"
+                aria-label="Toggle navigation menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path class="burger-line burger-line--1" d="M4 8L20 8" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"/>
+                    <path class="burger-line burger-line--2" d="M4 16L20 16" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <svg class="menu-icon" viewBox="0 0 24 24">...</svg>
+
+            <div class="nav-brand" aria-hidden="true">
+                <span>Noble</span>
+                <span>Fir Studio.</span>
+            </div>
+
+            <ul id="nav-menu" role="list" aria-labelledby="btn-nav-toggle" aria-hidden="true" inert>
+                <li class="nav-panel__header" aria-hidden="true">
+                    <span class="nav-panel__brand">Noble Fir Studio</span>
+                </li>
+                <li style="--i: 1;"><a href="../index.html"><span class="nav-link__num">01</span><span>Home</span></a></li>
+                <li style="--i: 2;"><a href="../about.html"><span class="nav-link__num">02</span><span>About</span></a></li>
+                <li style="--i: 3;"><a href="../services.html"><span class="nav-link__num">03</span><span>Services</span></a></li>
+                <li style="--i: 4;"><a href="../pricing.html"><span class="nav-link__num">04</span><span>Pricing</span></a></li>
+                <li style="--i: 5;"><a href="../portfolio.html"><span class="nav-link__num">05</span><span>Projects</span></a></li>
+                <li style="--i: 6;"><a href="../contact-us.html"><span class="nav-link__num">06</span><span>Contact</span></a></li>
+                <li class="nav-panel__footer" aria-hidden="true">
+                    <div class="nav-panel__social">
+                        <a href="#" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                    <a class="nav-panel__email" href="mailto:hello@noblefirstudio.com">
+                        <span>hello@noblefirstudio.com</span>
+                        <span class="learn-more__icon learn-more__icon--right solar--arrow-right-down-linear" aria-hidden="true"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ══════════════════════════════════════════════
+         INTRO + STICKY HERO IMAGE
+    ══════════════════════════════════════════════ -->
+    <div class="cs-reveal-wrap">
+
+        <!-- Intro text sits on top of the hero image -->
+        <section class="cs-intro">
+            <h1 class="cs-intro__title">
+                JS Quality<br>
+                <em>Custom Painting.</em>
+            </h1>
+            <p class="cs-intro__desc">A fully custom website built for a Portland-based painting contractor — clean, fast, and built to generate leads.</p>
+        </section>
+
+        <!-- Sticky image window — image reveals as intro scrolls away -->
+        <div class="cs-hero-window" aria-hidden="true">
+            <div class="cs-hero-img" style="background-image: url('../img/js-painting.png');"></div>
+        </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         PROJECT DETAILS CARD
+    ══════════════════════════════════════════════ -->
+    <section class="cs-details">
+        <div class="cs-details__card">
+
+            <div class="cs-details__block">
+                <span class="cs-details__label">// The Brief</span>
+                <p class="cs-details__body">JS Quality needed a professional online presence that reflected the quality of their work — something that could build trust with homeowners fast and convert visitors into quote requests.</p>
+            </div>
+
+            <div class="cs-details__block">
+                <span class="cs-details__label">// What We Built</span>
+                <ul class="cs-details__list">
+                    <li>Custom design system rooted in the brand's existing identity</li>
+                    <li>Service pages with clear calls-to-action and lead capture</li>
+                    <li>Mobile-first, fully responsive across all screen sizes</li>
+                    <li>Contact form with direct email routing</li>
+                    <li>Performance-optimized image delivery</li>
+                    <li>On-page SEO foundation — metadata, schema, semantic HTML</li>
+                </ul>
+            </div>
+
+            <div class="cs-details__block cs-details__block--meta">
+                <div class="cs-details__meta-item">
+                    <span class="cs-details__label">// Stack</span>
+                    <div class="cs-details__tags">
+                        <span class="cs-tag">HTML</span>
+                        <span class="cs-tag">CSS</span>
+                        <span class="cs-tag">JavaScript</span>
+                        <span class="cs-tag">GSAP</span>
+                    </div>
+                </div>
+                <div class="cs-details__meta-item">
+                    <span class="cs-details__label">// Year</span>
+                    <p class="cs-details__body">2024</p>
+                </div>
+                <div class="cs-details__meta-item">
+                    <span class="cs-details__label">// Type</span>
+                    <p class="cs-details__body">Marketing Site</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         DESKTOP SCREENSHOT SLIDER
+    ══════════════════════════════════════════════ -->
+    <section class="cs-desktop-slider">
+        <span class="cs-section-label">// Desktop</span>
+        <div class="cs-slider" id="desktopSlider">
+            <div class="cs-slider__track" id="desktopTrack">
+                <div class="cs-slide">
+                    <div class="cs-slide__browser">
+                        <div class="cs-slide__browser-bar">
+                            <span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span>
+                        </div>
+                        <div class="cs-slide__screen" style="background-image: url('../img/js-painting.png');"></div>
+                    </div>
+                    <span class="cs-slide__num">01 / 05</span>
+                </div>
+                <div class="cs-slide">
+                    <div class="cs-slide__browser">
+                        <div class="cs-slide__browser-bar">
+                            <span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span>
+                        </div>
+                        <div class="cs-slide__screen" style="background-image: url('../img/js-painting2.png');"></div>
+                    </div>
+                    <span class="cs-slide__num">02 / 05</span>
+                </div>
+                <div class="cs-slide">
+                    <div class="cs-slide__browser">
+                        <div class="cs-slide__browser-bar">
+                            <span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span>
+                        </div>
+                        <div class="cs-slide__screen" style="background-image: url('../img/js-painting3.png');"></div>
+                    </div>
+                    <span class="cs-slide__num">03 / 05</span>
+                </div>
+                <div class="cs-slide">
+                    <div class="cs-slide__browser">
+                        <div class="cs-slide__browser-bar">
+                            <span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span>
+                        </div>
+                        <div class="cs-slide__screen" style="background-image: url('../img/js-painting4.png');"></div>
+                    </div>
+                    <span class="cs-slide__num">04 / 05</span>
+                </div>
+                <div class="cs-slide">
+                    <div class="cs-slide__browser">
+                        <div class="cs-slide__browser-bar">
+                            <span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span>
+                        </div>
+                        <div class="cs-slide__screen" style="background-image: url('../img/js-painting5.png');"></div>
+                    </div>
+                    <span class="cs-slide__num">05 / 05</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         MOBILE MOCKUP SECTION
+    ══════════════════════════════════════════════ -->
+    <section class="cs-mobile">
+        <div class="cs-mobile__inner">
+
+            <div class="cs-mobile__copy">
+                <span class="cs-section-label">// Mobile</span>
+                <h2 class="cs-mobile__hed">Fully<br><em>Responsive.</em></h2>
+                <p class="cs-mobile__body">Built mobile-first from the ground up. Every page is optimized for the screen your customers are actually using — fast-loading, thumb-friendly, and conversion-ready.</p>
+            </div>
+
+            <div class="cs-mobile__device-wrap">
+                <div class="cs-mobile__device" id="mobileDevice">
+                    <!-- Phone frame SVG -->
+                    <svg class="cs-phone-frame" viewBox="0 0 320 650" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="1" y="1" width="318" height="648" rx="40" stroke="rgba(245,245,245,0.15)" stroke-width="2"/>
+                        <rect x="8" y="8" width="304" height="634" rx="34" fill="none"/>
+                        <!-- notch -->
+                        <rect x="110" y="14" width="100" height="6" rx="3" fill="rgba(245,245,245,0.08)"/>
+                        <!-- home indicator -->
+                        <rect x="120" y="626" width="80" height="4" rx="2" fill="rgba(245,245,245,0.15)"/>
+                    </svg>
+                    <!-- Swipeable screen area -->
+                    <div class="cs-phone-screen">
+                        <div class="cs-phone-track" id="phoneTrack">
+                            <div class="cs-phone-slide" style="background-image: url('../img/js-painting-mobile.png');"></div>
+                            <div class="cs-phone-slide" style="background-image: url('../img/js-painting-mobile2.png');"></div>
+                            <div class="cs-phone-slide" style="background-image: url('../img/js-mobile.png');"></div>
+                        </div>
+                    </div>
+                    <!-- Dot indicators -->
+                    <div class="cs-phone-dots" id="phoneDots">
+                        <button class="cs-phone-dot is-active" data-idx="0" aria-label="Slide 1"></button>
+                        <button class="cs-phone-dot" data-idx="1" aria-label="Slide 2"></button>
+                        <button class="cs-phone-dot" data-idx="2" aria-label="Slide 3"></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         BACK LINK
+    ══════════════════════════════════════════════ -->
+    <section class="cs-back">
+        <a class="int-link" href="../portfolio.html"><span>Back to Projects</span></a>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════════════ -->
+    <footer class="nf-footer" role="contentinfo">
+        <span class="nf-footer-bg-letter nf-left" aria-hidden="true">N</span>
+        <span class="nf-footer-bg-letter nf-right" aria-hidden="true">F</span>
+
+        <nav class="nf-footer-nav" aria-label="Footer">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../services.html">Services</a></li>
+                <li><a href="../pricing.html">Pricing</a></li>
+                <li><a href="../portfolio.html">Projects</a></li>
+                <li class="nf-contact-btn"><a href="../contact-us.html">Let&rsquo;s Talk</a></li>
+            </ul>
+        </nav>
+
+        <div class="nf-footer-bottom">
+            <p class="nf-copy">@ 2025 NOBLE FIR STUDIO, LLC. ALL RIGHTS RESERVED.</p>
+            <div class="nf-social">
+                <a href="#" aria-label="Instagram" class="nf-social-icon"><i class="fa fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn" class="nf-social-icon"><i class="fa fa-linkedin"></i></a>
+            </div>
+            <div class="nf-legal">
+                <a href="../privacy.html">Privacy Policy</a>
+                <span class="nf-sep" aria-hidden="true">&bull;</span>
+                <a href="../terms.html">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/index.js"></script>
+    <script src="../js/project.js"></script>
+
+    </body>
+</html>
