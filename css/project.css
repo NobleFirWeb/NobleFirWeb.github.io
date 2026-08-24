@@ -70,6 +70,12 @@ body {
     font-style: normal;
 }
 
+.cs-intro__bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
 .cs-intro__desc {
     font-family: 'Inter', sans-serif;
     font-weight: 300;
@@ -77,6 +83,37 @@ body {
     line-height: 1.65;
     color: var(--nf-neutral);
     max-width: 48ch;
+}
+
+.cs-intro__live {
+    font-family: "Inter", sans-serif;
+    font-size: clamp(1.15rem, 2.4vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--nf-fg);
+    position: relative;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: color 0.25s ease;
+}
+
+.cs-intro__live::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--nf-red);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.35s ease;
+}
+
+.cs-intro__live:hover::after {
+    transform: scaleX(1);
 }
 
 /* Sticky hero image window */
@@ -272,7 +309,7 @@ body {
     cursor: grab;
     user-select: none;
     -webkit-user-select: none;
-    margin: 2rem 0;
+    margin: 5% 0;
 }
 
 .cs-slider.is-dragging {
@@ -418,18 +455,18 @@ body {
     width: 100%;
     height: auto;
     position: relative;
-    z-index: 1;
+    z-index: 3;
     pointer-events: none;
 }
 
-/* The swipeable screen sits above the SVG frame, clipped to look inside it */
+/* Screen fills the full frame interior — Dynamic Island + home indicator overlay on top */
 .cs-phone-screen {
     position: absolute;
-    top: 3%;
-    left: 4%;
-    width: 92%;
-    height: 90%;
-    border-radius: 28px;
+    top: 1.5%;
+    left: 3%;
+    width: 94%;
+    height: 97%;
+    border-radius: 44px;
     overflow: hidden;
     z-index: 2;
     cursor: grab;
@@ -463,24 +500,25 @@ body {
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 0.5rem;
+    gap: 8px;
+    align-items: center;
     z-index: 3;
 }
 
 .cs-phone-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--nf-gray);
+    width: 14px;
+    height: 2px;
+    border-radius: 2px;
+    background: #222;
     border: none;
     cursor: pointer;
     padding: 0;
-    transition: background 0.2s, transform 0.2s;
+    transition: width 0.3s ease, background 0.3s ease;
 }
 
 .cs-phone-dot.is-active {
+    width: 28px;
     background: var(--nf-red);
-    transform: scale(1.3);
 }
 
 /* ══════════════════════════════════════════════

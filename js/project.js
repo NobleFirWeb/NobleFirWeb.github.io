@@ -65,6 +65,16 @@
             );
         }
 
+        // "Desktop" section heading — scroll into view
+        const desktopHed = document.querySelector('.cs-section-heading');
+        if (desktopHed) {
+            gsap.fromTo(desktopHed,
+                { autoAlpha: 0, y: 28 },
+                { autoAlpha: 1, y: 0, duration: 0.65, ease: 'power3.out',
+                  scrollTrigger: { trigger: desktopHed, start: 'top 88%', once: true } }
+            );
+        }
+
         // "Fully Responsive." — scroll into view
         const mobileHed = document.querySelector('.cs-mobile__hed');
         if (mobileHed) {
