@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Redesign — Noble Fir Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { background: #0a0a0a; color: #fff; font-family: 'Jost', sans-serif; }
+
+/* ── PICKER BAR ── */
+.picker-bar {
+  position: sticky; top: 0; z-index: 200;
+  background: #0a0a0a;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 14px 36px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.picker-bar__label { font-size: 0.55rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+.picker-bar__brand { font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.1); }
+
+/* ── CONCEPT WRAPPER ── */
+.concept-wrap { position: relative; }
+.concept-header {
+  padding: 16px 36px;
+  display: flex; align-items: center; gap: 14px;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.concept-tag {
+  font-size: 0.52rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: #ff0000; border: 1px solid rgba(255,0,0,0.35); padding: 3px 9px;
+}
+.concept-desc { font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+.concept-actions { position: absolute; bottom: 26px; right: 36px; z-index: 50; }
+.concept-btn {
+  background: none; border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.38); font-family: 'Jost', sans-serif;
+  font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 9px 18px; cursor: pointer; transition: border-color 0.2s, color 0.2s;
+}
+.concept-btn:hover { border-color: #ff0000; color: #ff0000; }
+
+/* ── SHARED NAV ── */
+.h-nav {
+  position: absolute; top: 0; left: 0; right: 0;
+  padding: 28px 36px;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 20;
+}
+.h-nav__logo { font-weight: 400; font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+.h-nav__lines { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+.h-nav__lines span { display: block; width: 22px; height: 1px; background: rgba(255,255,255,0.6); }
+
+/* ── ABSTRACT PLACEHOLDERS ── */
+.abs { position: absolute; inset: 0; transition: opacity 0.4s ease; }
+.abs-1 {
+  background:
+    repeating-linear-gradient(-48deg, transparent 0, transparent 3px, rgba(210,15,0,0.22) 3px, rgba(210,15,0,0.22) 4px),
+    linear-gradient(155deg, #280000 0%, #0e0000 35%, #0a0a0a 70%);
+}
+.abs-2 {
+  background:
+    radial-gradient(ellipse at 25% 72%, rgba(0,58,68,0.92) 0%, transparent 58%),
+    radial-gradient(ellipse at 78% 26%, rgba(0,28,50,0.65) 0%, transparent 48%),
+    #0a0a0a;
+}
+.abs-3 {
+  background:
+    radial-gradient(ellipse at 66% 60%, rgba(52,0,74,0.9) 0%, transparent 54%),
+    radial-gradient(ellipse at 20% 30%, rgba(82,0,36,0.52) 0%, transparent 44%),
+    #0a0a0a;
+}
+
+/* ════════════════════════════════════
+   A — GRID
+   Static editorial. Cursor drives a
+   full-viewport crosshair + floating
+   image card that swaps every 200 px.
+════════════════════════════════════ */
+.hero-a {
+  position: relative; width: 100%; height: 100vh;
+  background: #0a0a0a; overflow: hidden; cursor: none; user-select: none;
+}
+
+/* crosshair */
+.a-xh, .a-xv {
+  position: absolute; pointer-events: none; z-index: 8;
+  opacity: 0; transition: opacity 0.25s ease;
+}
+.a-xh { left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.11); top: 50%; }
+.a-xv { top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.11); left: 50%; }
+.hero-a.active .a-xh,
+.hero-a.active .a-xv { opacity: 1; }
+
+/* image card — top-center anchored at cursor */
+.a-card {
+  position: absolute; pointer-events: none; z-index: 15;
+  width: 158px; transform: translate(-50%, 0);
+  opacity: 0; transition: opacity 0.25s ease;
+}
+.hero-a.active .a-card { opacity: 1; }
+.a-card__img { position: relative; width: 158px; height: 134px; overflow: hidden; }
+.a-card__caption {
+  font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.32); padding-top: 7px;
+}
+
+/* mid label + dashed rule */
+.a-rule {
+  position: absolute; top: 36%; left: 0; right: 0;
+  height: 1px; border-top: 1px dashed rgba(255,255,255,0.09);
+  pointer-events: none; z-index: 2;
+}
+.a-label {
+  position: absolute; top: 36%; left: 36px;
+  transform: translateY(calc(-100% - 8px));
+  font-size: 0.55rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(255,255,255,0.24); pointer-events: none; z-index: 2;
+}
+
+/* bottom headline */
+.a-headline {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 0 36px 6px; pointer-events: none; z-index: 2;
+}
+.a-line {
+  display: block; font-weight: 300;
+  font-size: clamp(4.5rem, 15.5vw, 22rem);
+  letter-spacing: -0.04em; line-height: 0.88;
+  color: rgba(255,255,255,0.9); text-transform: uppercase;
+}
+.a-line--r { text-align: right; }
+
+/* meta overlaid over bottom text */
+.a-meta {
+  position: absolute; z-index: 6; pointer-events: none;
+  font-size: 0.52rem; letter-spacing: 0.24em;
+  text-transform: uppercase; color: rgba(255,255,255,0.2);
+}
+.a-meta--l { bottom: 22px; left: 36px; }
+.a-meta--r { bottom: 22px; right: 36px; }
+
+
+/* ════════════════════════════════════
+   B — RISE
+   Animated. Letters of NOBLE FIR rise
+   first, then STUDIO. Rule draws, then
+   a static card + crosshair fade in.
+════════════════════════════════════ */
+.hero-b {
+  position: relative; width: 100%; height: 100vh;
+  background: #0a0a0a; overflow: hidden; user-select: none;
+}
+
+/* animated rule */
+.b-rule-clip { position: absolute; top: 36%; left: 0; right: 0; overflow: hidden; }
+.b-rule { height: 1px; border-top: 1px dashed rgba(255,255,255,0.09); width: 0; }
+.b-label {
+  position: absolute; top: 36%; left: 36px;
+  transform: translateY(calc(-100% - 8px));
+  font-size: 0.55rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(255,255,255,0); pointer-events: none;
+  transition: color 0.6s ease;
+}
+.hero-b.playing .b-label { color: rgba(255,255,255,0.24); transition-delay: 0.8s; }
+
+/* static crosshair (appears after anim) */
+.b-xh {
+  position: absolute; left: 0; right: 0; height: 1px;
+  background: rgba(255,255,255,0.11); pointer-events: none; opacity: 0;
+  top: 36%;
+}
+.b-xv {
+  position: absolute; top: 0; bottom: 0; width: 1px;
+  background: rgba(255,255,255,0.11); pointer-events: none; opacity: 0;
+  left: 74%;
+}
+.hero-b.playing .b-xh,
+.hero-b.playing .b-xv { animation: bFadeIn 0.7s ease 1.5s forwards; }
+
+/* static card */
+.b-card {
+  position: absolute; top: 36%; left: 74%;
+  transform: translate(-50%, 0);
+  width: 158px; pointer-events: none; opacity: 0;
+}
+.b-card__img { position: relative; width: 158px; height: 134px; overflow: hidden; }
+.b-card__caption {
+  font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.32); padding-top: 7px;
+}
+.hero-b.playing .b-card { animation: bFadeIn 0.7s ease 1.5s forwards; }
+
+/* animated headline */
+.b-headline {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 0 36px 6px; pointer-events: none; z-index: 2;
+}
+.b-line {
+  display: block; font-weight: 300;
+  font-size: clamp(4.5rem, 15.5vw, 22rem);
+  letter-spacing: -0.04em; line-height: 0.9;
+  color: rgba(255,255,255,0.9); text-transform: uppercase;
+  overflow: hidden;
+}
+.b-line--r { text-align: right; }
+
+.ltr {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+}
+.hero-b.playing .b-line--1 .ltr {
+  animation: bRise 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 0.055s + 0.05s);
+}
+.hero-b.playing .b-line--2 .ltr {
+  animation: bRise 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(0.56s + var(--i, 0) * 0.055s);
+}
+
+@keyframes bRise {
+  from { opacity: 0; transform: translateY(110%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bDraw   { from { width: 0; } to { width: 100%; } }
+
+.hero-b.playing .b-rule { animation: bDraw 0.65s ease 0.08s forwards; }
+
+/* meta */
+.b-meta {
+  position: absolute; z-index: 6; pointer-events: none;
+  font-size: 0.52rem; letter-spacing: 0.24em;
+  text-transform: uppercase; color: rgba(255,255,255,0.2); opacity: 0;
+}
+.b-meta--l { bottom: 22px; left: 36px; }
+.b-meta--r { bottom: 22px; right: 36px; }
+.hero-b.playing .b-meta { animation: bFadeIn 0.6s ease 1.45s forwards; }
+
+
+/* ════════════════════════════════════
+   C — SPLIT
+   Static. Left column: vertically-
+   centered type + red accent stroke.
+   Right column: full-height abstract.
+   Bottom: thin metadata bar.
+════════════════════════════════════ */
+.hero-c {
+  width: 100%; height: 100vh;
+  display: grid;
+  grid-template-rows: 78px 1fr 52px;
+  background: #0a0a0a; overflow: hidden;
+}
+.c-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 36px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.c-nav__logo { font-weight: 400; font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+.c-nav__lines { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+.c-nav__lines span { display: block; width: 22px; height: 1px; background: rgba(255,255,255,0.6); }
+
+.c-content { display: grid; grid-template-columns: 56% 44%; }
+
+.c-left {
+  position: relative;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 64px 0 52px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.c-accent {
+  position: absolute; left: 0; top: 20%; bottom: 20%;
+  width: 2px; background: #ff0000;
+}
+.c-kicker {
+  font-size: 0.55rem; letter-spacing: 0.32em;
+  text-transform: uppercase; color: rgba(255,255,255,0.26);
+  margin-bottom: 26px;
+}
+.c-headline {
+  font-weight: 300; font-size: clamp(3.5rem, 7vw, 10rem);
+  letter-spacing: -0.04em; line-height: 0.88;
+  text-transform: uppercase; color: rgba(255,255,255,0.9);
+}
+.c-tagline {
+  margin-top: 30px; font-weight: 300;
+  font-size: 0.65rem; letter-spacing: 0.06em; line-height: 1.75;
+  color: rgba(255,255,255,0.28); max-width: 270px;
+}
+.c-link {
+  margin-top: 34px;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.32); text-decoration: none;
+  border-bottom: 1px solid rgba(255,0,0,0.45); padding-bottom: 4px;
+  width: fit-content; transition: color 0.2s;
+}
+.c-link:hover { color: #ff0000; }
+
+.c-right { overflow: hidden; position: relative; }
+.c-right__abs {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 42% 58%, rgba(110,0,0,0.48) 0%, transparent 52%),
+    radial-gradient(ellipse at 72% 22%, rgba(180,10,0,0.24) 0%, transparent 44%),
+    repeating-linear-gradient(
+      14deg, transparent 0, transparent 9px,
+      rgba(255,255,255,0.013) 9px, rgba(255,255,255,0.013) 10px
+    ),
+    #0f0808;
+}
+.c-right__label {
+  position: absolute; bottom: 16px; left: 18px;
+  font-size: 0.48rem; letter-spacing: 0.26em; text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+
+.c-meta {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 36px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.c-meta span {
+  font-size: 0.52rem; letter-spacing: 0.24em;
+  text-transform: uppercase; color: rgba(255,255,255,0.18);
+}
+.c-meta__dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,0,0,0.45); }
+</style>
+</head>
+<body>
+
+<!-- PICKER BAR -->
+<div class="picker-bar">
+  <span class="picker-bar__label">Hero Redesign — 3 Concepts</span>
+  <span class="picker-bar__brand">Noble Fir Studio</span>
+</div>
+
+
+<!-- ══════════════════ CONCEPT A ══════════════════ -->
+<div class="concept-wrap">
+  <div class="concept-header">
+    <span class="concept-tag">A</span>
+    <span class="concept-desc">Grid — cursor crosshair + floating image card, static</span>
+  </div>
+
+  <section class="hero-a" id="heroA">
+    <div class="h-nav">
+      <span class="h-nav__logo">NF Studio</span>
+      <div class="h-nav__lines" aria-hidden="true"><span></span><span></span></div>
+    </div>
+
+    <!-- crosshair -->
+    <div class="a-xh" id="aXh"></div>
+    <div class="a-xv" id="aXv"></div>
+
+    <!-- mid rule + label -->
+    <div class="a-rule"></div>
+    <div class="a-label">Web Design Studio</div>
+
+    <!-- cursor image card -->
+    <div class="a-card" id="aCard">
+      <div class="a-card__img">
+        <div class="abs abs-1" id="aImg0"></div>
+        <div class="abs abs-2" id="aImg1" style="opacity:0"></div>
+        <div class="abs abs-3" id="aImg2" style="opacity:0"></div>
+      </div>
+      <div class="a-card__caption" id="aCaption">[Custom Websites]</div>
+    </div>
+
+    <!-- metadata -->
+    <div class="a-meta a-meta--l">Portland, OR</div>
+    <div class="a-meta a-meta--r">Est. 2025</div>
+
+    <!-- headline -->
+    <div class="a-headline">
+      <span class="a-line">Noble Fir</span>
+      <span class="a-line a-line--r">Studio</span>
+    </div>
+  </section>
+
+  <div class="concept-actions">
+    <button class="concept-btn" onclick="sendPrompt('Implement hero concept A: editorial dark layout with full-viewport cursor crosshair (thin 1px rgba white lines), image card that follows cursor top-center and swaps between 3 abstract images every 200px of movement, bottom-anchored NOBLE FIR left / STUDIO right in Jost 300 at 15.5vw, dashed mid-rule at 36% height with WEB DESIGN STUDIO label, and small metadata at bottom corners.')">Use concept A ↗</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════ CONCEPT B ══════════════════ -->
+<div class="concept-wrap">
+  <div class="concept-header">
+    <span class="concept-tag">B</span>
+    <span class="concept-desc">Rise — letter-by-letter stagger animation, static crosshair reveal</span>
+  </div>
+
+  <section class="hero-b" id="heroB">
+    <div class="h-nav">
+      <span class="h-nav__logo">NF Studio</span>
+      <div class="h-nav__lines" aria-hidden="true"><span></span><span></span></div>
+    </div>
+
+    <!-- animated rule -->
+    <div class="b-rule-clip"><div class="b-rule"></div></div>
+    <div class="b-label">Web Design Studio</div>
+
+    <!-- static crosshair (fades in post-animation) -->
+    <div class="b-xh"></div>
+    <div class="b-xv"></div>
+
+    <!-- static card (fades in post-animation) -->
+    <div class="b-card">
+      <div class="b-card__img">
+        <div class="abs abs-1"></div>
+      </div>
+      <div class="b-card__caption">[Custom Websites]</div>
+    </div>
+
+    <!-- metadata (fades in post-animation) -->
+    <div class="b-meta b-meta--l">Portland, OR</div>
+    <div class="b-meta b-meta--r">Est. 2025</div>
+
+    <!-- animated headline -->
+    <div class="b-headline">
+      <span class="b-line b-line--1"><!--
+        --><span class="ltr" style="--i:0">N</span><!--
+        --><span class="ltr" style="--i:1">O</span><!--
+        --><span class="ltr" style="--i:2">B</span><!--
+        --><span class="ltr" style="--i:3">L</span><!--
+        --><span class="ltr" style="--i:4;margin-right:0.22em">E</span><!--
+        --><span class="ltr" style="--i:5">F</span><!--
+        --><span class="ltr" style="--i:6">I</span><!--
+        --><span class="ltr" style="--i:7">R</span><!--
+      --></span>
+      <span class="b-line b-line--2"><!--
+        --><span class="ltr" style="--i:0">S</span><!--
+        --><span class="ltr" style="--i:1">T</span><!--
+        --><span class="ltr" style="--i:2">U</span><!--
+        --><span class="ltr" style="--i:3">D</span><!--
+        --><span class="ltr" style="--i:4">I</span><!--
+        --><span class="ltr" style="--i:5">O</span><!--
+      --></span>
+    </div>
+  </section>
+
+  <div class="concept-actions">
+    <button class="concept-btn" onclick="sendPrompt('Implement hero concept B: same layout as A but animated — NOBLE FIR letters rise staggered first (0.055s each), then STUDIO letters, then the dashed rule draws left-to-right, then the static crosshair lines and image card at top-right quadrant fade in. Use GSAP or CSS keyframes for the letter rise (translateY 110% → 0 with overflow:hidden clip on each line). No cursor tracking — fully static after animation completes.')">Use concept B ↗</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════ CONCEPT C ══════════════════ -->
+<div class="concept-wrap">
+  <div class="concept-header">
+    <span class="concept-tag">C</span>
+    <span class="concept-desc">Split — vertical divide, text left / abstract right, static</span>
+  </div>
+
+  <section class="hero-c">
+    <div class="c-nav">
+      <span class="c-nav__logo">NF Studio</span>
+      <div class="c-nav__lines" aria-hidden="true"><span></span><span></span></div>
+    </div>
+
+    <div class="c-content">
+      <div class="c-left">
+        <div class="c-accent"></div>
+        <p class="c-kicker">Web Design Studio — Portland, OR</p>
+        <h2 class="c-headline">Noble<br>Fir<br>Studio</h2>
+        <p class="c-tagline">Custom websites built to perform.<br>Brand-first design. Technical precision.</p>
+        <a href="#" class="c-link">Start a project</a>
+      </div>
+      <div class="c-right">
+        <div class="c-right__abs"></div>
+        <div class="c-right__label">[Abstract — Portland, OR]</div>
+      </div>
+    </div>
+
+    <div class="c-meta">
+      <span>Noble Fir Studio, LLC.</span>
+      <div class="c-meta__dot"></div>
+      <span>Est. 2025</span>
+      <div class="c-meta__dot"></div>
+      <span>Portland, Oregon</span>
+    </div>
+  </section>
+
+  <div class="concept-actions">
+    <button class="concept-btn" onclick="sendPrompt('Implement hero concept C: vertical split layout — left 56% column has a 2px red left-edge accent stripe, vertically centered NOBLE FIR STUDIO headline in Jost 300 at 7vw with a small kicker label above and tagline + CTA link below. Right 44% column is a full-height abstract gradient panel. Grid rows: 78px nav / 1fr content / 52px meta bar with dots.')">Use concept C ↗</button>
+  </div>
+</div>
+
+
+<script>
+// ── CONCEPT A: CURSOR TRACKING ──────────────────────────
+const heroA  = document.getElementById('heroA');
+const aXh    = document.getElementById('aXh');
+const aXv    = document.getElementById('aXv');
+const aCard  = document.getElementById('aCard');
+const aCaption = document.getElementById('aCaption');
+const aImgs  = [
+  document.getElementById('aImg0'),
+  document.getElementById('aImg1'),
+  document.getElementById('aImg2'),
+];
+const aCaptions = ['[Custom Websites]', '[Brand First]', '[Results Driven]'];
+
+let aDist = 0, aLastX = 0, aLastY = 0, aIdx = 0;
+
+heroA.addEventListener('mouseenter', () => heroA.classList.add('active'));
+heroA.addEventListener('mouseleave', () => heroA.classList.remove('active'));
+
+heroA.addEventListener('mousemove', (e) => {
+  const rect = heroA.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  aXh.style.top  = y + 'px';
+  aXv.style.left = x + 'px';
+  aCard.style.left = x + 'px';
+  aCard.style.top  = y + 'px';
+
+  const dx = x - aLastX, dy = y - aLastY;
+  aDist  += Math.sqrt(dx * dx + dy * dy);
+  aLastX  = x; aLastY = y;
+
+  const next = Math.floor(aDist / 200) % 3;
+  if (next !== aIdx) {
+    aImgs[aIdx].style.opacity = '0';
+    aIdx = next;
+    aImgs[aIdx].style.opacity = '1';
+    aCaption.textContent = aCaptions[aIdx];
+  }
+});
+
+// ── CONCEPT B: INTERSECTION OBSERVER ────────────────────
+const heroB = document.getElementById('heroB');
+const bObs  = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      heroB.classList.add('playing');
+      bObs.unobserve(heroB);
+    }
+  });
+}, { threshold: 0.2 });
+bObs.observe(heroB);
+</script>
+</body>
+</html>
