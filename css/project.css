@@ -116,6 +116,14 @@ body {
     transform: scaleX(1);
 }
 
+@media (max-width: 480px) {
+    .cs-intro__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+    }
+}
+
 /* Sticky hero image window */
 .cs-hero-window {
     position: sticky;
