@@ -906,11 +906,8 @@
     track.style.transform = saved;
   }
 
-  const targetX = idx => {
-    const sw = stage.getBoundingClientRect().width;
-    const cw = cardWidths[idx] ?? (cards[idx] ? cards[idx].getBoundingClientRect().width : 0);
-    return (sw - cw) / 2 - offsets[idx];
-  };
+  const SIDE_PEEK = () => stage.getBoundingClientRect().width * 0.05;
+  const targetX = idx => SIDE_PEEK() - offsets[idx];
 
   function updateCards(idx) {
     cards.forEach((c, i) => {
