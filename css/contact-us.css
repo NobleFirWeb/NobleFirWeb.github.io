@@ -1240,3 +1240,519 @@ body {
     align-self: flex-start;
   }
 }
+
+/* ── Contact Hero: two-column ── */
+.ct-contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 14vh 8% 5vh;
+    gap: 5vw;
+    align-items: start;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.ct-contact-left {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.ct-contact-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #E8001E;
+    display: block;
+    margin-bottom: 1.75rem;
+}
+
+.ct-contact-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #F5F5F5;
+    margin-bottom: 1.25rem;
+}
+
+.ct-contact-body {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #666;
+    max-width: 380px;
+    margin-bottom: 2rem;
+}
+
+/* Book a Call button */
+.ct-contact-call-btn {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #F5F5F5;
+    background: transparent;
+    border: 1px solid #2A2A2A;
+    padding: 0.85rem 1.6rem;
+    cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+    margin-bottom: 2.75rem;
+}
+
+.ct-contact-call-btn:hover {
+    border-color: #E8001E;
+    background: #E8001E;
+    color: #fff;
+}
+
+/* Info groups */
+.ct-info-group {
+    margin-bottom: 2rem;
+}
+
+.ct-info-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #2E2E2E;
+    display: block;
+    margin-bottom: 0.6rem;
+}
+
+.ct-info-group a,
+.ct-info-group p {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 400;
+    color: #888;
+    text-decoration: none;
+    display: block;
+    line-height: 1.7;
+    transition: color 0.2s;
+}
+
+.ct-info-group a:hover { color: #F5F5F5; }
+
+/* Social icons */
+.ct-contact-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+.ct-social-icon {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #1A1A1A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #444;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.ct-social-icon:hover { border-color: #333; color: #888; }
+.ct-social-icon svg { width: 14px; height: 14px; }
+
+/* RIGHT: Form */
+.ct-contact-right {
+    padding-top: 2rem;
+}
+
+.ct-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Label-on-border fields */
+.ct-field-wrap {
+    position: relative;
+}
+
+.ct-field-label {
+    position: absolute;
+    top: -0.5em;
+    left: 1rem;
+    padding: 0 0.35rem;
+    background: #0A0A0A;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #2E2E2E;
+    pointer-events: none;
+    z-index: 1;
+    transition: color 0.2s;
+}
+
+.ct-field-wrap:focus-within .ct-field-label {
+    color: #E8001E;
+}
+
+.ct-field-input,
+.ct-field-select,
+.ct-field-textarea {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #1A1A1A;
+    color: #F5F5F5;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    padding: 1.05rem 1rem;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.2s;
+    border-radius: 0;
+}
+
+.ct-field-input::placeholder,
+.ct-field-textarea::placeholder {
+    color: #2A2A2A;
+}
+
+.ct-field-input:focus,
+.ct-field-select:focus,
+.ct-field-textarea:focus {
+    border-color: #2A2A2A;
+}
+
+.ct-field-textarea {
+    resize: none;
+    height: 130px;
+    line-height: 1.6;
+}
+
+/* Select */
+.ct-field-select-wrap {
+    position: relative;
+}
+
+.ct-field-select-wrap::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 5px;
+    background: #333;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    pointer-events: none;
+}
+
+.ct-field-select {
+    cursor: pointer;
+    color: #2A2A2A;
+}
+
+.ct-field-select option { background: #111; color: #F5F5F5; }
+.ct-field-select--filled { color: #F5F5F5; }
+
+/* Two-col row */
+.ct-field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+/* Submit button */
+.ct-submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: #E8001E;
+    color: #fff;
+    border: none;
+    padding: 1.1rem 1.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    transition: background 0.2s;
+}
+
+.ct-submit-btn:hover { background: #CC0018; }
+
+.ct-submit-icon {
+    width: 22px;
+    height: 22px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ct-submit-icon svg { width: 8px; }
+
+/* Contact hero responsive */
+@media (max-width: 900px) {
+    .ct-contact {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 12vh 6% 6vh;
+    }
+    .ct-contact-body { max-width: 100%; }
+}
+
+@media (max-width: 520px) {
+    .ct-field-row { grid-template-columns: 1fr; }
+    .ct-contact-headline { font-size: clamp(2rem, 8vw, 2.5rem); }
+}
+
+/* ── Book a Call CTA strip ── */
+.ct-book-cta {
+    border-top: 1px solid #141414;
+    border-bottom: 1px solid #141414;
+    padding: 5vh 8%;
+}
+
+.ct-book-cta__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.ct-book-cta__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.ct-book-cta__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #E8001E;
+}
+
+.ct-book-cta__text p {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: #888;
+    max-width: 520px;
+    line-height: 1.6;
+}
+
+.ct-book-cta__btn {
+    flex-shrink: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #F5F5F5;
+    background: transparent;
+    border: 1px solid #2A2A2A;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+.ct-book-cta__btn:hover {
+    border-color: #E8001E;
+    color: #fff;
+    background: #E8001E;
+}
+
+@media (max-width: 720px) {
+    .ct-book-cta__inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.75rem;
+    }
+    .ct-book-cta__btn {
+        align-self: flex-start;
+    }
+}
+
+/* ── FAQ Section ── */
+.ct-faq {
+    padding: 0 8% 12vh;
+}
+
+.ct-faq__inner {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.ct-faq__header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.ct-faq__eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #E8001E;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.ct-faq__title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #F5F5F5;
+    margin-bottom: 1.25rem;
+}
+
+.ct-faq__sub {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.75;
+}
+
+/* FAQ list items */
+.ct-faq__item {
+    border-top: 1px solid #141414;
+}
+
+.ct-faq__item:last-child {
+    border-bottom: 1px solid #141414;
+}
+
+.ct-faq__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.6rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+/* Circle icon */
+.ct-faq__icon {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #252525;
+    position: relative;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.ct-faq__icon::before,
+.ct-faq__icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #444;
+    transition: transform 0.25s ease, background 0.2s;
+}
+
+.ct-faq__icon::before {
+    width: 10px;
+    height: 1px;
+}
+
+.ct-faq__icon::after {
+    width: 1px;
+    height: 10px;
+}
+
+.ct-faq__item.is-open .ct-faq__icon {
+    border-color: #E8001E;
+    background: #E8001E;
+}
+
+.ct-faq__item.is-open .ct-faq__icon::before,
+.ct-faq__item.is-open .ct-faq__icon::after {
+    background: #fff;
+}
+
+.ct-faq__item.is-open .ct-faq__icon::after {
+    transform: translate(-50%, -50%) rotate(90deg) scaleY(0);
+}
+
+.ct-faq__question {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #C0C0C0;
+    line-height: 1.4;
+    transition: color 0.2s;
+}
+
+.ct-faq__item.is-open .ct-faq__question,
+.ct-faq__trigger:hover .ct-faq__question {
+    color: #F5F5F5;
+}
+
+/* Answer panel */
+.ct-faq__answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+    padding-left: calc(26px + 1.25rem);
+}
+
+.ct-faq__item.is-open .ct-faq__answer {
+    grid-template-rows: 1fr;
+}
+
+.ct-faq__answer > p {
+    overflow: hidden;
+}
+
+.ct-faq__answer p {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.8;
+    padding-bottom: 1.6rem;
+}
+
+.ct-faq__answer strong {
+    color: #999;
+    font-weight: 500;
+}
+
+@media (max-width: 600px) {
+    .ct-faq {
+        padding: 6vh 6% 8vh;
+    }
+    .ct-faq__header {
+        margin-bottom: 3rem;
+    }
+    .ct-faq__answer {
+        padding-left: 0;
+    }
+}

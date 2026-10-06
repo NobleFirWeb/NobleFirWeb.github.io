@@ -1032,8 +1032,7 @@ Nav panel: footer (contact + social)
 /* Big background letters (N and F) */
 .nf-footer-bg-letter {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 0;
     font-family: "Inter", sans-serif;
     font-weight: 700;
     letter-spacing: -0.04em;
@@ -1125,6 +1124,7 @@ Nav panel: footer (contact + social)
     justify-self: end;
     margin-right: clamp(16px, 5vw, 60px);
     display: inline-flex;
+    align-items: center;
     justify-content: space-evenly;
     gap: 10px;
 }

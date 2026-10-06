@@ -917,7 +917,7 @@ function initTabSystem(){
     const statement = document.querySelector(".nf-values__statement");
     const kicker    = document.querySelector(".nf-values__kicker");
     const count     = document.querySelector(".nf-values__count");
-    const cards     = document.querySelectorAll(".nf-val-card");
+    const cards     = document.querySelectorAll(".nf-bento__card");
     const ctaText   = document.querySelector(".nf-values__cta-text");
 
     if (!headline) return;
@@ -953,7 +953,7 @@ function initTabSystem(){
     if (cards.length) {
       gsap.set(cards, { opacity: 0, y: 100 });
       ScrollTrigger.create({
-        trigger: ".nf-cards-wrap",
+        trigger: ".nf-bento",
         start: "top 80%",
         once: true,
         onEnter: () => {
@@ -982,133 +982,6 @@ function initTabSystem(){
       });
     }
 
-    // ── Draggable card slider
-    const track    = document.getElementById("nfCardsTrack");
-    const viewport = track ? track.closest(".nf-cards-viewport") : null;
-    const btnPrev  = document.getElementById("nfCardsPrev");
-    const btnNext  = document.getElementById("nfCardsNext");
-    if (!track || !viewport) return;
-
-    const allCards  = Array.from(track.querySelectorAll(".nf-val-card"));
-    const numCards  = allCards.length;
-    let currentIdx  = 0;
-    let currentX    = 0;
-    let isDragging  = false;
-    let startX      = 0;
-    let startDragX  = 0;
-    const CARD_GAP  = 20;
-
-    function getCardWidth() {
-      const card = allCards[0];
-      return card ? card.offsetWidth + CARD_GAP : 300;
-    }
-
-    function getCenterOffset() {
-      const card = allCards[0];
-      if (!card) return 0;
-      // Only center when a single card nearly fills the viewport (mobile)
-      if (viewport.offsetWidth >= card.offsetWidth * 1.8) return 0;
-      return (viewport.offsetWidth - card.offsetWidth) / 2;
-    }
-
-    function clamp(val, min, max) { return Math.min(Math.max(val, min), max); }
-
-    function slideToIndex(i) {
-      currentIdx = clamp(i, 0, numCards - 1);
-      const x = -currentIdx * getCardWidth() + getCenterOffset();
-      currentX = x;
-      gsap.to(track, { x: currentX, duration: 0.55, ease: "power3.out" });
-    }
-
-    // Initialize centered on first card
-    slideToIndex(0);
-    window.addEventListener("resize", () => slideToIndex(currentIdx));
-
-    // Arrow buttons
-    if (btnNext) btnNext.addEventListener("click", () => slideToIndex(currentIdx + 1));
-    if (btnPrev) btnPrev.addEventListener("click", () => slideToIndex(currentIdx - 1));
-
-    // Drag — pointer events (captures pointer even when leaving window)
-    let moved = false;
-    const DRAG_THRESHOLD = 6;
-
-    viewport.addEventListener("pointerdown", (e) => {
-      if (e.button !== 0) return;
-      isDragging = true;
-      moved = false;
-      startX = e.clientX;
-      startDragX = currentX;
-      viewport.setPointerCapture(e.pointerId);
-      gsap.killTweensOf(track);
-    });
-
-    viewport.addEventListener("pointermove", (e) => {
-      if (!isDragging) return;
-      const delta = e.clientX - startX;
-      if (!moved && Math.abs(delta) > DRAG_THRESHOLD) moved = true;
-      if (moved) {
-        const minX = -(numCards - 1) * getCardWidth() + getCenterOffset() - 60;
-        const maxX = getCenterOffset() + 60;
-        gsap.set(track, { x: clamp(startDragX + delta, minX, maxX) });
-      }
-    });
-
-    viewport.addEventListener("pointerup", (e) => {
-      if (!isDragging) return;
-      isDragging = false;
-      const delta = e.clientX - startX;
-      const snappedIdx = Math.round(-(startDragX + delta - getCenterOffset()) / getCardWidth());
-      slideToIndex(snappedIdx);
-    });
-
-    viewport.addEventListener("pointercancel", () => {
-      if (!isDragging) return;
-      isDragging = false;
-      slideToIndex(currentIdx);
-    });
-
-    viewport.addEventListener("click", (e) => { if (moved) e.stopPropagation(); }, true);
-
-    // Drag — touch
-    let startY = 0;
-    let touchLocked = false; // true = horizontal swipe, false = vertical scroll
-
-    viewport.addEventListener("touchstart", (e) => {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-      startDragX = currentX;
-      touchLocked = false;
-      gsap.killTweensOf(track);
-    }, { passive: true });
-
-    viewport.addEventListener("touchmove", (e) => {
-      const deltaX = e.touches[0].clientX - startX;
-      const deltaY = e.touches[0].clientY - startY;
-
-      // Direction not yet decided — wait for at least 6px of movement
-      if (!touchLocked && Math.abs(deltaX) < 6 && Math.abs(deltaY) < 6) return;
-
-      // Lock to whichever axis moved first
-      if (!touchLocked) {
-        touchLocked = true;
-        if (Math.abs(deltaY) > Math.abs(deltaX)) return; // vertical — let page scroll
-      }
-
-      if (Math.abs(deltaY) > Math.abs(deltaX)) return; // still vertical, keep scrolling
-
-      const minX = -(numCards - 1) * getCardWidth() + getCenterOffset() - 40;
-      const maxX = getCenterOffset() + 40;
-      gsap.set(track, { x: clamp(startDragX + deltaX, minX, maxX) });
-    }, { passive: true });
-
-    viewport.addEventListener("touchend", (e) => {
-      const deltaX = e.changedTouches[0].clientX - startX;
-      const deltaY = e.changedTouches[0].clientY - startY;
-      // Only snap if this was a horizontal swipe, and moved at least 30px
-      if (Math.abs(deltaX) < 30 || Math.abs(deltaY) > Math.abs(deltaX)) return;
-      const snappedIdx = Math.round(-(startDragX + deltaX - getCenterOffset()) / getCardWidth());
-      slideToIndex(snappedIdx);
-    });
   }
 
 

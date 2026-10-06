@@ -2133,134 +2133,107 @@ body.nf-loading {
 /* ── Values card slider ─────────────────────────────────────────────────── */
 .nf-value-row { opacity: 0; } /* keep GSAP pre-hide working for old selector if referenced */
 
-.nf-cards-wrap {
-    position: relative;
-    width: 100%;
-    margin-top: 60px;
+/* ── Values Bento Grid ── */
+.nf-bento {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin-top: 48px;
+    background: #141414;
+    gap: 2px;
+    border: 1px solid #141414;
 }
 
-.nf-cards-viewport {
-    overflow: hidden;
-    width: 100%;
-    cursor: grab;
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-.nf-cards-viewport:active {
-    cursor: grabbing;
-}
-
-.nf-cards-track {
-    display: flex;
-    gap: 20px;
-    will-change: transform;
-}
-
-.nf-val-card {
-    flex: 0 0 auto;
-    min-height: 560px;
-    height: auto;
-    width: 25%;
-    background: #0a0a0a;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 4px;
-    padding: 0 0 32px;
+.nf-bento__card {
+    grid-column: span 2;
+    background: #0A0A0A;
+    padding: 2.25rem 2.5rem 2.5rem;
     display: flex;
     flex-direction: column;
     gap: 0;
-    transition: border-color 0.25s ease;
+    transition: background 0.2s;
 }
 
-.nf-val-card:hover {
-    border-color: rgba(255,0,0,0.3);
+.nf-bento__card:hover {
+    background: #0D0D0D;
 }
 
-/* Illustration area at top of card */
-.nf-val-card__illus {
-    width: 100%;
-    aspect-ratio: 4/3;
+.nf-bento__card--wide {
+    grid-column: span 3;
+}
+
+/* Icon box */
+.nf-bento__icon {
+    width: 44px;
+    height: 44px;
+    background: #141414;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    margin-bottom: 1.75rem;
     flex-shrink: 0;
+    transition: background 0.2s;
 }
 
-.nf-val-card__illus img {
-    width: 80%;
-    height: auto;
-    opacity: 0.7;
-    object-fit: contain;
+.nf-bento__card:hover .nf-bento__icon {
+    background: #1A1A1A;
 }
 
-.nf-val-card__body {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 1;
-    padding: 24px 28px 0;
+.nf-bento__icon svg {
+    width: 18px;
+    height: 18px;
+    color: #E8001E;
 }
 
-.nf-val-card__title {
+.nf-bento__title {
     font-family: "Jost", sans-serif;
-    font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+    font-size: clamp(1.4rem, 2vw, 2rem);
     font-weight: 300;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.05em;
     text-transform: uppercase;
     color: var(--nf-fg);
     line-height: 1;
+    margin-bottom: 0.6rem;
 }
 
-.nf-val-card__outcome {
+.nf-bento__outcome {
     font-family: "JetBrains Mono", monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--nf-neutral);
-    margin: 0;
+    margin: 0 0 1.25rem;
 }
 
-.nf-val-card__desc {
+.nf-bento__desc {
     font-family: "Inter", sans-serif;
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     font-weight: 300;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.55);
-    margin-top: 4px;
-    flex: 1;
+    line-height: 1.8;
+    color: var(--nf-fg);
 }
 
-.nf-val-card__checks {
-    list-style: none;
-    padding: 0;
-    margin: 8px 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    border-top: 1px solid rgba(255,255,255,0.07);
-    padding-top: 20px;
+@media (max-width: 900px) {
+    .nf-bento {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .nf-bento__card {
+        grid-column: span 1;
+    }
+    .nf-bento__card--wide {
+        grid-column: span 2;
+    }
 }
 
-.nf-val-card__checks li {
-    font-family: "Inter", sans-serif;
-    font-size: 0.82rem;
-    font-weight: 400;
-    color: rgba(255,255,255,0.7);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.nf-val-card__checks li::before {
-    content: "";
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23ff0000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' d='M5 13l4 4L19 7'/%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
+@media (max-width: 600px) {
+    .nf-bento {
+        grid-template-columns: 1fr;
+    }
+    .nf-bento__card,
+    .nf-bento__card--wide {
+        grid-column: span 1;
+    }
+    .nf-bento__card {
+        padding: 1.75rem;
+    }
 }
 
 /* Arrow controls — simple chevrons in the section header */
