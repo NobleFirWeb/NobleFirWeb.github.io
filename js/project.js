@@ -75,6 +75,40 @@
             );
         }
 
+        // Project Goals — eyebrow + headline
+        const goalsEyebrow = document.querySelector('.cs-goals__eyebrow');
+        if (goalsEyebrow) {
+            gsap.fromTo(goalsEyebrow,
+                { autoAlpha: 0, y: 16 },
+                { autoAlpha: 1, y: 0, duration: 0.55, ease: 'power3.out',
+                  scrollTrigger: { trigger: goalsEyebrow, start: 'top 88%', once: true } }
+            );
+        }
+
+        const goalsHed = document.querySelector('.cs-goals__headline');
+        if (goalsHed) {
+            if (typeof SplitText !== 'undefined') {
+                document.fonts.ready.then(() => {
+                    const split = SplitText.create(goalsHed, { type: 'words', mask: 'words' });
+                    gsap.set(split.words, { y: '105%', autoAlpha: 0 });
+                    ScrollTrigger.create({
+                        trigger: goalsHed,
+                        start: 'top 85%',
+                        once: true,
+                        onEnter: () => {
+                            gsap.to(split.words, { y: 0, autoAlpha: 1, stagger: 0.07, duration: 0.65, ease: 'power3.out' });
+                        }
+                    });
+                });
+            } else {
+                gsap.fromTo(goalsHed,
+                    { autoAlpha: 0, y: 28 },
+                    { autoAlpha: 1, y: 0, duration: 0.65, ease: 'power3.out',
+                      scrollTrigger: { trigger: goalsHed, start: 'top 85%', once: true } }
+                );
+            }
+        }
+
         // "Fully Responsive." — scroll into view
         const mobileHed = document.querySelector('.cs-mobile__hed');
         if (mobileHed) {
@@ -130,6 +164,43 @@
                     }
                 }
             );
+        }
+    }
+
+    /* ══════════════════════════════════════════════
+       IMAGE GALLERY — curtain reveal (top → bottom)
+    ══════════════════════════════════════════════ */
+    if (gsapReady && stReady) {
+        document.querySelectorAll('[data-gallery-row]').forEach(row => {
+            const imgs = row.querySelectorAll('.cs-gallery__img');
+            gsap.set(imgs, { clipPath: 'inset(0 0 100% 0)' });
+            gsap.to(imgs, {
+                clipPath: 'inset(0 0 0% 0)',
+                duration: 1.6,
+                ease: 'power3.inOut',
+                stagger: 0,
+                scrollTrigger: {
+                    trigger: row,
+                    start: 'top bottom 20%',
+                    once: true,
+                }
+            });
+        });
+
+        const fullRow = document.querySelector('[data-gallery-full]');
+        if (fullRow) {
+            const fullImg = fullRow.querySelector('.cs-gallery__img');
+            gsap.set(fullImg, { clipPath: 'inset(0 0 100% 0)' });
+            gsap.to(fullImg, {
+                clipPath: 'inset(0 0 0% 0)',
+                duration: 1.8,
+                ease: 'power3.inOut',
+                scrollTrigger: {
+                    trigger: fullRow,
+                    start: 'top bottom 20%',
+                    once: true,
+                }
+            });
         }
     }
 

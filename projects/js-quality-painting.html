@@ -87,7 +87,7 @@
 
         <!-- Sticky image window — image reveals as intro scrolls away -->
         <div class="cs-hero-window" aria-hidden="true">
-            <div class="cs-hero-img" style="background-image: url('../img/js-painting/js-desktop1.png');"></div>
+            <div class="cs-hero-img" style="background-image: url('../img/js-painting/hero-img2.jpg');"></div>
         </div>
 
     </div>
@@ -129,67 +129,97 @@
     </section>
 
     <!-- ══════════════════════════════════════════════
-         DESKTOP SCREENSHOT SLIDER
+         PROJECT GOALS
     ══════════════════════════════════════════════ -->
-    <section class="cs-desktop-slider">
-        <div class="cs-slider-header">
-            <h2 class="cs-section-heading">Desktop Views</h2>
-            <div class="cs-slider-nav">
-                <button class="cs-slider-btn" id="deskPrev" aria-label="Previous slide" type="button">&#8249;</button>
-                <button class="cs-slider-btn" id="deskNext" aria-label="Next slide" type="button">&#8250;</button>
+    <section class="cs-goals">
+        <div class="cs-goals__inner">
+
+            <div class="cs-goals__header">
+                <span class="cs-goals__eyebrow">Project Goals</span>
+                <h2 class="cs-goals__headline">Built to earn trust and drive bid requests</h2>
             </div>
-        </div>
-        <div class="cs-slider" id="desktopSlider">
-            <div class="cs-slider__track" id="desktopTrack">
-                <div class="cs-slide">
-                    <div class="cs-slide__browser">
-                        <div class="cs-slide__browser-bar">
-                            <span class="cs-browser-dot"></span><span class="cs-browser-dot"></span><span class="cs-browser-dot"></span>
-                        </div>
-                        <div class="cs-slide__screen" style="background-image: url('../img/js-painting/js-hero1.png');"></div>
-                    </div>
+
+            <div class="cs-goals__grid">
+                <div class="cs-goals__card">
+                    <span class="cs-goals__num">01</span>
+                    <h3 class="cs-goals__title">Establish credibility</h3>
+                    <p class="cs-goals__desc">A professional online presence that earns homeowner confidence before the first call is ever made.</p>
                 </div>
-                <div class="cs-slide">
-                    <div class="cs-slide__browser">
-                        <div class="cs-slide__browser-bar">
-                            <span class="cs-browser-dot"></span><span class="cs-browser-dot"></span><span class="cs-browser-dot"></span>
-                        </div>
-                        <div class="cs-slide__screen" style="background-image: url('../img/js-painting/js-desktop2.png');"></div>
-                    </div>
+                <div class="cs-goals__card cs-goals__card--alt">
+                    <span class="cs-goals__num">02</span>
+                    <h3 class="cs-goals__title">Drive bid requests</h3>
+                    <p class="cs-goals__desc">Service pages with clear calls-to-action and a contact form wired directly to their inbox.</p>
                 </div>
-                <div class="cs-slide">
-                    <div class="cs-slide__browser">
-                        <div class="cs-slide__browser-bar">
-                            <span class="cs-browser-dot"></span><span class="cs-browser-dot"></span><span class="cs-browser-dot"></span>
-                        </div>
-                        <div class="cs-slide__screen" style="background-image: url('../img/js-painting/desktop3.png');"></div>
-                    </div>
+                <div class="cs-goals__card">
+                    <span class="cs-goals__num">03</span>
+                    <h3 class="cs-goals__title">Mobile-first performance</h3>
+                    <p class="cs-goals__desc">Fully responsive across every screen size, optimized for the devices customers actually use.</p>
                 </div>
-                <div class="cs-slide">
-                    <div class="cs-slide__browser">
-                        <div class="cs-slide__browser-bar">
-                            <span class="cs-browser-dot"></span><span class="cs-browser-dot"></span><span class="cs-browser-dot"></span>
-                        </div>
-                        <div class="cs-slide__screen" style="background-image: url('../img/js-painting/desktop4.png');"></div>
-                    </div>
-                </div>
-                <div class="cs-slide">
-                    <div class="cs-slide__browser">
-                        <div class="cs-slide__browser-bar">
-                            <span class="cs-browser-dot"></span><span class="cs-browser-dot"></span><span class="cs-browser-dot"></span>
-                        </div>
-                        <div class="cs-slide__screen" style="background-image: url('../img/js-painting/desktop5.png');"></div>
-                    </div>
+                <div class="cs-goals__card cs-goals__card--red">
+                    <span class="cs-goals__num">04</span>
+                    <h3 class="cs-goals__title">SEO foundation</h3>
+                    <p class="cs-goals__desc">On-page optimization built in from day one — metadata, schema, and semantic HTML throughout.</p>
                 </div>
             </div>
+
         </div>
-        <div class="cs-slider-dots" id="deskDots" aria-hidden="true">
-            <button class="cs-slider-dot is-active" data-idx="0"></button>
-            <button class="cs-slider-dot" data-idx="1"></button>
-            <button class="cs-slider-dot" data-idx="2"></button>
-            <button class="cs-slider-dot" data-idx="3"></button>
-            <button class="cs-slider-dot" data-idx="4"></button>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         IMAGE GALLERY
+    ══════════════════════════════════════════════ -->
+    <section class="cs-gallery">
+
+        <!-- Row 1 -->
+        <div class="cs-gallery__row" data-gallery-row>
+            <div class="cs-gallery__item">
+                <img
+                    src="../img/js-painting/hero-img2.jpg"
+                    alt="JS Quality Custom Painting — desktop mockup"
+                    class="cs-gallery__img"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+            <div class="cs-gallery__item">
+                <img
+                    src="../img/js-painting-mobile.png"
+                    alt="JS Quality Custom Painting — mobile mockup"
+                    class="cs-gallery__img"
+                    loading="lazy"
+                    decoding="async">
+            </div>
         </div>
+
+        <!-- Row 2 -->
+        <div class="cs-gallery__row" data-gallery-row>
+            <div class="cs-gallery__item">
+                <img
+                    src="../img/js-painting/hero-img2.jpg"
+                    alt="JS Quality Custom Painting — desktop detail"
+                    class="cs-gallery__img"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+            <div class="cs-gallery__item">
+                <img
+                    src="../img/js-painting-mobile2.png"
+                    alt="JS Quality Custom Painting — mobile detail"
+                    class="cs-gallery__img"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+        </div>
+
+        <!-- Row 3 — full width -->
+        <div class="cs-gallery__full" data-gallery-full>
+            <img
+                src="../img/js-painting/hero-img2.jpg"
+                alt="JS Quality Custom Painting — full spread"
+                class="cs-gallery__img"
+                loading="lazy"
+                decoding="async">
+        </div>
+
     </section>
 
     <!-- ══════════════════════════════════════════════

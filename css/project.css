@@ -136,7 +136,7 @@ body {
 
 .cs-hero-img {
     width: 100%;
-    height: 140%;            /* taller than window — overflow is revealed by GSAP y scrub */
+    height: 150%;            /* taller than window — overflow is revealed by GSAP y scrub */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -149,7 +149,7 @@ body {
 .cs-overview {
     position: relative;
     z-index: 3;
-    padding: 12vh 7% 5vh;
+    padding: 15vh 12.5% 5vh;
 }
 
 .cs-overview__inner {
@@ -257,6 +257,122 @@ body {
     border: 1px solid var(--nf-border);
     padding: 0.3em 0.75em;
     border-radius: 1px;
+}
+
+/* ══════════════════════════════════════════════
+   PROJECT GOALS
+══════════════════════════════════════════════ */
+.cs-goals {
+    padding: 12vh 7% 10vh;
+}
+
+.cs-goals__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+.cs-goals__header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cs-goals__eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--nf-red);
+}
+
+.cs-goals__headline {
+    font-family: "Jost", sans-serif;
+    font-weight: 200;
+    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--nf-fg);
+    max-width: 22ch;
+    line-height: 1.1;
+    text-wrap: balance;
+}
+
+.cs-goals__grid {
+    display: flex;
+    gap: 20px;
+}
+
+.cs-goals__card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 3rem 2.5rem 3.5rem;
+    background: #111111;
+    min-height: 320px;
+}
+
+.cs-goals__card--alt {
+    background: #F2F2F2;
+}
+.cs-goals__card--alt .cs-goals__num {
+    color: #888888;
+}
+.cs-goals__card--alt .cs-goals__title {
+    color: #0A0A0A;
+}
+.cs-goals__card--alt .cs-goals__desc {
+    color: rgba(10, 10, 10, 0.55);
+}
+
+.cs-goals__card--red {
+    background: var(--nf-red);
+}
+
+.cs-goals__num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+    color: var(--nf-fg);
+    margin-bottom: 2rem;
+}
+
+.cs-goals__card--red .cs-goals__num {
+    color: var(--nf-fg);
+}
+
+.cs-goals__title {
+    font-family: "Jost", sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.1rem, 1.8vw, 1.55rem);
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--nf-fg);
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+}
+
+.cs-goals__desc {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    color: var(--nf-fg);
+    margin-top: auto;
+}
+
+.cs-goals__card--red .cs-goals__title,
+.cs-goals__card--red .cs-goals__desc {
+    color: rgba(245, 245, 245, 0.9);
+}
+
+@media (max-width: 900px) {
+    .cs-goals__grid {
+        flex-direction: column;
+    }
 }
 
 /* ══════════════════════════════════════════════
@@ -406,6 +522,41 @@ body {
 .cs-slider-dot.is-active {
     width: 40px;
     background: var(--nf-red);
+}
+
+/* ══════════════════════════════════════════════
+   IMAGE GALLERY
+══════════════════════════════════════════════ */
+.cs-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8vh 0;
+}
+
+.cs-gallery__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    height: 100vh;
+}
+
+.cs-gallery__full {
+    height: 100vh;
+}
+
+.cs-gallery__item,
+.cs-gallery__full {
+    overflow: hidden;
+    position: relative;
+}
+
+.cs-gallery__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    will-change: clip-path;
 }
 
 /* ══════════════════════════════════════════════
