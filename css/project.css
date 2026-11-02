@@ -740,6 +740,19 @@ body {
    RESPONSIVE
 ══════════════════════════════════════════════ */
 @media (max-width: 900px) {
+    .cs-gallery__row {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .cs-gallery__item {
+        height: 70vw;
+    }
+
+    .cs-gallery__full {
+        height: 80vw;
+    }
+
     .cs-overview__inner {
         grid-template-columns: 1fr;
     }
@@ -760,6 +773,9 @@ body {
 }
 
 @media (max-width: 600px) {
+    .cs-gallery__item { height: 85vw; }
+    .cs-gallery__full  { height: 100vw; }
+
     .cs-intro { padding: 0 5% 7vh; }
     .cs-overview { padding: 6vh 5% 8vh; }
     .cs-desktop-slider { padding: 6vh 5% 0; height: 50vh; margin: 0 0 5% 0; }
