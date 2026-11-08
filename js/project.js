@@ -171,37 +171,60 @@
        IMAGE GALLERY — curtain reveal (top → bottom)
     ══════════════════════════════════════════════ */
     if (gsapReady && stReady) {
-        document.querySelectorAll('[data-gallery-row]').forEach(row => {
-            const imgs = row.querySelectorAll('.cs-gallery__img');
-            gsap.set(imgs, { clipPath: 'inset(0 0 100% 0)' });
-            gsap.to(imgs, {
-                clipPath: 'inset(0 0 0% 0)',
-                duration: 1.6,
-                ease: 'power3.inOut',
-                stagger: 0,
-                scrollTrigger: {
-                    trigger: row,
-                    start: 'top bottom 20%',
-                    once: true,
-                }
+        const galleryMM = gsap.matchMedia();
+
+        // Desktop: stagger both images in a row as the row enters the viewport
+        galleryMM.add('(min-width: 901px)', () => {
+            document.querySelectorAll('[data-gallery-row]').forEach(row => {
+                const imgs = row.querySelectorAll('.cs-gallery__img');
+                gsap.set(imgs, { clipPath: 'inset(0 0 100% 0)' });
+                gsap.to(imgs, {
+                    clipPath: 'inset(0 0 0% 0)',
+                    duration: 1.6,
+                    ease: 'power3.inOut',
+                    stagger: 0.18,
+                    scrollTrigger: { trigger: row, start: 'top 80%', once: true }
+                });
             });
+
+            const fullRowDesk = document.querySelector('[data-gallery-full]');
+            if (fullRowDesk) {
+                const fullImgDesk = fullRowDesk.querySelector('.cs-gallery__img');
+                gsap.set(fullImgDesk, { clipPath: 'inset(0 0 100% 0)' });
+                gsap.to(fullImgDesk, {
+                    clipPath: 'inset(0 0 0% 0)',
+                    duration: 1.8,
+                    ease: 'power3.inOut',
+                    scrollTrigger: { trigger: fullRowDesk, start: 'top 80%', once: true }
+                });
+            }
         });
 
-        const fullRow = document.querySelector('[data-gallery-full]');
-        if (fullRow) {
-            const fullImg = fullRow.querySelector('.cs-gallery__img');
-            gsap.set(fullImg, { clipPath: 'inset(0 0 100% 0)' });
-            gsap.to(fullImg, {
-                clipPath: 'inset(0 0 0% 0)',
-                duration: 1.8,
-                ease: 'power3.inOut',
-                scrollTrigger: {
-                    trigger: fullRow,
-                    start: 'top bottom 20%',
-                    once: true,
-                }
+        // Mobile: each image triggers independently as it enters the viewport
+        galleryMM.add('(max-width: 900px)', () => {
+            document.querySelectorAll('.cs-gallery__item').forEach(item => {
+                const img = item.querySelector('.cs-gallery__img');
+                gsap.set(img, { clipPath: 'inset(0 0 100% 0)' });
+                gsap.to(img, {
+                    clipPath: 'inset(0 0 0% 0)',
+                    duration: 1.2,
+                    ease: 'power3.inOut',
+                    scrollTrigger: { trigger: item, start: 'top 90%', once: true }
+                });
             });
-        }
+
+            const fullRowMob = document.querySelector('[data-gallery-full]');
+            if (fullRowMob) {
+                const fullImgMob = fullRowMob.querySelector('.cs-gallery__img');
+                gsap.set(fullImgMob, { clipPath: 'inset(0 0 100% 0)' });
+                gsap.to(fullImgMob, {
+                    clipPath: 'inset(0 0 0% 0)',
+                    duration: 1.4,
+                    ease: 'power3.inOut',
+                    scrollTrigger: { trigger: fullRowMob, start: 'top 90%', once: true }
+                });
+            }
+        });
     }
 
     /* ══════════════════════════════════════════════
